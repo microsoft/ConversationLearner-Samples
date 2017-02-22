@@ -69,7 +69,7 @@ if (!blisOptions)
 
 var recognizer = new blisdk.BlisRecognizer(blisOptions);
 
-//recognizer.InitDebug(bot, builder);
+recognizer.InitDebug(bot);
 	
 var blisDialog = new blisdk.BlisDialog({ 
 	recognizers: [recognizer]});
