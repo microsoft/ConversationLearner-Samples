@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bliskd": "github:microsoft/BLIS-SDK",
     "botbuilder": "^3.6.0",
     "restify": "^4.3.0"
   }
