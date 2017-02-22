@@ -1,6 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
-var blisdk = require('bliskd');
+var blisdk = require('blisdk');
 
 //=========================================================
 // Bot Setup

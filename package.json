@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bliskd": "https://aka.ms/blisdk",
+    "blisdk": "https://aka.ms/blisdk",
     "botbuilder": "^3.6.0",
     "restify": "^4.3.0"
   }
