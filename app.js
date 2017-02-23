@@ -41,6 +41,9 @@ var LocalConfig = function(config) {
             user: config.BLIS_USER,  
             secret: config.BLIS_SECRET, 
             appId: config.BLIS_APP_ID, 
+//            luisCallback: LuisCallback,
+            blisCallback : BlisCallback,
+            apiCallbacks : APICallbacks
         }
         return blisOptions;
     }
@@ -54,6 +57,18 @@ var LocalConfig = function(config) {
 // Bots Dialogs
 //=========================================================
 
+var BlisCallback = function(text)
+{
+    return text;
+}
+
+var LuisCallback = function(text, entities) 
+{
+    return new blisdk.TakeTurnRequest({text : text, entities: entities});
+}
+
+var APICallbacks = {};
+
 var blisOptions = LocalConfig();
 
 if (!blisOptions)
@@ -64,6 +79,9 @@ if (!blisOptions)
         user: process.env.BLIS_USER,  
         secret: process.env.BLIS_SECRET, 
         appId: process.env.BLIS_APP_ID, 
+ //       luisCallback: LuisCallback,
+        blisCallback : BlisCallback,
+        apiCallbacks : APICallbacks
     }
 }
 

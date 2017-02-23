@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --nolazy --debug-brk=5858 app.js",
-    "preinstall" : "npm uninstall blisdk"
+    "preinstall" : "npm uninstall blisdk && npm install blisdk"
   },
   "author": "",
   "license": "ISC",
