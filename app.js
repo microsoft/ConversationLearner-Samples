@@ -94,10 +94,8 @@ if (!blisOptions)
     }
 }
 
-var recognizer = new blisdk.BlisRecognizer(blisOptions);
+var recognizer = new blisdk.BlisRecognizer(bot, blisOptions);
 
-recognizer.InitDebug(bot);
-	
 var blisDialog = new blisdk.BlisDialog({ 
 	recognizers: [recognizer]});
 
