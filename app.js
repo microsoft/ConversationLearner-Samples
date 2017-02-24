@@ -41,7 +41,7 @@ var LocalConfig = function(config) {
             user: config.BLIS_USER,  
             secret: config.BLIS_SECRET, 
             appId: config.BLIS_APP_ID, 
-//            luisCallback: LuisCallback,
+            luisCallback: LuisCallback,
             blisCallback : BlisCallback,
             apiCallbacks : APICallbacks
         }
@@ -57,12 +57,21 @@ var LocalConfig = function(config) {
 // Bots Dialogs
 //=========================================================
 
+/**
+* Allows developer to alter the output text from BLIS before it is sent to the end user 
+* @param text (string) Output from BLIS
+*/
 var BlisCallback = function(text)
 {
     return text;
 }
 
-var LuisCallback = function(text, entities) 
+/**
+* Processes messages received from the user. Called by the dialog system. 
+* @param text (string) Input Text To BLIS
+* @param entities (LuisEntity[]) Entities extracted by LUIS model
+*/
+var LuisCallback = function(text, entities)   
 {
     return new blisdk.TakeTurnRequest({text : text, entities: entities});
 }
@@ -79,7 +88,7 @@ if (!blisOptions)
         user: process.env.BLIS_USER,  
         secret: process.env.BLIS_SECRET, 
         appId: process.env.BLIS_APP_ID, 
- //       luisCallback: LuisCallback,
+        luisCallback: LuisCallback,
         blisCallback : BlisCallback,
         apiCallbacks : APICallbacks
     }
