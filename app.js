@@ -61,9 +61,9 @@ var LocalConfig = function(config) {
 * Allows developer to alter the output text from BLIS before it is sent to the end user 
 * @param text (string) Output from BLIS
 */
-var BlisCallback = function(text)
+var BlisCallback = function(text, memory)
 {
-    return text;
+    return memory.Substitute(text);
 }
 
 /**
@@ -71,8 +71,13 @@ var BlisCallback = function(text)
 * @param text (string) Input Text To BLIS
 * @param entities (LuisEntity[]) Entities extracted by LUIS model
 */
-var LuisCallback = function(text, entities)   
+var LuisCallback = function(text, entities, memory)   
 {
+    var words = text.split(' ');
+    if (words[0] == "r") 
+    {
+        memory.Remember(words[1],words[2]);
+    }
     return new blisdk.TakeTurnRequest({text : text, entities: entities});
 }
 
