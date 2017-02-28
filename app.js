@@ -70,15 +70,18 @@ var BlisCallback = function(text, memory)
 * Processes messages received from the user. Called by the dialog system. 
 * @param text (string) Input Text To BLIS
 * @param entities (LuisEntity[]) Entities extracted by LUIS model
+* @param memory Bot memory
 */
 var LuisCallback = function(text, entities, memory)   
 {
-    var words = text.split(' ');
-    if (words[0] == "r") 
+    var entityIds = [];
+    for (var entity of entities)
     {
-        memory.Remember(words[1],words[2]);
+        memory.Remember(entity.type, entity.entity);
+        entityIds.push[entity.type];
     }
-    return new blisdk.TakeTurnRequest({text : text, entities: entities});
+
+    return new blisdk.TakeTurnRequest({text : text, entities: entityIds});
 }
 
 var APICallbacks = {};
