@@ -42,8 +42,9 @@ var LocalConfig = function(config) {
             secret: config.BLIS_SECRET, 
             appId: config.BLIS_APP_ID, 
             luisCallback: LuisCallback,
-            blisCallback : BlisCallback,
-            apiCallbacks : APICallbacks
+            blisCallback: BlisCallback,
+            apiCallbacks: APICallbacks,
+            connector: connector
         }
         return blisOptions;
     }
