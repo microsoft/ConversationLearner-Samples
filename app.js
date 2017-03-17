@@ -75,11 +75,14 @@ var BlisCallback = function(text, memory)
 */
 var LuisCallback = function(text, entities, memory)   
 {
-    var entityIds = [];
+    // Get entities from my memory
+    var entityIds = memory.RememberedIds();
+
+    // Add new entities extracted by LUIS
     for (var entity of entities)
     {
         memory.Remember(entity.type, entity.entity);
-        entityIds.push[entity.type];
+        entityIds.push(entity.type);
     }
 
     return new blisdk.TakeTurnRequest({text : text, entities: entityIds});
