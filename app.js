@@ -76,12 +76,12 @@ var BlisCallback = function(text, memory)
 var LuisCallback = function(text, entities, memory)   
 {
     // Get entities from my memory
-    var entityIds = memory.RememberedIds();
+    var entityIds = memory.EntityIds();
 
     // Add new entities extracted by LUIS
     for (var entity of entities)
     {
-        memory.Remember(entity.type, entity.entity);
+        memory.RememberEntity(entity.type, entity.entity);
         entityIds.push(entity.type);
     }
 
