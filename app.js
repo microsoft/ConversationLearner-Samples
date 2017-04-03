@@ -61,31 +61,22 @@ var LocalConfig = function(config) {
 /**
 * Allows developer to alter the output text from BLIS before it is sent to the end user 
 * @param text (string) Output from BLIS
+* @param Bot memory
 */
 var BlisCallback = function(text, memory)
 {
-    return memory.Substitute(text);
+    return recognizer.DefaultBlisCallback(text, memory);
 }
 
 /**
 * Processes messages received from the user. Called by the dialog system. 
 * @param text (string) Input Text To BLIS
 * @param entities (LuisEntity[]) Entities extracted by LUIS model
-* @param memory Bot memory
+* @param Bot memory
 */
 var LuisCallback = function(text, entities, memory)   
 {
-    // Get entities from my memory
-    var entityIds = memory.EntityIds();
-
-    // Add new entities extracted by LUIS
-    for (var entity of entities)
-    {
-        memory.RememberEntity(entity.type, entity.entity);
-        entityIds.push(entity.type);
-    }
-
-    return new blisdk.TakeTurnRequest({text : text, entities: entityIds});
+    return recognizer.DefaultLuisCallback(text, entities, memory);
 }
 
 var APICallbacks = {};
