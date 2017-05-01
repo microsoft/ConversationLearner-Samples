@@ -41,6 +41,7 @@ var LocalConfig = function(config) {
             user: config.BLIS_USER,  
             secret: config.BLIS_SECRET, 
             appId: config.BLIS_APP_ID, 
+            azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
             luisCallback: LuisCallback,
             blisCallback: BlisCallback,
             apiCallbacks: APICallbacks,
@@ -91,6 +92,7 @@ if (!blisOptions)
         user: process.env.BLIS_USER,  
         secret: process.env.BLIS_SECRET, 
         appId: process.env.BLIS_APP_ID, 
+        azureFunctionsUrl : process.env.BLIS_FUNCTIONS_URL,
         luisCallback: LuisCallback,
         blisCallback : BlisCallback,
         apiCallbacks : APICallbacks
