@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blisdk": "https://aka.ms/blisdk-scratch",
+    "blisdk": "https://aka.ms/blisdk",
     "botbuilder": "^3.8.0",
     "restify": "^4.3.0"
   }
