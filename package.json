@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "blisdk": "https://aka.ms/blisdk",
-    "botbuilder": "^3.8.0",
+    "botbuilder": "^3.8.2",
     "restify": "^4.3.0"
   }
 }
