@@ -42,6 +42,8 @@ var LocalConfig = function(config) {
             secret: config.BLIS_SECRET, 
             appId: config.BLIS_APP_ID, 
             azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
+            redisServer: config.BLIS_REDIS_SERVER,
+            redisKey: config.BLIS_REDIS_KEY,
             luisCallback: LuisCallback,
             blisCallback: BlisCallback,
             apiCallbacks: APICallbacks,
@@ -63,10 +65,11 @@ var LocalConfig = function(config) {
 * Allows developer to alter the output text from BLIS before it is sent to the end user 
 * @param text (string) Output from BLIS
 * @param Bot memory
+* TOOD update desc
 */
-var BlisCallback = function(text, memory)
+var BlisCallback = function(text, memory, done)
 {
-    return recognizer.DefaultBlisCallback(text, memory);
+    recognizer.DefaultBlisCallback(text, memory, done);
 }
 
 /**
@@ -74,10 +77,11 @@ var BlisCallback = function(text, memory)
 * @param text (string) Input Text To BLIS
 * @param entities (LuisEntity[]) Entities extracted by LUIS model
 * @param Bot memory
+* TODO update desc
 */
-var LuisCallback = function(text, entities, memory)   
+var LuisCallback = function(text, entities, memory, done) 
 {
-    return recognizer.DefaultLuisCallback(text, entities, memory);
+    recognizer.DefaultLuisCallback(text, entities, memory, done);
 }
 
 var APICallbacks = {};
@@ -93,6 +97,8 @@ if (!blisOptions)
         secret: process.env.BLIS_SECRET, 
         appId: process.env.BLIS_APP_ID, 
         azureFunctionsUrl : process.env.BLIS_FUNCTIONS_URL,
+        redisServer: process.env.BLIS_REDIS_SERVER,
+        redisKey: process.env.BLIS_REDIS_KEY,
         luisCallback: LuisCallback,
         blisCallback : BlisCallback,
         apiCallbacks : APICallbacks
