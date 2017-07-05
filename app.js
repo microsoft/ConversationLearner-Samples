@@ -107,7 +107,7 @@ if (!blisOptions)
 
 var recognizer = new blisdk.BlisRecognizer(bot, blisOptions);
 
-var blisDialog = new blisdk.BlisDialog({ 
+var blisDialog = new blisdk.BlisDialog(bot, { 
 	recognizers: [recognizer]});
 
 bot.dialog('/', blisDialog);
