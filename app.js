@@ -106,7 +106,7 @@ if (!blisOptions)
 }
 
 
-var blisDialog = new blisdk.BlisDialog(bot, blisOptions);
+var blisDialog = new blisdk.BlisDialog.Init(bot, blisOptions);
 
 bot.dialog('/', blisDialog);
 
