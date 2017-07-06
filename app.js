@@ -69,7 +69,7 @@ var LocalConfig = function(config) {
 */
 var BlisCallback = function(text, memory, done)
 {
-    recognizer.DefaultBlisCallback(text, memory, done);
+    blisDialog.DefaultBlisCallback(text, memory, done);
 }
 
 /**
@@ -81,7 +81,7 @@ var BlisCallback = function(text, memory, done)
 */
 var LuisCallback = function(text, entities, memory, done) 
 {
-    recognizer.DefaultLuisCallback(text, entities, memory, done);
+    blisDialog.DefaultLuisCallback(text, entities, memory, done);
 }
 
 var APICallbacks = {};
@@ -105,10 +105,8 @@ if (!blisOptions)
     }
 }
 
-var recognizer = new blisdk.BlisRecognizer(bot, blisOptions);
 
-var blisDialog = new blisdk.BlisDialog(bot, { 
-	recognizers: [recognizer]});
+var blisDialog = new blisdk.BlisDialog(bot, blisOptions);
 
 bot.dialog('/', blisDialog);
 
