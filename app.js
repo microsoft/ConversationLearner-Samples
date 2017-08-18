@@ -36,11 +36,11 @@ var LocalConfig = function(config) {
 
         var config = JSON.parse(data);
 
+        var serviceUrl =config.BLIS_DEBUG ? config.BLIS_DEBUG_URI : config.BLIS_SERVICE_URI;
         var blisOptions = {   
-            serviceUri: config.BLIS_SERVICE_URI, 
+            serviceUri: serviceUrl, 
             user: config.BLIS_USER,  
-            secret: config.BLIS_SECRET, 
-            appId: config.BLIS_APP_ID, 
+            secret: config.BLIS_SECRET,  
             azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
             redisServer: config.BLIS_REDIS_SERVER,
             redisKey: config.BLIS_REDIS_KEY,
