@@ -84,7 +84,39 @@ var LuisCallback = function(text, entities, memory, done)
     blisDialog.DefaultLuisCallback(text, entities, memory, done);
 }
 
-var APICallbacks = {};
+// Example of a bliss API callback
+var sampleMultiply = function(argArray) {
+    try {
+        var num1 = parseInt(argArray[0]);
+        var num2 = parseInt(argArray[1]);
+
+        return `${num1 * num2}`;
+    }
+    catch (err)
+    {
+        return "Invalid number";
+    }
+}
+
+// Example of a prompt
+var samplePrompt = function(argArray) {
+    
+    var text = argArray[0];
+    var button1 = argArray[1];
+    var button2 = argArray[2];
+
+    var buttons = [
+        builder.CardAction.imBack(null, button1, button1),
+        builder.CardAction.imBack(null, button2, button2)
+    ];
+    var card = new builder.HeroCard()
+        .text(text)
+        .buttons(buttons);
+    return new builder.Message().addAttachment(card);
+}
+
+var APICallbacks = {'SampleMultiply' : sampleMultiply,
+                    'SamplePrompt' : samplePrompt };
 
 var blisOptions = LocalConfig();
 
