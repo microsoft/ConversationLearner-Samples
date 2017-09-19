@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^8.0.28",
-    "blisdk": "^0.41.14",
+    "blisdk": "^0.42.1",
     "botbuilder": "^3.9.0",
     "restify": "^4.3.0"
   }
