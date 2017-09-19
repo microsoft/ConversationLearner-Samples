@@ -74,16 +74,38 @@ var BlisCallback = function(text, memory, done)
 
 /**
 * Processes messages received from the user. Called by the dialog system. 
-* @param text (string) Input Text To BLIS
-* @param entities (LuisEntity[]) Entities extracted by LUIS model
-* @param Bot memory
-* TODO update desc
+* @param {string} text Input Text To BLIS
+* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
+* @param {BlisMemory} memory Entities the bot has in it's memory
+* @returns {Promise<ScoreInput>}
 */
-var LuisCallback = function(text, entities, memory, done) 
+var LuisCallback = async function(text, predictedEntities, memoryManager) 
 {
-    blisDialog.DefaultLuisCallback(text, entities, memory, done);
+    let defaultInput = await blisDialog.DefaultLuisCallback(text, predictedEntities, memoryManager);
+
+    // If app has isClosed entity, set it
+    if (memoryManager.FindEntity("isClosed")) {
+        if (isDuringBusinessHours()) {
+            await memoryManager.ForgetEntity("isClosed");    
+        }
+        else {
+            await memoryManager.RememberEntity("isClosed", "true");          
+        }
+
+        // Update filled entities
+        defaultInput.filledEntities = await memoryManager.GetFilledEntities();
+    }
+    
+    return defaultInput;
 }
 
+
+// Flip between true or false
+var isOpen = true;
+var isDuringBusinessHours = function() {
+    isOpen = !isOpen;
+    return isOpen;
+} 
 // Example of a bliss API callback
 var sampleMultiply = function(argArray) {
     try {
