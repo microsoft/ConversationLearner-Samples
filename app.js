@@ -83,6 +83,22 @@ var LuisCallback = async function(text, predictedEntities, memoryManager)
 {
     let defaultInput = await blisDialog.DefaultLuisCallback(text, predictedEntities, memoryManager);
 
+    if (await memoryManager.FindEntity("OutOfStock"))
+    {
+        // Clear out of stock
+        await memoryManager.ForgetEntity("OutOfStock");
+                
+        let toppings = await memoryManager.EntityValueAsList("Toppings");
+        for (let topping of toppings) {
+            if (!isInStock(topping)) {
+                await memoryManager.ForgetEntity("Toppings", topping);
+                await memoryManager.RememberEntity("OutOfStock", topping);        
+            }
+        }
+        // Update filled entities
+        defaultInput.filledEntities = await memoryManager.GetFilledEntities();
+    }
+
     // If app has isClosed entity, set it
     if (memoryManager.FindEntity("isClosed")) {
         if (isDuringBusinessHours()) {
@@ -99,6 +115,10 @@ var LuisCallback = async function(text, predictedEntities, memoryManager)
     return defaultInput;
 }
 
+var inStock = ["cheese", "sausuage", "mushrooms", "olives", "peppers"];
+var isInStock = function(topping) {
+    return (inStock.indexOf(topping.toLowerCase()) > -1);
+}
 
 // Flip between true or false
 var isOpen = true;
