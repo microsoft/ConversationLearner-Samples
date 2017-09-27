@@ -105,11 +105,13 @@ var LuisCallback = async function(text, predictedEntities, memoryManager)
             await memoryManager.ForgetEntity("isClosed");    
         }
         else {
-            await memoryManager.RememberEntity("isClosed", "true");          
+            await memoryManager.RememberEntity("isClosed", "true"); 
+            defaultInput.maskedActions = ['9ac0d3d3-a6c2-424a-98f1-a2f38341ce70']; // "How can I help you?"         
         }
 
         // Update filled entities
         defaultInput.filledEntities = await memoryManager.GetFilledEntities();
+        
     }
     
     return defaultInput;
