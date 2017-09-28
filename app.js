@@ -2,6 +2,10 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var blisdk = require('blisdk');
 
+const inStockDemo = require('./demos/inStock');
+const businessHoursDemo = require('./demos/businessHours');
+const picturesDemo = require('./demos/pictures');
+
 //=========================================================
 // Bot Setup
 //=========================================================
@@ -63,71 +67,49 @@ var LocalConfig = function(config) {
 
 /**
 * Allows developer to alter the output text from BLIS before it is sent to the end user 
-* @param text (string) Output from BLIS
-* @param Bot memory
-* TOOD update desc
+* @param {string} text Output from BLIS
+* @param {ClientMemoryManager} memoryManager memory manager
+* @returns {string | builder.Message} 
 */
-var BlisCallback = function(text, memory, done)
+var BlisCallback = async function(text, memoryManager)
 {
-    blisDialog.DefaultBlisCallback(text, memory, done);
+    // Call default callback to get bot output
+    let defaultOutput = await blisDialog.DefaultBlisCallback(text, memoryManager);
+
+    let appName = await memoryManager.AppName();
+    switch (appName)
+    { 
+        case "Pictures":
+            return picturesDemo.BlisCallback(defaultOutput, memoryManager);
+    }
+    return defaultOutput;
 }
 
 /**
 * Processes messages received from the user. Called by the dialog system. 
 * @param {string} text Input Text To BLIS
 * @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
-* @param {BlisMemory} memory Entities the bot has in it's memory
+* @param {ClientMemoryManager} memoryManager memory manager
 * @returns {Promise<ScoreInput>}
 */
 var LuisCallback = async function(text, predictedEntities, memoryManager) 
 {
+    // Call default callback to update Memory with LUIS predictions
     let defaultInput = await blisDialog.DefaultLuisCallback(text, predictedEntities, memoryManager);
-
-    if (await memoryManager.FindEntity("OutOfStock"))
-    {
-        // Clear out of stock
-        await memoryManager.ForgetEntity("OutOfStock");
-                
-        let toppings = await memoryManager.EntityValueAsList("Toppings");
-        for (let topping of toppings) {
-            if (!isInStock(topping)) {
-                await memoryManager.ForgetEntity("Toppings", topping);
-                await memoryManager.RememberEntity("OutOfStock", topping);        
-            }
-        }
-        // Update filled entities
-        defaultInput.filledEntities = await memoryManager.GetFilledEntities();
-    }
-
-    // If app has isClosed entity, set it
-    if (memoryManager.FindEntity("isClosed")) {
-        if (isDuringBusinessHours()) {
-            await memoryManager.ForgetEntity("isClosed");    
-        }
-        else {
-            await memoryManager.RememberEntity("isClosed", "true"); 
-            defaultInput.maskedActions = ['9ac0d3d3-a6c2-424a-98f1-a2f38341ce70']; // "How can I help you?"         
-        }
-
-        // Update filled entities
-        defaultInput.filledEntities = await memoryManager.GetFilledEntities();
         
+    let appName = await memoryManager.AppName();
+    switch (appName)
+    { 
+        case "InStock":
+            return await inStockDemo.LuisCallback(defaultInput, memoryManager);
+        case "OpenClosed":
+            return await businessHoursDemo.LuisCallback(defaultInput, memoryManager);
     }
-    
     return defaultInput;
 }
 
-var inStock = ["cheese", "sausuage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping) {
-    return (inStock.indexOf(topping.toLowerCase()) > -1);
-}
 
-// Flip between true or false
-var isOpen = true;
-var isDuringBusinessHours = function() {
-    isOpen = !isOpen;
-    return isOpen;
-} 
+
 // Example of a bliss API callback
 var sampleMultiply = function(argArray) {
     try {
