@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^8.0.28",
-    "blisdk": "^0.52.0",
+    "blisdk": "^0.53.5",
     "botbuilder": "^3.9.0",
     "restify": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/restify": "^4.3.5"
   }
 }
