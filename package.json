@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blisdk": "^0.53.5",
+    "blisdk": "^0.54.5",
     "botbuilder": "^3.9.0",
     "restify": "^4.3.0"
   },

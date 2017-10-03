@@ -11,7 +11,10 @@
             "name": "Launch Program",
             "program": "${workspaceRoot}\\app.js",
             "cwd": "${workspaceRoot}",
-            "outFiles": []
+            "outFiles": [],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
         },
         {
             "type": "node",
