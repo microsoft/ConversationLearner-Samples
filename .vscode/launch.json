@@ -8,9 +8,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}\\app.js",
-            "cwd": "${workspaceRoot}",
+            "name": "Launch V3",
+            "program": "${workspaceRoot}\\V3\\app.js",
+            "cwd": "${workspaceRoot}\\V3",
             "outFiles": [],
             "runtimeArgs": [
                 "--preserve-symlinks"
