@@ -18,6 +18,17 @@
         },
         {
             "type": "node",
+            "request": "launch",
+            "name": "Launch V4",
+            "program": "${workspaceRoot}\\V4\\app.js",
+            "cwd": "${workspaceRoot}\\V4",
+            "outFiles": [],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
             "request": "attach",
             "name": "Attach to Azure",
             "address": "blissimplesample.azurewebsites.net",
