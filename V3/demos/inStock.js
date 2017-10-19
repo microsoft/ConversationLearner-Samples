@@ -3,7 +3,7 @@ var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
-var LuisCallback = async function(defaultInput, memoryManager) {
+var LuisCallback = async function(botInput, memoryManager) {
 
     // Clear OutOfStock List
     await memoryManager.ForgetEntity("OutOfStock");
@@ -21,9 +21,9 @@ var LuisCallback = async function(defaultInput, memoryManager) {
         }
     }
     // Update filled entities
-    defaultInput.filledEntities = await memoryManager.GetFilledEntities();
+    botInput.filledEntities = await memoryManager.GetFilledEntities();
 
-    return defaultInput
+    return botInput
 }
 
 
@@ -32,35 +32,30 @@ var FinalizeOrder = async function(memoryManager, argArray) {
     let appName = await memoryManager.AppName();
     if (appName == "InStock")
     { 
-        // Get list of requested Toppings
-        let toppings = await memoryManager.EntityValueAsList("Toppings");
+        // Save toppings
+        await memoryManager.CopyEntity("Toppings", "LastToppings");
 
-        // Save previous topping for next order
-        for (let topping of toppings) {
-            await memoryManager.RememberEntity("LastToppings", topping); 
-            await memoryManager.ForgetEntity("Toppings", topping);
-        }
+        // Clear toppings
+        await memoryManager.ForgetEntity("Toppings");
+
         return `Your pizza is on it's way`;
-
     }
 }
 
 
 var UseLastToppings = async function(memoryManager, argArray) {
     
-        let appName = await memoryManager.AppName();
-        if (appName == "InStock")
-        { 
-            // Get list of requested Toppings
-            let lastToppings = await memoryManager.EntityValueAsList("LastTopping");
-    
-            // Save previous topping for next order
-            for (let topping of lastToppings) {
-                await memoryManager.ForgetEntity("LastToppings", topping); 
-                await memoryManager.RemoveEntity("Toppings", topping);
-            }
-        }
+    let appName = await memoryManager.AppName();
+    if (appName == "InStock")
+    { 
+        // Restore last toppings
+        await memoryManager.CopyEntity("LastToppings", "Toppings");
+
+        // Clear last toppings
+        await memoryManager.ForgetEntity("LastToppings"); 
     }
+}
 
 exports.LuisCallback = LuisCallback;
 exports.FinalizeOrder = FinalizeOrder;
+exports.UseLastToppings = UseLastToppings;
