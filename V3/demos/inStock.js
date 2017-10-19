@@ -1,4 +1,4 @@
-var inStock = ["cheese", "sausuage", "mushrooms", "olives", "peppers"];
+var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
 var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
