@@ -26,4 +26,41 @@ var LuisCallback = async function(defaultInput, memoryManager) {
     return defaultInput
 }
 
+
+var FinalizeOrder = async function(memoryManager, argArray) {
+
+    let appName = await memoryManager.AppName();
+    if (appName == "InStock")
+    { 
+        // Get list of requested Toppings
+        let toppings = await memoryManager.EntityValueAsList("Toppings");
+
+        // Save previous topping for next order
+        for (let topping of toppings) {
+            await memoryManager.RememberEntity("LastToppings", topping); 
+            await memoryManager.ForgetEntity("Toppings", topping);
+        }
+        return `Your pizza is on it's way`;
+
+    }
+}
+
+
+var UseLastToppings = async function(memoryManager, argArray) {
+    
+        let appName = await memoryManager.AppName();
+        if (appName == "InStock")
+        { 
+            // Get list of requested Toppings
+            let lastToppings = await memoryManager.EntityValueAsList("LastTopping");
+    
+            // Save previous topping for next order
+            for (let topping of lastToppings) {
+                await memoryManager.ForgetEntity("LastToppings", topping); 
+                await memoryManager.RemoveEntity("Toppings", topping);
+            }
+        }
+    }
+
 exports.LuisCallback = LuisCallback;
+exports.FinalizeOrder = FinalizeOrder;

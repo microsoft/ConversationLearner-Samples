@@ -111,7 +111,7 @@ var LuisCallback = async function(text, predictedEntities, memoryManager)
 
 
 // Example of a bliss API callback
-var sampleMultiply = function(argArray) {
+var sampleMultiply = function(memoryManager, argArray) {
     try {
         var num1 = parseInt(argArray[0]);
         var num2 = parseInt(argArray[1]);
@@ -125,7 +125,7 @@ var sampleMultiply = function(argArray) {
 }
 
 // Example of a prompt
-var samplePrompt = function(argArray) {
+var samplePrompt = function(memoryManager, argArray) {
     
     var text = argArray[0];
     var button1 = argArray[1];
@@ -142,7 +142,9 @@ var samplePrompt = function(argArray) {
 }
 
 var APICallbacks = {'SampleMultiply' : sampleMultiply,
-                    'SamplePrompt' : samplePrompt };
+                    'SamplePrompt' : samplePrompt,
+                    'FinalizeOrder' : inStockDemo.FinalizeOrder,
+                    'UseLastToppings' : inStockDemo.UseLastToppings };
 
 var blisOptions = LocalConfig();
 
