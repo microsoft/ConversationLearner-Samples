@@ -8,14 +8,14 @@ var isDuringBusinessHours = function() {
 var LuisCallback = async function(defaultInput, memoryManager) {
 
     if (isDuringBusinessHours()) {
-        await memoryManager.ForgetEntity("isClosed");    
+        await memoryManager.ForgetEntityAsync("isClosed");    
     }
     else {
-        await memoryManager.RememberEntity("isClosed", "true");         
+        await memoryManager.RememberEntityAsync("isClosed", "true");         
     }
 
     // Update filled entities
-    defaultInput.filledEntities = await memoryManager.GetFilledEntities();
+    defaultInput.filledEntities = await memoryManager.GetFilledEntitiesAsync();
 
     return defaultInput
 }

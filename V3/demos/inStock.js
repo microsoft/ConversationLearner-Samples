@@ -6,22 +6,22 @@ var isInStock = function(topping) {
 var LuisCallback = async function(botInput, memoryManager) {
 
     // Clear OutOfStock List
-    await memoryManager.ForgetEntity("OutOfStock");
+    await memoryManager.ForgetEntityAsync("OutOfStock");
             
     // Get list of requested Toppings
-    let toppings = await memoryManager.EntityValueAsList("Toppings");
+    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
 
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
-            await memoryManager.ForgetEntity("Toppings", topping);
-            await memoryManager.RememberEntity("OutOfStock", topping);        
+            await memoryManager.ForgetEntityAsync("Toppings", topping);
+            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
         }
     }
     // Update filled entities
-    botInput.filledEntities = await memoryManager.GetFilledEntities();
+    botInput.filledEntities = await memoryManager.GetFilledEntitiesAsync();
 
     return botInput
 }
@@ -29,14 +29,14 @@ var LuisCallback = async function(botInput, memoryManager) {
 
 var FinalizeOrder = async function(memoryManager, argArray) {
 
-    let appName = await memoryManager.AppName();
+    let appName = await memoryManager.AppNameAsync();
     if (appName == "InStock")
     { 
         // Save toppings
-        await memoryManager.CopyEntity("Toppings", "LastToppings");
+        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
 
         // Clear toppings
-        await memoryManager.ForgetEntity("Toppings");
+        await memoryManager.ForgetEntityAsync("Toppings");
 
         return `Your pizza is on it's way`;
     }
@@ -45,14 +45,14 @@ var FinalizeOrder = async function(memoryManager, argArray) {
 
 var UseLastToppings = async function(memoryManager, argArray) {
     
-    let appName = await memoryManager.AppName();
+    let appName = await memoryManager.AppNameAsync();
     if (appName == "InStock")
     { 
         // Restore last toppings
-        await memoryManager.CopyEntity("LastToppings", "Toppings");
+        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
 
         // Clear last toppings
-        await memoryManager.ForgetEntity("LastToppings"); 
+        await memoryManager.ForgetEntityAsync("LastToppings"); 
     }
 }
 

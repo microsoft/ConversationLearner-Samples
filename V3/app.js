@@ -76,7 +76,7 @@ var BlisCallback = async function(text, memoryManager)
     // Call default callback to get bot output
     let defaultOutput = await blisDialog.DefaultBlisCallback(text, memoryManager);
 
-    let appName = await memoryManager.AppName();
+    let appName = await memoryManager.AppNameAsync();
     switch (appName)
     { 
         case "Pictures":
@@ -97,7 +97,7 @@ var LuisCallback = async function(text, predictedEntities, memoryManager)
     // Call default callback to update Memory with LUIS predictions
     let defaultInput = await blisDialog.DefaultLuisCallback(text, predictedEntities, memoryManager);
         
-    let appName = await memoryManager.AppName();
+    let appName = await memoryManager.AppNameAsync();
     switch (appName)
     { 
         case "InStock":
@@ -107,8 +107,6 @@ var LuisCallback = async function(text, predictedEntities, memoryManager)
     }
     return defaultInput;
 }
-
-
 
 // Example of a bliss API callback
 var sampleMultiply = function(memoryManager, argArray) {
