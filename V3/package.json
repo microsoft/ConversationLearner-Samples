@@ -4,14 +4,18 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --nolazy --debug-brk=5858 app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blisdk": "https://aka.ms/blisdk",
-    "botbuilder": "^3.8.2",
+    "blisdk": "^0.68.0",
+    "botbuilder": "^3.9.0",
     "restify": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/restify": "^4.3.5"
   }
 }
