@@ -48,9 +48,6 @@ var LocalConfig = function(config) {
             azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
             redisServer: config.BLIS_REDIS_SERVER,
             redisKey: config.BLIS_REDIS_KEY,
-            luisCallback: LuisCallback,
-            blisCallback: BlisCallback,
-            apiCallbacks: APICallbacks,
             connector: connector
         }
         return blisOptions;
@@ -71,19 +68,20 @@ var LocalConfig = function(config) {
 * @param {ClientMemoryManager} memoryManager memory manager
 * @returns {string | builder.Message} 
 */
-var BlisCallback = async function(text, memoryManager)
-{
-    // Call default callback to get bot output
-    let defaultOutput = await blisDialog.DefaultBlisCallback(text, memoryManager);
+blisdk.BlisCallback(async (text, memoryManager) =>
+    {
+        // Call default callback to get bot output
+        let defaultOutput = await blisDialog.DefaultBlisCallback(text, memoryManager);
 
-    let appName = await memoryManager.AppNameAsync();
-    switch (appName)
-    { 
-        case "Pictures":
-            return picturesDemo.BlisCallback(defaultOutput, memoryManager);
+        let appName = await memoryManager.AppNameAsync();
+        switch (appName)
+        { 
+            case "Pictures":
+                return picturesDemo.BlisCallback(defaultOutput, memoryManager);
+        }
+        return defaultOutput;
     }
-    return defaultOutput;
-}
+)
 
 /**
 * Processes messages received from the user. Called by the dialog system. 
@@ -92,57 +90,56 @@ var BlisCallback = async function(text, memoryManager)
 * @param {ClientMemoryManager} memoryManager memory manager
 * @returns {Promise<ScoreInput>}
 */
-var LuisCallback = async function(text, predictedEntities, memoryManager) 
+blisdk.LuisCallback(async (text, predictedEntities, memoryManager) =>
 {
-    // Call default callback to update Memory with LUIS predictions
-    let defaultInput = await blisDialog.DefaultLuisCallback(text, predictedEntities, memoryManager);
-        
-    let appName = await memoryManager.AppNameAsync();
-    switch (appName)
-    { 
-        case "InStock":
-            return await inStockDemo.LuisCallback(defaultInput, memoryManager);
-        case "OpenClosed":
-            return await businessHoursDemo.LuisCallback(defaultInput, memoryManager);
+        // Call default callback to update Memory with LUIS predictions
+        let defaultInput = await blisDialog.DefaultLuisCallback(text, predictedEntities, memoryManager);
+            
+        let appName = await memoryManager.AppNameAsync();
+        switch (appName)
+        { 
+            case "InStock":
+                return await inStockDemo.LuisCallback(defaultInput, memoryManager);
+            case "OpenClosed":
+                return await businessHoursDemo.LuisCallback(defaultInput, memoryManager);
+        }
+        return defaultInput;
     }
-    return defaultInput;
-}
+)
 
 // Example of a bliss API callback
-var sampleMultiply = function(memoryManager, argArray) {
-    try {
-        var num1 = parseInt(argArray[0]);
-        var num2 = parseInt(argArray[1]);
-
-        return `${num1 * num2}`;
-    }
-    catch (err)
+blisdk.APICallback("SampleMultiply", async (memoryManager, argArray) =>
     {
-        return "Invalid number";
+        try {
+            var num1 = parseInt(argArray[0]);
+            var num2 = parseInt(argArray[1]);
+
+            return `${num1 * num2}`;
+        }
+        catch (err)
+        {
+            return "Invalid number";
+        }
     }
-}
+)
 
 // Example of a prompt
-var samplePrompt = function(memoryManager, argArray) {
-    
-    var text = argArray[0];
-    var button1 = argArray[1];
-    var button2 = argArray[2];
+blisdk.APICallback("SamplePropt", async (memoryManager, argArray) =>
+    {
+        var text = argArray[0];
+        var button1 = argArray[1];
+        var button2 = argArray[2];
 
-    var buttons = [
-        builder.CardAction.imBack(null, button1, button1),
-        builder.CardAction.imBack(null, button2, button2)
-    ];
-    var card = new builder.HeroCard()
-        .text(text)
-        .buttons(buttons);
-    return new builder.Message().addAttachment(card);
-}
-
-var APICallbacks = {'SampleMultiply' : sampleMultiply,
-                    'SamplePrompt' : samplePrompt,
-                    'FinalizeOrder' : inStockDemo.FinalizeOrder,
-                    'UseLastToppings' : inStockDemo.UseLastToppings };
+        var buttons = [
+            builder.CardAction.imBack(null, button1, button1),
+            builder.CardAction.imBack(null, button2, button2)
+        ];
+        var card = new builder.HeroCard()
+            .text(text)
+            .buttons(buttons);
+        return new builder.Message().addAttachment(card);
+    }
+)
 
 var blisOptions = LocalConfig();
 
@@ -157,9 +154,6 @@ if (!blisOptions)
         azureFunctionsUrl : process.env.BLIS_FUNCTIONS_URL,
         redisServer: process.env.BLIS_REDIS_SERVER,
         redisKey: process.env.BLIS_REDIS_KEY,
-        luisCallback: LuisCallback,
-        blisCallback : BlisCallback,
-        apiCallbacks : APICallbacks
     }
 }
 

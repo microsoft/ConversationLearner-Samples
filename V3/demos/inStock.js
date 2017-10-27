@@ -1,3 +1,5 @@
+var blisdk = require('blisdk');
+
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
 var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
@@ -26,36 +28,34 @@ var LuisCallback = async function(botInput, memoryManager) {
     return botInput
 }
 
+blisdk.APICallback("FinalizeOrder", async (memoryManager, argArray) => 
+    {
 
-var FinalizeOrder = async function(memoryManager, argArray) {
+        let appName = await memoryManager.AppNameAsync();
+        if (appName == "InStock")
+        { 
+            // Save toppings
+            await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
 
-    let appName = await memoryManager.AppNameAsync();
-    if (appName == "InStock")
-    { 
-        // Save toppings
-        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
+            // Clear toppings
+            await memoryManager.ForgetEntityAsync("Toppings");
 
-        // Clear toppings
-        await memoryManager.ForgetEntityAsync("Toppings");
-
-        return `Your pizza is on it's way`;
+            return `Your pizza is on it's way`;
+        }
     }
-}
+);
 
+blisdk.APICallback("UseLastToppings", async (memoryManager, argArray) =>
+    {
+        
+        let appName = await memoryManager.AppNameAsync();
+        if (appName == "InStock")
+        { 
+            // Restore last toppings
+            await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
 
-var UseLastToppings = async function(memoryManager, argArray) {
-    
-    let appName = await memoryManager.AppNameAsync();
-    if (appName == "InStock")
-    { 
-        // Restore last toppings
-        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
-
-        // Clear last toppings
-        await memoryManager.ForgetEntityAsync("LastToppings"); 
+            // Clear last toppings
+            await memoryManager.ForgetEntityAsync("LastToppings"); 
+        }
     }
-}
-
-exports.LuisCallback = LuisCallback;
-exports.FinalizeOrder = FinalizeOrder;
-exports.UseLastToppings = UseLastToppings;
+);
