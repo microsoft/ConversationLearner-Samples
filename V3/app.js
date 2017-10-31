@@ -124,7 +124,7 @@ blisdk.APICallback("SampleMultiply", async (memoryManager, argArray) =>
 )
 
 // Example of a prompt
-blisdk.APICallback("SamplePropt", async (memoryManager, argArray) =>
+blisdk.APICallback("SamplePrompt", async (memoryManager, argArray) =>
     {
         var text = argArray[0];
         var button1 = argArray[1];

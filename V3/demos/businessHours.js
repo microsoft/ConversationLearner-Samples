@@ -5,7 +5,7 @@ var isDuringBusinessHours = function() {
     return isOpen;
 } 
 
-var LuisCallback = async function(defaultInput, memoryManager) {
+exports.LuisCallback = async function(defaultInput, memoryManager) {
 
     if (isDuringBusinessHours()) {
         await memoryManager.ForgetEntityAsync("isClosed");    
