@@ -19,7 +19,3 @@ exports.LuisCallback = async function(defaultInput, memoryManager) {
 
     return defaultInput
 }
-
-
-
-exports.LuisCallback = LuisCallback;
