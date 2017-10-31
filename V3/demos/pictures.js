@@ -30,5 +30,3 @@ exports.BlisCallback = async function(defaultOutput, memoryManager) {
 
     return defaultOutput;
 }
-
-exports.BlisCallback = BlisCallback;
