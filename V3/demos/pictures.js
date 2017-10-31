@@ -1,6 +1,6 @@
 var builder = require('botbuilder');
 
-var BlisCallback = async function(defaultOutput, memoryManager) {
+exports.BlisCallback = async function(defaultOutput, memoryManager) {
 
     var imageURL = null;
     switch (defaultOutput)

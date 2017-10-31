@@ -5,7 +5,7 @@ var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
-var LuisCallback = async function(botInput, memoryManager) {
+exports.LuisCallback = async function(botInput, memoryManager) {
 
     // Clear OutOfStock List
     await memoryManager.ForgetEntityAsync("OutOfStock");
