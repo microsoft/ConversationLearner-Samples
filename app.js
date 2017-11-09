@@ -141,7 +141,7 @@ blisdk.APICallback("SamplePrompt", async (memoryManager, argArray) =>
     }
 )
 
-var blisOptions = LocalConfig();
+var blisOptions = null;//LocalConfig();
 
 if (!blisOptions)
 {
