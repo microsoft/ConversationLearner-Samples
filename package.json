@@ -17,5 +17,6 @@
   },
   "devDependencies": {
     "@types/restify": "^4.3.5"
-  }
+  },
+  "engines": {"node": "7.6.0"}
 }
