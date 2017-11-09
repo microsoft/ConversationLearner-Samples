@@ -8,25 +8,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch V3",
-            "program": "${workspaceRoot}\\V3\\app.js",
-            "cwd": "${workspaceRoot}\\V3",
+            "name": "Launch",
+            "program": "${workspaceRoot}\\app.js",
+            "cwd": "${workspaceRoot}",
             "outFiles": [],
             "runtimeArgs": [
                 "--preserve-symlinks"
             ]
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch V4",
-            "program": "${workspaceRoot}\\V4\\app.js",
-            "cwd": "${workspaceRoot}\\V4",
-            "outFiles": [],
-            "runtimeArgs": [
-                "--preserve-symlinks"
-            ]
-        },
+
         {
             "type": "node",
             "request": "attach",
