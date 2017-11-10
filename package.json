@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blisdk": "^0.74.11",
+    "blisdk": "^0.74.13",
     "botbuilder": "^3.11.0",
     "restify": "^4.3.0"
   },
