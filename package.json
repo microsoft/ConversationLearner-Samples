@@ -11,12 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blisdk": "^0.74.2",
-    "botbuilder": "^3.9.0",
+    "blisdk": "^0.74.7",
+    "botbuilder": "^3.11.0",
     "restify": "^4.3.0"
   },
   "devDependencies": {
-    "@types/restify": "^4.3.5"
+    "@types/restify": "^4.3.6"
   },
   "engines": {
     "node": "7.10.0"

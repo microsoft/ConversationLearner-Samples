@@ -45,9 +45,11 @@ var LocalConfig = function(config) {
             serviceUri: serviceUrl, 
             user: config.BLIS_USER,  
             secret: config.BLIS_SECRET,  
+            appId: config.BLIS_APP_ID,
             azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
             redisServer: config.BLIS_REDIS_SERVER,
             redisKey: config.BLIS_REDIS_KEY,
+            localhost: true,
             connector: connector
         }
         return blisOptions;
@@ -141,7 +143,7 @@ blisdk.APICallback("SamplePrompt", async (memoryManager, argArray) =>
     }
 )
 
-var blisOptions = null;//LocalConfig();
+var blisOptions = LocalConfig();
 
 if (!blisOptions)
 {
@@ -154,6 +156,8 @@ if (!blisOptions)
         azureFunctionsUrl : process.env.BLIS_FUNCTIONS_URL,
         redisServer: process.env.BLIS_REDIS_SERVER,
         redisKey: process.env.BLIS_REDIS_KEY,
+        localhost: false,
+        connector: connector,
     }
 }
 
