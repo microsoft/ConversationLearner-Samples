@@ -26,39 +26,6 @@ var bot = new builder.UniversalBot(connector, {
 });
 server.post('/api/messages', connector.listen());
 
-//=======================================================
-// Local debug setup
-//=======================================================
-var fs = require('fs');
-var path = require('path');
-
-var LocalConfig = function(config) {
-    try 
-    {
-        var filePath = path.join(__dirname, 'blisconfig.json');
-        var data = fs.readFileSync(filePath, {encoding: 'utf-8'});
-
-        var config = JSON.parse(data);
-
-        var serviceUrl =config.BLIS_DEBUG ? config.BLIS_DEBUG_URI : config.BLIS_SERVICE_URI;
-        var blisOptions = {   
-            serviceUri: serviceUrl, 
-            user: config.BLIS_USER,  
-            secret: config.BLIS_SECRET,  
-            appId: config.BLIS_APP_ID,
-            azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
-            redisServer: config.BLIS_REDIS_SERVER,
-            redisKey: config.BLIS_REDIS_KEY,
-            localhost: true,
-            connector: connector
-        }
-        return blisOptions;
-    }
-    catch (Err)
-    {
-        return null;
-    }
-}
 
 //=========================================================
 // Bots Dialogs
@@ -143,6 +110,37 @@ blisdk.APICallback("SamplePrompt", async (memoryManager, argArray) =>
     }
 )
 
+//=======================================================
+// Local debug setup
+//=======================================================
+var fs = require('fs');
+var path = require('path');
+
+var LocalConfig = function(config) {
+    try 
+    {
+        var filePath = path.join(__dirname, 'blisconfig.json');
+        var data = fs.readFileSync(filePath, {encoding: 'utf-8'});
+
+        var config = JSON.parse(data);
+
+        var serviceUrl =config.BLIS_DEBUG ? config.BLIS_DEBUG_URI : config.BLIS_SERVICE_URI;
+        var blisOptions = {   
+            serviceUri: serviceUrl,  
+            appId: config.BLIS_APP_ID,
+            azureFunctionsUrl : config.BLIS_FUNCTIONS_URL,
+            redisServer: config.BLIS_REDIS_SERVER,
+            redisKey: config.BLIS_REDIS_KEY,
+            localhost: true,
+            connector: connector
+        }
+        return blisOptions;
+    }
+    catch (Err)
+    {
+        return null;
+    }
+}
 var blisOptions = LocalConfig();
 
 if (!blisOptions)
@@ -150,8 +148,6 @@ if (!blisOptions)
     blisOptions = 
     {   
         serviceUri: process.env.BLIS_SERVICE_URI, 
-        user: process.env.BLIS_USER,  
-        secret: process.env.BLIS_SECRET, 
         appId: process.env.BLIS_APP_ID, 
         azureFunctionsUrl : process.env.BLIS_FUNCTIONS_URL,
         redisServer: process.env.BLIS_REDIS_SERVER,
