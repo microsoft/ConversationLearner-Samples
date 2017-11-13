@@ -193,8 +193,6 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/*
-!node_modules/blis-models
-!node_modules/blisdk
 
 orleans.codegen.cs
 
