@@ -1,5 +1,5 @@
 {
-    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
@@ -8,25 +8,14 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch",
-            "program": "${workspaceRoot}\\app.js",
-            "cwd": "${workspaceRoot}",
-            "outFiles": [],
+            "name": "Launch BLIS Demo",
+            "program": "${workspaceFolder}\\lib\\app.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
             "runtimeArgs": [
                 "--preserve-symlinks"
             ]
-        },
-
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach to Azure",
-            "address": "blissimplesample.azurewebsites.net",
-            "port": 5858,
-            "restart" : false,
-            "sourceMaps": false, 
-            "localRoot" : "${workspaceRoot}",
-            "remoteRoot" : "D:\\home\\site\\wwwroot"
         }
     ]
 }

@@ -1,24 +1,19 @@
 {
-  "name": "bottest",
-  "version": "1.6.0",
+  "name": "blis-sample",
+  "version": "0.100.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "node --nolazy --debug-brk=5858 app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "blisdk": "^0.89.0",
-    "botbuilder": "^3.11.0",
-    "restify": "^4.3.0"
-  },
-  "devDependencies": {
-    "@types/restify": "^4.3.6"
-  },
-  "engines": {
-    "node": "7.10.0"
+    "blis-models": "0.100.0",
+    "blis-sdk": "0.100.0",
+    "botbuilder-core": "^4.0.0-h4.2",
+    "botbuilder-services": "^4.0.0-h3.3",
+    "restify": "^6.3.2",
+    "tslint": "^5.8.0"
   }
 }

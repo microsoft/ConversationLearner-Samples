@@ -1,4 +1,4 @@
-var blisdk = require('blisdk');
+import { Blis, IBlisOptions, ClientMemoryManager } from 'blis-sdk';
 
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
 var isInStock = function(topping) {
@@ -28,7 +28,7 @@ exports.LuisCallback = async function(botInput, memoryManager) {
     return botInput
 }
 
-blisdk.APICallback("FinalizeOrder", async (memoryManager, argArray) => 
+Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
     {
 
         let appName = await memoryManager.AppNameAsync();
@@ -39,13 +39,13 @@ blisdk.APICallback("FinalizeOrder", async (memoryManager, argArray) =>
 
             // Clear toppings
             await memoryManager.ForgetEntityAsync("Toppings");
-
-            return `Your pizza is on it's way`;
         }
+
+        return "Your order is on it's way";
     }
 );
 
-blisdk.APICallback("UseLastToppings", async (memoryManager, argArray) =>
+Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
     {
         
         let appName = await memoryManager.AppNameAsync();
@@ -57,5 +57,6 @@ blisdk.APICallback("UseLastToppings", async (memoryManager, argArray) =>
             // Clear last toppings
             await memoryManager.ForgetEntityAsync("LastToppings"); 
         }
+        return null;
     }
 );
