@@ -5,7 +5,7 @@ var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
-exports.LuisCallback = async function(botInput, memoryManager) {
+exports.EntityDetectionCallback = async function(text, predictedEntities, memoryManager) {
 
     // Clear OutOfStock List
     await memoryManager.ForgetEntityAsync("OutOfStock");
@@ -22,10 +22,6 @@ exports.LuisCallback = async function(botInput, memoryManager) {
             await memoryManager.RememberEntityAsync("OutOfStock", topping);        
         }
     }
-    // Update filled entities
-    botInput.filledEntities = await memoryManager.GetFilledEntitiesAsync();
-
-    return botInput
 }
 
 Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
