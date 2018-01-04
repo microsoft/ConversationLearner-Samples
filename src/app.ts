@@ -65,48 +65,23 @@ function BlisOptions() : IBlisOptions {
 Blis.Init(BlisOptions());
 
 /**
-* Allows developer to alter the output text from BLIS before it is sent to the end user 
-* @param {string} text Output from BLIS
-* @param {ClientMemoryManager} memoryManager memory manager
-* @returns {string | builder.Message} 
-*/
-Blis.BlisCallback(async (text: string, memoryManager: ClientMemoryManager) : Promise<string> =>
-{
-    // Call default callback to get bot output
-    let defaultOutput = await Blis.DefaultBlisCallback(text, memoryManager);
-/*LARSTEMP
-    let appName = await memoryManager.AppNameAsync();
-    switch (appName)
-    { 
-        case "Pictures":
-            return picturesDemo.BlisCallback(defaultOutput, memoryManager);
-    }*/
-    return defaultOutput;
-}
-)
-
-/**
 * Processes messages received from the user. Called by the dialog system. 
 * @param {string} text Input Text To BLIS
 * @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
 * @param {ClientMemoryManager} memoryManager memory manager
-* @returns {Promise<ScoreInput>}
+* @returns {Promise<void>}
 */
-Blis.LuisCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager) : Promise<Models.ScoreInput> =>
-{
-    // Call default callback to update Memory with LUIS predictions
-    let defaultInput = await Blis.DefaultLuisCallback(text, predictedEntities, memoryManager);
-     
-    let appName = await memoryManager.AppNameAsync();
-    switch (appName)
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager) : Promise<void> =>
     { 
-        case "InStock":
-            return await inStockDemo.LuisCallback(defaultInput, memoryManager);
-        case "OpenClosed":
-            return await businessHoursDemo.LuisCallback(defaultInput, memoryManager);
+        let appName = await memoryManager.AppNameAsync();
+        switch (appName)
+        { 
+            case "InStock":
+                await inStockDemo.LuisCallback(text, predictedEntities, memoryManager);
+            case "OpenClosed":
+                await businessHoursDemo.LuisCallback(text, predictedEntities, memoryManager);
+        }
     }
-    return defaultInput;
-}
 )
 
 // Example of a BLIS API callback
