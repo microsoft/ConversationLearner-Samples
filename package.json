@@ -1,13 +1,17 @@
 {
   "name": "blis-sample",
-  "version": "0.100.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.100.1",
+  "description": "Sample BOT using BLIS",
+  "main": "./lib/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prestart": "tsc",
+    "start": "node ./lib/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Microsoft BLIS Team",
+  "license": "MIT",
   "dependencies": {
     "blis-models": "0.100.0",
     "blis-sdk": "^0.104.0",
@@ -15,5 +19,8 @@
     "botbuilder-services": "^4.0.0-h3.3",
     "restify": "^6.3.2",
     "tslint": "^5.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.2"
   }
 }
