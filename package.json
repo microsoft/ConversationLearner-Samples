@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "blis-models": "0.100.0",
-    "blis-sdk": "^0.103.0",
+    "blis-sdk": "^0.103.1",
     "botbuilder-core": "^4.0.0-h4.2",
     "botbuilder-services": "^4.0.0-h3.3",
     "restify": "^6.3.2",
