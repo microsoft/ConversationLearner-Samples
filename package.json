@@ -1,6 +1,6 @@
 {
   "name": "blis-sample",
-  "version": "0.100.0",
+  "version": "0.100.1",
   "description": "Sample BOT using BLIS",
   "main": "./lib/app.js",
   "scripts": {
