@@ -77,9 +77,11 @@ Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEn
         switch (appName)
         { 
             case "InStock":
-                await inStockDemo.LuisCallback(text, predictedEntities, memoryManager);
+                await inStockDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
+                break;
             case "OpenClosed":
-                await businessHoursDemo.LuisCallback(text, predictedEntities, memoryManager);
+                await businessHoursDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
+                break;
         }
     }
 )
@@ -99,27 +101,6 @@ Blis.AddAPICallback("SampleMultiply", async (memoryManager : ClientMemoryManager
         }
     }
 )
-
-/*LARSTODO
-// Example of a prompt
-Blis.AddAPICallback("SamplePrompt", async (memoryManager: ClientMemoryManager, argArray : any[]) : Promise<string> => 
-    {
-        var text = argArray[0];
-        var button1 = argArray[1];
-        var button2 = argArray[2];
-
-        var buttons = [
-            builder.CardAction.imBack(null, button1, button1),
-            builder.CardAction.imBack(null, button2, button2)
-        ];
-        var card = new builder.HeroCard()
-            .text(text)
-            .buttons(buttons);
-        return new builder.Message().addAttachment(card);
-        return null;
-    }
-)
-*/
 
 // Initialize bot
 const bot = new BB.Bot(connector)

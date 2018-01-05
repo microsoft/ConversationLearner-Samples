@@ -5,7 +5,7 @@ var isDuringBusinessHours = function() {
     return isOpen;
 } 
 
-exports.LuisCallback = async function(defaultInput, memoryManager) {
+exports.EntityDetectionCallback = async function(text, predictedEntities, memoryManager) {
 
     if (isDuringBusinessHours()) {
         await memoryManager.ForgetEntityAsync("isClosed");    
@@ -13,9 +13,4 @@ exports.LuisCallback = async function(defaultInput, memoryManager) {
     else {
         await memoryManager.RememberEntityAsync("isClosed", "true");         
     }
-
-    // Update filled entities
-    defaultInput.filledEntities = await memoryManager.GetFilledEntitiesAsync();
-
-    return defaultInput
 }
