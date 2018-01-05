@@ -27,7 +27,7 @@ var path = require('path');
 
 function BlisOptions() : IBlisOptions {
 
-    var filePath = path.join(__dirname, 'blisconfig.json');
+    var filePath = path.join(__dirname, '..', 'blisconfig.json');
     if (fs.existsSync(filePath))
     {
         var data = fs.readFileSync(filePath, {encoding: 'utf-8'});
