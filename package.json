@@ -8,19 +8,21 @@
     "prestart": "tsc",
     "start": "node ./lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "ui": "node ./lib/ui.js"
   },
   "author": "Microsoft BLIS Team",
   "license": "MIT",
   "dependencies": {
     "blis-models": "0.107.1",
-    "blis-sdk": "^0.108.0",
+    "blis-sdk": "^0.109.0",
     "botbuilder-core": "^4.0.0-h4.2",
     "botbuilder-services": "^4.0.0-h3.3",
     "restify": "^6.3.2",
     "tslint": "^5.8.0"
   },
   "devDependencies": {
+    "@types/restify": "^5.0.7",
     "typescript": "^2.6.2"
   }
 }
