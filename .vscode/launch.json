@@ -30,7 +30,8 @@
             ],
             "env": {
                 "BLIS_UI_PORT": "5050"
-            }
+            },
+            "preLaunchTask": "build"
         }
     ]
 }
