@@ -16,6 +16,22 @@
             "runtimeArgs": [
                 "--preserve-symlinks"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch BLIS UI",
+            "program": "${workspaceFolder}\\lib\\ui.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ],
+            "env": {
+                "BLIS_UI_PORT": "5050"
+            },
+            "preLaunchTask": "build"
         }
     ]
 }
