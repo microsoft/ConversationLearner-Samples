@@ -1,6 +1,6 @@
 import { Blis, IBlisOptions, ClientMemoryManager } from 'blis-sdk';
 
-var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
+var inStock = ["cheese", "sausage", "mushroomsxx", "olives", "peppers"];
 var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
