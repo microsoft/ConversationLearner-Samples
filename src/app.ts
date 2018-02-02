@@ -15,6 +15,7 @@ if (result.error) {
 
 // Demos
 const inStockDemo = require('./demos/inStock');
+const hololensDemo = require('./demos/hololens');
 const businessHoursDemo = require('./demos/businessHours');
 
 // Create server
@@ -59,6 +60,9 @@ Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEn
     switch (appName) {
         case "InStock":
             await inStockDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
+            break;
+        case "TS":
+            await hololensDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
             break;
         case "OpenClosed":
             await businessHoursDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
