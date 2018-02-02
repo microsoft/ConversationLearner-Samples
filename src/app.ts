@@ -29,7 +29,7 @@ server.listen(process.env.PORT || 3978, () => {
 const connector = new BotFrameworkAdapter({ appId: process.env.MICROSOFT_APP_ID, appPassword: process.env.MICROSOFT_APP_PASSWORD });
 server.post('/api/messages', connector.listen() as any);
 
-const useDebug = process.env.BLIS_DEBUG.toLowerCase() === 'true'
+const useDebug = process.env.BLIS_DEBUG && process.env.BLIS_DEBUG.toLowerCase() === 'true'
 const serviceUri = useDebug ? process.env.BLIS_DEBUG_URI : process.env.BLIS_SERVICE_URI
 const blisOptions: IBlisOptions = {
     serviceUri,
@@ -37,7 +37,7 @@ const blisOptions: IBlisOptions = {
     azureFunctionsUrl: process.env.BLIS_FUNCTIONS_URL,
     redisServer: process.env.BLIS_REDIS_SERVER,
     redisKey: process.env.BLIS_REDIS_KEY,
-    localhost: process.env.BLIS_LOCALHOST.toLowerCase() === 'true',
+    localhost: process.env.BLIS_LOCALHOST ? process.env.BLIS_LOCALHOST.toLowerCase() === 'true' : true,
     user: process.env.BLIS_USER,
     secret: process.env.BLIS_SECRET
 }
