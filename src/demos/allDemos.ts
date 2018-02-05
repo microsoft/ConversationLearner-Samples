@@ -14,8 +14,14 @@ if (result.error) {
 }
 
 //===================
-// Create Bot server
+// Load Demos
 //===================
+const pizzaDemo = require('./demos/pizzaDemo');
+const launcherDemo = require('./demos/launcherDemo');
+
+//===================
+// Create Bot server
+//===================r
 const server = restify.createServer({
     name: 'BOT Server'
 });
@@ -44,37 +50,34 @@ const blisOptions: IBlisOptions = {
     user: process.env.BLIS_USER,
     secret: process.env.BLIS_SECRET
 }
+
+//=========================================================
+// Bots Dialogs
+//=========================================================
 Blis.Init(blisOptions);
 
 //=================================
 // Add Entity Logic
 //=================================
 /**
+* Processes messages received from the user. Called by the dialog system. 
 * @param {string} text Input Text To BLIS
 * @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
 * @param {ClientMemoryManager} memoryManager memory manager
 * @returns {Promise<void>}
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
- 
-})
-
-//=================================
-// Define any API callbacks
-//=================================
-/** 
-Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
-    Promise<Partial<BB.Activity> | string | undefined> {
-
-    {Your API logic inclusing any service calls}
-        
-    Returns promise of: 
-        (1) undefined -> no message sent to user
-        (2) string -> text message sent to user
-        (3) BB.Activity -> card sent to user
-})
-*/ 
-
+    let appName = await memoryManager.AppNameAsync();
+    switch (appName) {
+        case "PizzaDemo":
+            await pizzaDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
+            break;
+        case "LauncherDemo":
+            await launcherDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
+            break;
+    }
+}
+)
 //=================================
 // Initialize bot
 //=================================

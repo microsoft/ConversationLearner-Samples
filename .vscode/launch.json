@@ -8,7 +8,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch BLIS Demo",
+            "name": "Empty Bot",
             "program": "${workspaceFolder}\\lib\\app.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
@@ -20,7 +20,43 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch BLIS UI",
+            "name": "Pizza Demo",
+            "program": "${workspaceFolder}\\lib\\demos\\pizzaOrder.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launcher Demo",
+            "program": "${workspaceFolder}\\lib\\demos\\vrLauncher.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "All Demos",
+            "program": "${workspaceFolder}\\lib\\demos\\allDemos.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "BLIS UI",
             "program": "${workspaceFolder}\\lib\\ui.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

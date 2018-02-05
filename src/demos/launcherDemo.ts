@@ -44,36 +44,46 @@ const blisOptions: IBlisOptions = {
     user: process.env.BLIS_USER,
     secret: process.env.BLIS_SECRET
 }
+
+//=========================================================
+// Bots Dialogs
+//=========================================================
 Blis.Init(blisOptions);
+
+var apps = ["skype", "outlook", "amazon video", "amazon music"];
+var resolveApps = function(appName) {
+    return (apps.filter(n=>n.indexOf(appName) > -1));
+}
 
 //=================================
 // Add Entity Logic
 //=================================
 /**
+* Processes messages received from the user. Called by the dialog system. 
 * @param {string} text Input Text To BLIS
 * @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
 * @param {ClientMemoryManager} memoryManager memory manager
 * @returns {Promise<void>}
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
- 
-})
 
-//=================================
-// Define any API callbacks
-//=================================
-/** 
-Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
-    Promise<Partial<BB.Activity> | string | undefined> {
-
-    {Your API logic inclusing any service calls}
-        
-    Returns promise of: 
-        (1) undefined -> no message sent to user
-        (2) string -> text message sent to user
-        (3) BB.Activity -> card sent to user
+    // Clear disambigApps
+    await memoryManager.ForgetEntityAsync("DisambigAppNames");
+    await memoryManager.ForgetEntityAsync("UnknownAppName");
+            
+    // Get list of (possibly) ambiguous apps
+    var appName = await memoryManager.EntityValueAsListAsync("AppName");
+    if (appName.length > 0) {
+        var resolvedAppNames = resolveApps(appName);
+        if (resolvedAppNames.length == 0) {
+            await memoryManager.RememberEntityAsync("UnknownAppName", appName[0]);
+            await memoryManager.ForgetEntityAsync("AppName");
+        } else if (resolvedAppNames.length > 1) {
+            await memoryManager.RememberEntitiesAsync("DisambigAppNames", resolvedAppNames);
+            await memoryManager.ForgetEntityAsync("AppName");
+        }
+    }
 })
-*/ 
 
 //=================================
 // Initialize bot
