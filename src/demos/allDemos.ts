@@ -13,6 +13,10 @@ if (result.error) {
     console.warn(`Error loading .env configuration: ${result.error}`)
 }
 
+// Demos
+const pizzaOrder = require('./demos/pizzaOrder');
+const vrLauncher = require('./demos/vrLauncher');
+
 // Create server
 const server = restify.createServer({
     name: 'BOT Server'
@@ -42,6 +46,26 @@ const blisOptions: IBlisOptions = {
 // Bots Dialogs
 //=========================================================
 Blis.Init(blisOptions);
+
+/**
+* Processes messages received from the user. Called by the dialog system. 
+* @param {string} text Input Text To BLIS
+* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
+* @param {ClientMemoryManager} memoryManager memory manager
+* @returns {Promise<void>}
+*/
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+    let appName = await memoryManager.AppNameAsync();
+    switch (appName) {
+        case "PizzaOrder":
+            await pizzaOrder.EntityDetectionCallback(text, predictedEntities, memoryManager);
+            break;
+        case "VRLauncher":
+            await vrLauncher.EntityDetectionCallback(text, predictedEntities, memoryManager);
+            break;
+    }
+}
+)
 
 // Example of a BLIS API callback
 Blis.AddAPICallback("SampleMultiply", async (memoryManager: ClientMemoryManager, number1: string, number2: string) => {

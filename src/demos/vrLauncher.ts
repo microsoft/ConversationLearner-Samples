@@ -43,19 +43,37 @@ const blisOptions: IBlisOptions = {
 //=========================================================
 Blis.Init(blisOptions);
 
-// Example of a BLIS API callback
-Blis.AddAPICallback("SampleMultiply", async (memoryManager: ClientMemoryManager, number1: string, number2: string) => {
-    try {
-        var num1 = parseInt(number1);
-        var num2 = parseInt(number2);
-
-        return `${num1 * num2}`;
-    }
-    catch (err) {
-        return "Invalid number";
-    }
+var apps = ["skype", "outlook", "amazon video", "amazon music"];
+var resolveApps = function(appName) {
+    return (apps.filter(n=>n.indexOf(appName) > -1));
 }
-)
+
+/**
+* Processes messages received from the user. Called by the dialog system. 
+* @param {string} text Input Text To BLIS
+* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
+* @param {ClientMemoryManager} memoryManager memory manager
+* @returns {Promise<void>}
+*/
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+
+    // Clear disambigApps
+    await memoryManager.ForgetEntityAsync("DisambigAppNames");
+    await memoryManager.ForgetEntityAsync("UnknownAppName");
+            
+    // Get list of (possibly) ambiguous apps
+    var appName = await memoryManager.EntityValueAsListAsync("AppName");
+    if (appName.length > 0) {
+        var resolvedAppNames = resolveApps(appName);
+        if (resolvedAppNames.length == 0) {
+            await memoryManager.RememberEntityAsync("UnknownAppName", appName[0]);
+            await memoryManager.ForgetEntityAsync("AppName");
+        } else if (resolvedAppNames.length > 1) {
+            await memoryManager.RememberEntitiesAsync("DisambigAppNames", resolvedAppNames);
+            await memoryManager.ForgetEntityAsync("AppName");
+        }
+    }
+})
 
 // Initialize bot
 const bot = new BB.Bot(connector)

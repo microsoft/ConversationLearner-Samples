@@ -43,19 +43,60 @@ const blisOptions: IBlisOptions = {
 //=========================================================
 Blis.Init(blisOptions);
 
-// Example of a BLIS API callback
-Blis.AddAPICallback("SampleMultiply", async (memoryManager: ClientMemoryManager, number1: string, number2: string) => {
-    try {
-        var num1 = parseInt(number1);
-        var num2 = parseInt(number2);
-
-        return `${num1 * num2}`;
-    }
-    catch (err) {
-        return "Invalid number";
-    }
+var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
+var isInStock = function(topping) {
+    return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
-)
+
+/**
+* Processes messages received from the user. Called by the dialog system. 
+* @param {string} text Input Text To BLIS
+* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
+* @param {ClientMemoryManager} memoryManager memory manager
+* @returns {Promise<void>}
+*/
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+
+    // Clear OutOfStock List
+    await memoryManager.ForgetEntityAsync("OutOfStock");
+            
+    // Get list of requested Toppings
+    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
+
+    // Check each to see if it is in stock
+    for (let topping of toppings) {
+
+        // If not in stock, move from Toppings List of OutOfStock list
+        if (!isInStock(topping)) {
+            await memoryManager.ForgetEntityAsync("Toppings", topping);
+            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
+        }
+    }
+})
+
+Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
+    {
+        // Save toppings
+        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
+
+        // Clear toppings
+        await memoryManager.ForgetEntityAsync("Toppings");
+
+        return "Your order is on it's way";
+    }
+);
+
+Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
+    {
+        // Restore last toppings
+        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
+
+        // Clear last toppings
+        await memoryManager.ForgetEntityAsync("LastToppings"); 
+
+        // Don't display anything to the user
+        return null;
+    });
 
 // Initialize bot
 const bot = new BB.Bot(connector)
