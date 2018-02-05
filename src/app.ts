@@ -13,7 +13,9 @@ if (result.error) {
     console.warn(`Error loading .env configuration: ${result.error}`)
 }
 
-// Create server
+//===================
+// Create Bot server
+//===================
 const server = restify.createServer({
     name: 'BOT Server'
 });
@@ -21,10 +23,15 @@ server.listen(process.env.PORT || 3978, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
+//==================
 // Create connector
+//==================
 const connector = new BotFrameworkAdapter({ appId: process.env.MICROSOFT_APP_ID, appPassword: process.env.MICROSOFT_APP_PASSWORD });
 server.post('/api/messages', connector.listen() as any);
 
+//====================
+// Initialize BLIS
+//====================
 const useDebug = process.env.BLIS_DEBUG && process.env.BLIS_DEBUG.toLowerCase() === 'true'
 const serviceUri = useDebug ? process.env.BLIS_DEBUG_URI : process.env.BLIS_SERVICE_URI
 const blisOptions: IBlisOptions = {
@@ -37,27 +44,40 @@ const blisOptions: IBlisOptions = {
     user: process.env.BLIS_USER,
     secret: process.env.BLIS_SECRET
 }
-
-//=========================================================
-// Bots Dialogs
-//=========================================================
 Blis.Init(blisOptions);
 
-// Example of a BLIS API callback
-Blis.AddAPICallback("SampleMultiply", async (memoryManager: ClientMemoryManager, number1: string, number2: string) => {
-    try {
-        var num1 = parseInt(number1);
-        var num2 = parseInt(number2);
+//=================================
+// Add Entity Logic
+//=================================
+/**
+* @param {string} text Input Text To BLIS
+* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
+* @param {ClientMemoryManager} memoryManager memory manager
+* @returns {Promise<void>}
+*/
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+ 
+})
 
-        return `${num1 * num2}`;
-    }
-    catch (err) {
-        return "Invalid number";
-    }
-}
-)
+//=================================
+// Define any API callbacks
+//=================================
+/** 
+Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
+    Promise<Partial<BB.Activity> | string | undefined> {
 
+    {Your API logic inclusing any service calls}
+        
+    Returns promise of: 
+        (1) undefined -> no message sent to user
+        (2) string -> text message sent to user
+        (3) BB.Activity -> card sent to user
+})
+*/ 
+
+//=================================
 // Initialize bot
+//=================================
 const bot = new BB.Bot(connector)
     .use(Blis.recognizer)
     .use(Blis.templateManager)

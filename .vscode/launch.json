@@ -8,7 +8,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch BLIS Demo",
+            "name": "Empty Bot",
             "program": "${workspaceFolder}\\lib\\app.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
@@ -56,7 +56,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch BLIS UI",
+            "name": "BLIS UI",
             "program": "${workspaceFolder}\\lib\\ui.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

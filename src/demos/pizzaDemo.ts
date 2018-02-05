@@ -14,14 +14,8 @@ if (result.error) {
 }
 
 //===================
-// Load Demos
-//===================
-const pizzaDemo = require('./demos/pizzaDemo');
-const launcherDemo = require('./demos/launcherDemo');
-
-//===================
 // Create Bot server
-//===================r
+//===================
 const server = restify.createServer({
     name: 'BOT Server'
 });
@@ -56,6 +50,11 @@ const blisOptions: IBlisOptions = {
 //=========================================================
 Blis.Init(blisOptions);
 
+var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
+var isInStock = function(topping) {
+    return (inStock.indexOf(topping.toLowerCase()) > -1);
+}
+
 //=================================
 // Add Entity Logic
 //=================================
@@ -67,17 +66,51 @@ Blis.Init(blisOptions);
 * @returns {Promise<void>}
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
-    let appName = await memoryManager.AppNameAsync();
-    switch (appName) {
-        case "PizzaDemo":
-            await pizzaDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
-            break;
-        case "LauncherDemo":
-            await launcherDemo.EntityDetectionCallback(text, predictedEntities, memoryManager);
-            break;
+
+    // Clear OutOfStock List
+    await memoryManager.ForgetEntityAsync("OutOfStock");
+            
+    // Get list of requested Toppings
+    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
+
+    // Check each to see if it is in stock
+    for (let topping of toppings) {
+
+        // If not in stock, move from Toppings List of OutOfStock list
+        if (!isInStock(topping)) {
+            await memoryManager.ForgetEntityAsync("Toppings", topping);
+            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
+        }
     }
-}
-)
+})
+
+//=================================
+// Define API callbacks
+//=================================
+Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
+    {
+        // Save toppings
+        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
+
+        // Clear toppings
+        await memoryManager.ForgetEntityAsync("Toppings");
+
+        return "Your order is on it's way";
+    }
+);
+
+Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
+    {
+        // Restore last toppings
+        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
+
+        // Clear last toppings
+        await memoryManager.ForgetEntityAsync("LastToppings"); 
+
+        // Don't display anything to the user
+        return null;
+    });
+
 //=================================
 // Initialize bot
 //=================================
