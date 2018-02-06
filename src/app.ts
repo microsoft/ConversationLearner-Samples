@@ -59,7 +59,7 @@ Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEn
  
 })
 
-//=================================
+//=================================n
 // Define any API callbacks
 //=================================
 /** 
@@ -82,6 +82,7 @@ const bot = new BB.Bot(connector)
     .use(Blis.recognizer)
     .use(Blis.templateManager)
     .onReceive(context => {
+        context.showTyping();
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);
         }
