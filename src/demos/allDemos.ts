@@ -16,8 +16,8 @@ if (result.error) {
 //===================
 // Load Demos
 //===================
-const pizzaDemo = require('./demos/pizzaDemo');
-const launcherDemo = require('./demos/launcherDemo');
+const pizzaDemo = require('./pizzaDemo');
+const launcherDemo = require('./launcherDemo');
 
 //===================
 // Create Bot server
