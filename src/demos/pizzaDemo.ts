@@ -116,7 +116,7 @@ Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManage
 //=================================
 const bot = new BB.Bot(connector)
     .use(Blis.recognizer)
-    .use(Blis.templateManager)
+    .useTemplateRenderer(Blis.templateRenderer)
     .onReceive(context => {
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);
