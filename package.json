@@ -16,8 +16,8 @@
   "dependencies": {
     "blis-models": "^0.117.1",
     "blis-sdk": "^0.119.0",
-    "botbuilder-core": "^4.0.0-h4.2",
-    "botbuilder-services": "^4.0.0-h3.3",
+    "botbuilder": "^4.0.0-m1.0",
+    "botbuilder-services": "^4.0.0-m1.0",
     "dotenv": "^4.0.0",
     "restify": "^6.3.2",
     "tslint": "^5.8.0"

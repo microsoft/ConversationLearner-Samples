@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as dotenv from 'dotenv'
 import * as restify from 'restify'
-import * as BB from 'botbuilder-core'
+import * as BB from 'botbuilder'
 import * as Models from 'blis-models'
 import { BotFrameworkAdapter } from 'botbuilder-services'
 import { Blis, IBlisOptions, ClientMemoryManager } from 'blis-sdk'
@@ -82,7 +82,6 @@ const bot = new BB.Bot(connector)
     .use(Blis.recognizer)
     .use(Blis.templateManager)
     .onReceive(context => {
-        context.showTyping();
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);
         }
