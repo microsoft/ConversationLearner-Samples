@@ -1,5 +1,6 @@
 {
-  "name": "blis-sample",
+  "name": "blis-sdk-sample",
+  "private": true,
   "version": "0.118.0",
   "description": "Sample BOT using BLIS",
   "main": "./lib/app.js",
