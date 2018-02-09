@@ -17,7 +17,7 @@
     "blis-models": "^0.117.1",
     "blis-sdk": "^0.126.0",
     "botbuilder": "^4.0.0-m1.0",
-    "botbuilder-node": "^4.0.0-h4.1",
+    "botbuilder-node": "^4.0.0-m1.0",
     "botbuilder-services": "^4.0.0-m1.0",
     "dotenv": "^4.0.0",
     "restify": "^6.3.2",
