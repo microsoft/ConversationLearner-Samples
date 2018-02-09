@@ -38,18 +38,17 @@ const blisOptions: IBlisOptions = {
     serviceUri,
     appId: process.env.BLIS_APP_ID,
     azureFunctionsUrl: process.env.BLIS_FUNCTIONS_URL,
-    redisServer: process.env.BLIS_REDIS_SERVER,
-    redisKey: process.env.BLIS_REDIS_KEY,
     localhost: process.env.BLIS_LOCALHOST ? process.env.BLIS_LOCALHOST.toLowerCase() === 'true' : true,
     user: process.env.BLIS_USER,
     secret: process.env.BLIS_SECRET
 }
 
-//=========================================================
-// Bots Dialogs
-//=========================================================
+// Initialize Blis using in-memory storage.  See "storageDemo.ts" for other storage options
 Blis.Init(blisOptions);
 
+//=========================================================
+// Bots Buisness Logic
+//=========================================================
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
 var isInStock = function(topping) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
@@ -60,9 +59,9 @@ var isInStock = function(topping) {
 //=================================
 /**
 * Processes messages received from the user. Called by the dialog system. 
-* @param {string} text Input Text To BLIS
-* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
-* @param {ClientMemoryManager} memoryManager memory manager
+* @param {string} text Last user input to the Bot
+* @param {PredictedEntity[]} predictedEntities Entities extracted from most recent user utterance
+* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {

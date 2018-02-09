@@ -4,8 +4,9 @@ import * as dotenv from 'dotenv'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import * as Models from 'blis-models'
+import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, IBlisOptions, ClientMemoryManager } from 'blis-sdk'
+import { Blis, IBlisOptions, ClientMemoryManager, RedisStorage } from 'blis-sdk'
 import { PredictedEntity } from 'blis-models'
 
 const result = dotenv.config()
@@ -43,8 +44,16 @@ const blisOptions: IBlisOptions = {
     secret: process.env.BLIS_SECRET
 }
 
-// Initialize Blis using in-memory storage.  See "storageDemo.ts" for other storage options
-Blis.Init(blisOptions);
+//==================================
+// STORAGE EXAMPLES
+//==================================
+// REDIS
+// let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY, optimizeWrites: true});
+// Blis.Init(blisOptions, redisStorage);
+
+// FILE SYSTEM
+let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage'), optimizeWrites: true})
+Blis.Init(blisOptions, fileStorage);
 
 //=================================
 // Add Entity Logic
@@ -57,21 +66,9 @@ Blis.Init(blisOptions);
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
  
-    /** Add business logic manipulating the entities in memory 
-      
-    memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>;
-    memoryManager.RememberEntitiesAsync(entityName: string, entityValues: string[]): Promise<void>;
-    memoryManager.ForgetEntityAsync(entityName: string, value?: string): Promise<void>;
-    memoryManager.CopyEntityAsync(entityNameFrom: string, entityNameTo: string): Promise<void>;
-    memoryManager.EntityValueAsync(entityName: string): Promise<string>;
-    memoryManager.EntityValueAsPrebuiltAsync(entityName: string): Promise<MemoryValue[]>;
-    memoryManager.EntityValueAsListAsync(entityName: string): Promise<string[]>;
-    memoryManager.GetFilledEntitiesAsync(): Promise<FilledEntity[]>;
-
-    */
 })
 
-//=================================
+//=================================n
 // Define any API callbacks
 //=================================
 /** 
