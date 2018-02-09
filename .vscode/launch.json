@@ -21,7 +21,7 @@
             "type": "node",
             "request": "launch",
             "name": "Pizza Demo",
-            "program": "${workspaceFolder}\\lib\\demos\\pizzaOrder.js",
+            "program": "${workspaceFolder}\\lib\\demos\\pizzaDemo.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -33,7 +33,19 @@
             "type": "node",
             "request": "launch",
             "name": "Launcher Demo",
-            "program": "${workspaceFolder}\\lib\\demos\\vrLauncher.js",
+            "program": "${workspaceFolder}\\lib\\demos\\launcherDemo.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Redis Demo",
+            "program": "${workspaceFolder}\\lib\\demos\\redisDemo.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
