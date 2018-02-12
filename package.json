@@ -9,23 +9,26 @@
     "start": "node ./lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "ui": "node ./lib/ui.js"
+    "ui": "node ./lib/ui.js",
+    "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js"
   },
   "author": "Microsoft BLIS Team",
   "license": "MIT",
   "dependencies": {
     "blis-models": "^0.122.0",
     "blis-sdk": "^0.129.0",
-    "botbuilder": "^4.0.0-m1.3",
-    "botbuilder-node": "^4.0.0-m1.2",
-    "botbuilder-services": "^4.0.0-m1.0",
+    "botbuilder": "4.0.0-m1.4",
+    "botbuilder-node": "4.0.0-m1.2",
+    "botbuilder-services": "4.0.0-m1.2",
     "dotenv": "^4.0.0",
     "restify": "^6.3.2",
     "tslint": "^5.8.0"
   },
   "devDependencies": {
+    "@types/execa": "^0.8.1",
     "@types/express": "^4.11.0",
     "@types/restify": "^5.0.7",
+    "execa": "^0.9.0",
     "typescript": "^2.6.2"
   }
 }
