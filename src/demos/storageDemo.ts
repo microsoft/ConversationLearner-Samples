@@ -7,7 +7,6 @@ import * as Models from 'blis-models'
 import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
 import { Blis, IBlisOptions, ClientMemoryManager, RedisStorage } from 'blis-sdk'
-import { PredictedEntity } from 'blis-models'
 
 const result = dotenv.config()
 if (result.error) {
@@ -48,11 +47,11 @@ const blisOptions: IBlisOptions = {
 // STORAGE EXAMPLES
 //==================================
 // REDIS
-// let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY, optimizeWrites: true});
+// let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY});
 // Blis.Init(blisOptions, redisStorage);
 
 // FILE SYSTEM
-let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage'), optimizeWrites: true})
+let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
 Blis.Init(blisOptions, fileStorage);
 
 //=================================
@@ -64,7 +63,7 @@ Blis.Init(blisOptions, fileStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: Models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
  
 })
 
