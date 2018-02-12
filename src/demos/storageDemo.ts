@@ -3,8 +3,10 @@ import * as path from 'path'
 import * as dotenv from 'dotenv'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
+import * as Models from 'blis-models'
+import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, IBlisOptions, ClientMemoryManager, models } from 'blis-sdk'
+import { Blis, IBlisOptions, ClientMemoryManager, RedisStorage } from 'blis-sdk'
 
 const result = dotenv.config()
 if (result.error) {
@@ -41,46 +43,45 @@ const blisOptions: IBlisOptions = {
     secret: process.env.BLIS_SECRET
 }
 
-// Initialize Blis using in-memory storage.  See "storageDemo.ts" for other storage options
-Blis.Init(blisOptions);
+//==================================
+// STORAGE EXAMPLES
+//==================================
+// REDIS
+// let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY});
+// Blis.Init(blisOptions, redisStorage);
 
-//=========================================================
-// Bots Buisness Logic
-//=========================================================
-var apps = ["skype", "outlook", "amazon video", "amazon music"];
-var resolveApps = function(appName) {
-    return (apps.filter(n=>n.indexOf(appName) > -1));
-}
+// FILE SYSTEM
+let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+Blis.Init(blisOptions, fileStorage);
 
 //=================================
 // Add Entity Logic
 //=================================
 /**
-* Processes messages received from the user. Called by the dialog system. 
 * @param {string} text Last user input to the Bot
 * @param {PredictedEntity[]} predictedEntities Entities extracted from most recent user utterance
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
-
-    // Clear disambigApps
-    await memoryManager.ForgetEntityAsync("DisambigAppNames");
-    await memoryManager.ForgetEntityAsync("UnknownAppName");
-            
-    // Get list of (possibly) ambiguous apps
-    var appName = await memoryManager.EntityValueAsListAsync("AppName");
-    if (appName.length > 0) {
-        var resolvedAppNames = resolveApps(appName);
-        if (resolvedAppNames.length == 0) {
-            await memoryManager.RememberEntityAsync("UnknownAppName", appName[0]);
-            await memoryManager.ForgetEntityAsync("AppName");
-        } else if (resolvedAppNames.length > 1) {
-            await memoryManager.RememberEntitiesAsync("DisambigAppNames", resolvedAppNames);
-            await memoryManager.ForgetEntityAsync("AppName");
-        }
-    }
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: Models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+ 
 })
+
+//=================================n
+// Define any API callbacks
+//=================================
+/** 
+Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
+    Promise<Partial<BB.Activity> | string | undefined> {
+
+    {Your API logic inclusing any service calls}
+        
+    Returns promise of: 
+        (1) undefined -> no message sent to user
+        (2) string -> text message sent to user
+        (3) BB.Activity -> card sent to user
+})
+*/ 
 
 //=================================
 // Initialize bot

@@ -36,28 +36,40 @@ const blisOptions: IBlisOptions = {
     serviceUri,
     appId: process.env.BLIS_APP_ID,
     azureFunctionsUrl: process.env.BLIS_FUNCTIONS_URL,
-    redisServer: process.env.BLIS_REDIS_SERVER,
-    redisKey: process.env.BLIS_REDIS_KEY,
     localhost: process.env.BLIS_LOCALHOST ? process.env.BLIS_LOCALHOST.toLowerCase() === 'true' : true,
     user: process.env.BLIS_USER,
     secret: process.env.BLIS_SECRET
 }
+
+// Initialize Blis using in-memory storage.  See "storageDemo.ts" for other storage options
 Blis.Init(blisOptions);
 
 //=================================
 // Add Entity Logic
 //=================================
 /**
-* @param {string} text Input Text To BLIS
-* @param {PredictedEntity[]} predictedEntities Entities extracted by LUIS model
-* @param {ClientMemoryManager} memoryManager memory manager
+* @param {string} text Last user input to the Bot
+* @param {PredictedEntity[]} predictedEntities Entities extracted from most recent user utterance
+* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
  
+    /** Add business logic manipulating the entities in memory 
+      
+    memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>;
+    memoryManager.RememberEntitiesAsync(entityName: string, entityValues: string[]): Promise<void>;
+    memoryManager.ForgetEntityAsync(entityName: string, value?: string): Promise<void>;
+    memoryManager.CopyEntityAsync(entityNameFrom: string, entityNameTo: string): Promise<void>;
+    memoryManager.EntityValueAsync(entityName: string): Promise<string>;
+    memoryManager.EntityValueAsPrebuiltAsync(entityName: string): Promise<MemoryValue[]>;
+    memoryManager.EntityValueAsListAsync(entityName: string): Promise<string[]>;
+    memoryManager.GetFilledEntitiesAsync(): Promise<FilledEntity[]>;
+
+    */
 })
 
-//=================================n
+//=================================
 // Define any API callbacks
 //=================================
 /** 
