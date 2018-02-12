@@ -1,5 +1,6 @@
 {
-  "name": "blis-sample",
+  "name": "blis-sdk-sample",
+  "private": true,
   "version": "0.119.0",
   "description": "Sample BOT using BLIS",
   "main": "./lib/app.js",
@@ -15,7 +16,6 @@
   "author": "Microsoft BLIS Team",
   "license": "MIT",
   "dependencies": {
-    "blis-models": "^0.122.0",
     "blis-sdk": "^0.129.0",
     "botbuilder": "4.0.0-m1.4",
     "botbuilder-node": "4.0.0-m1.2",

@@ -3,9 +3,8 @@ import * as path from 'path'
 import * as dotenv from 'dotenv'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import * as Models from 'blis-models'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, IBlisOptions, ClientMemoryManager } from 'blis-sdk'
+import { Blis, IBlisOptions, ClientMemoryManager, models } from 'blis-sdk'
 
 const result = dotenv.config()
 if (result.error) {
@@ -63,7 +62,7 @@ var resolveApps = function(appName) {
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, predictedEntities: Models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
     await memoryManager.ForgetEntityAsync("DisambigAppNames");
