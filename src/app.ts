@@ -6,7 +6,6 @@ import * as BB from 'botbuilder'
 import * as Models from 'blis-models'
 import { BotFrameworkAdapter } from 'botbuilder-services'
 import { Blis, IBlisOptions, ClientMemoryManager } from 'blis-sdk'
-import { PredictedEntity } from 'blis-models'
 
 const result = dotenv.config()
 if (result.error) {
@@ -55,7 +54,7 @@ Blis.Init(blisOptions);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, predictedEntities: PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: Models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
  
     /** Add business logic manipulating the entities in memory 
       
