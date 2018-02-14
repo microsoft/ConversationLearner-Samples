@@ -73,8 +73,7 @@ Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.Pred
 // Define any API callbacks
 //=================================
 /** 
-Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
-    Promise<Partial<BB.Activity> | string | undefined> {
+Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) => {
 
     {Your API logic inclusing any service calls}
         
