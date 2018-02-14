@@ -82,6 +82,17 @@ Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.Pred
     }
 })
 
+Blis.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string[]) => any {
+        // TODO: Add API call to invoke app/location
+
+        // Clear entities.
+        /*
+        await memoryManager.ForgetEntityAsync("AppName");
+        await memoryManager.ForgetEntityAsync("PlacementLocation");
+
+        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+*/})
+
 //=================================
 // Initialize bot
 //=================================
