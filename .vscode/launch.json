@@ -15,7 +15,8 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ]
+            ],
+            "preLaunchTask": "build"
         },
         {
             "type": "node",
@@ -27,7 +28,8 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ]
+            ],
+            "preLaunchTask": "build"
         },
         {
             "type": "node",
@@ -39,7 +41,8 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ]
+            ],
+            "preLaunchTask": "build"
         },
         {
             "type": "node",
@@ -63,7 +66,8 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ]
+            ],
+            "preLaunchTask": "build"
         },
         {
             "type": "node",
