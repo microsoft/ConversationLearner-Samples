@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as dotenv from 'dotenv'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
+import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
 import { Blis, IBlisOptions, ClientMemoryManager, models } from 'blis-sdk'
 
@@ -41,8 +42,14 @@ const blisOptions: IBlisOptions = {
     secret: process.env.BLIS_SECRET
 }
 
-// Initialize Blis using in-memory storage.  See "storageDemo.ts" for other storage options
-Blis.Init(blisOptions);
+//==================================
+// STORAGE 
+//==================================
+// Initialize Blis using file storage.  Recommended only for development
+// See "storageDemo.ts" for other storage options
+let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+Blis.Init(blisOptions, fileStorage);
+
 
 //=================================
 // Add Entity Logic
