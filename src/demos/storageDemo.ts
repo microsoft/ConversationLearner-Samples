@@ -46,12 +46,15 @@ const blisOptions: IBlisOptions = {
 //==================================
 // STORAGE EXAMPLES
 //==================================
+// FILE STORAGE
+//let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+
 // REDIS
 let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY});
 Blis.Init(blisOptions, redisStorage);
 
 // IN-MEMORY STORAGE
-Blis.Init(blisOptions); 
+//Blis.Init(blisOptions); 
 
 //=================================
 // Add Entity Logic
