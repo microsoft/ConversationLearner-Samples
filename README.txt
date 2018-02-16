@@ -4,17 +4,21 @@ This ZIP file assumes:
 
 PRE-REQUISITES:
 
-- Node v8.5.0 or higher() with NPM v5.3.0 or higher).
+- Node v8.5.0 or higher, with NPM v5.3.0 or higher.
   Install from: https://nodejs.org/dist/v8.9.0/node-v8.9.0-x64.msi 
 
 - A LUIS programmatic key:
-  Log into www.luia.ai
+  Log into www.luis.ai
   Click on your name in the upper right, then on "settings"
   Programmatic key is shown on the resulting page
+  (BLIS uses LUIS for entity extraction; when you create a BLIS
+  application, you'll need a LUIS programmatic key)
 
 INSTALLATION:
 
 - Unzip this ZIP file to a dir (i'll call it "BLIS")
+> cd BLIS
+> npm install
 
 RUN:
 
@@ -36,7 +40,8 @@ DEMOS:
 Once logged in, click on "Import Demos"; wait a minute while the demos load into your BLIS account.
 
 Each of the demos has its own bot code.  To run the bot code:
-- Stop process running in the window where you ran "npm start"
+- If there is a bot running, stop it 
+  (ie, if there is a command window where you ran "npm start", press ctrl-c in that window)
 - Open VSCode
   - open the BLIS folder 
   - Click on the "debug" tray item on the left
