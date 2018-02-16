@@ -92,7 +92,7 @@ Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager)
         // Clear toppings
         await memoryManager.ForgetEntityAsync("Toppings");
 
-        return "Your order is on it's way";
+        return "Your order is on its way";
     }
 );
 
