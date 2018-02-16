@@ -21,8 +21,20 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Pizza Demo",
-            "program": "${workspaceFolder}\\lib\\demos\\pizzaDemo.js",
+            "name": "demoPasswordReset",
+            "program": "${workspaceFolder}\\lib\\demos\\demoPasswordReset.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ],
+            "preLaunchTask": "build"
+        },        {
+            "type": "node",
+            "request": "launch",
+            "name": "demoPizzaOrder",
+            "program": "${workspaceFolder}\\lib\\demos\\demoPizzaOrder.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -34,8 +46,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launcher Demo",
-            "program": "${workspaceFolder}\\lib\\demos\\launcherDemo.js",
+            "name": "demoVRAppLauncher",
+            "program": "${workspaceFolder}\\lib\\demos\\demoVRAppLauncher.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -47,8 +59,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Redis Demo",
-            "program": "${workspaceFolder}\\lib\\demos\\redisDemo.js",
+            "name": "demoStorage",
+            "program": "${workspaceFolder}\\lib\\demos\\demoStorage.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
