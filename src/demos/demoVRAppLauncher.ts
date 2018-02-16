@@ -47,9 +47,9 @@ Blis.Init(blisOptions);
 //=========================================================
 // Bots Buisness Logic
 //=========================================================
-var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping) {
-    return (inStock.indexOf(topping.toLowerCase()) > -1);
+var apps = ["skype", "outlook", "amazon video", "amazon music"];
+var resolveApps = function(appName) {
+    return (apps.filter(n=>n.indexOf(appName) > -1));
 }
 
 //=================================
@@ -64,49 +64,34 @@ var isInStock = function(topping) {
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
 
-    // Clear OutOfStock List
-    await memoryManager.ForgetEntityAsync("OutOfStock");
+    // Clear disambigApps
+    await memoryManager.ForgetEntityAsync("DisambigAppNames");
+    await memoryManager.ForgetEntityAsync("UnknownAppName");
             
-    // Get list of requested Toppings
-    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
-
-    // Check each to see if it is in stock
-    for (let topping of toppings) {
-
-        // If not in stock, move from Toppings List of OutOfStock list
-        if (!isInStock(topping)) {
-            await memoryManager.ForgetEntityAsync("Toppings", topping);
-            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
+    // Get list of (possibly) ambiguous apps
+    var appName = await memoryManager.EntityValueAsListAsync("AppName");
+    if (appName.length > 0) {
+        var resolvedAppNames = resolveApps(appName);
+        if (resolvedAppNames.length == 0) {
+            await memoryManager.RememberEntityAsync("UnknownAppName", appName[0]);
+            await memoryManager.ForgetEntityAsync("AppName");
+        } else if (resolvedAppNames.length > 1) {
+            await memoryManager.RememberEntitiesAsync("DisambigAppNames", resolvedAppNames);
+            await memoryManager.ForgetEntityAsync("AppName");
         }
     }
 })
 
-//=================================
-// Define API callbacks
-//=================================
-Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
-    {
-        // Save toppings
-        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
+Blis.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
+        // TODO: Add API call to invoke app/location
 
-        // Clear toppings
-        await memoryManager.ForgetEntityAsync("Toppings");
+        // Clear entities.
+        
+        await memoryManager.ForgetEntityAsync("AppName");
+        await memoryManager.ForgetEntityAsync("PlacementLocation");
 
-        return "Your order is on it's way";
-    }
-);
-
-Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
-    {
-        // Restore last toppings
-        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
-
-        // Clear last toppings
-        await memoryManager.ForgetEntityAsync("LastToppings"); 
-
-        // Don't display anything to the user
-        return null;
-    });
+        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+})
 
 //=================================
 // Initialize bot
