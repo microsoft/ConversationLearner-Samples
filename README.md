@@ -38,6 +38,8 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
     npm i
     ```
 
+    Note: you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
+
 3. Add the `.env` file to root of project
 
     ```
