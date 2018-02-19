@@ -32,13 +32,14 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
     cd blis-bot-01
     ```
 
-2. Install dependencies
+2. Install dependencies and build
 
     ```
-    npm i
+    npm install
+    npm run build
     ```
 
-    Note: you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
+    Note: during `npm intsall`, you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
 
 3. Add the `.env` file to root of project
 
