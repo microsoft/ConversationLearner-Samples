@@ -32,7 +32,7 @@ server.post('/api/messages', connector.listen() as any);
 // Initialize BLIS
 //====================
 const useDebug = process.env.BLIS_DEBUG && process.env.BLIS_DEBUG.toLowerCase() === 'true'
-const serviceUri = useDebug ? process.env.BLIS_DEBUG_URI : process.env.BLIS_SERVICE_URI
+const serviceUri = useDebug ? process.env.BLIS_DEBUG_URI : (process.env.BLIS_SERVICE_URI || "http://blis-service-scratch.azurewebsites.net/api/v1/")
 const blisOptions: IBlisOptions = {
     serviceUri,
     appId: process.env.BLIS_APP_ID,
