@@ -7,11 +7,7 @@ import * as Models from 'blis-models'
 import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
 import { Blis, IBlisOptions, ClientMemoryManager, RedisStorage } from 'blis-sdk'
-
-const result = dotenv.config()
-if (result.error) {
-    console.warn(`Error loading .env configuration: ${result.error}`)
-}
+import config from '../config'
 
 //===================
 // Create Bot server
@@ -19,29 +15,15 @@ if (result.error) {
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(process.env.PORT || 3978, () => {
+server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
 //==================
 // Create connector
 //==================
-const connector = new BotFrameworkAdapter({ appId: process.env.MICROSOFT_APP_ID, appPassword: process.env.MICROSOFT_APP_PASSWORD });
+const connector = new BotFrameworkAdapter({ appId: config.microsoftAppId, appPassword: config.microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
-
-//====================
-// Initialize BLIS
-//====================
-const useDebug = process.env.BLIS_DEBUG && process.env.BLIS_DEBUG.toLowerCase() === 'true'
-const serviceUri = useDebug ? process.env.BLIS_DEBUG_URI : process.env.BLIS_SERVICE_URI
-const blisOptions: IBlisOptions = {
-    serviceUri,
-    appId: process.env.BLIS_APP_ID,
-    azureFunctionsUrl: process.env.BLIS_FUNCTIONS_URL,
-    localhost: process.env.BLIS_LOCALHOST ? process.env.BLIS_LOCALHOST.toLowerCase() === 'true' : true,
-    user: process.env.BLIS_USER,
-    secret: process.env.BLIS_SECRET
-}
 
 //==================================
 // STORAGE EXAMPLES
@@ -51,7 +33,7 @@ const blisOptions: IBlisOptions = {
 
 // REDIS
 let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY});
-Blis.Init(blisOptions, redisStorage);
+Blis.Init(config, redisStorage);
 
 // IN-MEMORY STORAGE
 //Blis.Init(blisOptions); 

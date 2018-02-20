@@ -6,25 +6,32 @@
   "main": "./lib/app.js",
   "scripts": {
     "build": "tsc",
-    "prestart": "tsc",
+    "prestart": "npm run build",
     "start": "node ./lib/app.js",
+    "startnobuild": "node ./lib/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "ui": "node ./lib/ui.js",
-    "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js"
+    "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js",
+    "demo-password": "node ./lib/demos/demoPasswordReset.js",
+    "demo-pizza": "node ./lib/demos/demoPizzaOrder.js",
+    "demo-storage": "node ./lib/demos/demoStorage.js",
+    "demo-vrapp": "node ./lib/demos/demoVRAppLauncher.js"
   },
   "author": "Microsoft BLIS Team",
   "license": "MIT",
   "dependencies": {
-    "blis-sdk": "^0.141.0",
+    "blis-sdk": "^0.143.0",
     "botbuilder": "4.0.0-m1.4",
     "botbuilder-node": "4.0.0-m1.2",
     "botbuilder-services": "4.0.0-m1.2",
+    "convict": "^4.0.2",
     "dotenv": "^4.0.0",
     "restify": "^6.3.2",
     "tslint": "^5.8.0"
   },
   "devDependencies": {
+    "@types/convict": "^4.1.1",
     "@types/execa": "^0.8.1",
     "@types/express": "^4.11.0",
     "@types/restify": "^5.0.7",
