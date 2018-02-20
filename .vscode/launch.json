@@ -15,8 +15,7 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ],
-            "preLaunchTask": "build"
+            ]
         },
         {
             "type": "node",
@@ -29,7 +28,6 @@
             "runtimeArgs": [
                 "--preserve-symlinks"
             ],
-            "preLaunchTask": "build"
         },        {
             "type": "node",
             "request": "launch",
@@ -40,8 +38,7 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ],
-            "preLaunchTask": "build"
+            ]
         },
         {
             "type": "node",
@@ -53,8 +50,7 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ],
-            "preLaunchTask": "build"
+            ]
         },
         {
             "type": "node",
@@ -78,8 +74,7 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ],
-            "preLaunchTask": "build"
+            ]
         },
         {
             "type": "node",
@@ -91,8 +86,7 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ],
-            "preLaunchTask": "build"
+            ]
         }
     ]
 }
