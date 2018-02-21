@@ -27,37 +27,29 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 1. Clone the repository and change directory
 
-    ```
+    ```bash
     git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
     cd blis-bot-01
     ```
 
 2. Install dependencies and build
 
-    ```
+    ```bash
     npm install
     npm run build
     ```
 
     Note: during `npm intsall`, you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
 
-3. Add the `.env` file to root of project
-
-    ```
-    cp .env.example .env
-    ```
-
-    This uses the standard configuration, which lets you run your bot locally, and start using BLIS.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
-
 3. Start the admin UI
 
     This will start a local server hosing a website where you will teach and administer your bot.
 
-    ```
+    ```bash
     npm run ui
     ```
 
-4. Try out the password reset bot:
+3. Try out the password reset bot:
 
     This repo includes a few demo BLIS bots.  The source of the bots are in `src/demos`.
     
@@ -67,8 +59,8 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     To run demos from the command line, run:
 
-    ```
-    node lib/demos/demoPasswordReset.js
+    ```bash
+    npm run demo-password
     ```
 
     Then open Google Chrome to http://localhost:5050.  Log in using your MSA (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
@@ -77,7 +69,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     You should now see a list of demo applications.  Click on "demoPasswordReset" to get started.
 
-5. Switch to a different demo:
+4. Switch to a different demo:
 
     In the BLIS web UI, return to the list of apps at http://localhost:5050/home.
     
@@ -87,13 +79,13 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     In the BLIS web UI, click on the corresponding BLIS app to start using the bot.
 
-6. Build your own bot
+5. Build your own bot
 
     A generic empty BLIS bot is provided in ``blis-bot-01/src/app.ts``.  To run it, first stop the currently running bot that (if any).  To start the empty bot from VSCode, open the `blis-bot-01` folder in VSCode and run the "Empty Bot" launch configuration.  
 
     To run this bot from the command line,
 
-    ```
+    ```bash
     npm start
     ```
 
@@ -101,9 +93,17 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 ## Advanced configuration
 
-In the setup above, the template `.env` file had default ports assigned.
+There is a template `.env.example` file shows what environment variables you may set to configure the samples.
 
 You can adjust these ports to avoid conflicts between other services running on your machine.
+
+- Add the `.env` file to root of project
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    This uses the standard configuration, which lets you run your bot locally, and start using BLIS.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
 
 ## Notes
 

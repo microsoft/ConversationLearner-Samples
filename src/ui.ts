@@ -1,9 +1,5 @@
 import * as dotenv from 'dotenv'
+import config from './config'
 import { startUiServer } from 'blis-sdk'
 
-const result = dotenv.config()
-if (result.error) {
-    console.warn(`Error loading .env configuration: ${result.error}`)
-}
-
-startUiServer()
+startUiServer(config.uiPort)
