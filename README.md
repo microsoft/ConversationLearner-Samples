@@ -27,14 +27,14 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 1. Clone the repository and change directory
 
-    ```
+    ```bash
     git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
     cd blis-bot-01
     ```
 
 2. Install dependencies and build
 
-    ```
+    ```bash
     npm install
     npm run build
     ```
@@ -45,7 +45,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     This will start a local server hosing a website where you will teach and administer your bot.
 
-    ```
+    ```bash
     npm run ui
     ```
 
@@ -59,7 +59,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     To run demos from the command line, run:
 
-    ```
+    ```bash
     npm run demo-password
     ```
 
@@ -85,7 +85,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     To run this bot from the command line,
 
-    ```
+    ```bash
     npm start
     ```
 
@@ -93,13 +93,13 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 ## Advanced configuration
 
-In the setup above, the template `.env.example` file shows what environment variables you may set to configure the samples.
+There is a template `.env.example` file shows what environment variables you may set to configure the samples.
 
 You can adjust these ports to avoid conflicts between other services running on your machine.
 
 - Add the `.env` file to root of project
 
-    ```
+    ```bash
     cp .env.example .env
     ```
 
