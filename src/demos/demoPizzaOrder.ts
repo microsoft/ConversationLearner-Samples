@@ -30,7 +30,7 @@ Blis.Init(config);
 // Bots Buisness Logic
 //=========================================================
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping) {
+var isInStock = function(topping: string) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
@@ -87,7 +87,7 @@ Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManage
         await memoryManager.ForgetEntityAsync("LastToppings"); 
 
         // Don't display anything to the user
-        return null;
+        return undefined;
     });
 
 //=================================

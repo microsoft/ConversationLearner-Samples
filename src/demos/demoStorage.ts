@@ -32,7 +32,7 @@ server.post('/api/messages', connector.listen() as any);
 //let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
 
 // REDIS
-let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY});
+let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
 Blis.Init(config, redisStorage);
 
 // IN-MEMORY STORAGE
