@@ -49,7 +49,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
     npm run ui
     ```
 
-3. Try out the password reset bot:
+4. Try out the password reset bot:
 
     This repo includes a few demo BLIS bots.  The source of the bots are in `src/demos`.
     
@@ -69,7 +69,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     You should now see a list of demo applications.  Click on "demoPasswordReset" to get started.
 
-4. Switch to a different demo:
+5. Switch to a different demo:
 
     In the BLIS web UI, return to the list of apps at http://localhost:5050/home.
     
@@ -79,7 +79,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
     In the BLIS web UI, click on the corresponding BLIS app to start using the bot.
 
-5. Build your own bot
+6. Build your own bot
 
     A generic empty BLIS bot is provided in ``blis-bot-01/src/app.ts``.  To run it, first stop the currently running bot that (if any).  To start the empty bot from VSCode, open the `blis-bot-01` folder in VSCode and run the "Empty Bot" launch configuration.  
 
