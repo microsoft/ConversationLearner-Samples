@@ -1,12 +1,9 @@
-import * as fs from 'fs'
 import * as path from 'path'
-import * as dotenv from 'dotenv'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import * as Models from 'blis-models'
 import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, IBlisOptions, ClientMemoryManager, RedisStorage } from 'blis-sdk'
+import { Blis, ClientMemoryManager, RedisStorage, models } from 'blis-sdk'
 import config from '../config'
 
 //===================
@@ -28,15 +25,24 @@ server.post('/api/messages', connector.listen() as any);
 //==================================
 // STORAGE EXAMPLES
 //==================================
+// IN-MEMORY STORAGE
+// Stores bot state in memory. 
+// If the bot is stopped and re-started, the state of in-progress sessions will be lost.
+//Blis.Init(blisOptions); 
+
 // FILE STORAGE
+// Stores bot state in a local file.  
+// With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
+// Requires local disk access.
 //let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+//Blis.Init(config, fileStorage);
 
 // REDIS
+// Stores bot state in a redis cache.  
+// With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
+// Requires env variables BLIS_REDIS_SERVER and BLIS_REDIS_KEY are set.  You can set these in ../.env.
 let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
 Blis.Init(config, redisStorage);
-
-// IN-MEMORY STORAGE
-//Blis.Init(blisOptions); 
 
 //=================================
 // Add Entity Logic
@@ -47,7 +53,7 @@ Blis.Init(config, redisStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, predictedEntities: Models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
  
 })
 
