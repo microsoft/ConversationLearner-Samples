@@ -1,10 +1,9 @@
-import * as fs from 'fs'
 import * as path from 'path'
-import * as dotenv from 'dotenv'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
+import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, IBlisOptions, ClientMemoryManager, models } from 'blis-sdk'
+import { Blis, ClientMemoryManager, models } from 'blis-sdk'
 import config from '../config'
 
 //===================
@@ -23,8 +22,10 @@ server.listen(config.botPort, () => {
 const connector = new BotFrameworkAdapter({ appId: config.microsoftAppId, appPassword: config.microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
-// Initialize Blis using in-memory storage.  See "storageDemo.ts" for other storage options
-Blis.Init(config);
+// Initialize Blis using file storage.  Recommended only for development
+// See "storageDemo.ts" for other storage options
+let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+Blis.Init(config, fileStorage);
 
 //=================================
 // Add Entity Logic
