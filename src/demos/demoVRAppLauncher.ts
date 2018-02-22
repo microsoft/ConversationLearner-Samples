@@ -31,8 +31,8 @@ Blis.Init(config, fileStorage);
 // Bots Buisness Logic
 //=========================================================
 var apps = ["skype", "outlook", "amazon video", "amazon music"];
-var resolveApps = function(appName) {
-    return (apps.filter(n=>n.indexOf(appName) > -1));
+var resolveApps = function(appName: string) {
+    return apps.filter(n => n.includes(appName));
 }
 
 //=================================
@@ -52,11 +52,14 @@ Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.Pred
     await memoryManager.ForgetEntityAsync("UnknownAppName");
             
     // Get list of (possibly) ambiguous apps
-    var appName = await memoryManager.EntityValueAsListAsync("AppName");
-    if (appName.length > 0) {
-        var resolvedAppNames = resolveApps(appName);
+    var appNames = await memoryManager.EntityValueAsListAsync("AppName");
+    if (appNames.length > 0) {
+        const resolvedAppNames = appNames
+            .map(appName => resolveApps(appName))
+            .reduce((a, b) => a.concat(b))
+            
         if (resolvedAppNames.length == 0) {
-            await memoryManager.RememberEntityAsync("UnknownAppName", appName[0]);
+            await memoryManager.RememberEntityAsync("UnknownAppName", appNames[0]);
             await memoryManager.ForgetEntityAsync("AppName");
         } else if (resolvedAppNames.length > 1) {
             await memoryManager.RememberEntitiesAsync("DisambigAppNames", resolvedAppNames);

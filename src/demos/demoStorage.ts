@@ -41,7 +41,7 @@ server.post('/api/messages', connector.listen() as any);
 // Stores bot state in a redis cache.  
 // With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
 // Requires env variables BLIS_REDIS_SERVER and BLIS_REDIS_KEY are set.  You can set these in ../.env.
-let redisStorage = new RedisStorage( {server: process.env.BLIS_REDIS_SERVER, key: process.env.BLIS_REDIS_KEY});
+let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
 Blis.Init(config, redisStorage);
 
 //=================================
