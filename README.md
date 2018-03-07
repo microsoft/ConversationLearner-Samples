@@ -6,9 +6,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 [Example video overview of BLIS](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal only; more videos coming soon)
 
-## Getting started
-
-### Prerequisites
+## Prerequisites
 
 - Node 8.5.0 or higher and npm 5.3.0 or higher.  Install from https://nodejs.org/en/
   
@@ -25,75 +23,51 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 - VSCode.  https://code.visualstudio.com/  Recommended, not required.
 
-### Installation and first run
+## Quick start 
 
-1. Clone the repository and change directory
+1. Install:
 
-    ```bash
+    ```bash    
     git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
     cd blis-bot-01
-    ```
-
-2. Install dependencies and build
-
-    ```bash
     npm install
-    npm run build
     ```
 
-    Note: during `npm intsall`, you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
+    Note: during `npm install`, you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
 
-3. Start the admin UI
+2. Start bot:
 
-    This will start a local server hosting a website where you will teach and administer your bot.
+    ```
+    npm run demo-pizza
+    ```
+
+3. Run BLIS UI:
 
     ```bash
+    [open second command prompt window]
+    cd blis-bot-01
     npm run ui
     ```
 
-    (Don't open a web browser to localhost yet; continue to step 4 first.)
+4. Open browser to http://localhost:5050 
 
-4. Try out the password reset bot:
+5. Log in using your MSA (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
 
-    This repo includes a few demo BLIS bots.  The source of the bots are in `src/demos`.
+6. Click on "Import Demos" -- this will take about a minute and will copy the BLIS apps into your BLIS account.  
+
+7. You should now see a list of demo applications.  Click on "demoPizza" to open the pizza demo.
+
+You're now using BLIS and can teach your bot.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
+
+## Demos, and switching between bots
+
+The instructions above started the pizza demo bot.  To switch to a different demo bot:
+
+1. In the BLIS web UI, return to the list of apps at http://localhost:5050/home.
     
-    You can run the demos in VSCode (or another IDE), or from the command line.  Running in an IDE is preferred because it will let you step through the code, which helps show how BLIS works.
-    
-    To run the demos from VSCode, open the `blis-bot-01` folder in VSCode, and run one of the "demo" launch configurations.  A good place to start is the `demoPasswordReset` bot.
+2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
-    Or, to run this demo from the command line, run:
-
-    ```bash
-    npm run demo-password
-    ```
-
-    Then open Google Chrome to http://localhost:5050.  Log in using your MSA (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
-
-    The first time you start BLIS, you'll need to import the demo apps into your BLIS account.  Click on "Import Demos" -- this will take about a minute and will copy the BLIS apps into your BLIS account.  
-
-    You should now see a list of demo applications.  Click on "demoPasswordReset" to get started.
-
-    You're now using BLIS and can teach your bot.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
-
-## Switching between bots
-
-To switch to a different demo bot:
-
-In the BLIS web UI, return to the list of apps at http://localhost:5050/home.
-    
-If a bot is running (like `demoPasswordReset`), stop it.  You do not need to stop the admin UI process, or close the web browser.
-
-Run another demo bot in VSCode or from the command line, following the instructions in step 4.  Demos include:
-
-- VSCode launch configurations:
-
-  ```bash
-  demoPasswordReset
-  demoPizzaOrder
-  demoVRAppLauncher
-  demoStorage
-  ```
-- Command-line npm:
+3. Run another demo bot from the command line (step 2 above).  Demos include:
 
   ```bash
   npm run demo-password
@@ -102,42 +76,35 @@ Run another demo bot in VSCode or from the command line, following the instructi
   npm run demo-vrapp
   ```
 
-- Corresponding source files:
+4. Once you've started a new bot, switch to the BLIS web UI in Chrome, and click on the corresponding BLIS app to start using the bot.
 
-  ```bash
-  src/demos/demoPasswordReset.ts
-  src/demos/demoPizzaOrder.ts
-  src/demos/demoStorage.ts
-  src/demos/demoVRAppLauncher.ts
-  ```
-
-Once you've started a new bot, switch to the BLIS web UI, and click on the corresponding BLIS app to start using the bot.
+Corresponding source files are in `src/demos`
 
 ## Build your own bot
 
-A generic empty BLIS bot is provided in ``blis-bot-01/src/app.ts``.  To run it, first stop the currently running bot that (if any).  To start the empty bot from VSCode, open the `blis-bot-01` folder in VSCode and run the "Empty Bot" launch configuration.  
+A generic empty BLIS bot is provided in ``blis-bot-01/src/app.ts``.  To run it, first stop the currently running bot that (if any).  To start the empty bot:
 
-To run this bot from the command line,
+```bash
+npm start
+```
 
-    ```bash
-    npm start
-    ```
+If you make edits to the code in `app.ts`, stop the bot (ctrl-c), and re-start it.
 
-If you make edits to the code in `app.ts`, you'll need to re-compile TypeScript to JavaScript, then re-start your bot.  In VSCode, you can just "Restart Debugging" with `ctrl-shift-F5`. From the command-line, you'll need to stop the bot `ctrl-c`, then re-run `npm start` (which will re-compile TypeScript to JavaScript).
+## VSCode
+
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``blis-bot-01/src/app.ts``.  Open the `blis-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
 There is a template `.env.example` file shows what environment variables you may set to configure the samples.
 
-You can adjust these ports to avoid conflicts between other services running on your machine.
+You can adjust these ports to avoid conflicts between other services running on your machine by adding a `.env` file to root of project:
 
-- Add the `.env` file to root of project
+```bash
+cp .env.example .env
+```
 
-    ```bash
-    cp .env.example .env
-    ```
-
-    This uses the standard configuration, which lets you run your bot locally, and start using BLIS.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
+This uses the standard configuration, which lets you run your bot locally, and start using BLIS.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
 
 ## Notes
 
