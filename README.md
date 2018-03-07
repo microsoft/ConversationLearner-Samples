@@ -38,8 +38,10 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 2. Start bot:
 
     ```
-    npm run demo-pizza
+    npm start
     ```
+
+    This runs the generic empty bot in ``blis-bot-01/src/app.ts``.
 
 3. Run BLIS UI:
 
@@ -53,21 +55,23 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 5. Log in using your MSA (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
 
-6. Click on "Import Demos" -- this will take about a minute and will copy the BLIS apps into your BLIS account.  
-
-7. You should now see a list of demo applications.  Click on "demoPizza" to open the pizza demo.
-
-You're now using BLIS and can teach your bot.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
+You're now using BLIS, and can create and teach a BLIS model.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
 
 ## Demos, and switching between bots
 
-The instructions above started the pizza demo bot.  To switch to a different demo bot:
+The instructions above started the generic empty bot.  To run a demo bot instead:
 
-1. In the BLIS web UI, return to the list of apps at http://localhost:5050/home.
+1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
     
-2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
+2. If another bot is running (like `npm start` or `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
-3. Run another demo bot from the command line (step 2 above).  Demos include:
+3. Build the demos (only needs to be done once):
+
+  ```bash
+  npm run build
+  ```
+
+4. Run a demo bot from the command line (step 2 above).  Demos include:
 
   ```bash
   npm run demo-password
@@ -76,19 +80,13 @@ The instructions above started the pizza demo bot.  To switch to a different dem
   npm run demo-vrapp
   ```
 
-4. Once you've started a new bot, switch to the BLIS web UI in Chrome, and click on the corresponding BLIS app to start using the bot.
+5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
 
-Corresponding source files are in `src/demos`
+6. Click on "Import demos" (only needs to be done once).  This will take about a minute and will copy the BLIS models for all the demos into your BLIS account.
 
-## Build your own bot
+7. Click on the demo model in the BLIS UI that corresponds to the demo you started.
 
-A generic empty BLIS bot is provided in ``blis-bot-01/src/app.ts``.  To run it, first stop the currently running bot that (if any).  To start the empty bot:
-
-```bash
-npm start
-```
-
-If you make edits to the code in `app.ts`, stop the bot (ctrl-c), and re-start it.
+Source files for the demos are in `blis-bot-01/src/demos`
 
 ## VSCode
 
