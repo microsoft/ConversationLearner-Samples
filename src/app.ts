@@ -1,3 +1,7 @@
+const appInsights = require("applicationinsights");
+appInsights.setup("c996e5ac-6e86-4a74-ab71-cf613c3a4c22");
+appInsights.start();
+
 import * as fs from 'fs'
 import * as path from 'path'
 import * as restify from 'restify'

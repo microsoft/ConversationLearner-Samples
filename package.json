@@ -21,6 +21,7 @@
   "author": "Microsoft BLIS Team",
   "license": "MIT",
   "dependencies": {
+    "applicationinsights": "^1.0.2",
     "blis-sdk": "0.144.2",
     "botbuilder": "4.0.0-m1.4",
     "botbuilder-node": "4.0.0-m1.2",
