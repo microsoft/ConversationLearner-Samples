@@ -15,7 +15,7 @@ export const config = convict({
     },
     appId: {
         format: String,
-        default: undefined,
+        default: "13e80404-de3f-42ba-9be4-8bf04c760f22",
         env: 'BLIS_APP_ID'
     },
     botPort: {
@@ -70,7 +70,7 @@ export const config = convict({
     },
     localhost: {
         format: Boolean,
-        default: true,
+        default: false,
         env: 'BLIS_LOCALHOST'
     },
 })
