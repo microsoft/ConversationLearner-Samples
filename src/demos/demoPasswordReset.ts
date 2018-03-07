@@ -12,7 +12,7 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(config.botPort, () => {
+server.listen(process.env.port || process.env.PORT || config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
