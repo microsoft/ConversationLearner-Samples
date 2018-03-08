@@ -27,21 +27,33 @@ server.post('/api/messages', connector.listen() as any);
 let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
 Blis.Init(config, fileStorage);
 
-//=================================
-// Add Entity Logic
-//=================================
-//
-// Blis.EntityDetectionCallback is not needed in this demo, so can be left undefined
-// See other demos, or app.ts in the src directory, for an example of Blis.EntityDetectionCallback
-//
+//==================================
+// Add Start / End Session callbacks
+//==================================
+/**
+* Called at session start.
+* Allows bot to set initial entities before conversation begins
+* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
+* @returns {Promise<void>}
+*/
+Blis.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
-//=================================
-// Define any API callbacks
-//=================================
-//
-// No API calls are used in this demo, so there are no calls to Blis.AddAPICallback
-// See other demos, or app.ts in the src directory, for an example of Blis.AddAPICallback
-//
+    // Set BotName when session starts
+    await memoryManager.RememberEntityAsync("BotName", "Botty")
+})
+
+/**
+* Called at session ends.
+* If not implemented all entity values will be cleared
+* If implemented, developer responsible for clearing entities
+* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
+* @returns {Promise<void>}
+*/
+Blis.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+
+    // Clear all entities but name and phone number
+    await memoryManager.ClearAllEntitiesAsync(["UserName", "UserPhone"]);
+})
 
 //=================================
 // Initialize bot
