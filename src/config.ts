@@ -21,7 +21,7 @@ export const config = convict({
     botPort: {
         format: 'port',
         default: 3978,
-        env: 'BLIS_BOT_PORT'
+        env: 'PORT'
     },
     uiPort: {
         format: 'port',
