@@ -1,9 +1,8 @@
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models } from 'blis-sdk'
+import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
 import config from '../config'
 
 //===================

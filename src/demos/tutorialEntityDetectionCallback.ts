@@ -1,8 +1,9 @@
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
+import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { Blis, ClientMemoryManager, models } from 'blis-sdk'
 import config from '../config'
 
 //===================
@@ -11,7 +12,7 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(process.env.port || process.env.PORT || config.botPort, () => {
+server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
@@ -29,9 +30,19 @@ Blis.Init(config, fileStorage);
 //=========================================================
 // Bots Buisness Logic
 //=========================================================
-var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping: string) {
-    return (inStock.indexOf(topping.toLowerCase()) > -1);
+let cities = ['new york', 'boston', 'new orleans'];
+let cityMap:{ [index:string] : string } = {};
+cityMap['big apple'] = 'new york';
+cityMap['windy city'] = 'chicago';
+
+var resolveCity = function(cityFromUser: string) {
+    if (cities.indexOf(cityFromUser) > -1) {
+        return cityFromUser;
+    } else if (cityFromUser in cityMap) {
+        return cityMap[cityFromUser];
+    } else {
+        return null;
+    }
 }
 
 //=================================
@@ -46,49 +57,24 @@ var isInStock = function(topping: string) {
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
 
-    // Clear OutOfStock List
-    await memoryManager.ForgetEntityAsync("OutOfStock");
+    // Clear disambigApps
+    await memoryManager.ForgetEntityAsync("CityUnknown");
             
-    // Get list of requested Toppings
-    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
-
-    // Check each to see if it is in stock
-    for (let topping of toppings) {
-
-        // If not in stock, move from Toppings List of OutOfStock list
-        if (!isInStock(topping)) {
-            await memoryManager.ForgetEntityAsync("Toppings", topping);
-            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
+    // Get list of (possibly) ambiguous apps
+    var citiesFromUser = await memoryManager.EntityValueAsListAsync("City");
+    if (citiesFromUser.length > 0) {
+        var cityFromUser = citiesFromUser[0]
+        const resolvedCity = resolveCity(cityFromUser)
+        if (resolvedCity) {
+            await memoryManager.RememberEntityAsync("CityResolved", resolvedCity);
+        } else {
+            await memoryManager.RememberEntityAsync("CityUnknown", cityFromUser);
+            await memoryManager.ForgetEntityAsync("CityResolved");
+            await memoryManager.ForgetEntityAsync("City");
         }
     }
 })
 
-//=================================
-// Define API callbacks
-//=================================
-Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
-    {
-        // Save toppings
-        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
-
-        // Clear toppings
-        await memoryManager.ForgetEntityAsync("Toppings");
-
-        return "Your order is on its way";
-    }
-);
-
-Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
-    {
-        // Restore last toppings
-        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
-
-        // Clear last toppings
-        await memoryManager.ForgetEntityAsync("LastToppings"); 
-
-        // Don't display anything to the user
-        return undefined;
-    });
 
 //=================================
 // Initialize bot
