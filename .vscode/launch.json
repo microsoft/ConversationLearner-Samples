@@ -78,6 +78,17 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "tutorialEntityDetectionCallback",
+            "program": "${workspaceFolder}\\lib\\demos\\tutorialEntityDetectionCallback.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },        {
+            "type": "node",
+            "request": "launch",
             "name": "All Demos",
             "program": "${workspaceFolder}\\lib\\demos\\allDemos.js",
             "outFiles": [
