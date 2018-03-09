@@ -2,9 +2,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { FileStorage } from 'botbuilder-node'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, IBlisOptions, ClientMemoryManager, models } from 'blis-sdk'
+import { Blis, IBlisOptions, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
 import config from './config'
 
 //===================
@@ -13,7 +12,8 @@ import config from './config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(config.botPort, () => {
+
+server.listen(process.env.port || process.env.PORT || config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
