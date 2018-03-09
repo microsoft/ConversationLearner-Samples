@@ -9,7 +9,7 @@ if (result.error) {
 
 export const config = convict({
     serviceUri: {
-        format: String,
+        format: 'url',
         default: "http://blis-service-prod.azurewebsites.net/api/v1/",
         env: 'BLIS_SERVICE_URI'
     },
@@ -19,7 +19,9 @@ export const config = convict({
         env: 'BLIS_APP_ID'
     },
     botPort: {
-        format: 'port',
+        // Must be any type because when deployed port will be named pipe path instead of number
+        // E.g. \\.\pipe\959e6a63-76dd-4f11-be42-d29ec0fc585d
+        format: '*',
         default: 3978,
         env: 'PORT'
     },
@@ -34,12 +36,12 @@ export const config = convict({
         env: 'BLIS_SDK_PORT'
     },
     dolBotUrl: {
-        format: String,
+        format: 'url',
         default: 'http://127.0.0.1:3978/api/messages',
         env: 'DOL_BOT_URL'
     },
     dolServiceUrl: {
-        format: String,
+        format: 'url',
         default: 'http://127.0.0.1:3000',
         env: 'DOL_SERVICE_URL'
     },
@@ -54,7 +56,7 @@ export const config = convict({
         env: 'BLIS_REDIS_KEY'
     },
     functionUrl: {
-        format: String,
+        format: 'url',
         default: undefined,
         env: 'BLIS_FUNCTIONS_URL'
     },
@@ -78,7 +80,7 @@ export const config = convict({
 config.validate({ allowed: 'strict' })
 
 export interface IBlisSampleConfig extends IBlisOptions {
-    botPort: number
+    botPort: string
     redisServer: string
     redisKey: string
     functionUrl: string
