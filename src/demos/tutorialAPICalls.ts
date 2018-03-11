@@ -11,7 +11,7 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(config.botPort, () => {
+server.listen(process.env.port || process.env.PORT || config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
@@ -29,20 +29,11 @@ Blis.Init(config, fileStorage);
 //=========================================================
 // Bots Buisness Logic
 //=========================================================
-let cities = ['new york', 'boston', 'new orleans'];
-let cityMap:{ [index:string] : string } = {};
-cityMap['big apple'] = 'new york';
-cityMap['windy city'] = 'chicago';
-
-var resolveCity = function(cityFromUser: string) {
-    if (cities.indexOf(cityFromUser) > -1) {
-        return cityFromUser;
-    } else if (cityFromUser in cityMap) {
-        return cityMap[cityFromUser];
-    } else {
-        return null;
-    }
-}
+var greetings = [
+    "Hello!", 
+    "Greetings!", 
+    "Hi there!"
+];
 
 //=================================
 // Add Entity Logic
@@ -55,24 +46,37 @@ var resolveCity = function(cityFromUser: string) {
 * @returns {Promise<void>}
 */
 Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
-
-    // Clear disambigApps
-    await memoryManager.ForgetEntityAsync("CityUnknown");
-            
-    // Get list of (possibly) ambiguous apps
-    var citiesFromUser = await memoryManager.EntityValueAsListAsync("City");
-    if (citiesFromUser.length > 0) {
-        var cityFromUser = citiesFromUser[0]
-        const resolvedCity = resolveCity(cityFromUser)
-        if (resolvedCity) {
-            await memoryManager.RememberEntityAsync("CityResolved", resolvedCity);
-        } else {
-            await memoryManager.RememberEntityAsync("CityUnknown", cityFromUser);
-            await memoryManager.ForgetEntityAsync("CityResolved");
-            await memoryManager.ForgetEntityAsync("City");
-        }
-    }
+    // Nop -- no entity processing
 })
+
+//=================================
+// Define API callbacks
+//=================================
+Blis.AddAPICallback("RandomGreeting", async (memoryManager : ClientMemoryManager) => {
+    var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+    return randomGreeting;
+});
+
+Blis.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
+
+    // convert base and exponent to ints
+    var num1int = parseInt(num1string);
+    var num2int = parseInt(num2string);
+
+    // compute product
+    var result = num1int * num2int;
+
+    // return result as message
+    return num1int.toString() + " * " + num2int.toString() + " = " + result.toString();
+})
+
+Blis.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
+
+    // clear base and exponent entities
+    await memoryManager.ForgetEntityAsync("number");
+    return "Let's do another.";
+})
+
 
 
 //=================================

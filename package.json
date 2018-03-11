@@ -16,7 +16,11 @@
     "demo-password": "node ./lib/demos/demoPasswordReset.js",
     "demo-pizza": "node ./lib/demos/demoPizzaOrder.js",
     "demo-storage": "node ./lib/demos/demoStorage.js",
-    "demo-vrapp": "node ./lib/demos/demoVRAppLauncher.js"
+    "demo-vrapp": "node ./lib/demos/demoVRAppLauncher.js",
+    "tutorial-general": "node ./lib/app.js",
+    "tutorial-entity-detection": "node ./lib/demos/tutorialEntityDetectionCallback.js",
+    "tutorial-session-callbacks": "node ./lib/demos/tutorialSessionCallbacks.js",
+    "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js"
   },
   "author": "Microsoft BLIS Team",
   "license": "MIT",
