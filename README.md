@@ -57,9 +57,9 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 You're now using BLIS, and can create and teach a BLIS model.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
 
-## Demos, and switching between bots
+## Tutorials, demos, and switching between bots
 
-The instructions above started the generic empty bot.  To run a demo bot instead:
+The instructions above started the generic empty bot.  To run a tutorial or demo bot instead:
 
 1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
     
@@ -74,6 +74,10 @@ The instructions above started the generic empty bot.  To run a demo bot instead
 4. Run a demo bot from the command line (step 2 above).  Demos include:
 
   ```bash
+  npm run tutorial-general
+  npm run tutorial-entity-detection
+  npm run tutorial-session-callbacks
+  npm run tutorial-api-calls
   npm run demo-password
   npm run demo-pizza
   npm run demo-storage
