@@ -104,6 +104,16 @@ cp .env.example .env
 
 This uses the standard configuration, which lets you run your bot locally, and start using BLIS.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
 
+## Publishing your bot
+
+Publish your BLIS bot the same way you would publish any other bot.
+You simply upload your code to a hosted website and then register the bot with various channels.
+
+One slight difference for the published bot is that the blis configuration variable `appId` must be set.  This is best done through an environment variable `BLIS_APP_ID`.  The app id can be found by opening the settings page for your application and copying the GUID from the App Id field. (We hope to remove this requirement in the future)
+
+Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documenation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
+
+
 ## Notes
 
 There is NO security or encryption currently -- do not load data into BLIS which is sensitive or from a customer.
