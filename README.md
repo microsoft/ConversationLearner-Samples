@@ -86,7 +86,7 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
 
-6. Click on "Import demos" (only needs to be done once).  This will take about a minute and will copy the BLIS models for all the demos into your BLIS account.
+6. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the BLIS models for all the tutorials into your BLIS account.
 
 7. Click on the demo model in the BLIS UI that corresponds to the demo you started.
 
