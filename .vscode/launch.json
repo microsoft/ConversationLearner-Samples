@@ -20,6 +20,53 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "tutorialGeneral",
+            "program": "${workspaceFolder}\\lib\\app.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "tutorialEntityDetectionCallback",
+            "program": "${workspaceFolder}\\lib\\demos\\tutorialEntityDetectionCallback.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "tutorialAPICalls",
+            "program": "${workspaceFolder}\\lib\\demos\\tutorialAPICalls.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "tutorialSessionCallbacks",
+            "program": "${workspaceFolder}\\lib\\demos\\tutorialSessionCallbacks.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },        {
+            "type": "node",
+            "request": "launch",
             "name": "demoPasswordReset",
             "program": "${workspaceFolder}\\lib\\demos\\demoPasswordReset.js",
             "outFiles": [
@@ -33,17 +80,6 @@
             "request": "launch",
             "name": "demoPizzaOrder",
             "program": "${workspaceFolder}\\lib\\demos\\demoPizzaOrder.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ],
-            "runtimeArgs": [
-                "--preserve-symlinks"
-            ]
-        },        {
-            "type": "node",
-            "request": "launch",
-            "name": "demoSessionCallbacks",
-            "program": "${workspaceFolder}\\lib\\demos\\demoSessionCallbacks.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -68,29 +104,6 @@
             "request": "launch",
             "name": "demoStorage",
             "program": "${workspaceFolder}\\lib\\demos\\demoStorage.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ],
-            "runtimeArgs": [
-                "--preserve-symlinks"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "tutorialEntityDetectionCallback",
-            "program": "${workspaceFolder}\\lib\\demos\\tutorialEntityDetectionCallback.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ],
-            "runtimeArgs": [
-                "--preserve-symlinks"
-            ]
-        },        {
-            "type": "node",
-            "request": "launch",
-            "name": "All Demos",
-            "program": "${workspaceFolder}\\lib\\demos\\allDemos.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
