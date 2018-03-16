@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Empty Bot",
-            "program": "${workspaceFolder}\\lib\\app.js",
+            "program": "${workspaceFolder}/lib/app.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -21,7 +21,7 @@
             "type": "node",
             "request": "launch",
             "name": "tutorialGeneral",
-            "program": "${workspaceFolder}\\lib\\app.js",
+            "program": "${workspaceFolder}/lib/app.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -33,7 +33,7 @@
             "type": "node",
             "request": "launch",
             "name": "tutorialEntityDetectionCallback",
-            "program": "${workspaceFolder}\\lib\\demos\\tutorialEntityDetectionCallback.js",
+            "program": "${workspaceFolder}/lib/demos/tutorialEntityDetectionCallback.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -45,7 +45,7 @@
             "type": "node",
             "request": "launch",
             "name": "tutorialAPICalls",
-            "program": "${workspaceFolder}\\lib\\demos\\tutorialAPICalls.js",
+            "program": "${workspaceFolder}/lib/demos/tutorialAPICalls.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -57,7 +57,7 @@
             "type": "node",
             "request": "launch",
             "name": "tutorialSessionCallbacks",
-            "program": "${workspaceFolder}\\lib\\demos\\tutorialSessionCallbacks.js",
+            "program": "${workspaceFolder}/lib/demos/tutorialSessionCallbacks.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -68,7 +68,7 @@
             "type": "node",
             "request": "launch",
             "name": "demoPasswordReset",
-            "program": "${workspaceFolder}\\lib\\demos\\demoPasswordReset.js",
+            "program": "${workspaceFolder}/lib/demos/demoPasswordReset.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -79,7 +79,7 @@
             "type": "node",
             "request": "launch",
             "name": "demoPizzaOrder",
-            "program": "${workspaceFolder}\\lib\\demos\\demoPizzaOrder.js",
+            "program": "${workspaceFolder}/lib/demos/demoPizzaOrder.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -91,7 +91,7 @@
             "type": "node",
             "request": "launch",
             "name": "demoVRAppLauncher",
-            "program": "${workspaceFolder}\\lib\\demos\\demoVRAppLauncher.js",
+            "program": "${workspaceFolder}/lib/demos/demoVRAppLauncher.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -103,7 +103,7 @@
             "type": "node",
             "request": "launch",
             "name": "demoStorage",
-            "program": "${workspaceFolder}\\lib\\demos\\demoStorage.js",
+            "program": "${workspaceFolder}/lib/demos/demoStorage.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -115,7 +115,7 @@
             "type": "node",
             "request": "launch",
             "name": "BLIS UI",
-            "program": "${workspaceFolder}\\lib\\ui.js",
+            "program": "${workspaceFolder}/lib/ui.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
