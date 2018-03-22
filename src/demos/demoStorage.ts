@@ -11,14 +11,15 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(process.env.port || process.env.PORT || config.botPort, () => {
+server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
 //==================
 // Create connector
 //==================
-const connector = new BotFrameworkAdapter({ appId: config.microsoftAppId, appPassword: config.microsoftAppPassword });
+const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
+const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
 //==================================
@@ -40,8 +41,16 @@ server.post('/api/messages', connector.listen() as any);
 // Stores bot state in a redis cache.  
 // With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
 // Requires env variables BLIS_REDIS_SERVER and BLIS_REDIS_KEY are set.  You can set these in ../.env.
+
+if (typeof config.redisServer !== 'string' || config.redisServer.length === 0) {
+    throw new Error(`When using Redis storage: redisServer value must be non-empty. You passed: ${config.redisServer}`)
+}
+if (typeof config.redisKey !== 'string' || config.redisKey.length === 0) {
+    throw new Error(`When using Redis storage: redisKey value must be non-empty. You passed: ${config.redisKey}`)
+}
+
 let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
-Blis.Init(config, redisStorage);
+Blis.Init(blisConfig, redisStorage);
 
 //=================================
 // Add Entity Logic
