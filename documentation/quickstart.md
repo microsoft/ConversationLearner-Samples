@@ -22,20 +22,19 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
 ## Quick start 
 
 1. Install:
+  
+		git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
+		cd blis-bot-01
+		npm install
 
-    ```   
-    git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
-    cd blis-bot-01
-    npm install
-    ```
 
     Note: during `npm install`, you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
 
 2. Start bot:
 
-    ```
-    npm start
-    ```
+
+    	npm start
+
 
     This runs the generic empty bot in ``blis-bot-01/src/app.ts``.
 
@@ -50,7 +49,7 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
 
 5. Log in using your Microsoft Account (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
 
-You're now using the Conversation Learner, and can create and teach a model. 
+You are now using the Conversation Learner, and can create and teach a model. 
 
 ## Tutorials, demos, and switching between bots
 
@@ -68,16 +67,16 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 4. Run a demo bot from the command line (step 2 above).  Demos include:
 
-		  npm run tutorial-general
-		  npm run tutorial-entity-detection
-		  npm run tutorial-session-callbacks
-		  npm run tutorial-api-calls
-		  npm run demo-password
-		  npm run demo-pizza
-		  npm run demo-storage
-		  npm run demo-vrapp
+		npm run tutorial-general
+		npm run tutorial-entity-detection
+		npm run tutorial-session-callbacks
+		npm run tutorial-api-calls
+		npm run demo-password
+		npm run demo-pizza
+		npm run demo-storage
+		npm run demo-vrapp
 
-5. If you're not already, switch to the web UI in Chrome by loading http://localhost:5050/home. 
+5. If you're not already, switch to the web UI in Chrome by loading [http://localhost:5050/home](http://localhost:5050/home). 
 
 6. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your account.
 
