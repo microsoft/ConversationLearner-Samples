@@ -25,7 +25,7 @@
   "author": "Microsoft BLIS Team",
   "license": "MIT",
   "dependencies": {
-    "blis-sdk": "0.173.0",
+    "blis-sdk": "0.174.0",
     "botbuilder": "4.0.0-m1.4",
     "botbuilder-node": "4.0.0-m1.2",
     "botbuilder-services": "4.0.0-m1.2",
