@@ -18,6 +18,11 @@ export const config = convict({
         default: undefined,
         env: 'LUIS_SUBSCRIPTION_KEY'
     },
+    apimSubscriptionKey: {
+        format: String,
+        default: undefined,
+        env: 'APIM_SUBSCRIPTION_KEY'
+    },
     serviceUri: {
         format: 'url',
         default: "http://blis-service-prod.azurewebsites.net/api/v1/",
