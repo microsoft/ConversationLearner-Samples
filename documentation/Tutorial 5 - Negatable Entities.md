@@ -59,7 +59,7 @@ Now you have two actions.
 	2. 'I know your name. It is $name' is the only available response. 
 6. Select 'I know your name. It is $name'.
 
-Let's try clearing the negatable entity.
+Let's try clearing the negatable entity:
 
 7. Enter 'my name is not david'.
 	1. Note the 'not' is selected as name based on the previous pattern. That is incorrect.
