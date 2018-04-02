@@ -90,4 +90,4 @@ Now try replacing the entered name.
 7. Click Done Teaching.
 
 
-You have now seen how the expected entity property of actions works.
+You have now seen how the negatable entity property of actions works.
