@@ -27,9 +27,9 @@ Concretely, if the "negatable" property of an entity is set:
 
 1. Click Entities, then New Entity.
 2. In Entity Name, enter name.
-3. Check Negatable
+3. Check Negatable.
 	1. Means user can provide a value for the entity or say something is not the value of the entity. In the latter case, this will result in deleting a matching value of the entity.
-3. Click Create
+3. Click Create.
 
 ### Create two actions
 
