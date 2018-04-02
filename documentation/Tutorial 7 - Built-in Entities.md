@@ -25,7 +25,7 @@ This tutorial requires that the general tutorial bot is running
 
 1. Click Actions, then New Action
 2. In Response, type 'The date is $luis-datetimev2'.
-3. Click Create
+3. Click Create.
 
 Then create the second action:
 
