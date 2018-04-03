@@ -80,7 +80,7 @@ Let's see what happens if the user says something semantically similar to the ab
 	1. Note that the scores for the two potential responses are very close. This tells us the model is confused about the boundary between the two actions.
 6. Click Abandon Teaching and Confirm.
 
-![Close scores](images/tutorial8_closescores.jpg)
+![](images/tutorial8_closescores.png)
 
 In this case, it would help to add alternative inputs to dialogs. You can add them as you are doing the teaching. You can also go back and add them later.
 
@@ -93,7 +93,7 @@ In this case, it would help to add alternative inputs to dialogs. You can add th
 	1. click Submit Changes.
 
 
-![alternate help](images/tutorial8_helpalternates.jpg)
+![](images/tutorial8_helpalternates.png)
 
 2. Now click on 'what's the weather in seattle'.
 	1. In Add alternative input, enter 'forecast for seattle'.
@@ -118,7 +118,7 @@ Let's create alternative dialogs for the first dialog:
 		2. Click Submit Changes
 	1. Click Done which will cause the model to retrain.
 
-![alternate cities](images/tutorial8_altcities.jpg)
+![](images/tutorial8_altcities.png)
 
 Let's try the variations:
 
