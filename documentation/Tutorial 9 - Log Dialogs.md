@@ -91,7 +91,7 @@ Now let's make corrections to the second dialog:
 6. Select 'The weather in $city is probably sunny.'
 7. Click Done Teaching. If you go to Train Dialogs now, you will see the new action is added.
 
-![](images/tutorial9_logdiag1.png)
+![](images/tutorial9_logdiag1.PNG)
 
 Now let's make corrections to the other dialog:
 
@@ -110,6 +110,6 @@ Now let's make corrections to the other dialog:
 9. Click to Select 'The weather in $city is probably sunny.'
 10. Click Done Teaching.
 
-![](images/tutorial9_addnewaction.png)
+![](images/tutorial9_addnewaction.PNG)
 
 You have now seen how to make changes to entity labels and action labels by going through the log dialogs. 
