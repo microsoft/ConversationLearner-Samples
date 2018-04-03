@@ -6,6 +6,8 @@ import { BotFrameworkAdapter } from 'botbuilder-services'
 import { Blis, IBlisOptions, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
 import config from './config'
 
+console.log(`Config: `, JSON.stringify(config, null, '  '))
+
 //===================
 // Create Bot server
 //===================
