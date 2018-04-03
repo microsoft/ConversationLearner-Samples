@@ -14,7 +14,7 @@ This tutorial requires that the general tutorial bot is running
 ### Create the application
 
 1. In the Web UI, click New App
-2. In Name, enter AlternativeEntities. Then click Create.
+2. In Name, enter AlternativeInputs. Then click Create.
 
 ### Create an entity
 
@@ -31,10 +31,10 @@ This tutorial requires that the general tutorial bot is running
 
 Then create the second action:
 
-1. Click Actions, then New Action to create a second action.
+1. Click Actions, then New Action.
 3. In Response, type 'The weather in $city is probably sunny'.
 4. Required Entities, enter $city.
-4. Click Create
+4. Click Create.
 
 Create the third action:
 
@@ -57,7 +57,7 @@ You now have three actions.
 5. Click Score Actions
 	1. Note that denver is now present in the city entity. 
 6. Select 'The weather in $city is probably sunny'.
-7. Click Done Teaching
+7. Click Done Teaching.
 
 Add another example dialog:
 
@@ -70,7 +70,7 @@ Add another example dialog:
 5. Click Score Actions
 	1. Note that seattle is now present in the city entity. 
 6. Select 'The weather in $city is probably sunny'.
-7. Click Done Teaching
+7. Click Done Teaching.
 
 Let's see what happens if the user says something semantically similar to the above:
 
@@ -80,7 +80,7 @@ Let's see what happens if the user says something semantically similar to the ab
 	1. Note that the scores for the two potential responses are very close. This tells us the model is confused about the boundary between the two actions.
 6. Click Abandon Teaching and Confirm.
 
-![Close scores](/images/tutorial8_closescores.jpg)
+![Close scores](images/tutorial8_closescores.jpg)
 
 In this case, it would help to add alternative inputs to dialogs. You can add them as you are doing the teaching. You can also go back and add them later.
 
@@ -91,6 +91,10 @@ In this case, it would help to add alternative inputs to dialogs. You can add th
 	2. Enter 'Tell me my choices'.
 	3. Enter 'help'
 	1. click Submit Changes.
+
+
+![alternate help](images/tutorial8_helpalternates.jpg)
+
 2. Now click on 'what's the weather in seattle'.
 	1. In Add alternative input, enter 'forecast for seattle'.
 	2. Double-click on 'seattle', and select city. Note that the entities for alternative inputs should be present and have the same set of entities. It is fine if the content of the entites is different.
@@ -98,7 +102,6 @@ In this case, it would help to add alternative inputs to dialogs. You can add th
 	4. Click on 'denver', and select city.
 	5. click Submit Changes and Done.
 
-![alternate help](/images/tutorial8_helpalternates.jpg)
 
 Let's create alternative dialogs for the first dialog:
 
@@ -115,7 +118,7 @@ Let's create alternative dialogs for the first dialog:
 		2. Click Submit Changes
 	1. Click Done which will cause the model to retrain.
 
-![alternate cities](/images/tutorial8_altcities.jpg)
+![alternate cities](images/tutorial8_altcities.jpg)
 
 Let's try the variations:
 
