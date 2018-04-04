@@ -89,4 +89,4 @@ Let's switch back to Log Dialogs. Note that the last conversation has split into
 - The second interaction shows the name and phone number.
 
 
-You have now seen how to sessions are handled by default, and how you can override that default behavior. 
+You have now seen how sessions are handled by default, and how you can override the default behavior. 
