@@ -122,6 +122,23 @@
             "runtimeArgs": [
                 "--preserve-symlinks"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Empty App with Fiddler",
+            "program": "${workspaceFolder}/lib/app.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ],
+            "env": {
+                "https_proxy": "http://127.0.0.1:8888",
+                "http_proxy": "http://127.0.0.1:8888",
+                "NODE_TLS_REJECT_UNAUTHORIZED": "0"
+            }
         }
     ]
 }
