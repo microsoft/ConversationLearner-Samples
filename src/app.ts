@@ -39,7 +39,6 @@ Blis.Init(blisConfig, fileStorage);
 //=================================
 /**
 * @param {string} text Last user input to the Bot
-* @param {PredictedEntity[]} predictedEntities Entities extracted from most recent user utterance
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
@@ -53,9 +52,9 @@ Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
     memoryManager.EntityValueAsListAsync(entityName: string): Promise<string[]>;
 
     // Values in memory before new Entity detection
-    memoryManagerPrevEntityValue(entityName: string): (string | null)
-    memoryManagerPrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
-    memoryManagerPrevEntityValueAsList(entityName: string): string[]
+    memoryManager.PrevEntityValue(entityName: string): (string | null)
+    memoryManager.PrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
+    memoryManager.PrevEntityValueAsList(entityName: string): string[]
 
     // Memory manipulation methods
     memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>;

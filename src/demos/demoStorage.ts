@@ -57,7 +57,6 @@ Blis.Init(blisConfig, redisStorage);
 //=================================
 /**
 * @param {string} text Last user input to the Bot
-* @param {PredictedEntity[]} predictedEntities Entities extracted from most recent user utterance
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
