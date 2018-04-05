@@ -25,7 +25,7 @@ export const config = convict({
     },
     serviceUri: {
         format: 'url',
-        default: "http://blis-service-prod.azurewebsites.net/api/v1/",
+        default: "https://westus.api.cognitive.microsoft.com/blis/api/v1/",
         env: 'BLIS_SERVICE_URI'
     },
     appId: {
