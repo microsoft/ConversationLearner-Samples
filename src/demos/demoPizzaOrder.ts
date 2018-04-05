@@ -11,20 +11,21 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(process.env.port || process.env.PORT || config.botPort, () => {
+server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
 //==================
 // Create connector
 //==================
-const connector = new BotFrameworkAdapter({ appId: config.microsoftAppId, appPassword: config.microsoftAppPassword });
+const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
+const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
 // Initialize Blis using file storage.  Recommended only for development
 // See "storageDemo.ts" for other storage options
 let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(config, fileStorage);
+Blis.Init(blisConfig, fileStorage);
 
 //=========================================================
 // Bots Buisness Logic
@@ -40,11 +41,10 @@ var isInStock = function(topping: string) {
 /**
 * Processes messages received from the user. Called by the dialog system. 
 * @param {string} text Last user input to the Bot
-* @param {PredictedEntity[]} predictedEntities Entities extracted from most recent user utterance
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, predictedEntities: models.PredictedEntity[], memoryManager: ClientMemoryManager): Promise<void> => {
+Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
     await memoryManager.ForgetEntityAsync("OutOfStock");

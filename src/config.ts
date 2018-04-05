@@ -8,6 +8,21 @@ if (result.error) {
 }
 
 export const config = convict({
+    luisAuthoringKey: {
+        format: String,
+        default: undefined,
+        env: 'LUIS_AUTHORING_KEY'
+    },
+    luisSubscriptionKey: {
+        format: String,
+        default: undefined,
+        env: 'LUIS_SUBSCRIPTION_KEY'
+    },
+    apimSubscriptionKey: {
+        format: String,
+        default: undefined,
+        env: 'APIM_SUBSCRIPTION_KEY'
+    },
     serviceUri: {
         format: 'url',
         default: "http://blis-service-prod.azurewebsites.net/api/v1/",
@@ -81,16 +96,14 @@ config.validate({ allowed: 'strict' })
 
 export interface IBlisSampleConfig extends IBlisOptions {
     botPort: string
-    redisServer: string
-    redisKey: string
+    redisServer: string | undefined
+    redisKey: string | undefined
     functionUrl: string
-    microsoftAppId: string
-    microsoftAppPassword: string
+    microsoftAppId: string | undefined
+    microsoftAppPassword: string | undefined
 }
 
 const blisConfig = config.getProperties() as IBlisSampleConfig
-
-console.log(`Configuration loaded: `, JSON.stringify(blisConfig, null, ' '))
 
 export default blisConfig
 
