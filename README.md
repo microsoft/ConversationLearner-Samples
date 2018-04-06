@@ -4,7 +4,11 @@ This repo contains sample code for building conversational bots using Microsoft 
 
 BLIS reduces the complexity of building bots.  It enables a hybrid development workflow allowing hand-written code and machine learning to reduce the amount of code required to write bots.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
-[Example video overview of BLIS](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal only; more videos coming soon)
+Resources (all MS internal):
+- [Example video overview of BLIS](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA)
+- [Demo of BLIS at TechFest](https://resnet.microsoft.com/video/41008)
+- [Slides with introduction to BLIS for developers](https://microsoft-my.sharepoint.com/:p:/p/jawillia/Ed63MfYJyFFCkM3pqaFWCLwBcy9yKkucZLITiWXIMj-keA?e=HQQAdV)
+- [Technical paper about ML in BLIS](https://microsoft-my.sharepoint.com/:b:/p/jawillia/EU2jGHJXOA5PsfW84bAFnSYB60KvxLL4Wy_L7VNZSg0hOA?e=xg79Hi)
 
 ## Prerequisites
 
@@ -18,24 +22,32 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
   3. Authoring key is shown on the resulting page
 
-  (BLIS uses LUIS for entity extraction; when you create a BLIS
-  application, you'll need a LUIS authoring key)
+  (Your LUIS authoring key serves 2 roles.  First, it will serve as your BLIS authoring key.  Second, BLIS uses LUIS for entity extraction; the LUIS authoring key is used to create LUIS models on your behalf)
 
 - VSCode.  https://code.visualstudio.com/  Recommended, not required.
 
 ## Quick start 
 
-1. Install:
+1. Install and build:
 
     ```bash    
     git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
     cd blis-bot-01
     npm install
+    npm run build
     ```
 
     Note: during `npm install`, you can ignore this error if it occurs: `gyp ERR! stack Error: Can't find Python executable`
 
-2. Start bot:
+2. Configure:
+
+   Create a file called `.env` in the directory `blis-bot-01`.  The contents of the file should be:
+
+   ```
+   LUIS_AUTHORING_KEY=<your LUIS authoring key>
+   ```
+
+3. Start bot:
 
     ```
     npm start
@@ -53,9 +65,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 4. Open browser to http://localhost:5050 
 
-5. Log in using your MSA (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
-
-You're now using BLIS, and can create and teach a BLIS model.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
+You're now using BLIS, and can create and teach a BLIS model.  
 
 ## Tutorials, demos, and switching between bots
 
@@ -65,13 +75,7 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
     
 2. If another bot is running (like `npm start` or `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
-3. Build the demos (only needs to be done once):
-
-  ```bash
-  npm run build
-  ```
-
-4. Run a demo bot from the command line (step 2 above).  Demos include:
+3. Run a demo bot from the command line (step 2 above).  Demos include:
 
   ```bash
   npm run tutorial-general
@@ -84,13 +88,34 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
   npm run demo-vrapp
   ```
 
-5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
+4. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
 
-6. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the BLIS models for all the tutorials into your BLIS account.
+5. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the BLIS models for all the tutorials into your BLIS account.
 
-7. Click on the demo model in the BLIS UI that corresponds to the demo you started.
+6. Click on the demo model in the BLIS UI that corresponds to the demo you started.
 
 Source files for the demos are in `blis-bot-01/src/demos`
+
+## Create a bot which includes back-end code
+
+1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
+    
+2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
+
+3. If desired, edit code in ``blis-bot-01/src/app.ts``.
+
+4. Rebuild and re-start bot:
+
+    ```bash    
+    npm run build
+    npm start
+    ```
+
+5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
+
+6. Create a new BLIS application in the UI, and start teaching.
+
+7. To make code changes in ``blis-bot-01/src/app.ts``, repeat the steps above, starting from step 2.
 
 ## VSCode
 
@@ -110,22 +135,17 @@ This uses the standard configuration, which lets you run your bot locally, and s
 
 ## Publishing your bot
 
-Publish your BLIS bot similar to the same way you would publish any other bot.
-You simply upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.
+Publish your BLIS bot similar to the same way you would publish any other bot.  At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.  Detailed instructions are in this [video showing how to publish your bot using Azure Bot Service.](https://aka.ms/blis-azure-publish)
 
-Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documenation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
+Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
 Ensure that these variables are set when deploying your bot:
-```
-BLIS_SERVICE_URI        <Optional url to desired version of BLIS service>
-BLIS_APP_ID             <Application Id GUID>  
-BLIS_LOCALHOST          false
-MICROSOFT_APP_ID        <Microsoft Application Id>
-MICROSOFT_APP_PASSWORD  <Microsoft Application Password>
-```
 
-> We hope to remove the need to specify BLIS_APP_ID and BLIS_LOCALHOST in the future.
-
+```
+BLIS_SERVICE_URI        <Set to https://westus.api.cognitive.microsoft.com/blis/api/v1/>
+BLIS_APP_ID             <Application Id GUID, obtained from the BLIS UI under the "settings" for the app>
+LUIS_AUTHORING_KEY      <LUIS authoring key for this app, obtained from https://www.luis.ai>
+```
 
 ## Notes
 
