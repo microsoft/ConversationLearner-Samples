@@ -78,12 +78,12 @@ export const config = convict({
     microsoftAppId: {
         format: String,
         default: undefined,
-        env: 'MICROSOFT_APP_ID'
+        env: 'MICROSOFTAPPID'
     },
     microsoftAppPassword: {
         format: String,
         default: undefined,
-        env: 'MICROSOFT_APP_PASSWORD'
+        env: 'MICROSOFTAPPPASSWORD'
     },
     localhost: {
         format: Boolean,
