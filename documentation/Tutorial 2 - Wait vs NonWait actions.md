@@ -38,6 +38,8 @@ This tutorial requires that the general tutorial bot is running
 3. Un-check the Wait for Response check-box.
 4. Click Create
 
+![](images/tutorial2_actions.PNG)
+
 ### Train the bot
 
 1. Click Train Dialogs, then New Teach Session.
@@ -49,5 +51,7 @@ This tutorial requires that the general tutorial bot is running
 2. Select 'Which animal do you want?'.
 3. Enter 'duck'
 5. Click Score Actions, and Select 'Ducks say quack'.
+
+![](images/tutorial2_dialogs.PNG)
 
 Note the sequence of the bot responses with regards to wait and non-wait actions.
