@@ -22,6 +22,8 @@ This tutorial requires that the general tutorial bot is running
 2. Check Negatable.
 3. Click Create.
 
+![](images/tutorial6_entities.PNG)
+
 ### Create two actions
 
 1. Click Actions, then New Action
@@ -36,6 +38,8 @@ Then create the second action.
 4. Click Create
 
 Now you have two actions.
+
+![](images/tutorial6_actions.PNG)
 
 ### Train the bot
 
@@ -77,5 +81,7 @@ Now let's try removing everything:
 2. Select 'What toppings do you want?'
 3. Click Done Teaching
 
+
+![](images/tutorial6_dialogs.PNG)
 
 You have now seen how multi-value entities work and how you can add and remove items you are accumulating.
