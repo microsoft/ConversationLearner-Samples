@@ -8,6 +8,13 @@ This tutorial requires that the general tutorial bot is running
 
 	npm run tutorial-general
 
+## Details
+
+- Custom entities: they can be trained
+- Pre-built entities: their behavior cannot be adjusted
+- Blocking entities: if they are present in memory, will diqualify the action
+- Required entities: are required to enable an action
+
 ## Steps
 
 ### Create the application
@@ -37,6 +44,8 @@ Note the entity type as being custom. This means that the entity can be trained.
 
 Now you have two actions.
 
+![](images/tutorial3_actions.PNG)
+
 ### Train the bot
 
 1. Click Train Dialogs, then New Teach Session.
@@ -54,4 +63,6 @@ Let's say user enters 'repeat that'.
 1. Type that and enter. Note that city entity and its value is in memory and available.
 2. Select 'Weather in $city is probably sunny'.
 
-You have now created and used blocking and required entities**.
+![](images/tutorial3_entities.PNG)
+
+You have now created and used blocking and required entities.
