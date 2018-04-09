@@ -31,6 +31,7 @@ Concretely, if the "expected entity" field of an action is set to $entity, then 
 
 Note the entity type as being custom. This means that the entity can be trained. There are also pre-built entities meaning that their behavior cannot be adjusted.
 
+![](images/tutorial4_entities.PNG)
 
 ### Create two actions
 
@@ -44,6 +45,8 @@ Note the entity type as being custom. This means that the entity can be trained.
 4. Click Save
 
 Now you have two actions.
+
+![](images/tutorial4_actions.PNG)
 
 ### Train the bot
 
@@ -72,7 +75,6 @@ Let's try another training example where the heuristic does not do the right thi
 2. Select 'Hello susan'.
 3. Click Done Teaching.
 
-
 Let's try a new pattern with a new name.
 
 1. Type in 'call me jose'.
@@ -93,5 +95,7 @@ Let's try another one.
 2. Click Score Actions
 3. Select 'Hello $name'.
 4. Click Done Teaching.
+
+![](images/tutorial4_dialogs.PNG)
 
 You have now seen how the expected entity property of actions works.
