@@ -59,11 +59,15 @@ Let's do one more training, and see how the bot responds.
 6. Select 'Goodbye!'
 7. Click Done Teaching
 
+![](images/tutorial1_actions.PNG)
+
 We will do another teaching session to see how the bot is working.
 
 Repeat the above steps using 'hi', and 'byebye', and note the changes in position and score of the bots response when you click Score Action.
 
 You can now repeat the steps using 'howdy' and 'good bye', and note that the scoring shows improvements in scores indicating the bot has learned this interaction.
+
+![](images/tutorial1_dialogs.PNG)
 
 ### Test the bot as an end user
 
