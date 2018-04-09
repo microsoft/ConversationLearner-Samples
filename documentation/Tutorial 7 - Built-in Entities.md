@@ -6,6 +6,10 @@ This tutorial requires that the general tutorial bot is running
 
 	npm run tutorial-general
 
+## Details
+
+- Built-in entities are by default multi-valued. Meaning that the entity accumulates multiple instances of entity values.
+
 ## Steps
 
 ### Create the application
@@ -17,9 +21,10 @@ This tutorial requires that the general tutorial bot is running
 
 1. Click Entities, then New Entity.
 2. Click on EntityType drop-down, and select datetimev2.
-	1. Built-in entities are by default multi-valued. Meaning that the entity accumulates multiple instances of entity values.
 	2. Programmable and Negatable options are disabled as the entities are not modifiable.
 3. Click Create.
+
+![](images/tutorial7_entities.PNG)
 
 ### Create two actions
 
@@ -27,12 +32,16 @@ This tutorial requires that the general tutorial bot is running
 2. In Response, type 'The date is $luis-datetimev2'.
 3. Click Create.
 
+![](images/tutorial7_actions.PNG)
+
 Then create the second action:
 
 1. Click Actions, then New Action to create a second action.
 3. In Response, type 'What's the date?'.
 4. In Expected Entities, enter $luis-datetimev2.
 4. Click Create
+
+![](images/tutorial7_actions2.PNG)
 
 Now you have two actions.
 
