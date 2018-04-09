@@ -31,6 +31,8 @@ Concretely, if the "negatable" property of an entity is set:
 	1. Means user can provide a value for the entity or say something is not the value of the entity. In the latter case, this will result in deleting a matching value of the entity.
 3. Click Create.
 
+![](images/tutorial5_entities.PNG)
+
 ### Create two actions
 
 1. Click Actions, then New Action
@@ -45,6 +47,8 @@ Then create the second action.
 4. Click Create
 
 Now you have two actions.
+
+![](images/tutorial5_actions.PNG)
 
 ### Train the bot
 
@@ -89,5 +93,6 @@ Now try replacing the entered name.
 3. Select 'I don't know your name' which is the only action.
 7. Click Done Teaching.
 
+![](images/tutorial5_dialogs.PNG)
 
 You have now seen how the expected entity property of actions works.
