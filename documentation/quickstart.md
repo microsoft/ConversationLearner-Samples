@@ -47,8 +47,6 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
 
 4. Open browser to [http://localhost:5050](http://localhost:5050) 
 
-5. Log in using your Microsoft Account (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
-
 You are now using the Conversation Learner, and can create and teach a model. 
 
 ## Tutorials, demos, and switching between bots
