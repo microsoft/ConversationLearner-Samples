@@ -1,8 +1,8 @@
 {
-  "name": "blis-sdk-sample",
+  "name": "conversationlearner-samples",
   "private": true,
   "version": "0.119.0",
-  "description": "Sample BOT using BLIS",
+  "description": "Sample BOTs that use the Conversation Learner",
   "main": "./lib/app.js",
   "scripts": {
     "build": "tsc",
@@ -22,10 +22,10 @@
     "tutorial-session-callbacks": "node ./lib/demos/tutorialSessionCallbacks.js",
     "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js"
   },
-  "author": "Microsoft BLIS Team",
+  "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "blis-sdk": "0.196.0",
+    "conversationlearner-sdk": "0.198.0",
     "botbuilder": "4.0.0-m1.4",
     "botbuilder-node": "4.0.0-m1.2",
     "botbuilder-services": "4.0.0-m1.2",

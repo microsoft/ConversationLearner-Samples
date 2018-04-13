@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -18,37 +18,37 @@ server.listen(config.botPort, () => {
 //==================
 // Create connector
 //==================
-const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
+const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
 const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
-// Initialize Blis using file storage.  Recommended only for development
+// Initialize ConversationLearner using file storage.  Recommended only for development
 // See "storageDemo.ts" for other storage options
 let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(blisConfig, fileStorage);
+ConversationLearner.Init(clOptions, fileStorage);
 
 //=================================
 // Add Entity Logic
 //=================================
 //
-// Blis.EntityDetectionCallback is not needed in this demo, so can be left undefined
-// See other demos, or app.ts in the src directory, for an example of Blis.EntityDetectionCallback
+// ConversationLearner.EntityDetectionCallback is not needed in this demo, so can be left undefined
+// See other demos, or app.ts in the src directory, for an example of ConversationLearner.EntityDetectionCallback
 //
 
 //=================================
 // Define any API callbacks
 //=================================
 //
-// No API calls are used in this demo, so there are no calls to Blis.AddAPICallback
-// See other demos, or app.ts in the src directory, for an example of Blis.AddAPICallback
+// No API calls are used in this demo, so there are no calls to ConversationLearner.AddAPICallback
+// See other demos, or app.ts in the src directory, for an example of ConversationLearner.AddAPICallback
 //
 
 //=================================
 // Initialize bot
 //=================================
 const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
+    .use(ConversationLearner.recognizer)
+    .useTemplateRenderer(ConversationLearner.templateRenderer)
     .onReceive(context => {
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);

@@ -1,5 +1,5 @@
 # Tutorial 7: Built-in entities
-This tutorial shows how to add "built-in" entities to your BLIS application.
+This tutorial shows how to add "built-in" entities to your Conversation Learner application.
 
 ## Requirements
 This tutorial requires that the general tutorial bot is running

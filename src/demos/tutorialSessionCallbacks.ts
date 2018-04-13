@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -18,14 +18,14 @@ server.listen(config.botPort, () => {
 //==================
 // Create connector
 //==================
-const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
+const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
 const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
-// Initialize Blis using file storage.  Recommended only for development
+// Initialize ConversationLearner using file storage.  Recommended only for development
 // See "storageDemo.ts" for other storage options
 let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(blisConfig, fileStorage);
+ConversationLearner.Init(clOptions, fileStorage);
 
 //==================================
 // Add Start / End Session callbacks
@@ -36,7 +36,7 @@ Blis.Init(blisConfig, fileStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+ConversationLearner.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Set BotName when session starts
     await memoryManager.RememberEntityAsync("BotName", "Botty")
@@ -49,7 +49,7 @@ Blis.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+ConversationLearner.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear all entities but name and phone number
     await memoryManager.ClearAllEntitiesAsync(["UserName", "UserPhone"]);
@@ -59,8 +59,8 @@ Blis.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<vo
 // Initialize bot
 //=================================
 const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
+    .use(ConversationLearner.recognizer)
+    .useTemplateRenderer(ConversationLearner.templateRenderer)
     .onReceive(context => {
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);
