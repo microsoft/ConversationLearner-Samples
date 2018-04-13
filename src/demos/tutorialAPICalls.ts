@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -21,10 +21,10 @@ server.listen(process.env.port || process.env.PORT || config.botPort, () => {
 const connector = new BotFrameworkAdapter({ appId: config.microsoftAppId, appPassword: config.microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
-// Initialize Blis using file storage.  Recommended only for development
+// Initialize ConversationLearner using file storage.  Recommended only for development
 // See "storageDemo.ts" for other storage options
 let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(config, fileStorage);
+ConversationLearner.Init(config, fileStorage);
 
 //=========================================================
 // Bots Buisness Logic
@@ -44,19 +44,19 @@ var greetings = [
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+ConversationLearner.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     // Nop -- no entity processing
 })
 
 //=================================
 // Define API callbacks
 //=================================
-Blis.AddAPICallback("RandomGreeting", async (memoryManager : ClientMemoryManager) => {
+ConversationLearner.AddAPICallback("RandomGreeting", async (memoryManager : ClientMemoryManager) => {
     var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
     return randomGreeting;
 });
 
-Blis.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
+ConversationLearner.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
 
     // convert base and exponent to ints
     var num1int = parseInt(num1string);
@@ -69,7 +69,7 @@ Blis.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1s
     return num1int.toString() + " * " + num2int.toString() + " = " + result.toString();
 })
 
-Blis.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
+ConversationLearner.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
 
     // clear base and exponent entities
     await memoryManager.ForgetEntityAsync("number");
@@ -82,8 +82,8 @@ Blis.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) 
 // Initialize bot
 //=================================
 const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
+    .use(ConversationLearner.recognizer)
+    .useTemplateRenderer(ConversationLearner.templateRenderer)
     .onReceive(context => {
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);

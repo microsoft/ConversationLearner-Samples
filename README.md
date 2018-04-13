@@ -1,10 +1,10 @@
-# BLIS-SDK-SAMPLE
+# ConversationLearner-Samples
 
-This repo contains sample code for building conversational bots using Microsoft BLIS (Bot Learning Intelligent Service) and demonstrating how to use the `blis-sdk` package.
+This repo contains sample code for building conversational bots using Microsoft Conversation Learner and demonstrating how to use the `conversationlearner-sdk` package.
 
-BLIS reduces the complexity of building bots.  It enables a hybrid development workflow allowing hand-written code and machine learning to reduce the amount of code required to write bots.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
+Conversation Learner reduces the complexity of building bots.  It enables a hybrid development workflow allowing hand-written code and machine learning to reduce the amount of code required to write bots.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
-[Example video overview of BLIS](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal only; more videos coming soon)
+[Example video overview of Conversation Learner](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal only; more videos coming soon)
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
   3. Authoring key is shown on the resulting page
 
-  (BLIS uses LUIS for entity extraction; when you create a BLIS
+  (Conversation Learner uses LUIS for entity extraction; when you create a Conversation Learner
   application, you'll need a LUIS authoring key)
 
 - VSCode.  https://code.visualstudio.com/  Recommended, not required.
@@ -28,8 +28,8 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 1. Install:
 
     ```bash    
-    git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
-    cd blis-bot-01
+    git clone https://github.com/Microsoft/ConversationLearner-Samples cl-bot-01
+    cd cl-bot-01
     npm install
     ```
 
@@ -41,13 +41,13 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
     npm start
     ```
 
-    This runs the generic empty bot in ``blis-bot-01/src/app.ts``.
+    This runs the generic empty bot in ``cl-bot-01/src/app.ts``.
 
-3. Run BLIS UI:
+3. Run Conversation Learner UI:
 
     ```bash
     [open second command prompt window]
-    cd blis-bot-01
+    cd cl-bot-01
     npm run ui
     ```
 
@@ -55,13 +55,13 @@ BLIS reduces the complexity of building bots.  It enables a hybrid development w
 
 5. Log in using your MSA (such as @outlook.com, @msn.com, @hotmail.com, or @microsoft.com)
 
-You're now using BLIS, and can create and teach a BLIS model.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
+You're now using Conversation Learner, and can create and teach a Conversation Learner model.  See this [video tour](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) for quick overview (MS internal only; more videos coming soon)
 
 ## Tutorials, demos, and switching between bots
 
 The instructions above started the generic empty bot.  To run a tutorial or demo bot instead:
 
-1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
+1. If you have the Conversation Learner web UI open, return to the list of apps at http://localhost:5050/home.
     
 2. If another bot is running (like `npm start` or `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
@@ -84,17 +84,17 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
   npm run demo-vrapp
   ```
 
-5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
+5. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
 
-6. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the BLIS models for all the tutorials into your BLIS account.
+6. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your Conversation Learner account.
 
-7. Click on the demo model in the BLIS UI that corresponds to the demo you started.
+7. Click on the demo model in the Conversation Learner UI that corresponds to the demo you started.
 
-Source files for the demos are in `blis-bot-01/src/demos`
+Source files for the demos are in `cl-bot-01/src/demos`
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``blis-bot-01/src/app.ts``.  Open the `blis-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``cl-bot-01/src/app.ts``.  Open the `cl-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
@@ -106,36 +106,36 @@ You can adjust these ports to avoid conflicts between other services running on 
 cp .env.example .env
 ```
 
-This uses the standard configuration, which lets you run your bot locally, and start using BLIS.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
+This uses the standard configuration, which lets you run your bot locally, and start using Conversation Learner.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
 
 ## Publishing your bot
 
-Publish your BLIS bot similar to the same way you would publish any other bot.
+Publish your Conversation Learner bot similar to the same way you would publish any other bot.
 You simply upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.
 
 Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documenation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
 Ensure that these variables are set when deploying your bot:
 ```
-BLIS_SERVICE_URI        <Optional url to desired version of BLIS service>
-BLIS_APP_ID             <Application Id GUID>  
-BLIS_LOCALHOST          false
-MICROSOFT_APP_ID        <Microsoft Application Id>
-MICROSOFT_APP_PASSWORD  <Microsoft Application Password>
+CONVERSATION_LEARNER_SERVICE_URI        <Optional url to desired version of Conversation Learner service>
+CONVERSATION_LEARNER_APP_ID             <Application Id GUID>  
+CONVERSATION_LEARNER_LOCALHOST          false
+MICROSOFT_APP_ID                        <Microsoft Application Id>
+MICROSOFT_APP_PASSWORD                  <Microsoft Application Password>
 ```
 
-> We hope to remove the need to specify BLIS_APP_ID and BLIS_LOCALHOST in the future.
+> We hope to remove the need to specify CONVERSATION_LEARNER_APP_ID and CONVERSATION_LEARNER_LOCALHOST in the future.
 
 
 ## Notes
 
-There is NO security or encryption currently -- do not load data into BLIS which is sensitive or from a customer.
+There is NO security or encryption currently -- do not load data into Conversation Learner which is sensitive or from a customer.
 
 ## Support
 
-Join the [BLIS team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or contact blis-support@service.microsoft.com.
+Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or file an issue on the GitHub repo (external)
 
 ## Related repositories
 
-- [blis-sdk](https://github.com/Microsoft/BLIS-SDK)
-- [blis-models](https://github.com/Microsoft/BLIS-MODELS)
+- [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-Models)

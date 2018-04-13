@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -18,14 +18,14 @@ server.listen(config.botPort, () => {
 //==================
 // Create connector
 //==================
-const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
+const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
 const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
-// Initialize Blis using file storage.  Recommended only for development
+// Initialize ConversationLearner using file storage.  Recommended only for development
 // See "storageDemo.ts" for other storage options
 let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(blisConfig, fileStorage);
+ConversationLearner.Init(clOptions, fileStorage);
 
 //=========================================================
 // Bots Buisness Logic
@@ -44,7 +44,7 @@ var isInStock = function(topping: string) {
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+ConversationLearner.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
     await memoryManager.ForgetEntityAsync("OutOfStock");
@@ -66,7 +66,7 @@ Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
 //=================================
 // Define API callbacks
 //=================================
-Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
+ConversationLearner.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
     {
         // Save toppings
         await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
@@ -78,7 +78,7 @@ Blis.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager)
     }
 );
 
-Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
+ConversationLearner.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
     {
         // Restore last toppings
         await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
@@ -94,8 +94,8 @@ Blis.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManage
 // Initialize bot
 //=================================
 const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
+    .use(ConversationLearner.recognizer)
+    .useTemplateRenderer(ConversationLearner.templateRenderer)
     .onReceive(context => {
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);

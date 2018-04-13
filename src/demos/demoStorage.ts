@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, RedisStorage, models, FileStorage } from 'blis-sdk'
+import { ConversationLearner, ClientMemoryManager, RedisStorage, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -18,7 +18,7 @@ server.listen(config.botPort, () => {
 //==================
 // Create connector
 //==================
-const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
+const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
 const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 server.post('/api/messages', connector.listen() as any);
 
@@ -28,19 +28,19 @@ server.post('/api/messages', connector.listen() as any);
 // IN-MEMORY STORAGE
 // Stores bot state in memory. 
 // If the bot is stopped and re-started, the state of in-progress sessions will be lost.
-//Blis.Init(blisOptions); 
+//ConversationLearner.Init(clOptions); 
 
 // FILE STORAGE
 // Stores bot state in a local file.  
 // With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
 // Requires local disk access.
 //let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-//Blis.Init(config, fileStorage);
+//ConversationLearner.Init(clOptions, fileStorage);
 
 // REDIS
 // Stores bot state in a redis cache.  
 // With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
-// Requires env variables BLIS_REDIS_SERVER and BLIS_REDIS_KEY are set.  You can set these in ../.env.
+// Requires env variables CONVERSATION_LEARNER_REDIS_SERVER and CONVERSATION_LEARNER_REDIS_KEY are set.  You can set these in ../.env.
 
 if (typeof config.redisServer !== 'string' || config.redisServer.length === 0) {
     throw new Error(`When using Redis storage: redisServer value must be non-empty. You passed: ${config.redisServer}`)
@@ -50,7 +50,7 @@ if (typeof config.redisKey !== 'string' || config.redisKey.length === 0) {
 }
 
 let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
-Blis.Init(blisConfig, redisStorage);
+ConversationLearner.Init(clOptions, redisStorage);
 
 //=================================
 // Add Entity Logic
@@ -60,7 +60,7 @@ Blis.Init(blisConfig, redisStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+ConversationLearner.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
  
 })
 
@@ -68,7 +68,7 @@ Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
 // Define any API callbacks
 //=================================
 /** 
-Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
+ConversationLearner.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
     Promise<Partial<BB.Activity> | string | undefined> {
 
     {Your API logic inclusing any service calls}
@@ -84,8 +84,8 @@ Blis.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, 
 // Initialize bot
 //=================================
 const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
+    .use(ConversationLearner.recognizer)
+    .useTemplateRenderer(ConversationLearner.templateRenderer)
     .onReceive(context => {
         if (context.request.type === "message" && context.topIntent) {
             context.replyWith(context.topIntent.name, context.topIntent);
