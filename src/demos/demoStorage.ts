@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder-services'
+import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, RedisStorage, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
@@ -11,16 +11,17 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
+
 server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
+const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
+
 //==================
-// Create connector
+// Create Adapter
 //==================
-const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
-const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
-server.post('/api/messages', connector.listen() as any);
+const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 
 //==================================
 // STORAGE EXAMPLES
@@ -50,44 +51,24 @@ if (typeof config.redisKey !== 'string' || config.redisKey.length === 0) {
 }
 
 let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
+
+//==================================
+// Initialize Conversation Learner
+//==================================
 ConversationLearner.Init(clOptions, redisStorage);
+let cl = new ConversationLearner(appId);
+
 
 //=================================
-// Add Entity Logic
+// Handle Incoming Messages
 //=================================
-/**
-* @param {string} text Last user input to the Bot
-* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @returns {Promise<void>}
-*/
-ConversationLearner.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
- 
-})
 
-//=================================n
-// Define any API callbacks
-//=================================
-/** 
-ConversationLearner.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) =>
-    Promise<Partial<BB.Activity> | string | undefined> {
-
-    {Your API logic inclusing any service calls}
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async context => {
+        let result = await cl.recognize(context)
         
-    Returns promise of: 
-        (1) undefined -> no message sent to user
-        (2) string -> text message sent to user
-        (3) BB.Activity -> card sent to user
-})
-*/ 
-
-//=================================
-// Initialize bot
-//=================================
-const bot = new BB.Bot(connector)
-    .use(ConversationLearner.recognizer)
-    .useTemplateRenderer(ConversationLearner.templateRenderer)
-    .onReceive(context => {
-        if (context.request.type === "message" && context.topIntent) {
-            context.replyWith(context.topIntent.name, context.topIntent);
+        if (result) {
+            cl.SendResult(result);
         }
     })
+})

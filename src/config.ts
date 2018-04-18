@@ -99,6 +99,7 @@ export interface ICLSampleConfig extends ICLOptions {
     redisServer: string | undefined
     redisKey: string | undefined
     functionUrl: string
+    appId: string,
     microsoftAppId: string | undefined
     microsoftAppPassword: string | undefined
 }
