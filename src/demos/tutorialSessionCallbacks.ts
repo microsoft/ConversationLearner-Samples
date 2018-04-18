@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder-services'
+import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
@@ -11,21 +11,31 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
+
 server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-//==================
-// Create connector
-//==================
-const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
-const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
-server.post('/api/messages', connector.listen() as any);
+const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
 
-// Initialize ConversationLearner using file storage.  Recommended only for development
+//==================
+// Create Adapter
+//==================
+const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
+
+//==================================
+// Storage 
+//==================================
+// Initialize ConversationLearner using file storage.  
+// Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+
+//==================================
+// Initialize Conversation Learner
+//==================================
 ConversationLearner.Init(clOptions, fileStorage);
+let cl = new ConversationLearner(appId);
 
 //==================================
 // Add Start / End Session callbacks
@@ -36,7 +46,7 @@ ConversationLearner.Init(clOptions, fileStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-ConversationLearner.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Set BotName when session starts
     await memoryManager.RememberEntityAsync("BotName", "Botty")
@@ -49,20 +59,23 @@ ConversationLearner.OnSessionStartCallback(async (memoryManager: ClientMemoryMan
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-ConversationLearner.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear all entities but name and phone number
     await memoryManager.ClearAllEntitiesAsync(["UserName", "UserPhone"]);
 })
 
 //=================================
-// Initialize bot
+// Handle Incoming Messages
 //=================================
-const bot = new BB.Bot(connector)
-    .use(ConversationLearner.recognizer)
-    .useTemplateRenderer(ConversationLearner.templateRenderer)
-    .onReceive(context => {
-        if (context.request.type === "message" && context.topIntent) {
-            context.replyWith(context.topIntent.name, context.topIntent);
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async context => {
+        let result = await cl.recognize(context)
+        
+        if (result) {
+            cl.SendResult(result);
         }
     })
+})
+
+

@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder-services'
+import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ICLOptions, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from './config'
 
@@ -19,20 +19,26 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { microsoftAppId, microsoftAppPassword, ...clOptions } = config
+const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
+
 //==================
-// Create connector
+// Create Adapter
 //==================
-const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
-server.post('/api/messages', connector.listen() as any);
+const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
 
 //==================================
-// STORAGE 
+// Storage 
 //==================================
-// Initialize ConversationLearner using file storage.  Recommended only for development
+// Initialize ConversationLearner using file storage.  
+// Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+
+//==================================
+// Initialize Conversation Learner
+//==================================
 ConversationLearner.Init(clOptions, fileStorage);
+let cl = new ConversationLearner(appId);
 
 //=================================
 // Add Entity Logic
@@ -42,7 +48,7 @@ ConversationLearner.Init(clOptions, fileStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-ConversationLearner.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
  
     /** Add business logic manipulating the entities in memory 
 
@@ -72,7 +78,7 @@ ConversationLearner.EntityDetectionCallback(async (text: string, memoryManager: 
 // Define any API callbacks
 //=================================
 /** 
-ConversationLearner.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) => {
+cl.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) => {
 
     {Your API logic inclusing any service calls}
         
@@ -84,13 +90,15 @@ ConversationLearner.AddAPICallback("{Name of API}", async (memoryManager: Client
 */ 
 
 //=================================
-// Initialize bot
+// Handle Incoming Messages
 //=================================
-const bot = new BB.Bot(connector)
-    .use(ConversationLearner.recognizer)
-    .useTemplateRenderer(ConversationLearner.templateRenderer)
-    .onReceive(context => {
-        if (context.request.type === "message" && context.topIntent) {
-            context.replyWith(context.topIntent.name, context.topIntent);
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async context => {
+        let result = await cl.recognize(context)
+        
+        if (result) {
+            cl.SendResult(result);
         }
     })
+})
+
