@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "botbuilder": "4.0.0-m3.0",
-    "conversationlearner-sdk": "0.206.0",
+    "conversationlearner-sdk": "0.208.0",
     "convict": "^4.0.2",
     "dotenv": "^4.0.0",
     "restify": "^6.3.2",
