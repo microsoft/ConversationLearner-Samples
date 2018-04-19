@@ -60,13 +60,13 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     memoryManager.EntityValueAsync(entityName: string): Promise<string>;
     memoryManager.EntityValueAsPrebuiltAsync(entityName: string): Promise<MemoryValue[]>;
     memoryManager.EntityValueAsListAsync(entityName: string): Promise<string[]>;
-    memoryManager.EntityValueAsObject<T>(entityName: string): Promise<T | null> {
+    memoryManager.EntityValueAsObjectAsync<T>(entityName: string): Promise<T | null> {
 
     // Values in memory before new Entity detection
     memoryManager.PrevEntityValue(entityName: string): (string | null)
     memoryManager.PrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
     memoryManager.PrevEntityValueAsList(entityName: string): string[]
-    memoryManager.PrevValueAsObject<T>(entityName: string): (T | null)
+    memoryManager.PrevEntityValueAsObject<T>(entityName: string): (T | null)
 
     // Memory manipulation methods
     memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>;
