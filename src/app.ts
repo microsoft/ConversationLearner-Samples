@@ -66,7 +66,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     memoryManager.PrevEntityValue(entityName: string): (string | null)
     memoryManager.PrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
     memoryManager.PrevEntityValueAsList(entityName: string): string[]
-    memoryManager.PrevEntityValueAsObjectAsync<T>(entityName: string): (T | null)
+    memoryManager.PrevEntityValueAsObject<T>(entityName: string): (T | null)
 
     // Memory manipulation methods
     memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>;
