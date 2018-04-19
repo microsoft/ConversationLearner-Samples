@@ -86,9 +86,6 @@ clPizza.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryMan
 
         // Clear last toppings
         await memoryManager.ForgetEntityAsync("LastToppings"); 
-
-        // Don't display anything to the user
-        return undefined;
     });
 
 //=================================

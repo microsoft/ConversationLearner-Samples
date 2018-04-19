@@ -99,9 +99,6 @@ cl.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager)
 
         // Clear last toppings
         await memoryManager.ForgetEntityAsync("LastToppings"); 
-
-        // Don't display anything to the user
-        return undefined;
     });
 
 //=================================
