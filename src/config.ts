@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Licensed under the MIT License.
+ */
 import * as dotenv from 'dotenv'
 import * as convict from 'convict'
 import { ICLOptions } from 'conversationlearner-sdk';
