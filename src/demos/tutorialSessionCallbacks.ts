@@ -66,7 +66,7 @@ cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<vo
 cl.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear all entities but name and phone number
-    await memoryManager.ClearAllEntitiesAsync(["UserName", "UserPhone"]);
+    await memoryManager.ForgetAllEntitiesAsync(["UserName", "UserPhone"]);
 })
 
 //=================================
