@@ -1,8 +1,12 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Licensed under the MIT License.
+ */
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { BotFrameworkAdapter } from 'botbuilder'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -11,21 +15,31 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
+
 server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-//==================
-// Create connector
-//==================
-const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
-const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
-server.post('/api/messages', connector.listen() as any);
+const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
 
-// Initialize Blis using file storage.  Recommended only for development
+//==================
+// Create Adapter
+//==================
+const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
+
+//==================================
+// Storage 
+//==================================
+// Initialize ConversationLearner using file storage.  
+// Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(blisConfig, fileStorage);
+let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+
+//==================================
+// Initialize Conversation Learner
+//==================================
+ConversationLearner.Init(clOptions, fileStorage);
+let cl = new ConversationLearner(appId);
 
 //==================================
 // Add Start / End Session callbacks
@@ -36,7 +50,7 @@ Blis.Init(blisConfig, fileStorage);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Set BotName when session starts
     await memoryManager.RememberEntityAsync("BotName", "Botty")
@@ -49,20 +63,23 @@ Blis.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear all entities but name and phone number
-    await memoryManager.ClearAllEntitiesAsync(["UserName", "UserPhone"]);
+    await memoryManager.ForgetAllEntitiesAsync(["UserName", "UserPhone"]);
 })
 
 //=================================
-// Initialize bot
+// Handle Incoming Messages
 //=================================
-const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
-    .onReceive(context => {
-        if (context.request.type === "message" && context.topIntent) {
-            context.replyWith(context.topIntent.name, context.topIntent);
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async context => {
+        let result = await cl.recognize(context)
+        
+        if (result) {
+            cl.SendResult(result);
         }
     })
+})
+
+

@@ -1,8 +1,12 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Licensed under the MIT License.
+ */
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { BotFrameworkAdapter } from 'botbuilder'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -11,46 +15,57 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
+
 server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-//==================
-// Create connector
-//==================
-const { microsoftAppId, microsoftAppPassword, ...blisConfig } = config
-const connector = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
-server.post('/api/messages', connector.listen() as any);
+const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
 
-// Initialize Blis using file storage.  Recommended only for development
+//==================
+// Create Adapter
+//==================
+const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
+
+//==================================
+// Storage 
+//==================================
+// Initialize ConversationLearner using file storage.  
+// Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(blisConfig, fileStorage);
+let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+
+//==================================
+// Initialize Conversation Learner
+//==================================
+ConversationLearner.Init(clOptions, fileStorage);
+let cl = new ConversationLearner(appId);
 
 //=================================
 // Add Entity Logic
 //=================================
 //
-// Blis.EntityDetectionCallback is not needed in this demo, so can be left undefined
-// See other demos, or app.ts in the src directory, for an example of Blis.EntityDetectionCallback
+// ConversationLearner.EntityDetectionCallback is not needed in this demo, so can be left undefined
+// See other demos, or app.ts in the src directory, for an example of ConversationLearner.EntityDetectionCallback
 //
 
 //=================================
 // Define any API callbacks
 //=================================
 //
-// No API calls are used in this demo, so there are no calls to Blis.AddAPICallback
-// See other demos, or app.ts in the src directory, for an example of Blis.AddAPICallback
+// No API calls are used in this demo, so there are no calls to ConversationLearner.AddAPICallback
+// See other demos, or app.ts in the src directory, for an example of ConversationLearner.AddAPICallback
 //
 
 //=================================
-// Initialize bot
+// Handle Incoming Messages
 //=================================
-const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
-    .onReceive(context => {
-        if (context.request.type === "message" && context.topIntent) {
-            context.replyWith(context.topIntent.name, context.topIntent);
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async context => {
+        let result = await cl.recognize(context)
+        
+        if (result) {
+            cl.SendResult(result);
         }
     })
+})

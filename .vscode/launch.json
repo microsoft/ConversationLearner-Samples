@@ -114,7 +114,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "BLIS UI",
+            "name": "Conversation Learner UI",
             "program": "${workspaceFolder}/lib/ui.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

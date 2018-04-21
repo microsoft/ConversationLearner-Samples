@@ -23,8 +23,8 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
 
 1. Install:
   
-		git clone https://github.com/Microsoft/BLIS-SDK-SAMPLE blis-bot-01
-		cd blis-bot-01
+		git clone https://github.com/Microsoft/ConversationLearner-Samples cl-bot-01
+		cd cl-bot-01
 		npm install
 
 
@@ -36,12 +36,12 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
     	npm start
 
 
-    This runs the generic empty bot in ``blis-bot-01/src/app.ts``.
+    This runs the generic empty bot in ``cl-bot-01/src/app.ts``.
 
 3. Run the web UI:
 
 		[open second command prompt window]
-		cd blis-bot-01
+		cd cl-bot-01
 		npm run ui
 	  
 
@@ -80,11 +80,11 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 7. Click on the demo model in the web UI that corresponds to the demo you started.
 
-Source files for the demos are in `blis-bot-01/src/demos`
+Source files for the demos are in `cl-bot-01/src/demos`
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``blis-bot-01/src/app.ts``.  Open the `blis-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``cl-bot-01/src/app.ts``.  Open the `cl-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
@@ -104,9 +104,9 @@ There is NO security or encryption currently -- do not load data into your app w
 
 ## Support
 
-Join the [BLIS team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or contact blis-support@service.microsoft.com.
+Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or file and issue on the GitHub repo (external)
 
 ## Related repositories
 
-- [blis-sdk](https://github.com/Microsoft/BLIS-SDK)
-- [blis-models](https://github.com/Microsoft/BLIS-MODELS)
+- [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-UI)

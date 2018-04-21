@@ -1,6 +1,10 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Licensed under the MIT License.
+ */
 import * as dotenv from 'dotenv'
 import * as convict from 'convict'
-import { IBlisOptions } from 'blis-sdk';
+import { ICLOptions } from 'conversationlearner-sdk';
 
 const result = dotenv.config()
 if (result.error) {
@@ -26,12 +30,12 @@ export const config = convict({
     serviceUri: {
         format: 'url',
         default: "https://westus.api.cognitive.microsoft.com/blis/api/v1/",
-        env: 'BLIS_SERVICE_URI'
+        env: 'CONVERSATION_LEARNER_SERVICE_URI'
     },
     appId: {
         format: String,
         default: undefined,
-        env: 'BLIS_APP_ID'
+        env: 'CONVERSATION_LEARNER_APP_ID'
     },
     botPort: {
         // Must be any type because when deployed port will be named pipe path instead of number
@@ -43,12 +47,12 @@ export const config = convict({
     uiPort: {
         format: 'port',
         default: 5050,
-        env: 'BLIS_UI_PORT',
+        env: 'CONVERSATION_LEARNER_UI_PORT',
     },
     sdkPort: {
         format: 'port',
         default: 5000,
-        env: 'BLIS_SDK_PORT'
+        env: 'CONVERSATION_LEARNERS_SDK_PORT'
     },
     dolBotUrl: {
         format: 'url',
@@ -63,49 +67,50 @@ export const config = convict({
     redisServer: {
         format: String,
         default: undefined,
-        env: 'BLIS_REDIS_SERVER'
+        env: 'CONVERSATION_LEARNER_REDIS_SERVER'
     },
     redisKey: {
         format: String,
         default: undefined,
-        env: 'BLIS_REDIS_KEY'
+        env: 'CONVERSATION_LEARNER_REDIS_KEY'
     },
     functionUrl: {
         format: 'url',
         default: undefined,
-        env: 'BLIS_FUNCTIONS_URL'
+        env: 'CONVERSATION_LEARNER_FUNCTIONS_URL'
     },
     microsoftAppId: {
         format: String,
         default: undefined,
-        env: 'MICROSOFT_APP_ID'
+        env: 'MICROSOFTAPPID'
     },
     microsoftAppPassword: {
         format: String,
         default: undefined,
-        env: 'MICROSOFT_APP_PASSWORD'
+        env: 'MICROSOFTAPPPASSWORD'
     },
     localhost: {
         format: Boolean,
         default: true,
-        env: 'BLIS_LOCALHOST'
+        env: 'CONVERSATION_LEARNER_LOCALHOST'
     },
 })
 
 config.validate({ allowed: 'strict' })
 
-export interface IBlisSampleConfig extends IBlisOptions {
+export interface ICLSampleConfig extends ICLOptions {
     botPort: string
     redisServer: string | undefined
     redisKey: string | undefined
     functionUrl: string
+    appId: string,
     microsoftAppId: string | undefined
     microsoftAppPassword: string | undefined
 }
 
-const blisConfig = config.getProperties() as IBlisSampleConfig
+const clOptions = config.getProperties() as ICLSampleConfig
 
-export default blisConfig
+export default clOptions
 
 
 

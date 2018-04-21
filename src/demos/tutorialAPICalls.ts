@@ -1,8 +1,12 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Licensed under the MIT License.
+ */
 import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder-services'
-import { Blis, ClientMemoryManager, models, FileStorage } from 'blis-sdk'
+import { BotFrameworkAdapter } from 'botbuilder'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
 import config from '../config'
 
 //===================
@@ -11,20 +15,31 @@ import config from '../config'
 const server = restify.createServer({
     name: 'BOT Server'
 });
-server.listen(process.env.port || process.env.PORT || config.botPort, () => {
+
+server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-//==================
-// Create connector
-//==================
-const connector = new BotFrameworkAdapter({ appId: config.microsoftAppId, appPassword: config.microsoftAppPassword });
-server.post('/api/messages', connector.listen() as any);
+const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
 
-// Initialize Blis using file storage.  Recommended only for development
+//==================
+// Create Adapter
+//==================
+const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
+
+//==================================
+// Storage 
+//==================================
+// Initialize ConversationLearner using file storage.  
+// Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-Blis.Init(config, fileStorage);
+let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+
+//==================================
+// Initialize Conversation Learner
+//==================================
+ConversationLearner.Init(clOptions, fileStorage);
+let cl = new ConversationLearner(appId);
 
 //=========================================================
 // Bots Buisness Logic
@@ -44,19 +59,19 @@ var greetings = [
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-Blis.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     // Nop -- no entity processing
 })
 
 //=================================
 // Define API callbacks
 //=================================
-Blis.AddAPICallback("RandomGreeting", async (memoryManager : ClientMemoryManager) => {
+cl.AddAPICallback("RandomGreeting", async (memoryManager : ClientMemoryManager) => {
     var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
     return randomGreeting;
 });
 
-Blis.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
+cl.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
 
     // convert base and exponent to ints
     var num1int = parseInt(num1string);
@@ -69,23 +84,23 @@ Blis.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1s
     return num1int.toString() + " * " + num2int.toString() + " = " + result.toString();
 })
 
-Blis.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
+cl.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
 
     // clear base and exponent entities
     await memoryManager.ForgetEntityAsync("number");
     return "Let's do another.";
 })
 
-
-
 //=================================
-// Initialize bot
+// Handle Incoming Messages
 //=================================
-const bot = new BB.Bot(connector)
-    .use(Blis.recognizer)
-    .useTemplateRenderer(Blis.templateRenderer)
-    .onReceive(context => {
-        if (context.request.type === "message" && context.topIntent) {
-            context.replyWith(context.topIntent.name, context.topIntent);
+
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async context => {
+        let result = await cl.recognize(context)
+        
+        if (result) {
+            cl.SendResult(result);
         }
     })
+})
