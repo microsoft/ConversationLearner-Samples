@@ -57,24 +57,32 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     /** Add business logic manipulating the entities in memory 
 
     // Values in bot memory
-    memoryManager.EntityValueAsync(entityName: string): Promise<string>;
-    memoryManager.EntityValueAsPrebuiltAsync(entityName: string): Promise<MemoryValue[]>;
-    memoryManager.EntityValueAsListAsync(entityName: string): Promise<string[]>;
-    memoryManager.EntityValueAsObjectAsync<T>(entityName: string): Promise<T | null> {
+    memoryManager.EntityValueAsync(entityName: string): Promise<string>
+    memoryManager.EntityValueAsPrebuiltAsync(entityName: string): Promise<MemoryValue[]>
+    memoryManager.EntityValueAsListAsync(entityName: string): Promise<string[]>
+    memoryManager.EntityValueAsObjectAsync<T>(entityName: string): Promise<T | null>
+    memoryManager.EntityValueAsBooleanAsync(entityName: string): Promise<boolean | null>
+    memoryManager.EntityValueAsNumberAsync(entityName: string): Promise<boolean | null>
 
     // Values in memory before new Entity detection
     memoryManager.PrevEntityValue(entityName: string): (string | null)
     memoryManager.PrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
     memoryManager.PrevEntityValueAsList(entityName: string): string[]
     memoryManager.PrevEntityValueAsObject<T>(entityName: string): (T | null)
+    memoryManager.PrevValueAsBoolean(entityName: string): boolean | null
+    memoryManager.PrevValueAsNumber(entityName: string): boolean | null
 
     // Memory manipulation methods
-    memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>;
-    memoryManager.RememberEntitiesAsync(entityName: string, entityValues: string[]): Promise<void>;
-    memoryManager.ForgetEntityAsync(entityName: string, value?: string): Promise<void>;
-    memoryManager.CopyEntityAsync(entityNameFrom: string, entityNameTo: string): Promise<void>;
+    memoryManager.RememberEntityAsync(entityName: string, entityValue: string): Promise<void>
+    memoryManager.RememberEntitiesAsync(entityName: string, entityValues: string[]): Promise<void>
+    memoryManager.ForgetEntityAsync(entityName: string, value?: string): Promise<void>
+    memoryManager.ForgetAllEntitiesAsync(saveEntityNames: string[]): Promise<void> 
+    
+    memoryManager.CopyEntityAsync(entityNameFrom: string, entityNameTo: string): Promise<void>
 
-    memoryManager.GetFilledEntitiesAsync(): Promise<FilledEntity[]>;
+    memoryManager.GetFilledEntitiesAsync(): Promise<FilledEntity[]>
+
+    memoryManager.SessionInfo(): SessionInfo
     */
 })
 
