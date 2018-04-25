@@ -144,13 +144,13 @@ Ensure that these variables are set when deploying your bot:
 ```
 CONVERSATION_LEARNER_SERVICE_URI        <Set to https://westus.api.cognitive.microsoft.com/blis/api/v1/>
 CONVERSATION_LEARNER_APP_ID             <Application Id GUID, obtained from the BLIS UI under the "settings" for the app>
-CONVERSATION_LEARNER_LOCALHOST          false
-LUIS_AUTHORING_KEY      		<LUIS authoring key for this app, obtained from https://www.luis.ai>
+DOL_START                               false
+LUIS_AUTHORING_KEY      		        <LUIS authoring key for this app, obtained from https://www.luis.ai>
 MICROSOFT_APP_ID                        <Microsoft Application Id>
 MICROSOFT_APP_PASSWORD                  <Microsoft Application Password>
 ```
 
-> We hope to remove the need to specify CONVERSATION_LEARNER_APP_ID and CONVERSATION_LEARNER_LOCALHOST in the future.
+> We hope to remove the need to specify CONVERSATION_LEARNER_APP_ID and DOL_START in the future.
 ## Notes
 
 There is NO security or encryption currently -- do not load data into Conversation Learner which is sensitive or from a customer.
