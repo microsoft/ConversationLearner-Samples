@@ -20,12 +20,12 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
+const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
 
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
 // STORAGE EXAMPLES
@@ -60,7 +60,7 @@ let redisStorage = new RedisStorage({ server: config.redisServer, key: config.re
 // Initialize Conversation Learner
 //==================================
 ConversationLearner.Init(clOptions, redisStorage);
-let cl = new ConversationLearner(appId);
+let cl = new ConversationLearner(clAppId);
 
 
 //=================================
