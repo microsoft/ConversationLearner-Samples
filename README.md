@@ -98,6 +98,8 @@ Source files for the demos are in `cl-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
 
+
+
 1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
     
 2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
@@ -158,6 +160,10 @@ There is NO security or encryption currently -- do not load data into Conversati
 ## Support
 
 Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or file an issue on the GitHub repo (external)
+
+## Contributing
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Related repositories
 
