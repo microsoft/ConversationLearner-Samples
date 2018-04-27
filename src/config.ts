@@ -97,8 +97,7 @@ export interface ICLSampleConfig extends ICLOptions {
     botPort: string
     redisServer: string | undefined
     redisKey: string | undefined
-    functionUrl: string
-    clAppId: string,
+    clAppId: string
     bfAppId: string | undefined
     bfAppPassword: string | undefined
 }
