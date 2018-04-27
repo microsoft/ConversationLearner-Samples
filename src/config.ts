@@ -79,12 +79,12 @@ export const config = convict({
         default: undefined,
         env: 'CONVERSATION_LEARNER_REDIS_KEY'
     },
-    microsoftAppId: {
+    bfAppId: {
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPID'
     },
-    microsoftAppPassword: {
+    bfAppPassword: {
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPPASSWORD'
@@ -94,10 +94,10 @@ export const config = convict({
 config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
+    clAppId: string
     botPort: string
     redisServer: string | undefined
     redisKey: string | undefined
-    clAppId: string
     bfAppId: string | undefined
     bfAppPassword: string | undefined
 }
