@@ -29,7 +29,7 @@ export const config = convict({
     },
     CONVERSATION_LEARNER_SERVICE_URI: {
         format: 'url',
-        default: "https://westus.api.cognitive.microsoft.com/blis/api/v1/",
+        default: "https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/",
         env: 'CONVERSATION_LEARNER_SERVICE_URI'
     },
     CONVERSATION_LEARNER_SDK_PORT: {
@@ -79,12 +79,12 @@ export const config = convict({
         default: undefined,
         env: 'CONVERSATION_LEARNER_REDIS_KEY'
     },
-    microsoftAppId: {
+    bfAppId: {
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPID'
     },
-    microsoftAppPassword: {
+    bfAppPassword: {
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPPASSWORD'
@@ -94,11 +94,10 @@ export const config = convict({
 config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
-    botPort: string
+    clAppId: string | undefined
+    botPort: any
     redisServer: string | undefined
     redisKey: string | undefined
-    functionUrl: string
-    clAppId: string,
     bfAppId: string | undefined
     bfAppPassword: string | undefined
 }
