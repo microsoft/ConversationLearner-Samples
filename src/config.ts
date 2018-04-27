@@ -95,7 +95,7 @@ config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
     clAppId: string | undefined
-    botPort: string
+    botPort: any
     redisServer: string | undefined
     redisKey: string | undefined
     bfAppId: string | undefined
