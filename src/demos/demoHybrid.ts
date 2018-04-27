@@ -20,12 +20,12 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { microsoftAppId, microsoftAppPassword, appId, ...clOptions } = config
+const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
 
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: microsoftAppId, appPassword: microsoftAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
 // Storage 

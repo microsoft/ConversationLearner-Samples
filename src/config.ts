@@ -12,27 +12,52 @@ if (result.error) {
 }
 
 export const config = convict({
-    luisAuthoringKey: {
+    LUIS_AUTHORING_KEY: {
         format: String,
         default: undefined,
         env: 'LUIS_AUTHORING_KEY'
     },
-    luisSubscriptionKey: {
+    LUIS_SUBSCRIPTION_KEY: {
         format: String,
         default: undefined,
         env: 'LUIS_SUBSCRIPTION_KEY'
     },
-    apimSubscriptionKey: {
+    APIM_SUBSCRIPTION_KEY: {
         format: String,
         default: undefined,
         env: 'APIM_SUBSCRIPTION_KEY'
     },
-    serviceUri: {
+    CONVERSATION_LEARNER_SERVICE_URI: {
         format: 'url',
-        default: "https://westus.api.cognitive.microsoft.com/blis/api/v1/",
+        default: "https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/",
         env: 'CONVERSATION_LEARNER_SERVICE_URI'
     },
-    appId: {
+    CONVERSATION_LEARNER_SDK_PORT: {
+        format: 'port',
+        default: 5000,
+        env: 'CONVERSATION_LEARNER_SDK_PORT'
+    },
+    CONVERSATION_LEARNER_UI_PORT: {
+        format: 'port',
+        default: 5050,
+        env: 'CONVERSATION_LEARNER_UI_PORT',
+    },
+    DOL_START: {
+        format: Boolean,
+        default: true,
+        env: 'DOL_START'
+    },
+    DOL_BOT_URL: {
+        format: 'url',
+        default: 'http://127.0.0.1:3978/api/messages',
+        env: 'DOL_BOT_URL'
+    },
+    DOL_SERVICE_URL: {
+        format: 'url',
+        default: 'http://127.0.0.1:3000',
+        env: 'DOL_SERVICE_URL'
+    },
+    clAppId: {
         format: String,
         default: undefined,
         env: 'CONVERSATION_LEARNER_APP_ID'
@@ -44,26 +69,6 @@ export const config = convict({
         default: 3978,
         env: 'PORT'
     },
-    uiPort: {
-        format: 'port',
-        default: 5050,
-        env: 'CONVERSATION_LEARNER_UI_PORT',
-    },
-    sdkPort: {
-        format: 'port',
-        default: 5000,
-        env: 'CONVERSATION_LEARNERS_SDK_PORT'
-    },
-    dolBotUrl: {
-        format: 'url',
-        default: 'http://127.0.0.1:3978/api/messages',
-        env: 'DOL_BOT_URL'
-    },
-    dolServiceUrl: {
-        format: 'url',
-        default: 'http://127.0.0.1:3000',
-        env: 'DOL_SERVICE_URL'
-    },
     redisServer: {
         format: String,
         default: undefined,
@@ -74,38 +79,27 @@ export const config = convict({
         default: undefined,
         env: 'CONVERSATION_LEARNER_REDIS_KEY'
     },
-    functionUrl: {
-        format: 'url',
-        default: undefined,
-        env: 'CONVERSATION_LEARNER_FUNCTIONS_URL'
-    },
-    microsoftAppId: {
+    bfAppId: {
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPID'
     },
-    microsoftAppPassword: {
+    bfAppPassword: {
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPPASSWORD'
-    },
-    localhost: {
-        format: Boolean,
-        default: true,
-        env: 'CONVERSATION_LEARNER_LOCALHOST'
-    },
+    }
 })
 
 config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
-    botPort: string
+    clAppId: string | undefined
+    botPort: any
     redisServer: string | undefined
     redisKey: string | undefined
-    functionUrl: string
-    appId: string,
-    microsoftAppId: string | undefined
-    microsoftAppPassword: string | undefined
+    bfAppId: string | undefined
+    bfAppPassword: string | undefined
 }
 
 const clOptions = config.getProperties() as ICLSampleConfig
