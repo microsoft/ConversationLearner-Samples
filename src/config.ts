@@ -29,7 +29,7 @@ export const config = convict({
     },
     CONVERSATION_LEARNER_SERVICE_URI: {
         format: 'url',
-        default: "https://westus.api.cognitive.microsoft.com/blis/api/v1/",
+        default: "https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/",
         env: 'CONVERSATION_LEARNER_SERVICE_URI'
     },
     CONVERSATION_LEARNER_SDK_PORT: {
