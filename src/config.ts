@@ -94,7 +94,7 @@ export const config = convict({
 config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
-    clAppId: string
+    clAppId: string | undefined
     botPort: string
     redisServer: string | undefined
     redisKey: string | undefined
