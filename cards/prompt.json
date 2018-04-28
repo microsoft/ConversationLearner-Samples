@@ -1,0 +1,26 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "speak": "{{speak}}",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "{{question}}",
+        "size": "large",
+        "weight": "bolder"
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Submit",
+        "title": "{{button1}}",
+        "data": { "submit": "{{button1}}" }
+      },
+      {
+        "type": "Action.Submit",
+        "title": "{{button2}}",
+        "data": { "submit": "{{button2}}" }
+      }
+    ]
+  }

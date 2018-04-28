@@ -1,0 +1,66 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "speak": "See the card below for choices.",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "{{title}}",
+        "size": "large",
+        "weight": "bolder"
+      },
+      {
+        "type": "ColumnSet",
+        "columns": [
+          {
+            "type": "Column",
+            "width": "auto",
+            "items": [
+              {
+                "type": "Image",
+                "url": "{{image}}",
+                "size": "medium"
+              }
+            ]
+          },
+          {
+            "type": "Column",
+            "width": "stretch",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "{{line1}}",
+                "size": "medium",
+                "spacing": "none"
+              },
+              {
+                "type": "TextBlock",
+                "isSubtle": true,
+                "text": "{{line2}}",
+                "spacing": "none"
+              },
+              {
+                "type": "TextBlock",
+                "isSubtle": true,
+                "text": "{{line3}}",
+                "spacing": "none"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.Submit",
+        "title": "{{button1}}",
+        "data": { "submit": "{{button1}}" }
+      },
+      {
+        "type": "Action.Submit",
+        "title": "{{button2}}",
+        "data": { "submit": "{{button2}}" }
+      }
+    ]
+  }
