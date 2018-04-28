@@ -9,6 +9,7 @@ import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ICLOptions, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
+import { createSearchIssuesCard, Issue, createImagesCard } from './imagesCards'
 
 console.log(`Config: `, JSON.stringify(config, null, '  '))
 
@@ -89,17 +90,119 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define any API callbacks
 //=================================
-/** 
-cl.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) => {
+cl.AddAPICallback("GET /serach/issues", async (memoryManager: ClientMemoryManager, searchIssuesQuery: string) => {
+    const response = await fetch(`https://api.github.com/search/issues?q=${searchIssuesQuery}`)
+    if (!response.ok) {
+        return "Error attempting to search github repositories."
+    }
 
-    {Your API logic inclusing any service calls}
-        
-    Returns promise of: 
-        (1) undefined -> no message sent to user
-        (2) string -> text message sent to user
-        (3) BB.Activity -> card sent to user
+    const json: any = await response.json()
+    const issues = (json.items as any[]).map<Issue>(x => ({
+        title: x.title,
+        avatarUrl: x.user.avatar_url,
+        url: x.html_url
+    }))
+    const form = createSearchIssuesCard(issues)
+    const attachment = BB.CardFactory.adaptiveCard(form);
+    const message: any = BB.MessageFactory.attachment(attachment);
+    message.text = "List of issues";
+    return message;
 })
-*/ 
+
+cl.AddAPICallback("GET /search/repositories", async (memoryManager: ClientMemoryManager, searchQuery: string) => {
+    const response = await fetch(`https://api.github.com/search/repositories?q=${searchQuery}`)
+    if (!response.ok) {
+        return "Error attempting to search github repositories."
+    }
+
+    const json: any = await response.json()
+
+    return `
+Results: ${json.total_count}
+Top 10 Repositories:
+${(json.items as any[]).map<string>(r => r.full_name).join('\n')}
+`
+})
+
+cl.AddAPICallback('Verify Repository', async (memoryManager: ClientMemoryManager) => {
+    const repositoryUrl = await memoryManager.EntityValueAsync("repositoryUrl")
+    let repositoryStub = await memoryManager.EntityValueAsync("repositorystub")
+    console.log(`repositoryUrl: `, repositoryUrl)
+    console.log(`repositoryStub: `, repositoryUrl)
+    if (repositoryUrl && repositoryUrl.startsWith("https://github.com/")) {
+        repositoryStub = repositoryUrl.substr("https://github.com/".length)
+        console.log(`Getting repository stub from repository url: ${repositoryUrl}, stub: ${repositoryStub}`)
+    }
+
+    if (!repositoryStub || repositoryStub.length === 0) {
+        return "Error: repository stub was not defined"
+    }
+
+    const response = await fetch(`https://api.github.com/repos/${repositoryStub}`)
+    if (!response.ok) {
+        return "Error attempting to search github repositories."
+    }
+
+    const json: any = await response.json()
+    memoryManager.RememberEntityAsync('repository', json.url)
+
+    return `Reposority verified`
+})
+
+cl.AddAPICallback("Get repository details", async (memoryManager: ClientMemoryManager) => {
+    const repositoryApiUrl = await memoryManager.EntityValueAsync("repository")
+    if (!repositoryApiUrl) {
+        return "Error: repositoryUrl entity was not defined"
+    }
+
+    const response = await fetch(repositoryApiUrl)
+    if (!response.ok) {
+        return "Error attempting to fetch github contributors."
+    }
+
+    const json: any = await response.json()
+
+    return `${json.name}
+
+    Stars: ${json.stargazers_count},
+    Watch: ${json.watchers_count},
+    Language: ${json.language},
+    Forks: ${json.forks_count}`
+})
+
+cl.AddAPICallback("Get /repos/{repo}/contributors", async (memoryManager: ClientMemoryManager, title: string, repositoryApiUrl: string) => {
+    const response = await fetch(`${repositoryApiUrl}/contributors`)
+    if (!response.ok) {
+        return "Error attempting to fetch github contributors."
+    }
+
+    const contributors: any[] = await response.json()
+
+    const avatarUrls = contributors.map(c => c.avatar_url)
+
+    const form = createImagesCard(title, avatarUrls)
+    const attachment = BB.CardFactory.adaptiveCard(form);
+    const message: any = BB.MessageFactory.attachment(attachment);
+    message.text = "Fall back text";
+    return message;
+})
+
+cl.AddAPICallback("Get /repos/{repo}/languages", async (memoryManager: ClientMemoryManager, title: string, repositoryApiUrl: string) => {
+    const response = await fetch(`${repositoryApiUrl}/languages`)
+    if (!response.ok) {
+        return `Error attempting to ${repositoryApiUrl}/languages`
+    }
+
+    const json: any = await response.json()
+
+    return `Languages:
+
+${Object.keys(json).map(key => `${key}: ${json[key]}`).join('\n')}`
+})
+
+cl.AddAPICallback("Start over", async (memoryManager: ClientMemoryManager) => {
+    await memoryManager.ForgetAllEntitiesAsync([])
+})
 
 //=================================
 // Handle Incoming Messages

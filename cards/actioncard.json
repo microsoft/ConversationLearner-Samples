@@ -1,0 +1,52 @@
+{
+	"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+	"type": "AdaptiveCard",
+	"version": "1.0",
+	"body": [
+		{
+			"type": "TextBlock",
+			"size": "medium",
+			"weight": "bolder",
+			"text": "Input.Text elements",
+			"horizontalAlignment": "center"
+		},
+		{
+			"type": "Input.Text",
+			"placeholder": "{{inputTest01}}",
+			"style": "text",
+			"maxLength": 0,
+			"id": "SimpleVal"
+		},
+		{
+			"type": "TextBlock",
+			"size": "medium",
+			"weight": "bolder",
+			"text": "Input.Toggle",
+			"horizontalAlignment": "center"
+		},
+		{
+			"type": "Input.Toggle",
+			"title": "I accept the terms and conditions (True/False)",
+			"valueOn": "true",
+			"valueOff": "false",
+			"id": "AcceptsTerms"
+		},
+		{
+			"type": "Input.Toggle",
+			"title": "Red cars are better than other cars",
+			"valueOn": "RedCars",
+			"valueOff": "NotRedCars",
+			"id": "ColorPreference"
+		}
+	],
+	"actions": [
+		{
+			"type": "Action.Submit",
+			"title": "Submit",
+			"data": {
+				"submit": "data",
+				"id": "1234567890"
+			}
+		}
+	]
+}

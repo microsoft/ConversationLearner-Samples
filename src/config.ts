@@ -105,6 +105,3 @@ export interface ICLSampleConfig extends ICLOptions {
 const clOptions = config.getProperties() as ICLSampleConfig
 
 export default clOptions
-
-
-
