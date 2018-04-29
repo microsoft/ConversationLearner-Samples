@@ -31,8 +31,8 @@ Resources (all MS internal):
 1. Install and build:
 
     ```bash    
-    git clone https://github.com/Microsoft/ConversationLearner-Samples cl-bot-01
-    cd cl-bot-01
+    git clone https://github.com/Microsoft/ConversationLearner-Samples my-bot-01
+    cd my-bot-01
     npm install
     npm run build
     ```
@@ -41,7 +41,7 @@ Resources (all MS internal):
 
 2. Configure:
 
-   Create a file called `.env` in the directory `blis-bot-01`.  The contents of the file should be:
+   Create a file called `.env` in the directory `my-bot-01`.  The contents of the file should be:
 
    ```
    LUIS_AUTHORING_KEY=<your LUIS authoring key>
@@ -53,13 +53,13 @@ Resources (all MS internal):
     npm start
     ```
 
-    This runs the generic empty bot in ``cl-bot-01/src/app.ts``.
+    This runs the generic empty bot in ``my-bot-01/src/app.ts``.
 
 3. Run Conversation Learner UI:
 
     ```bash
     [open second command prompt window]
-    cd cl-bot-01
+    cd my-bot-01
     npm run ui
     ```
 
@@ -90,17 +90,15 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 4. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
 
-5. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your BLIS account.
+5. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your Conversation Learner account.
 
 6. Click on the demo model in the Conversation Learner UI that corresponds to the demo you started.
 
-Source files for the demos are in `cl-bot-01/src/demos`
+Source files for the demos are in `my-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
 
-
-
-1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
+1. If you have the Converstaion Learner web UI open, return to the list of apps at http://localhost:5050/home.
     
 2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
@@ -113,15 +111,15 @@ Source files for the demos are in `cl-bot-01/src/demos`
     npm start
     ```
 
-5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
+5. If you're not already, switch to the Converstaion Learner web UI in Chrome by loading http://localhost:5050/home. 
 
-6. Create a new BLIS application in the UI, and start teaching.
+6. Create a new Converstaion Learner application in the UI, and start teaching.
 
 7. To make code changes in ``blis-bot-01/src/app.ts``, repeat the steps above, starting from step 2.
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``cl-bot-01/src/app.ts``.  Open the `cl-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``my-bot-01/src/app.ts``.  Open the `my-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
@@ -143,19 +141,13 @@ Once the bot is deployed and running you can connect different channels to it su
 
 Ensure that these variables are set when deploying your bot:
 
-```
-CONVERSATION_LEARNER_SERVICE_URI        <Set to https://westus.api.cognitive.microsoft.com/blis/api/v1/>
-CONVERSATION_LEARNER_APP_ID             <Application Id GUID, obtained from the BLIS UI under the "settings" for the app>
-DOL_START                               false
-LUIS_AUTHORING_KEY      		        <LUIS authoring key for this app, obtained from https://www.luis.ai>
-MICROSOFT_APP_ID                        <Microsoft Application Id>
-MICROSOFT_APP_PASSWORD                  <Microsoft Application Password>
-```
-
-> We hope to remove the need to specify CONVERSATION_LEARNER_APP_ID and DOL_START in the future.
-## Notes
-
-There is NO security or encryption currently -- do not load data into Conversation Learner which is sensitive or from a customer.
+Environment variable | Setting
+--- | ---
+CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
+CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Converstaion Learner UI under the "settings" for the app
+LUIS_AUTHORING_KEY      		     | LUIS authoring key for this app, obtained from https://www.luis.ai
+MICROSOFT_APP_ID                 | Microsoft Application Id
+MICROSOFT_APP_PASSWORD           | Microsoft Application Password
 
 ## Support
 
@@ -168,4 +160,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 ## Related repositories
 
 - [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [conversationlearner-ui](https://github.com/Microsoft/ConversationLearner-UI)
 - [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-Models)
+- [conversationlearner-webchat](https://github.com/Microsoft/ConversationLearner-WebChat)
