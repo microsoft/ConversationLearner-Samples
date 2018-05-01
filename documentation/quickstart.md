@@ -108,5 +108,6 @@ Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/j
 
 ## Related repositories
 
-- [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
-- [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-UI)
+- [@conversationlearner/sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
+- [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)

@@ -1,6 +1,6 @@
 # ConversationLearner-Samples
 
-This repo contains sample code for building conversational bots using Microsoft Conversation Learner and demonstrating how to use the `conversationlearner-sdk` package.
+This repo contains sample code for building conversational bots using Microsoft Conversation Learner and demonstrating how to use the `@conversationlearner/sdk` package.
 
 Conversation Learner reduces the complexity of building bots.  It enables a hybrid development workflow allowing hand-written code and machine learning to reduce the amount of code required to write bots.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
@@ -167,5 +167,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ## Related repositories
 
-- [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
-- [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-Models)
+- [@conversationlearner/sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
+- [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)
