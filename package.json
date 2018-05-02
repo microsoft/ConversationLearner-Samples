@@ -41,5 +41,8 @@
     "tslint": "^5.8.0",
     "tslint-microsoft-contrib": "^5.0.3",
     "typescript": "^2.6.2"
+  },
+  "engines": {
+    "node": "8.8.0"
   }
 }
