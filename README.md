@@ -1,16 +1,20 @@
 # ConversationLearner-Samples
 
-This repo contains sample code for building conversational bots using Microsoft Conversation Learner and demonstrating how to use the `conversationlearner-sdk` package.
+This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrating how to use the `@conversationlearner/sdk` npm module.
 
-Conversation Learner reduces the complexity of building bots.  It enables a hybrid development workflow allowing hand-written code and machine learning to reduce the amount of code required to write bots.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
+Project Conversation Learner enables you to build and teach task-oriented conversational interfaces that learn from example interactions, combining code, logical constraints and machine learning.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
-Resources (all MS internal):
-- [Example video overview of Conversation Learner](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA)
-- [Demo of Conversation Learner at TechFest](https://resnet.microsoft.com/video/41008)
-- [Slides with introduction to Conversation Learner for developers](https://microsoft-my.sharepoint.com/:p:/p/jawillia/Ed63MfYJyFFCkM3pqaFWCLwBcy9yKkucZLITiWXIMj-keA?e=HQQAdV)
-- [Technical paper about ML in Conversation Learner](https://microsoft-my.sharepoint.com/:b:/p/jawillia/EU2jGHJXOA5PsfW84bAFnSYB60KvxLL4Wy_L7VNZSg0hOA?e=xg79Hi)
+This README explains how to get started; full documentation is availble [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/).
+
+## Invitation required
+
+*An invitation is required to access Project Conversation Learner.*
+
+Project Conversation Learner consists of an SDK you add to your bot, and a cloud service which the SDK accesses for machine learning.  At present, access to the Project Conversation Leaner cloud service requires an invitation.  If you haven't been invited already, [request an invitation](https://aka.ms/conversation-learner-request-invite).  If you have not received an invitation, you will be unable to access the cloud API.
 
 ## Prerequisites
+
+- An invitation to access the Project Conversation Learner cloud service -- [request an invitation](https://aka.ms/conversation-learner-request-invite).  
 
 - Node 8.5.0 or higher and npm 5.3.0 or higher.  Install from https://nodejs.org/en/
   
@@ -23,8 +27,12 @@ Resources (all MS internal):
   3. Authoring key is shown on the resulting page
 
   (Your LUIS authoring key serves 2 roles.  First, it will serve as your Conversation Learner authoring key.  Second, Conversation Learner uses LUIS for entity extraction; the LUIS authoring key is used to create LUIS models on your behalf)
+  
+- Google Chrome web browser. Install from [https://www.google.com/chrome/index.html](https://www.google.com/chrome/index.html).
 
-- VSCode.  https://code.visualstudio.com/  Recommended, not required.
+- git. Install from [https://git-scm.com/downloads](https://git-scm.com/downloads).
+
+- VSCode. Install from [https://code.visualstudio.com/](https://code.visualstudio.com/). Note this is recommended, not required.
 
 ## Quick start 
 
@@ -151,7 +159,9 @@ MICROSOFT_APP_PASSWORD           | Microsoft Application Password
 
 ## Support
 
-Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or file an issue on the GitHub repo (external)
+- Tag questions on [Stack Overflow](https://stackoverflow.com) with "microsoft cognitive"
+- Request a feature on our [User Voice page](https://aka.ms/conversation-learner-uservoice)
+- Open an issue on our [github repo](https://github.com/Microsoft/ConversationLearner-Samples)
 
 ## Contributing
 
