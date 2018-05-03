@@ -26,7 +26,7 @@
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "0.238.0",
+    "@conversationlearner/sdk": "0.240.0",
     "botbuilder": "4.0.0-m4.1",
     "convict": "^4.0.2",
     "dotenv": "^4.0.0",
