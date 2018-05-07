@@ -1,16 +1,20 @@
 # ConversationLearner-Samples
 
-This repo contains sample code for building conversational bots using Microsoft Conversation Learner and demonstrating how to use the `@conversationlearner/sdk` package.
+This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrating how to use the `@conversationlearner/sdk` npm module.
 
-Conversation Learner reduces the complexity of building bots.  It enables a hybrid development workflow allowing hand-written code and machine learning to reduce the amount of code required to write bots.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
+Project Conversation Learner enables you to build and teach task-oriented conversational interfaces that learn from example interactions, combining code, logical constraints and machine learning.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
-Resources (all MS internal):
-- [Example video overview of Conversation Learner](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA)
-- [Demo of Conversation Learner at TechFest](https://resnet.microsoft.com/video/41008)
-- [Slides with introduction to Conversation Learner for developers](https://microsoft-my.sharepoint.com/:p:/p/jawillia/Ed63MfYJyFFCkM3pqaFWCLwBcy9yKkucZLITiWXIMj-keA?e=HQQAdV)
-- [Technical paper about ML in Conversation Learner](https://microsoft-my.sharepoint.com/:b:/p/jawillia/EU2jGHJXOA5PsfW84bAFnSYB60KvxLL4Wy_L7VNZSg0hOA?e=xg79Hi)
+This README explains how to get started; full documentation is availble [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/).
+
+## Invitation required
+
+*An invitation is required to access Project Conversation Learner.*
+
+Project Conversation Learner consists of an SDK you add to your bot, and a cloud service which the SDK accesses for machine learning.  At present, access to the Project Conversation Leaner cloud service requires an invitation.  If you haven't been invited already, [request an invitation](https://aka.ms/conversation-learner-request-invite).  If you have not received an invitation, you will be unable to access the cloud API.
 
 ## Prerequisites
+
+- An invitation to access the Project Conversation Learner cloud service -- [request an invitation](https://aka.ms/conversation-learner-request-invite).  
 
 - Node 8.5.0 or higher and npm 5.3.0 or higher.  Install from https://nodejs.org/en/
   
@@ -23,16 +27,20 @@ Resources (all MS internal):
   3. Authoring key is shown on the resulting page
 
   (Your LUIS authoring key serves 2 roles.  First, it will serve as your Conversation Learner authoring key.  Second, Conversation Learner uses LUIS for entity extraction; the LUIS authoring key is used to create LUIS models on your behalf)
+  
+- Google Chrome web browser. Install from [https://www.google.com/chrome/index.html](https://www.google.com/chrome/index.html).
 
-- VSCode.  https://code.visualstudio.com/  Recommended, not required.
+- git. Install from [https://git-scm.com/downloads](https://git-scm.com/downloads).
+
+- VSCode. Install from [https://code.visualstudio.com/](https://code.visualstudio.com/). Note this is recommended, not required.
 
 ## Quick start 
 
 1. Install and build:
 
     ```bash    
-    git clone https://github.com/Microsoft/ConversationLearner-Samples cl-bot-01
-    cd cl-bot-01
+    git clone https://github.com/Microsoft/ConversationLearner-Samples my-bot-01
+    cd my-bot-01
     npm install
     npm run build
     ```
@@ -41,7 +49,7 @@ Resources (all MS internal):
 
 2. Configure:
 
-   Create a file called `.env` in the directory `cl-bot-01`.  The contents of the file should be:
+   Create a file called `.env` in the directory `my-bot-01`.  The contents of the file should be:
 
    ```
    LUIS_AUTHORING_KEY=<your LUIS authoring key>
@@ -53,13 +61,13 @@ Resources (all MS internal):
     npm start
     ```
 
-    This runs the generic empty bot in ``cl-bot-01/src/app.ts``.
+    This runs the generic empty bot in ``my-bot-01/src/app.ts``.
 
 3. Run Conversation Learner UI:
 
     ```bash
     [open second command prompt window]
-    cd cl-bot-01
+    cd my-bot-01
     npm run ui
     ```
 
@@ -94,17 +102,15 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 6. Click on the demo model in the Conversation Learner UI that corresponds to the demo you started.
 
-Source files for the demos are in `cl-bot-01/src/demos`
+Source files for the demos are in `my-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
-
-
 
 1. If you have the Conversation Learner web UI open, return to the list of apps at http://localhost:5050/home.
     
 2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
-3. If desired, edit code in `cl-bot-01/src/app.ts`.
+3. If desired, edit code in `my-bot-01/src/app.ts`.
 
 4. Rebuild and re-start bot:
 
@@ -117,11 +123,11 @@ Source files for the demos are in `cl-bot-01/src/demos`
 
 6. Create a new Conversation Learner application in the UI, and start teaching.
 
-7. To make code changes in `cl-bot-01/src/app.ts`, repeat the steps above, starting from step 2.
+7. To make code changes in `my-bot-01/src/app.ts`, repeat the steps above, starting from step 2.
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``cl-bot-01/src/app.ts``.  Open the `cl-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``my-bot-01/src/app.ts``.  Open the `my-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
@@ -143,23 +149,19 @@ Once the bot is deployed and running you can connect different channels to it su
 
 Ensure that these variables are set when deploying your bot:
 
-```
-CONVERSATION_LEARNER_SERVICE_URI        <Set to https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/>
-CONVERSATION_LEARNER_APP_ID             <Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app>
-DOL_START                               false
-LUIS_AUTHORING_KEY      		        <LUIS authoring key for this app, obtained from https://www.luis.ai>
-MICROSOFT_APP_ID                        <Microsoft Application Id>
-MICROSOFT_APP_PASSWORD                  <Microsoft Application Password>
-```
-
-> We hope to remove the need to specify CONVERSATION_LEARNER_APP_ID and DOL_START in the future.
-## Notes
-
-There is NO security or encryption currently -- do not load data into Conversation Learner which is sensitive or from a customer.
+Environment variable | Setting
+--- | ---
+CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
+CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
+LUIS_AUTHORING_KEY      		     | LUIS authoring key for this app, obtained from https://www.luis.ai
+MICROSOFT_APP_ID                 | Microsoft Application Id
+MICROSOFT_APP_PASSWORD           | Microsoft Application Password
 
 ## Support
 
-Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/jawillia/ESlfaljCPbpPlDzmkAhCQbkBdUxsN33eBOf2RycKMiB-Xw?e=SVFmYA) (MS internal), or file an issue on the GitHub repo (external)
+- Tag questions on [Stack Overflow](https://stackoverflow.com) with "microsoft cognitive"
+- Request a feature on our [User Voice page](https://aka.ms/conversation-learner-uservoice)
+- Open an issue on our [github repo](https://github.com/Microsoft/ConversationLearner-Samples)
 
 ## Contributing
 
@@ -172,3 +174,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 - [@conversationlearner/sdk](https://github.com/Microsoft/ConversationLearner-SDK)
 - [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
 - [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)
+- [@conversationlearner/webchat](https://github.com/Microsoft/ConversationLearner-WebChat)
