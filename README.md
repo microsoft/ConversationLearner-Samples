@@ -41,7 +41,7 @@ Resources (all MS internal):
 
 2. Configure:
 
-   Create a file called `.env` in the directory `blis-bot-01`.  The contents of the file should be:
+   Create a file called `.env` in the directory `cl-bot-01`.  The contents of the file should be:
 
    ```
    LUIS_AUTHORING_KEY=<your LUIS authoring key>
@@ -90,7 +90,7 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 4. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
 
-5. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your BLIS account.
+5. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your Conversation Learner account.
 
 6. Click on the demo model in the Conversation Learner UI that corresponds to the demo you started.
 
@@ -100,11 +100,11 @@ Source files for the demos are in `cl-bot-01/src/demos`
 
 
 
-1. If you have the BLIS web UI open, return to the list of apps at http://localhost:5050/home.
+1. If you have the Conversation Learner web UI open, return to the list of apps at http://localhost:5050/home.
     
 2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
-3. If desired, edit code in ``blis-bot-01/src/app.ts``.
+3. If desired, edit code in `cl-bot-01/src/app.ts`.
 
 4. Rebuild and re-start bot:
 
@@ -113,11 +113,11 @@ Source files for the demos are in `cl-bot-01/src/demos`
     npm start
     ```
 
-5. If you're not already, switch to the BLIS web UI in Chrome by loading http://localhost:5050/home. 
+5. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
 
-6. Create a new BLIS application in the UI, and start teaching.
+6. Create a new Conversation Learner application in the UI, and start teaching.
 
-7. To make code changes in ``blis-bot-01/src/app.ts``, repeat the steps above, starting from step 2.
+7. To make code changes in `cl-bot-01/src/app.ts`, repeat the steps above, starting from step 2.
 
 ## VSCode
 
@@ -144,7 +144,7 @@ Once the bot is deployed and running you can connect different channels to it su
 Ensure that these variables are set when deploying your bot:
 
 ```
-CONVERSATION_LEARNER_SERVICE_URI        <Set to https://westus.api.cognitive.microsoft.com/blis/api/v1/>
+CONVERSATION_LEARNER_SERVICE_URI        <Set to https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/>
 CONVERSATION_LEARNER_APP_ID             <Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app>
 DOL_START                               false
 LUIS_AUTHORING_KEY      		        <LUIS authoring key for this app, obtained from https://www.luis.ai>
