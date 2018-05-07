@@ -61,7 +61,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
     npm start
     ```
 
-    This runs the generic empty bot in ``my-bot-01/src/app.ts``.
+    This runs the generic empty bot in `my-bot-01/src/app.ts`.
 
 3. Run Conversation Learner UI:
 
@@ -127,7 +127,7 @@ Source files for the demos are in `my-bot-01/src/demos`
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``my-bot-01/src/app.ts``.  Open the `my-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in `my-bot-01/src/app.ts`.  Open the `my-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
