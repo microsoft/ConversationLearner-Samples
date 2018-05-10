@@ -143,9 +143,7 @@ This uses the standard configuration, which lets you run your bot locally, and s
 
 ## Publishing your bot
 
-Publish your Conversation Learner bot similar to the same way you would publish any other bot.  At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.  Detailed instructions are in this [video showing how to publish your bot using Azure Bot Service.](https://aka.ms/blis-azure-publish)
-
-Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
+Publish your Conversation Learner bot similar to the same way you would publish any other bot.  At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.  The docs include detailed instructions on [deploying to localhost](https://docs.microsoft.com/en-us/azure/cognitive-services/labs/conversation-learner/deploy-to-bf#option-1-deploying-a-conversation-learner-bot-to-run-locally), and [deploying to Azure](https://docs.microsoft.com/en-us/azure/cognitive-services/labs/conversation-learner/deploy-to-bf#option-2-deploy-to-azure).
 
 Ensure that these variables are set when deploying your bot:
 
@@ -156,6 +154,8 @@ CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Conver
 LUIS_AUTHORING_KEY      		     | LUIS authoring key for this app, obtained from https://www.luis.ai
 MICROSOFT_APP_ID                 | Microsoft Application Id
 MICROSOFT_APP_PASSWORD           | Microsoft Application Password
+
+Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
 ## Support
 
