@@ -143,7 +143,7 @@ This uses the standard configuration, which lets you run your bot locally, and s
 
 ## Publishing your bot
 
-Publish your Conversation Learner bot similar to the same way you would publish any other bot.  At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.  Detailed instructions are in this [video showing how to publish your bot using Azure Bot Service.](https://aka.ms/blis-azure-publish)
+Publish your Conversation Learner bot similar to the same way you would publish any other bot.  At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.  The docs include detailed instructions on [publishing on localhost](https://docs.microsoft.com/en-us/azure/cognitive-services/labs/conversation-learner/deploy-to-bf#option-1-deploying-a-conversation-learner-bot-to-run-locally), and [publishing to Azure](https://docs.microsoft.com/en-us/azure/cognitive-services/labs/conversation-learner/deploy-to-bf#option-2-deploy-to-azure).
 
 Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
