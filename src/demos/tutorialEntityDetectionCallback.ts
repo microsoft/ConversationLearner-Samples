@@ -44,7 +44,7 @@ let cl = new ConversationLearner(clAppId);
 //=========================================================
 // Bots Buisness Logic
 //=========================================================
-let cities = ['new york', 'boston', 'new orleans'];
+let cities = ['new york', 'boston', 'new orleans', 'chicago'];
 let cityMap:{ [index:string] : string } = {};
 cityMap['big apple'] = 'new york';
 cityMap['windy city'] = 'chicago';
