@@ -7,7 +7,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ICLOptions, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
+import { ConversationLearner, ICLOptions, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
 
 console.log(`Config: `, JSON.stringify(config, null, '  '))

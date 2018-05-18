@@ -23,8 +23,8 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
 
 1. Install:
   
-		git clone https://github.com/Microsoft/ConversationLearner-Samples cl-bot-01
-		cd cl-bot-01
+		git clone https://github.com/Microsoft/ConversationLearner-Samples my-bot-01
+		cd my-bot-01
 		npm install
 
 
@@ -36,12 +36,12 @@ Conversation Learner reduces the complexity of building bots.  It enables a hybr
     	npm start
 
 
-    This runs the generic empty bot in ``cl-bot-01/src/app.ts``.
+    This runs the generic empty bot in ``my-bot-01/src/app.ts``.
 
 3. Run the web UI:
 
 		[open second command prompt window]
-		cd cl-bot-01
+		cd my-bot-01
 		npm run ui
 	  
 
@@ -80,11 +80,11 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
 
 7. Click on the demo model in the web UI that corresponds to the demo you started.
 
-Source files for the demos are in `cl-bot-01/src/demos`
+Source files for the demos are in `my-bot-01/src/demos`
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``cl-bot-01/src/app.ts``.  Open the `cl-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``my-bot-01/src/app.ts``.  Open the `my-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
@@ -108,5 +108,6 @@ Join the [Conversation Learner team](https://microsoft-my.sharepoint.com/:v:/p/j
 
 ## Related repositories
 
-- [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
-- [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-UI)
+- [@conversationlearner/sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
+- [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)

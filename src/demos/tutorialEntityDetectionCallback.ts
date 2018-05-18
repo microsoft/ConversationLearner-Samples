@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
 
 //===================
@@ -44,7 +44,7 @@ let cl = new ConversationLearner(clAppId);
 //=========================================================
 // Bots Buisness Logic
 //=========================================================
-let cities = ['new york', 'boston', 'new orleans'];
+let cities = ['new york', 'boston', 'new orleans', 'chicago'];
 let cityMap:{ [index:string] : string } = {};
 cityMap['big apple'] = 'new york';
 cityMap['windy city'] = 'chicago';

@@ -4,7 +4,7 @@ This repo contains sample code for building task-oriented conversational bots us
 
 Project Conversation Learner enables you to build and teach task-oriented conversational interfaces that learn from example interactions, combining code, logical constraints and machine learning.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
-This README explains how to get started; full documentation is availble [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/).
+This README explains how to get started; full documentation is available [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/).
 
 ## Invitation required
 
@@ -61,7 +61,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
     npm start
     ```
 
-    This runs the generic empty bot in ``my-bot-01/src/app.ts``.
+    This runs the generic empty bot in `my-bot-01/src/app.ts`.
 
 3. Run Conversation Learner UI:
 
@@ -106,11 +106,11 @@ Source files for the demos are in `my-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
 
-1. If you have the Converstaion Learner web UI open, return to the list of apps at http://localhost:5050/home.
+1. If you have the Conversation Learner web UI open, return to the list of apps at http://localhost:5050/home.
     
 2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
-3. If desired, edit code in ``blis-bot-01/src/app.ts``.
+3. If desired, edit code in `my-bot-01/src/app.ts`.
 
 4. Rebuild and re-start bot:
 
@@ -119,15 +119,15 @@ Source files for the demos are in `my-bot-01/src/demos`
     npm start
     ```
 
-5. If you're not already, switch to the Converstaion Learner web UI in Chrome by loading http://localhost:5050/home. 
+5. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
 
-6. Create a new Converstaion Learner application in the UI, and start teaching.
+6. Create a new Conversation Learner application in the UI, and start teaching.
 
-7. To make code changes in ``blis-bot-01/src/app.ts``, repeat the steps above, starting from step 2.
+7. To make code changes in `my-bot-01/src/app.ts`, repeat the steps above, starting from step 2.
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in ``my-bot-01/src/app.ts``.  Open the `my-bot-01` folder in VSCode.
+In VSCode, there are run configurations for each demo, and for the "Empty bot" in `my-bot-01/src/app.ts`.  Open the `my-bot-01` folder in VSCode.
 
 ## Advanced configuration
 
@@ -150,7 +150,7 @@ Ensure that these variables are set when deploying your bot:
 Environment variable | Setting
 --- | ---
 CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
-CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Converstaion Learner UI under the "settings" for the app
+CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
 LUIS_AUTHORING_KEY      		     | LUIS authoring key for this app, obtained from https://www.luis.ai
 MICROSOFT_APP_ID                 | Microsoft Application Id
 MICROSOFT_APP_PASSWORD           | Microsoft Application Password
@@ -165,11 +165,13 @@ Once the bot is deployed and running you can connect different channels to it su
 
 ## Contributing
 
+When submitting PR's please target the 'develop' branch unless it is a hotfix for 'master'
+
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Related repositories
 
-- [conversationlearner-sdk](https://github.com/Microsoft/ConversationLearner-SDK)
-- [conversationlearner-ui](https://github.com/Microsoft/ConversationLearner-UI)
-- [conversationlearner-models](https://github.com/Microsoft/ConversationLearner-Models)
-- [conversationlearner-webchat](https://github.com/Microsoft/ConversationLearner-WebChat)
+- [@conversationlearner/sdk](https://github.com/Microsoft/ConversationLearner-SDK)
+- [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
+- [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)
+- [@conversationlearner/webchat](https://github.com/Microsoft/ConversationLearner-WebChat)

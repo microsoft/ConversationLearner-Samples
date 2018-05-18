@@ -4,7 +4,7 @@
  */
 import * as dotenv from 'dotenv'
 import * as convict from 'convict'
-import { ICLOptions } from 'conversationlearner-sdk';
+import { ICLOptions } from '@conversationlearner/sdk';
 
 const result = dotenv.config()
 if (result.error) {
