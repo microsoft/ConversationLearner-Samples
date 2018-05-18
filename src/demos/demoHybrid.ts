@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter, ConversationState } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from 'conversationlearner-sdk'
+import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
 
 //===================
