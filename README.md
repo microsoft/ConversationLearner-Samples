@@ -41,7 +41,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
     ```bash    
     git clone https://github.com/Microsoft/ConversationLearner-Samples my-bot-01
     cd my-bot-01
-    npm install
+    npm install -g
     npm run build
     ```
 
