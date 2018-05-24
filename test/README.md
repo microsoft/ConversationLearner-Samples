@@ -1,4 +1,4 @@
-# Testing Framework
+# e2e Testing
 
 ## Folder Structure
 
@@ -7,4 +7,4 @@
 ## Adding a new test
 
 ## References
-
+* http://nightwatchjs.org/gettingstarted/
