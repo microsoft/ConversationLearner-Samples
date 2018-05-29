@@ -87,7 +87,7 @@ cl.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1str
 cl.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
 
     // clear base and exponent entities
-    await memoryManager.ForgetEntityAsync("number");
+    memoryManager.ForgetEntity("number");
     return "Let's do another.";
 })
 

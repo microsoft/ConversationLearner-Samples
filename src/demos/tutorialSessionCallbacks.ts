@@ -53,7 +53,7 @@ let cl = new ConversationLearner(clAppId);
 cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Set BotName when session starts
-    await memoryManager.RememberEntityAsync("BotName", "Botty")
+    memoryManager.RememberEntity("BotName", "Botty")
 })
 
 /**
