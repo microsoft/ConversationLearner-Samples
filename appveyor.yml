@@ -1,9 +1,21 @@
+environment:
+  matrix:
+    - nodejs_version: "10"
+    - nodejs_version: "8"
+
 install:
+  - ps: Install-Product node $env:nodejs_version
   - npm install
-  - npm run build
-test_script:
+
+before_build:
   # Output useful info for debugging.
   - node --version
   - npm --version
+
+build_script:
+  - npm run build
+
+test_script:
+  - npm run build
   # run tests
-  - npm test
+  # - npm test
