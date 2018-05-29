@@ -86,4 +86,5 @@ In Log Dialogs, you can view the list of conversations, update, and save the int
 3. Click to select the suggested response. 
 	1. You can also select or add another action.
 4. Then click Done to save this as a training dialog.
+.
 
