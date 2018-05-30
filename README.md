@@ -6,8 +6,7 @@ Project Conversation Learner enables you to build and teach task-oriented conver
 
 Cognitive Service Labs provides developers with an early look at emerging Cognitive Services technologies. Early adopters who do not need market-ready technology can discover, try and provide feedback on new Cognitive Services technologies before they are generally available. Labs are not Azure services.  Project Conversation Learner’s APIs and schema are subject to change that are not backwards compatible.
 
-This README explains how to get started; full documentation is available [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/).
-
+This README explains how to get started; full documentation is available [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/overview).
 
 ## Invitation required
 
