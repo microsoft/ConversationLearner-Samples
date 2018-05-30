@@ -4,6 +4,8 @@ This repo contains sample code for building task-oriented conversational bots us
 
 Project Conversation Learner enables you to build and teach task-oriented conversational interfaces that learn from example interactions, combining code, logical constraints and machine learning.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
+Cognitive Service Labs provides developers with an early look at emerging Cognitive Services technologies. Early adopters who do not need market-ready technology can discover, try and provide feedback on new Cognitive Services technologies before they are generally available. Labs are not Azure services.  Project Conversation Learner’s APIs and schema are subject to change that are not backwards compatible.
+
 This README explains how to get started; full documentation is available [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/overview).
 
 ## Invitation required

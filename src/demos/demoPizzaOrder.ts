@@ -61,18 +61,18 @@ var isInStock = function(topping: string) {
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
-    await memoryManager.ForgetEntityAsync("OutOfStock");
+    memoryManager.ForgetEntity("OutOfStock");
             
     // Get list of requested Toppings
-    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
+    let toppings = memoryManager.EntityValueAsList("Toppings");
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
 
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
-            await memoryManager.ForgetEntityAsync("Toppings", topping);
-            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
+            memoryManager.ForgetEntity("Toppings", topping);
+            memoryManager.RememberEntity("OutOfStock", topping);        
         }
     }
 })
@@ -80,13 +80,13 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define API callbacks
 //=================================
-cl.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
+cl.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager, toppings: string, crustType: string) => 
     {
         // Save toppings
-        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
+        memoryManager.CopyEntity("Toppings", "LastToppings");
 
         // Clear toppings
-        await memoryManager.ForgetEntityAsync("Toppings");
+        memoryManager.ForgetEntity("Toppings");
 
         return "Your order is on its way";
     }
@@ -95,10 +95,10 @@ cl.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) =
 cl.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
     {
         // Restore last toppings
-        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
+        memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
-        await memoryManager.ForgetEntityAsync("LastToppings"); 
+        memoryManager.ForgetEntity("LastToppings"); 
     });
 
 //=================================

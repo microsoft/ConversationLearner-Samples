@@ -71,19 +71,19 @@ var resolveCity = function(cityFromUser: string) {
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
-    await memoryManager.ForgetEntityAsync("CityUnknown");
+    memoryManager.ForgetEntity("CityUnknown");
             
     // Get list of (possibly) ambiguous apps
-    var citiesFromUser = await memoryManager.EntityValueAsListAsync("City");
+    var citiesFromUser = memoryManager.EntityValueAsList("City");
     if (citiesFromUser.length > 0) {
         var cityFromUser = citiesFromUser[0]
         const resolvedCity = resolveCity(cityFromUser)
         if (resolvedCity) {
-            await memoryManager.RememberEntityAsync("CityResolved", resolvedCity);
+            memoryManager.RememberEntity("CityResolved", resolvedCity);
         } else {
-            await memoryManager.RememberEntityAsync("CityUnknown", cityFromUser);
-            await memoryManager.ForgetEntityAsync("CityResolved");
-            await memoryManager.ForgetEntityAsync("City");
+            memoryManager.RememberEntity("CityUnknown", cityFromUser);
+            memoryManager.ForgetEntity("CityResolved");
+            memoryManager.ForgetEntity("City");
         }
     }
 })
