@@ -53,7 +53,7 @@ let cl = new ConversationLearner(clAppId);
 cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Set BotName when session starts
-    await memoryManager.RememberEntityAsync("BotName", "Botty")
+    memoryManager.RememberEntity("BotName", "Botty")
 })
 
 /**
@@ -66,7 +66,7 @@ cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<vo
 cl.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear all entities but name and phone number
-    await memoryManager.ForgetAllEntitiesAsync(["UserName", "UserPhone"]);
+    memoryManager.ForgetAllEntities(["UserName", "UserPhone"]);
 })
 
 //=================================

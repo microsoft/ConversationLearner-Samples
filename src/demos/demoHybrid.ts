@@ -51,18 +51,18 @@ let clPizza = new ConversationLearner("096fdb9f-f25d-4b3a-be33-ec26130de9c2");
 clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
-    await memoryManager.ForgetEntityAsync("OutOfStock");
+    memoryManager.ForgetEntity("OutOfStock");
             
     // Get list of requested Toppings
-    let toppings = await memoryManager.EntityValueAsListAsync("Toppings");
+    let toppings = memoryManager.EntityValueAsList("Toppings");
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
 
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
-            await memoryManager.ForgetEntityAsync("Toppings", topping);
-            await memoryManager.RememberEntityAsync("OutOfStock", topping);        
+            memoryManager.ForgetEntity("Toppings", topping);
+            memoryManager.RememberEntity("OutOfStock", topping);        
         }
     }
 })
@@ -70,10 +70,10 @@ clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemory
 clPizza.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
     {
         // Save toppings
-        await memoryManager.CopyEntityAsync("Toppings", "LastToppings");
+        memoryManager.CopyEntity("Toppings", "LastToppings");
 
         // Clear toppings
-        await memoryManager.ForgetEntityAsync("Toppings");
+        memoryManager.ForgetEntity("Toppings");
 
         return "Your order is on its way";
     }
@@ -82,10 +82,10 @@ clPizza.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManag
 clPizza.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
     {
         // Restore last toppings
-        await memoryManager.CopyEntityAsync("LastToppings", "Toppings");
+        memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
-        await memoryManager.ForgetEntityAsync("LastToppings"); 
+        memoryManager.ForgetEntity("LastToppings"); 
     });
 
 //=================================
@@ -100,22 +100,22 @@ let clVr = new ConversationLearner("398a9d3d-f6c3-4c64-8904-9f135a42d0fd");
 clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
-    await memoryManager.ForgetEntityAsync("DisambigAppNames");
-    await memoryManager.ForgetEntityAsync("UnknownAppName");
+    memoryManager.ForgetEntity("DisambigAppNames");
+    memoryManager.ForgetEntity("UnknownAppName");
             
     // Get list of (possibly) ambiguous apps
-    var appNames = await memoryManager.EntityValueAsListAsync("AppName");
+    var appNames = memoryManager.EntityValueAsList("AppName");
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
             
         if (resolvedAppNames.length == 0) {
-            await memoryManager.RememberEntityAsync("UnknownAppName", appNames[0]);
-            await memoryManager.ForgetEntityAsync("AppName");
+            memoryManager.RememberEntity("UnknownAppName", appNames[0]);
+            memoryManager.ForgetEntity("AppName");
         } else if (resolvedAppNames.length > 1) {
-            await memoryManager.RememberEntitiesAsync("DisambigAppNames", resolvedAppNames);
-            await memoryManager.ForgetEntityAsync("AppName");
+            memoryManager.RememberEntities("DisambigAppNames", resolvedAppNames);
+            memoryManager.ForgetEntity("AppName");
         }
     }
 })
@@ -125,8 +125,8 @@ clVr.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppN
 
         // Clear entities.
         
-        await memoryManager.ForgetEntityAsync("AppName");
-        await memoryManager.ForgetEntityAsync("PlacementLocation");
+        memoryManager.ForgetEntity("AppName");
+        memoryManager.ForgetEntity("PlacementLocation");
 
         return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
 })
