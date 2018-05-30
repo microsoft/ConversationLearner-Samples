@@ -8,6 +8,7 @@ Cognitive Service Labs provides developers with an early look at emerging Cognit
 
 This README explains how to get started; full documentation is available [here](https://docs.microsoft.com/en-us/azure/cognitive-services/Labs/Conversation-Learner/).
 
+
 ## Invitation required
 
 *An invitation is required to access Project Conversation Learner.*
