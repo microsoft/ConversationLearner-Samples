@@ -19,10 +19,6 @@ const server = restify.createServer({
     name: 'BOT Server'
 });
 
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
-
 const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
 
 //==================
@@ -112,4 +108,6 @@ server.post('/api/messages', (req, res) => {
         }
     })
 })
+
+export default server
 

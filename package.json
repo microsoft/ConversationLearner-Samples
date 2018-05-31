@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.119.0",
   "description": "Sample BOTs that use the Conversation Learner",
-  "main": "./lib/app.js",
+  "main": "./lib/server.js",
   "scripts": {
     "build": "tsc",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "nodemon": "nodemon",
     "prestart": "npm run build",
-    "start": "node ./lib/app.js",
-    "startnobuild": "node ./lib/app.js",
+    "start": "node ./lib/server.js",
+    "startnobuild": "node ./lib/server.js",
     "jest": "jest",
     "pretest": "npm run build",
     "test": "jest",
@@ -22,7 +22,7 @@
     "demo-pizza": "node ./lib/demos/demoPizzaOrder.js",
     "demo-storage": "node ./lib/demos/demoStorage.js",
     "demo-vrapp": "node ./lib/demos/demoVRAppLauncher.js",
-    "tutorial-general": "node ./lib/app.js",
+    "tutorial-general": "node ./lib/server.js",
     "tutorial-entity-detection": "node ./lib/demos/tutorialEntityDetectionCallback.js",
     "tutorial-session-callbacks": "node ./lib/demos/tutorialSessionCallbacks.js",
     "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js"
@@ -61,5 +61,8 @@
       "cards"
     ],
     "delay": "500"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
