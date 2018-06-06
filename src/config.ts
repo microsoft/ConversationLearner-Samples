@@ -57,10 +57,10 @@ export const config = convict({
         default: 'http://127.0.0.1:3000',
         env: 'DOL_SERVICE_URL'
     },
-    clAppId: {
+    modelId: {
         format: String,
         default: undefined,
-        env: 'CONVERSATION_LEARNER_APP_ID'
+        env: 'CONVERSATION_LEARNER_MODEL_ID'
     },
     botPort: {
         // Must be any type because when deployed port will be named pipe path instead of number
@@ -94,7 +94,7 @@ export const config = convict({
 config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
-    clAppId: string | undefined
+    modelId: string | undefined
     botPort: any
     redisServer: string | undefined
     redisKey: string | undefined
