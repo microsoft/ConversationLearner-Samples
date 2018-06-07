@@ -20,7 +20,7 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -39,7 +39,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 // Initialize Conversation Learner
 //==================================
 ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+let cl = new ConversationLearner(modelId);
 
 //=========================================================
 // Bots Buisness Logic
@@ -70,10 +70,10 @@ var resolveCity = function(cityFromUser: string) {
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
-    // Clear disambigApps
+    // Clear
     memoryManager.ForgetEntity("CityUnknown");
             
-    // Get list of (possibly) ambiguous apps
+    // Get list of (possibly) ambiguous cities
     var citiesFromUser = memoryManager.EntityValueAsList("City");
     if (citiesFromUser.length > 0) {
         var cityFromUser = citiesFromUser[0]

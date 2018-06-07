@@ -20,7 +20,7 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -60,7 +60,7 @@ let redisStorage = new RedisStorage({ server: config.redisServer, key: config.re
 // Initialize Conversation Learner
 //==================================
 ConversationLearner.Init(clOptions, redisStorage);
-let cl = new ConversationLearner(clAppId);
+let cl = new ConversationLearner(modelId);
 
 
 //=================================
