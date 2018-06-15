@@ -28,10 +28,12 @@
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "0.265.0",
+    "@conversationlearner/sdk": "0.270.0",
+    "@types/request-promise": "^4.1.41",
     "botbuilder": "4.0.0-preview1.2",
     "convict": "^4.0.2",
     "dotenv": "^4.0.0",
+    "request-promise": "^4.2.2",
     "restify": "^6.3.2"
   },
   "devDependencies": {

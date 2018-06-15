@@ -147,7 +147,7 @@ server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
 
         // When running in training UI, ConversationLearner must always have control
-        if (clPizza.inTrainingUI(context.activity)) {
+        if (clPizza.inTrainingUI(context)) {
             let result = await clPizza.recognize(context)
             if (result) {
                 return clPizza.SendResult(result);
