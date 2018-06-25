@@ -8,7 +8,7 @@ import { ICLOptions } from '@conversationlearner/sdk';
 
 const result = dotenv.config()
 if (result.error) {
-    console.warn(`Error loading .env configuration: ${result.error}`)
+    console.warn(`Warning loading .env configuration: "${result.error}"`)
 }
 
 export const config = convict({
