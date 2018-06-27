@@ -73,8 +73,7 @@ let state: any = null
 * @param {string | undefined} data Value set in End_Session Action in UI
 * @returns {Promise<string []| null>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined): Promise<string[] | null> => {
-
+cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined): Promise<string[] | undefined> => {
     await context.sendActivity(`Thanks for shopping.`)
 
     // 1) Do something with returned "data" defined in EndSession action
@@ -93,7 +92,7 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
     }
 
     // 3) Return list of Entities to save for the next time ConversationLearner is started
-    return null
+    return
 })
 
 // Add state middleware

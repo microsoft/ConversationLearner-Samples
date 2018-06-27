@@ -67,7 +67,7 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
 * @param {string | undefined} data Value set in End_Session Action in UI
 * @returns {Promise<string []| null>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined): Promise<string[] | null> => {
+cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined) => {
 
     // 1) Do something with returned "data" defined in EndSession action
     //    It could, for example, specify things such as: Was the task
