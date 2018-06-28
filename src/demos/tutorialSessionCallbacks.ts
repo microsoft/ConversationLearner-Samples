@@ -20,7 +20,7 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -39,7 +39,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 // Initialize Conversation Learner
 //==================================
 ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+let cl = new ConversationLearner(modelId);
 
 //==================================
 // Add Start / End Session callbacks
@@ -47,26 +47,38 @@ let cl = new ConversationLearner(clAppId);
 /**
 * Called at session start.
 * Allows bot to set initial entities before conversation begins
+* @param {BB.TurnContext} context Allows retrieval of Bot State
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Set BotName when session starts
     memoryManager.RememberEntity("BotName", "Botty")
 })
 
 /**
-* Called at session ends.
+* Called when Session ends.
 * If not implemented all entity values will be cleared
-* If implemented, developer responsible for clearing entities
+* If implemented, developer can copy entites from Prev to preserve them for the next session 
+* as well as store them in the Bot State
+* @param {BB.TurnContext} context Allows retrieval of Bot State
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @returns {Promise<void>}
+* @param {string | undefined} data Value set in End_Session Action in UI
+* @returns {Promise<string []| null>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined): Promise<string[] | undefined> => {
 
-    // Clear all entities but name and phone number
-    memoryManager.ForgetAllEntities(["UserName", "UserPhone"]);
+    // 1) Do something with returned "data" defined in EndSession action
+    //    It could, for example, specify things such as: Was the task
+    //    was successfully completed?  Is there a need to escale to a human?
+
+    // 2) Extract values from ConversationLearner memoryManager and store in BotState
+    //    using context object
+  
+    // 3) Return list of Entities to save for the next time ConversationLearner is started
+    //    Persist UserName and UserPhone after session has ended
+    return ["UserName", "UserPhone"]
 })
 
 //=================================

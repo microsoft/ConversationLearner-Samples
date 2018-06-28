@@ -23,7 +23,7 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -42,7 +42,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 // Initialize Conversation Learner
 //==================================
 ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+let cl = new ConversationLearner(modelId);
 
 //=================================
 // Add Entity Logic
@@ -89,14 +89,13 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 // Define any API callbacks
 //=================================
 /** 
-cl.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) => {
-
-    {Your API logic inclusing any service calls}
-        
-    Returns promise of: 
-        (1) undefined -> no message sent to user
-        (2) string -> text message sent to user
-        (3) BB.Activity -> card sent to user
+cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
+    // Your API logic including any service calls
+    
+    // Return promise of: 
+    //    (1) undefined -> no message sent to user
+    //    (2) string -> text message sent to user
+    //    (3) BB.Activity -> card sent to user
 })
 */ 
 

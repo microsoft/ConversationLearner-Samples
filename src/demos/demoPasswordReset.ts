@@ -20,7 +20,7 @@ server.listen(config.botPort, () => {
     console.log(`${server.name} listening to ${server.url}`);
 });
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -39,7 +39,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 // Initialize Conversation Learner
 //==================================
 ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+let cl = new ConversationLearner(modelId);
 
 //=================================
 // Add Entity Logic

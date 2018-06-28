@@ -28,10 +28,11 @@
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "0.261.0",
+    "@conversationlearner/sdk": "0.271.7",
     "botbuilder": "4.0.0-preview1.2",
     "convict": "^4.0.2",
     "dotenv": "^4.0.0",
+    "request-promise": "^4.2.2",
     "restify": "^6.3.2"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "@types/execa": "^0.8.1",
     "@types/express": "^4.11.0",
     "@types/restify": "^5.0.7",
+    "@types/request-promise": "^4.1.41",
     "concurrently": "^3.5.1",
     "execa": "^0.9.0",
     "nodemon": "^1.17.3",
@@ -51,6 +53,7 @@
   },
   "nodemonConfig": {
     "watch": [
+      ".env",
       "lib",
       "cards"
     ],
