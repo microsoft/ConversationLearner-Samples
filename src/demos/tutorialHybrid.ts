@@ -6,9 +6,8 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage, SessionEndState } from '@conversationlearner/sdk'
 import config from '../config'
-import { truncate } from 'fs';
 
 //===================
 // Create Bot server
@@ -73,26 +72,44 @@ let state: any = null
 * @param {string | undefined} data Value set in End_Session Action in UI
 * @returns {Promise<string []| null>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined): Promise<string[] | undefined> => {
-    await context.sendActivity(`Thanks for shopping.`)
-
-    // 1) Do something with returned "data" defined in EndSession action
-    //    It could, for example, specify things such as: Was the task
-    //    was successfully completed?  Is there a need to escale to a human?
-
-
-    // 2) Extract values from ConversationLearner memoryManager and store in BotState
+cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined): Promise<string[] | undefined> => {
+    
     let state = convoState.get(context)
-    if (state) {
-        // Update Bot State to indicate ConversationLearner should no longer be in control
-        state.usingConversationLearner = false
+    if (!state) throw("Bot State no Initialized!")
 
-        // Store ConversationLearner Entity value in Bot State
+    // Update Bot State to indicate ConversationLearner should no longer be in control
+    state.usingConversationLearner = false
+
+    // If END_SESSION action was called
+    if (sessionEndState === SessionEndState.COMPLETED) {
+
+        await context.sendActivity(`Thanks for shopping.`)
+
+        // 1) Do something with returned "data" defined in EndSession action
+        //    It could, for example, specify things such as: Was the task
+        //    was successfully completed?  Is there a need to escale to a human?
+
+        // 2) Extract values from ConversationLearner memoryManager and store in BotState
         state.purchasedItem = memoryManager.PrevEntityValue("purchaseItem")
-    }
 
-    // 3) Return list of Entities to save for the next time ConversationLearner is started
+        // 3) Return list of Entities to save for the next time ConversationLearner is started
+        //    (see tutorialSessionCallback for an example)
+    }
     return
+})
+
+// All transfer of state between the global Bot’s state and Conversation Learner 
+// must happen in the “onSessionStart” and “onSessionEnd” callbacks.  This is to
+// ensure that Conversation Learner has the context that it needs to choose the which Actions to select
+cl.AddAPICallback("BadCallback", async (memoryManager: ClientMemoryManager) => {
+
+    // WRONG:
+    // Never transfer state in an API callback 
+    // convoState.someVar = memoryManager.EntityValue("someEntity")
+    
+    // WRONG:
+    // Never transfer state in an API callback 
+    // memoryManager.RememberEntity("someEntity", convoState.someVal)
 })
 
 // Add state middleware
