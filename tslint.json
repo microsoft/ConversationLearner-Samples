@@ -16,6 +16,7 @@
         "no-string-based-set-immediate": true,
         "no-string-based-set-interval": true,
         "no-string-based-set-timeout": true,
+        "no-string-based-user-suggestion": true,
         "no-eval": true
     },
     "rulesDirectory": [
