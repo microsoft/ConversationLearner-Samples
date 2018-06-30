@@ -2,11 +2,9 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.  
  * Licensed under the MIT License.
  */
-import * as path from 'path'
 import * as restify from 'restify'
-import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, RedisStorage, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, RedisStorage } from '@conversationlearner/sdk'
 import config from '../config'
 
 //===================

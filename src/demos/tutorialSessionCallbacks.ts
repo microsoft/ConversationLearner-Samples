@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as restify from 'restify'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, SessionEndState, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
 
 //===================
@@ -67,14 +67,14 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
 * @param {string | undefined} data Value set in End_Session Action in UI
 * @returns {Promise<string []| null>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, data: string | undefined): Promise<string[] | undefined> => {
+cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined): Promise<string[] | undefined> => {
 
     // 1) Do something with returned "data" defined in EndSession action
     //    It could, for example, specify things such as: Was the task
     //    was successfully completed?  Is there a need to escale to a human?
 
     // 2) Extract values from ConversationLearner memoryManager and store in BotState
-    //    using context object
+    //    using context object (see tutorialHybrid for an example)
   
     // 3) Return list of Entities to save for the next time ConversationLearner is started
     //    Persist UserName and UserPhone after session has ended
