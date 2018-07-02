@@ -4,6 +4,7 @@
  */
 import * as path from 'path'
 import * as express from 'express'
+import * as directline from 'offline-directline'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
@@ -14,9 +15,26 @@ console.log(`Config: `, JSON.stringify(config, null, '  '))
 // Create Bot server
 //===================
 const server = express()
-const listener = server.listen(config.botPort, () => {
-    console.log(`BOT server listening to ${listener.address().port}`)
-})
+
+// Should we start DirectOffline server (for Editing UI)
+if (config.DOL_START) {
+    const dolServiceUrl = `http://127.0.0.1:${config.botPort}`
+    const dolBotUrl = `http://127.0.0.1:${config.botPort}/api/messages`
+
+    console.log(`Starting DOL (Direct Offline)`)
+    console.log(`- Bot Url: ${dolBotUrl}`)
+
+    // Don't require conversation initialization. This allows
+    // UI to continue conversation even after bot restart
+    const conversationInitRequired = false
+    // TODO: Direct Line initialize method implicitly starts listening, submit PR to make this manual
+    directline.initializeRoutes(server, dolServiceUrl, dolBotUrl, conversationInitRequired, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -31,13 +49,15 @@ const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPass
 // Initialize ConversationLearner using file storage.  
 // Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(modelId);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+server.use('/sdk', sdkRouter)
+
+const cl = new ConversationLearner(modelId)
 
 //=================================
 // Add Entity Logic
@@ -99,7 +119,7 @@ cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1
 //=================================
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
-        let result = await cl.recognize(context)
+        const result = await cl.recognize(context)
         
         if (result) {
             cl.SendResult(result);

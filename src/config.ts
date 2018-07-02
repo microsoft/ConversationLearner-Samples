@@ -32,11 +32,6 @@ export const config = convict({
         default: "https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/",
         env: 'CONVERSATION_LEARNER_SERVICE_URI'
     },
-    CONVERSATION_LEARNER_SDK_PORT: {
-        format: 'port',
-        default: 5000,
-        env: 'CONVERSATION_LEARNER_SDK_PORT'
-    },
     CONVERSATION_LEARNER_UI_PORT: {
         format: 'port',
         default: 5050,
@@ -46,16 +41,6 @@ export const config = convict({
         format: Boolean,
         default: true,
         env: 'DOL_START'
-    },
-    DOL_BOT_URL: {
-        format: 'url',
-        default: 'http://127.0.0.1:3978/api/messages',
-        env: 'DOL_BOT_URL'
-    },
-    DOL_SERVICE_URL: {
-        format: 'url',
-        default: 'http://127.0.0.1:3000',
-        env: 'DOL_SERVICE_URL'
     },
     modelId: {
         format: String,
@@ -95,7 +80,6 @@ config.validate({ allowed: 'strict' })
 
 export interface ICLSampleConfig extends ICLOptions {
     modelId: string | undefined
-    botPort: any
     redisServer: string | undefined
     redisKey: string | undefined
     bfAppId: string | undefined
