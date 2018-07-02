@@ -8,8 +8,6 @@ import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
 
-console.log(`Config: `, JSON.stringify(config, null, '  '))
-
 //===================
 // Create Bot server
 //===================
