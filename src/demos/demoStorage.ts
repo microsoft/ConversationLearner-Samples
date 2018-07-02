@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.  
  * Licensed under the MIT License.
  */
-import * as restify from 'restify'
+import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, RedisStorage } from '@conversationlearner/sdk'
 import config from '../config'
@@ -10,13 +10,10 @@ import config from '../config'
 //===================
 // Create Bot server
 //===================
-const server = restify.createServer({
-    name: 'BOT Server'
-});
-
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
+const server = express()
+const listener = server.listen(config.botPort, () => {
+    console.log(`BOT server listening to ${listener.address().port}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
