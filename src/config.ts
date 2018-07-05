@@ -37,11 +37,6 @@ export const config = convict({
         default: 5050,
         env: 'CONVERSATION_LEARNER_UI_PORT',
     },
-    DOL_START: {
-        format: Boolean,
-        default: true,
-        env: 'DOL_START'
-    },
     modelId: {
         format: String,
         default: undefined,

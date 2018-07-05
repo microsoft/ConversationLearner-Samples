@@ -4,10 +4,10 @@
  */
 import * as path from 'path'
 import * as express from 'express'
-import * as directline from 'offline-directline'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
+import startDol from './dol'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 
@@ -16,19 +16,9 @@ console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 //===================
 const server = express()
 
-// Should we start DirectOffline server (for Editing UI)
-if (config.DOL_START) {
-    const dolServiceUrl = `http://127.0.0.1:${config.botPort}`
-    const dolBotUrl = `http://127.0.0.1:${config.botPort}/api/messages`
-
-    console.log(`Starting DOL (Direct Offline)`)
-    console.log(`- Bot Url: ${dolBotUrl}`)
-
-    // Don't require conversation initialization. This allows
-    // UI to continue conversation even after bot restart
-    const conversationInitRequired = false
-    // TODO: Direct Line initialize method implicitly starts listening, submit PR to make this manual
-    directline.initializeRoutes(server, dolServiceUrl, dolBotUrl, conversationInitRequired, config.botPort)
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
 }
 else {
     const listener = server.listen(config.botPort, () => {
