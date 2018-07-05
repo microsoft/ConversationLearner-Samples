@@ -45,7 +45,9 @@ const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 // Initialize Conversation Learner
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
-server.use('/sdk', sdkRouter)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
 
 const cl = new ConversationLearner(modelId)
 

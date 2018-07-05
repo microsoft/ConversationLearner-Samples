@@ -41,7 +41,10 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
 
 //=================================
 // Add Pizza functions

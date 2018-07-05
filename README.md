@@ -153,7 +153,7 @@ Environment variable | Setting
 --- | ---
 CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
 CONVERSATION_LEARNER_MODEL_ID    | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
-LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app, obtained from https://www.luis.ai
+LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app. Obtained from https://www.luis.ai
 MICROSOFT_APP_ID                 | Microsoft Application Id
 MICROSOFT_APP_PASSWORD           | Microsoft Application Password
 

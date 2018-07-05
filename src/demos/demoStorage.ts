@@ -62,7 +62,10 @@ let redisStorage = new RedisStorage({ server: config.redisServer, key: config.re
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, redisStorage);
+const sdkRouter = ConversationLearner.Init(clOptions, redisStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
 let cl = new ConversationLearner(modelId);
 
 
