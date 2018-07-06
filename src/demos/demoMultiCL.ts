@@ -7,14 +7,22 @@ import * as express from 'express'
 import { BotFrameworkAdapter, ConversationState } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
+import startDol from '../dol'
 
 //===================
 // Create Bot server
 //===================
 const server = express()
-const listener = server.listen(config.botPort, () => {
-    console.log(`BOT server listening to ${listener.address().port}`)
-})
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -33,7 +41,10 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
 
 //=================================
 // Add Pizza functions

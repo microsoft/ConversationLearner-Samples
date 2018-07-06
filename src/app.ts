@@ -7,16 +7,24 @@ import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
+import startDol from './dol'
 
-console.log(`Config: `, JSON.stringify(config, null, '  '))
+console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 
 //===================
 // Create Bot server
 //===================
 const server = express()
-const listener = server.listen(config.botPort, () => {
-    console.log(`BOT server listening to ${listener.address().port}`)
-})
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -31,13 +39,17 @@ const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPass
 // Initialize ConversationLearner using file storage.  
 // Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(modelId);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
+
+const cl = new ConversationLearner(modelId)
 
 //=================================
 // Add Entity Logic
@@ -99,7 +111,7 @@ cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1
 //=================================
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
-        let result = await cl.recognize(context)
+        const result = await cl.recognize(context)
         
         if (result) {
             cl.SendResult(result);
