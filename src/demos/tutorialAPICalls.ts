@@ -3,24 +3,30 @@
  * Licensed under the MIT License.
  */
 import * as path from 'path'
-import * as restify from 'restify'
-import * as BB from 'botbuilder'
+import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
+import * as request from 'request'
+import * as requestpromise from 'request-promise'
+import startDol from '../dol'
 
 //===================
 // Create Bot server
 //===================
-const server = restify.createServer({
-    name: 'BOT Server'
-});
+const server = express()
 
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -38,8 +44,11 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
+let cl = new ConversationLearner(modelId);
 
 //=========================================================
 // Bots Buisness Logic
@@ -90,6 +99,33 @@ cl.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) =>
     memoryManager.ForgetEntity("number");
     return "Let's do another.";
 })
+
+// WRONG way to do an request.  
+cl.AddAPICallback("RandomMessage-Callback", async (memoryManager : ClientMemoryManager) =>
+{
+    var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+
+    // WRONG
+    // RememberEntity call will happen after the APICallback has returned
+    request(options, (error:any, response:any, body:any) => {
+            memoryManager.RememberEntity("RandomMessage", response.body);   // BAD
+        } 
+    )
+
+});
+
+// CORRECT way to do a request
+cl.AddAPICallback("RandomMessage-Await", async (memoryManager : ClientMemoryManager) =>
+{
+
+    var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+
+    // CORRECT
+    // RememberEntity called before APICallback has returned
+    let response = await requestpromise(options)
+    memoryManager.RememberEntity("RandomMessage", response.body);
+
+});
 
 //=================================
 // Handle Incoming Messages

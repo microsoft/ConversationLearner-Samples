@@ -90,6 +90,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "tutorialHybrid",
+            "program": "${workspaceFolder}/lib/demos/tutorialHybrid.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "demoVRAppLauncher",
             "program": "${workspaceFolder}/lib/demos/demoVRAppLauncher.js",
             "outFiles": [
