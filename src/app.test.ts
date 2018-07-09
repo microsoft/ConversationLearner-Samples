@@ -8,9 +8,13 @@ describe('Test bot server', () => {
         botServer = supertest(app)
     })
 
-    it('given request to unknown route should return 404', async (done) => {
-        const response = await botServer.get('/')
+    it('given request to ping route should return 200', async () => {
+        const response = await botServer.get('/sdk')
+        expect(response.status).toBe(200)
+    })
+
+    it('given request to unknown route should return 404', async () => {
+        const response = await botServer.get('/unknown')
         expect(response.status).toBe(404)
-        done()
     })
 })

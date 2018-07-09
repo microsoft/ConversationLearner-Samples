@@ -7,7 +7,6 @@ import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
-import startDol from './dol'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 
@@ -16,15 +15,6 @@ console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 //===================
 const server = express()
 
-const isDevelopment = process.env.NODE_ENV === 'development'
-if (isDevelopment) {
-    startDol(server, config.botPort)
-}
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
@@ -44,7 +34,9 @@ const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 // Initialize Conversation Learner
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
-if (isDevelopment) {
+
+const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
+if (includeSdk) {
     server.use('/sdk', sdkRouter)
 }
 
