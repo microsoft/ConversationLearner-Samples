@@ -8,7 +8,7 @@ describe('Test bot server', () => {
         botServer = supertest(app)
     })
 
-    it('given request to ping route should return 200', async () => {
+    it('given request to known (sdk) route should return 200', async () => {
         const response = await botServer.get('/sdk')
         expect(response.status).toBe(200)
     })
