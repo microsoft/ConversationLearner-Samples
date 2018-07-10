@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Empty Bot",
-            "program": "${workspaceFolder}/lib/app.js",
+            "program": "${workspaceFolder}/lib/server.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -21,7 +21,7 @@
             "type": "node",
             "request": "launch",
             "name": "tutorialGeneral",
-            "program": "${workspaceFolder}/lib/app.js",
+            "program": "${workspaceFolder}/lib/server.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -139,7 +139,7 @@
             "type": "node",
             "request": "launch",
             "name": "Empty App with Fiddler",
-            "program": "${workspaceFolder}/lib/app.js",
+            "program": "${workspaceFolder}/lib/server.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
