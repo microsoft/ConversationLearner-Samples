@@ -9,6 +9,5 @@ before_build:
 build_script:
   - npm run build
 
-# test_script:
-  # run tests
-  # - npm test
+test_script:
+  - npm run test
