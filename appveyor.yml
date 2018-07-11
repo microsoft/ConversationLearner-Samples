@@ -1,3 +1,10 @@
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
+cache:
+  - '%AppData%\npm-cache -> appveyor.yml'
+  - '%AppData%\..\Local\Cypress\Cache -> package-lock.json'
+
 install:
   - npm install
 
@@ -9,6 +16,5 @@ before_build:
 build_script:
   - npm run build
 
-# test_script:
-  # run tests
-  # - npm test
+test_script:
+  - npm run test

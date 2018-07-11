@@ -2,28 +2,20 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.  
  * Licensed under the MIT License.
  */
-import * as fs from 'fs'
 import * as path from 'path'
-import * as restify from 'restify'
-import * as BB from 'botbuilder'
+import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ICLOptions, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from './config'
 
-console.log(`Config: `, JSON.stringify(config, null, '  '))
+console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 
 //===================
 // Create Bot server
 //===================
-const server = restify.createServer({
-    name: 'BOT Server'
-});
+const server = express()
 
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
-
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -36,13 +28,19 @@ const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPass
 // Initialize ConversationLearner using file storage.  
 // Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+
+const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
+if (includeSdk) {
+    server.use('/sdk', sdkRouter)
+}
+
+const cl = new ConversationLearner(modelId)
 
 //=================================
 // Add Entity Logic
@@ -89,14 +87,13 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 // Define any API callbacks
 //=================================
 /** 
-cl.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {arg1}: string, {arg2}: string, ...) => {
-
-    {Your API logic inclusing any service calls}
-        
-    Returns promise of: 
-        (1) undefined -> no message sent to user
-        (2) string -> text message sent to user
-        (3) BB.Activity -> card sent to user
+cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
+    // Your API logic including any service calls
+    
+    // Return promise of: 
+    //    (1) undefined -> no message sent to user
+    //    (2) string -> text message sent to user
+    //    (3) BB.Activity -> card sent to user
 })
 */ 
 
@@ -105,11 +102,13 @@ cl.AddAPICallback("{Name of API}", async (memoryManager: ClientMemoryManager, {a
 //=================================
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
-        let result = await cl.recognize(context)
+        const result = await cl.recognize(context)
         
         if (result) {
             cl.SendResult(result);
         }
     })
 })
+
+export default server
 

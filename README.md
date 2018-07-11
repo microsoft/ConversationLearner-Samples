@@ -81,7 +81,7 @@ You're now using Conversation Learner and can create and teach a Conversation Le
 
 The instructions above started the generic empty bot.  To run a tutorial or demo bot instead:
 
-1. If you have the Conversation Learner web UI open, return to the list of apps at http://localhost:5050/home.
+1. If you have the Conversation Learner web UI open, return to the list of models at http://localhost:5050/home.
     
 2. If another bot is running (like `npm start` or `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
@@ -108,7 +108,7 @@ Source files for the demos are in `my-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
 
-1. If you have the Conversation Learner web UI open, return to the list of apps at http://localhost:5050/home.
+1. If you have the Conversation Learner web UI open, return to the list of models at http://localhost:5050/home.
     
 2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
 
@@ -152,8 +152,8 @@ Ensure that these variables are set when deploying your bot:
 Environment variable | Setting
 --- | ---
 CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
-CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
-LUIS_AUTHORING_KEY      		     | LUIS authoring key for this app, obtained from https://www.luis.ai
+CONVERSATION_LEARNER_MODEL_ID    | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
+LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app. Obtained from https://www.luis.ai
 MICROSOFT_APP_ID                 | Microsoft Application Id
 MICROSOFT_APP_PASSWORD           | Microsoft Application Password
 

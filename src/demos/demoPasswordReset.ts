@@ -3,24 +3,28 @@
  * Licensed under the MIT License.
  */
 import * as path from 'path'
-import * as restify from 'restify'
-import * as BB from 'botbuilder'
+import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
+import startDol from '../dol'
 
 //===================
 // Create Bot server
 //===================
-const server = restify.createServer({
-    name: 'BOT Server'
-});
+const server = express()
 
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -38,8 +42,11 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
+let cl = new ConversationLearner(modelId);
 
 //=================================
 // Add Entity Logic
