@@ -78,7 +78,7 @@ let state: any = null
 * @param {BB.TurnContext} context Allows retrieval of Bot State
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @param {string | undefined} data Value set in End_Session Action in UI
-* @returns {Promise<string []| null>} List of Entity values to preserve after session End
+* @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
 */
 cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined): Promise<string[] | undefined> => {
     

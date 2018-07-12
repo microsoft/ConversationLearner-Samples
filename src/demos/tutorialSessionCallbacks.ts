@@ -66,17 +66,16 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
 })
 
 /**
-* Called when Session ends.
-* If not implemented all entity values will be cleared
-* If implemented, developer can copy entites from Prev to preserve them for the next session 
-* as well as store them in the Bot State
-* @param {BB.TurnContext} context Allows retrieval of Bot State
-* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @param {string | undefined} data Value set in End_Session Action in UI
-* @returns {Promise<string []| null>} List of Entity values to preserve after session End
-*/
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined): Promise<string[] | undefined> => {
-
+ * Called when Session ends.
+ * If not implemented all entity values will be cleared.
+ * If implemented, developer return a list of entities to preserve for the next session
+ * as well as store them in the Bot State
+ * @param {BB.TurnContext} context Allows retrieval of Bot State
+ * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
+ * @param {SessionEndState} sessionEndState Indicates whether END_SESSION was called on the running Session
+ * @param {string | undefined} data Value set in End_Session Action in UI
+ * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
+ */
     // 1) Do something with returned "data" defined in EndSession action
     //    It could, for example, specify things such as: Was the task
     //    was successfully completed?  Is there a need to escale to a human?
