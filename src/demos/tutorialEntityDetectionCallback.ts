@@ -76,7 +76,6 @@ var resolveCity = function(cityFromUser: string) {
 * @returns {Promise<void>}
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
-
     // Clear
     memoryManager.ForgetEntity("CityUnknown");
             
