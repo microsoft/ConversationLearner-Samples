@@ -60,7 +60,6 @@ let cl = new ConversationLearner(modelId);
 * @returns {Promise<void>}
 */
 cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
-
     // Initialize ConversationLearner Entity from Bot State
     let state = convoState.get(context)
     if (state && state.storeIsOpen) {
@@ -82,7 +81,7 @@ let state: any = null
 */
 cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
     let state = convoState.get(context)
-    if (!state) throw("Bot State no Initialized!")
+    if (!state) throw("Bot State not Initialized!")
 
     // Update Bot State to indicate ConversationLearner should no longer be in control
     state.usingConversationLearner = false

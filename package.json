@@ -25,7 +25,8 @@
     "tutorial-general": "node ./lib/server.js",
     "tutorial-entity-detection": "node ./lib/demos/tutorialEntityDetectionCallback.js",
     "tutorial-session-callbacks": "node ./lib/demos/tutorialSessionCallbacks.js",
-    "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js"
+    "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js",
+    "tutorial-hybrid": "node ./lib/demos/tutorialHybrid.js"
   },
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
