@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as express from 'express'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, SessionEndState, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
 import startDol from '../dol'
 
@@ -59,27 +59,26 @@ let cl = new ConversationLearner(modelId);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
-
+cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager) => {
     // Set BotName when session starts
     memoryManager.RememberEntity("BotName", "Botty")
 })
 
 /**
-* Called when Session ends.
-* If not implemented all entity values will be cleared
-* If implemented, developer can copy entites from Prev to preserve them for the next session 
-* as well as store them in the Bot State
-* @param {BB.TurnContext} context Allows retrieval of Bot State
-* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @param {string | undefined} data Value set in End_Session Action in UI
-* @returns {Promise<string []| null>} List of Entity values to preserve after session End
-*/
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined): Promise<string[] | undefined> => {
-
+ * Called when Session ends.
+ * If not implemented all entity values will be cleared.
+ * If implemented, developer return a list of entities to preserve for the next session
+ * as well as store them in the Bot State
+ * @param {BB.TurnContext} context Allows retrieval of Bot State
+ * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
+ * @param {SessionEndState} sessionEndState Indicates whether END_SESSION was called on the running Session
+ * @param {string | undefined} data Value set in End_Session Action in UI
+ * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
+ */
+cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) => {
     // 1) Do something with returned "data" defined in EndSession action
     //    It could, for example, specify things such as: Was the task
-    //    was successfully completed?  Is there a need to escale to a human?
+    //    was successfully completed?  Is there a need to escalate to a human?
 
     // 2) Extract values from ConversationLearner memoryManager and store in BotState
     //    using context object (see tutorialHybrid for an example)

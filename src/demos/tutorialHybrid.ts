@@ -78,10 +78,9 @@ let state: any = null
 * @param {BB.TurnContext} context Allows retrieval of Bot State
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @param {string | undefined} data Value set in End_Session Action in UI
-* @returns {Promise<string []| null>} List of Entity values to preserve after session End
+* @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined): Promise<string[] | undefined> => {
-    
+cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
     let state = convoState.get(context)
     if (!state) throw("Bot State no Initialized!")
 
@@ -103,7 +102,6 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
         // 3) Return list of Entities to save for the next time ConversationLearner is started
         //    (see tutorialSessionCallback for an example)
     }
-    return
 })
 
 // All transfer of state between the global Bot’s state and Conversation Learner 

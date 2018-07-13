@@ -40,7 +40,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
 
 1. Install and build:
 
-    ```bash    
+    ```bash
     git clone https://github.com/Microsoft/ConversationLearner-Samples my-bot-01
     cd my-bot-01
     npm install
@@ -54,6 +54,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
    Create a file called `.env` in the directory `my-bot-01`.  The contents of the file should be:
 
    ```
+   NODE_ENV=development
    LUIS_AUTHORING_KEY=<your LUIS authoring key>
    ```
 
@@ -116,7 +117,7 @@ Source files for the demos are in `my-bot-01/src/demos`
 
 4. Rebuild and re-start bot:
 
-    ```bash    
+    ```bash
     npm run build
     npm start
     ```
@@ -152,8 +153,8 @@ Ensure that these variables are set when deploying your bot:
 Environment variable | Setting
 --- | ---
 CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
-CONVERSATION_LEARNER_MODEL_ID    | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
-LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app. Obtained from https://www.luis.ai
+CONVERSATION_LEARNER_MODEL_ID    | Model Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
+LUIS_AUTHORING_KEY               | LUIS authoring key for this app. Obtained from https://www.luis.ai
 MICROSOFT_APP_ID                 | Microsoft Application Id
 MICROSOFT_APP_PASSWORD           | Microsoft Application Password
 
