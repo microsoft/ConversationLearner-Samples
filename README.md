@@ -146,17 +146,67 @@ This uses the standard configuration, which lets you run your bot locally, and s
 
 ## Publishing your bot
 
-Publish your Conversation Learner bot similar to the same way you would publish any other bot.  At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels.  The docs include detailed instructions on [deploying to localhost](https://docs.microsoft.com/en-us/azure/cognitive-services/labs/conversation-learner/deploy-to-bf#option-1-deploying-a-conversation-learner-bot-to-run-locally), and [deploying to Azure](https://docs.microsoft.com/en-us/azure/cognitive-services/labs/conversation-learner/deploy-to-bf#option-2-deploy-to-azure).
+Publish your Conversation Learner bot similar to the way you would publish any other bot. At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels. Below we cover steps for deploying your bot to Azure and create a Bot Framework Channel Registration for it.
 
-Ensure that these variables are set when deploying your bot:
+### Deploy Conversation Learner bot to Azure
 
+Your Conversation Learner bot is a Node.js app and deploying it to Azure is not different than deploying a Node.js application or Node.js [Bot Framework](https://github.com/microsoft/botbuilder-js) bot. You can read more about deploying a Node.js web application to Azure [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-nodejs). 
+
+Below we cover step-by-step instructions to deploy your bot to Azure in two different ways: 1) ZipDeploy using [KuduEngine](https://github.com/projectkudu/kudu) 2) Deploy from local git repository
+
+#### ZipDeploy using [KuduEngine](https://github.com/projectkudu/kudu)
+
+1. Login to the [Azure portal](https://portal.azure.com)
+2. Create a new ["Web App"](https://azure.microsoft.com/en-us/services/app-service/web/) using Azure app services
+    1. Give your app/bot a name
+    2. Select/Create a resource group for your app
+    3. Use "Windows" as Web application's OS
+3. Once the step above is successful, you will end up with an empty web application deployed for you under Azure app services. Select the app service and navigate to its dashboard.
+4. Set the following Application Settings for your app service
+    1. Click on "Application Settings" in the navigation pane
+    2. Scroll down to the "Application Settings" section
+    3. Add these settings:
+        APP SETTING NAME | VALUE
+        --- | --- 
+        CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app>
+        LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app
+        SCM_DO_BUILD_DURING_DEPLOYMENT | true
+    4. Click on "Save" near the top of the page
+5. From the app service dashboard's navigation pane select the ``advanced tools`` and navigate to Kudu website for your app service. The url for Kudu tools of your web application is `https://<your_app_name>.scm.azurewebsites.net`
+6. Zip local folder of your Conversation Learner bot. You don't need to include the following foloders/files in the zip file: 1) Any folder/file starting with ``.``, e.g. _.git, .github_, 2) node_modules folder. (`SCM_DO_BUILD_DURING_DEPLOYMENT` application settings will configure Kudu deployment engine to run `npm install` as part of deployment and install all the necessary node dependencies based on package.json. You can read more about deploy from a zip file [here](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file).)
+7. Navigate to `https://<your_app_name>.scm.azurewebsites.net/ZipDeploy` and drop the zip file from previous step to the file explorer area in the website
+8. After a successful deployment, you should be able to send messages to your deployed bot messaging endpoint: `https://<your_app_name>.azurewebsites.net/api/messages` using [bot framework emulator](https://github.com/Microsoft/BotFramework-Emulator)
+
+#### Deploy from local git repository
+
+Follow the steps 1 to 4 above to create a `web application` on Azure and then follow the steps bellow: 
+
+1. Go to `Deployment Center` of your web application and configure deployment with `Local Git` as the source control and `App Service Kudu build server` as the build provider. Once the deployment from `Local Git` is configured successfully, you will have a git repository with the following endpoint for your app service: `https://<your_app_name>.scm.azurewebsites.net/<your_app_name>.git`. Make sure to configure the deployment credentials for your web application, so you can push to it from your local repository in the next steps
+2. add the azure remote to your local git repository: ``git remote add azure https://<your_app_name>.scm.azurewebsites.net/<your_app_name>.git``
+3. Push your local repository to azure remote: ``git push azure <your_local_branch>:master`` (If you are using typescript for development, make sure to commit the build artifacts, i.e. *.js files, to your local repository.)
+4. After a successful deployment, you should be able to send messages to your deployed bot endpoint: `https://<your_app_name>.azurewebsites.net/api/messages` using [bot framework emulator](https://github.com/Microsoft/BotFramework-Emulator)
+
+### Connect your Conversation Learner bot to a Bot Framework channel
+
+After successful deployment of your Conversation Learner bot as an Azure app service, you can follow these steps to connect it to a Bot Framework channel: 
+
+1. Select `Bot Services` from azure portal services and add a new `Bot Service`
+2. Select `Bot Channel Registration` from the available `Bot Service` options
+3. Fill out the necessary fields for your channel registration, e.g. `bot name`. For the messaging endpoint provide the url from the successful bot deployment you have done by following the steps from previous section. The messaging endpoint will be in the following format: `https://<your_app_name>.azurewebsites.net/api/messages`. Also you need to create a Microsoft App Id and Microsoft App Password for your bot. Preserve the Microsoft app id and password that you are creating for your channel registration.
+4. Set the following `Application Settings` for your web application:
+    APP SETTING NAME | VALUE
+    ------|---
+    MicrosoftAppId | Application Id GUID from previous step
+    MicrosoftAppPassword | Application password from previous step
+5. You should be able to test your bot using Bot Framework web chat
+
+__Note:__ Ensure that these variables are set when deploying your bot:
 Environment variable | Setting
 --- | ---
-CONVERSATION_LEARNER_SERVICE_URI | https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/
 CONVERSATION_LEARNER_MODEL_ID    | Model Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
 LUIS_AUTHORING_KEY               | LUIS authoring key for this app. Obtained from https://www.luis.ai
-MICROSOFT_APP_ID                 | Microsoft Application Id
-MICROSOFT_APP_PASSWORD           | Microsoft Application Password
+MicrosoftAppId                 | Microsoft Application Id
+MicrosoftAppPassword           | Microsoft Application Password
 
 Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
