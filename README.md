@@ -166,11 +166,13 @@ Below we cover step-by-step instructions to deploy your bot to Azure in two diff
     1. Click on "Application Settings" in the navigation pane
     2. Scroll down to the "Application Settings" section
     3. Add these settings:
+        
         APP SETTING NAME | VALUE
         --- | --- 
         CONVERSATION_LEARNER_APP_ID      | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app>
         LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app
         SCM_DO_BUILD_DURING_DEPLOYMENT | true
+        
     4. Click on "Save" near the top of the page
 5. From the app service dashboard's navigation pane select the ``advanced tools`` and navigate to Kudu website for your app service. The url for Kudu tools of your web application is `https://<your_app_name>.scm.azurewebsites.net`
 6. Zip local folder of your Conversation Learner bot. You don't need to include the following foloders/files in the zip file: 1) Any folder/file starting with ``.``, e.g. _.git, .github_, 2) node_modules folder. (`SCM_DO_BUILD_DURING_DEPLOYMENT` application settings will configure Kudu deployment engine to run `npm install` as part of deployment and install all the necessary node dependencies based on package.json. You can read more about deploy from a zip file [here](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file).)
@@ -194,13 +196,16 @@ After successful deployment of your Conversation Learner bot as an Azure app ser
 2. Select `Bot Channel Registration` from the available `Bot Service` options
 3. Fill out the necessary fields for your channel registration, e.g. `bot name`. For the messaging endpoint provide the url from the successful bot deployment you have done by following the steps from previous section. The messaging endpoint will be in the following format: `https://<your_app_name>.azurewebsites.net/api/messages`. Also you need to create a Microsoft App Id and Microsoft App Password for your bot. Preserve the Microsoft app id and password that you are creating for your channel registration.
 4. Set the following `Application Settings` for your web application:
+    
     APP SETTING NAME | VALUE
     ------|---
     MicrosoftAppId | Application Id GUID from previous step
     MicrosoftAppPassword | Application password from previous step
+    
 5. You should be able to test your bot using Bot Framework web chat
 
 __Note:__ Ensure that these variables are set when deploying your bot:
+
 Environment variable | Setting
 --- | ---
 CONVERSATION_LEARNER_MODEL_ID    | Model Id GUID, obtained from the Conversation Learner UI under the "settings" for the app
