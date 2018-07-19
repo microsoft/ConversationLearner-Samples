@@ -3,24 +3,28 @@
  * Licensed under the MIT License.
  */
 import * as path from 'path'
-import * as restify from 'restify'
-import * as BB from 'botbuilder'
+import * as express from 'express'
 import { BotFrameworkAdapter, ConversationState } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
+import startDol from '../dol'
 
 //===================
 // Create Bot server
 //===================
-const server = restify.createServer({
-    name: 'BOT Server'
-});
+const server = express()
 
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -37,7 +41,10 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
 
 //=================================
 // Add Pizza functions
@@ -147,7 +154,7 @@ server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
 
         // When running in training UI, ConversationLearner must always have control
-        if (clPizza.inTrainingUI(context.activity)) {
+        if (clPizza.inTrainingUI(context)) {
             let result = await clPizza.recognize(context)
             if (result) {
                 return clPizza.SendResult(result);

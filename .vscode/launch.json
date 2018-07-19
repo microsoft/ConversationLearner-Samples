@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Empty Bot",
-            "program": "${workspaceFolder}/lib/app.js",
+            "program": "${workspaceFolder}/lib/server.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -21,7 +21,7 @@
             "type": "node",
             "request": "launch",
             "name": "tutorialGeneral",
-            "program": "${workspaceFolder}/lib/app.js",
+            "program": "${workspaceFolder}/lib/server.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
@@ -90,6 +90,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "tutorialHybrid",
+            "program": "${workspaceFolder}/lib/demos/tutorialHybrid.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "demoVRAppLauncher",
             "program": "${workspaceFolder}/lib/demos/demoVRAppLauncher.js",
             "outFiles": [
@@ -127,7 +139,7 @@
             "type": "node",
             "request": "launch",
             "name": "Empty App with Fiddler",
-            "program": "${workspaceFolder}/lib/app.js",
+            "program": "${workspaceFolder}/lib/server.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],

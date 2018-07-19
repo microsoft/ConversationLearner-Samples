@@ -3,15 +3,17 @@
   "private": true,
   "version": "0.119.0",
   "description": "Sample BOTs that use the Conversation Learner",
-  "main": "./lib/app.js",
+  "main": "./lib/server.js",
   "scripts": {
     "build": "tsc",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "nodemon": "nodemon",
     "prestart": "npm run build",
-    "start": "node ./lib/app.js",
-    "startnobuild": "node ./lib/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./lib/server.js",
+    "startnobuild": "node ./lib/server.js",
+    "jest": "jest",
+    "pretest": "npm run build",
+    "test": "jest",
     "tsc": "tsc",
     "ui": "node ./lib/ui.js",
     "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js",
@@ -20,28 +22,35 @@
     "demo-pizza": "node ./lib/demos/demoPizzaOrder.js",
     "demo-storage": "node ./lib/demos/demoStorage.js",
     "demo-vrapp": "node ./lib/demos/demoVRAppLauncher.js",
-    "tutorial-general": "node ./lib/app.js",
+    "tutorial-general": "node ./lib/server.js",
     "tutorial-entity-detection": "node ./lib/demos/tutorialEntityDetectionCallback.js",
     "tutorial-session-callbacks": "node ./lib/demos/tutorialSessionCallbacks.js",
-    "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js"
+    "tutorial-api-calls": "node ./lib/demos/tutorialAPICalls.js",
+    "tutorial-hybrid": "node ./lib/demos/tutorialHybrid.js"
   },
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "0.261.0",
+    "@conversationlearner/sdk": "0.275.7",
     "botbuilder": "4.0.0-preview1.2",
     "convict": "^4.0.2",
     "dotenv": "^4.0.0",
-    "restify": "^6.3.2"
+    "express": "4.16.3",
+    "offline-directline": "1.2.4",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "@types/convict": "^4.1.1",
     "@types/execa": "^0.8.1",
-    "@types/express": "^4.11.0",
-    "@types/restify": "^5.0.7",
+    "@types/express": "4.16.0",
+    "@types/request-promise": "^4.1.41",
+    "@types/jest": "22.2.3",
+    "@types/supertest": "2.0.4",
     "concurrently": "^3.5.1",
     "execa": "^0.9.0",
+    "jest": "23.1.0",
     "nodemon": "^1.17.3",
+    "supertest": "3.1.0",
     "tslint": "^5.8.0",
     "tslint-microsoft-contrib": "^5.0.3",
     "typescript": "^2.6.2"
@@ -51,9 +60,13 @@
   },
   "nodemonConfig": {
     "watch": [
+      ".env",
       "lib",
       "cards"
     ],
     "delay": "500"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

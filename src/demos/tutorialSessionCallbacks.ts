@@ -3,24 +3,29 @@
  * Licensed under the MIT License.
  */
 import * as path from 'path'
-import * as restify from 'restify'
+import * as express from 'express'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, models, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
+import startDol from '../dol'
 
 //===================
 // Create Bot server
 //===================
-const server = restify.createServer({
-    name: 'BOT Server'
-});
+const server = express()
 
-server.listen(config.botPort, () => {
-    console.log(`${server.name} listening to ${server.url}`);
-});
+const isDevelopment = process.env.NODE_ENV === 'development'
+if (isDevelopment) {
+    startDol(server, config.botPort)
+}
+else {
+    const listener = server.listen(config.botPort, () => {
+        console.log(`Server listening to ${listener.address().port}`)
+    })
+}
 
-const { bfAppId, bfAppPassword, clAppId, ...clOptions } = config
+const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
 //==================
 // Create Adapter
@@ -38,8 +43,11 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-ConversationLearner.Init(clOptions, fileStorage);
-let cl = new ConversationLearner(clAppId);
+const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+if (isDevelopment) {
+    server.use('/sdk', sdkRouter)
+}
+let cl = new ConversationLearner(modelId);
 
 //==================================
 // Add Start / End Session callbacks
@@ -47,26 +55,37 @@ let cl = new ConversationLearner(clAppId);
 /**
 * Called at session start.
 * Allows bot to set initial entities before conversation begins
+* @param {BB.TurnContext} context Allows retrieval of Bot State
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.OnSessionStartCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
-
+cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager) => {
     // Set BotName when session starts
     memoryManager.RememberEntity("BotName", "Botty")
 })
 
 /**
-* Called at session ends.
-* If not implemented all entity values will be cleared
-* If implemented, developer responsible for clearing entities
-* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @returns {Promise<void>}
-*/
-cl.OnSessionEndCallback(async (memoryManager: ClientMemoryManager): Promise<void> => {
+ * Called when Session ends.
+ * If not implemented all entity values will be cleared.
+ * If implemented, developer return a list of entities to preserve for the next session
+ * as well as store them in the Bot State
+ * @param {BB.TurnContext} context Allows retrieval of Bot State
+ * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
+ * @param {SessionEndState} sessionEndState Indicates whether END_SESSION was called on the running Session
+ * @param {string | undefined} data Value set in End_Session Action in UI
+ * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
+ */
+cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) => {
+    // 1) Do something with returned "data" defined in EndSession action
+    //    It could, for example, specify things such as: Was the task
+    //    was successfully completed?  Is there a need to escalate to a human?
 
-    // Clear all entities but name and phone number
-    memoryManager.ForgetAllEntities(["UserName", "UserPhone"]);
+    // 2) Extract values from ConversationLearner memoryManager and store in BotState
+    //    using context object (see tutorialHybrid for an example)
+  
+    // 3) Return list of Entities to save for the next time ConversationLearner is started
+    //    Persist UserName and UserPhone after session has ended
+    return ["UserName", "UserPhone"]
 })
 
 //=================================

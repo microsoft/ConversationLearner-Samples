@@ -2,8 +2,35 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.2-browsers
+      - image: circleci/node:10.6.0-browsers
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
     steps:
       - checkout
-      - run: npm install
+
+      # Download and cache dependencies
+      - restore_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v1-deps-{{ .Branch }}
+          key: v1-deps
+      
+      - run: node --version
+      - run: npm --version
+      - run: npm ci
+
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+            
       - run: npm run build
+      - run: npm run test
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
