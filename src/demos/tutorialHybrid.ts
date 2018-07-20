@@ -138,7 +138,7 @@ server.post('/api/messages', (req, res) => {
 
         // When running in training UI, ConversationLearner must always have control
         // Could be combined with 2nd if, but keeping separate for demo clarity
-        if (cl.inTrainingUI(context)) {
+        if (await cl.InTrainingUI(context)) {
             let result = await cl.recognize(context)
             if (result) {
                 cl.SendResult(result);
