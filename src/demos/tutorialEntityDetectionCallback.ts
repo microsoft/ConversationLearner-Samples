@@ -7,7 +7,7 @@ import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import config from '../config'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -16,13 +16,12 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+const listener = server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${listener.address().port}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
