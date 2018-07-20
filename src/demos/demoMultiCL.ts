@@ -53,7 +53,7 @@ var isInStock = function(topping: string) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
-let clPizza = new ConversationLearner("096fdb9f-f25d-4b3a-be33-ec26130de9c2");
+let clPizza = new ConversationLearner("2d9884f4-75a3-4f63-8b1e-d885ac02663e");
 clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
@@ -102,7 +102,7 @@ var resolveApps = function(appName: string) {
     return apps.filter(n => n.includes(appName));
 }
 
-let clVr = new ConversationLearner("398a9d3d-f6c3-4c64-8904-9f135a42d0fd");
+let clVr = new ConversationLearner("997dc1e2-c0c0-4812-9429-446e31cfdf99");
 clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
@@ -153,10 +153,16 @@ server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
 
         // When running in training UI, ConversationLearner must always have control
-        if (clPizza.inTrainingUI(context)) {
+        if (await clPizza.InTrainingUI(context)) {
             let result = await clPizza.recognize(context)
             if (result) {
                 return clPizza.SendResult(result);
+            }
+            return;
+        } else if (await clVr.InTrainingUI(context)) {
+            let result = await clVr.recognize(context)
+            if (result) {
+                return clVr.SendResult(result);
             }
             return;
         }
