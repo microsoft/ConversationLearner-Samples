@@ -6,6 +6,7 @@ import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
 import * as request from 'request'
 import * as requestpromise from 'request-promise'
@@ -18,6 +19,7 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
+    console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
 }
 
@@ -45,6 +47,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
