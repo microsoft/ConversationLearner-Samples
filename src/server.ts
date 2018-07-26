@@ -11,7 +11,7 @@ if (isDevelopment) {
     app.use(getDolRouter(config.botPort))
 }
 
-const listener = app.listen(config.botPort, () => {
-    console.log(`Server listening to port: ${listener.address().port}`)
+app.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
 })
 
