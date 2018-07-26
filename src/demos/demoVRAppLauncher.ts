@@ -19,8 +19,8 @@ if (isDevelopment) {
     server.use(getDolRouter(config.botPort))
 }
 
-const listener = server.listen(config.botPort, () => {
-    console.log(`Server listening to port: ${listener.address().port}`)
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
 })
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
