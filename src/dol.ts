@@ -5,9 +5,6 @@ export default function getDolRouter (botPort: number): express.Router {
     const dolServiceUrl = `http://127.0.0.1:${botPort}`
     const dolBotUrl = `http://127.0.0.1:${botPort}/api/messages`
 
-    console.log(`Starting DOL (Direct Offline)`)
-    console.log(`- Bot Url: ${dolBotUrl}`)
-
     // Don't require conversation initialization. This allows
     // UI to continue conversation even after bot restart
     const conversationInitRequired = false

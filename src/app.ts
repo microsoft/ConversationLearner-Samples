@@ -6,6 +6,7 @@ import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from './config'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
@@ -37,6 +38,7 @@ const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 
 const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
 if (includeSdk) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 

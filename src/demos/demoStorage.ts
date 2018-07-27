@@ -5,6 +5,7 @@
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, RedisStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
 
@@ -15,6 +16,7 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
+    console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
 }
 
@@ -63,6 +65,7 @@ let redisStorage = new RedisStorage({ server: config.redisServer, key: config.re
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, redisStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
