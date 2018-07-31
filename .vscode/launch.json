@@ -15,7 +15,8 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ]
+            ],
+            "sourceMaps": true
         },
         {
             "type": "node",
