@@ -169,7 +169,7 @@ Below we cover step-by-step instructions to deploy your bot to Azure in two diff
         
         APP SETTING NAME | VALUE
         --- | --- 
-        CONVERSATION_LEARNER_MODEL_ID      | Application Id GUID, obtained from the Conversation Learner UI under the "settings" for the app>
+        CONVERSATION_LEARNER_MODEL_ID      | Model Id GUID, obtained from the Conversation Learner UI under the "settings" for the app>
         LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app
         SCM_DO_BUILD_DURING_DEPLOYMENT | true
         
