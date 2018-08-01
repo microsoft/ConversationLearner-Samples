@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, ReadOnlyClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -90,15 +90,14 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     }
 })
 
-cl.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
-        // TODO: Add API call to invoke app/location
+cl.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager) => {
+    // Clear entities.
+    memoryManager.ForgetEntity("AppName")
+    memoryManager.ForgetEntity("PlacementLocation")
+})
 
-        // Clear entities.
-        
-        memoryManager.ForgetEntity("AppName");
-        memoryManager.ForgetEntity("PlacementLocation");
-
-        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+cl.AddRenderCallback("LaunchApp", async (memoryManager: ReadOnlyClientMemoryManager, AppName: string, PlacementLocation: string) => {
+    return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
 })
 
 //=================================
