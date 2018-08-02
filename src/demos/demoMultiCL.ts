@@ -9,6 +9,7 @@ import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversa
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
+import { ReadOnlyClientMemoryManager } from '@conversationlearner/sdk/lib/Memory/ClientMemoryManager';
 
 //===================
 // Create Bot server
@@ -76,26 +77,25 @@ clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemory
     }
 })
 
-clPizza.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
-    {
-        // Save toppings
-        memoryManager.CopyEntity("Toppings", "LastToppings");
+clPizza.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => {
+    // Save toppings
+    memoryManager.CopyEntity("Toppings", "LastToppings")
 
-        // Clear toppings
-        memoryManager.ForgetEntity("Toppings");
+    // Clear toppings
+    memoryManager.ForgetEntity("Toppings")
+})
 
-        return "Your order is on its way";
-    }
-);
+clPizza.AddRenderCallback("FinalizeOrder", async (memoryManager: ReadOnlyClientMemoryManager) => {
+    return "Your order is on its way"
+})
 
-clPizza.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
-    {
-        // Restore last toppings
-        memoryManager.CopyEntity("LastToppings", "Toppings");
+clPizza.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) => {
+    // Restore last toppings
+    memoryManager.CopyEntity("LastToppings", "Toppings");
 
-        // Clear last toppings
-        memoryManager.ForgetEntity("LastToppings"); 
-    });
+    // Clear last toppings
+    memoryManager.ForgetEntity("LastToppings"); 
+});
 
 //=================================
 // Add VR functions
@@ -129,15 +129,14 @@ clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
     }
 })
 
-clVr.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
-        // TODO: Add API call to invoke app/location
-
+clVr.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager) => {
         // Clear entities.
-        
-        memoryManager.ForgetEntity("AppName");
-        memoryManager.ForgetEntity("PlacementLocation");
+        memoryManager.ForgetEntity("AppName")
+        memoryManager.ForgetEntity("PlacementLocation")
+})
 
-        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+clVr.AddRenderCallback("LaunchApp", async (memoryManager: ReadOnlyClientMemoryManager, AppName: string, PlacementLocation: string) => {
+    return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
 })
 
 // Define conversation state shape
