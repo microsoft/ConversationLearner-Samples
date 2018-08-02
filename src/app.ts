@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
 
@@ -88,16 +88,15 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define any API callbacks
 //=================================
-/** 
-cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
-    // Your API logic including any service calls
-    
-    // Return promise of: 
-    //    (1) undefined -> no message sent to user
-    //    (2) string -> text message sent to user
-    //    (3) BB.Activity -> card sent to user
+
+cl.AddAPICallback("Add", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
+    const result = [arg1, arg2].map(x => parseInt(x)).reduce((sum, a) => sum += a, 0)
+    memoryManager.RememberEntity("addResult", result)
 })
-*/ 
+
+cl.AddRenderCallback("Add", async (memoryManager: ReadOnlyClientMemoryManager, arg1: string, arg2: string, addResult: string) => {
+    return `${arg1} + ${arg2} = ${addResult}`
+})
 
 //=================================
 // Handle Incoming Messages

@@ -98,7 +98,7 @@ cl.AddAPICallback("FinalizeOrder", async (memoryManager: ClientMemoryManager) =>
     memoryManager.ForgetEntity("Toppings")
 })
 
-cl.AddRenderCallback("FinalizeOrder", async (memoryManager: ReadOnlyClientMemoryManager) => {
+cl.AddRenderCallback("FinalizeOrder", async () => {
     return "Your order is on its way"
 })
 

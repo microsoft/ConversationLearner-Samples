@@ -82,21 +82,15 @@ cl.AddRenderCallback("RandomGreeting", async (memoryManager: ReadOnlyClientMemor
     return randomGreeting;
 });
 
-cl.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
-
+cl.AddRenderCallback("Multiply", async (memoryManager: ReadOnlyClientMemoryManager, num1string: string, num2string: string) => {
     // convert base and exponent to ints
     var num1int = parseInt(num1string);
     var num2int = parseInt(num2string);
 
     // compute product
     var result = num1int * num2int;
-    memoryManager.RememberEntity("multiplyResult", result)
+    return `${num1string} * ${num2string} = ${result}`
 })
-
-cl.AddRenderCallback("Multiply", async (memoryManager: ReadOnlyClientMemoryManager, num1string: string, num2string: string, multiplyResult: string) => {
-    return `${num1string} * ${num2string} = ${multiplyResult}`
-})
-
 
 cl.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
     // clear base and exponent entities

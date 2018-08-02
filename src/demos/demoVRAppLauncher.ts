@@ -90,14 +90,18 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     }
 })
 
-cl.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager) => {
+cl.AddAPICallback("LaunchAppRequest", async (memoryManager: ClientMemoryManager) => {
+    // Simulate API call to launch the app.
+})
+
+cl.AddRenderCallback("LaunchAppMessage", async (memoryManager: ReadOnlyClientMemoryManager, AppName: string, PlacementLocation: string) => {
+    return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+})
+
+cl.AddAPICallback("LaunchAppClear", async (memoryManager: ClientMemoryManager) => {
     // Clear entities.
     memoryManager.ForgetEntity("AppName")
     memoryManager.ForgetEntity("PlacementLocation")
-})
-
-cl.AddRenderCallback("LaunchApp", async (memoryManager: ReadOnlyClientMemoryManager, AppName: string, PlacementLocation: string) => {
-    return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
 })
 
 //=================================
