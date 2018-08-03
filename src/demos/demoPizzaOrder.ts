@@ -9,7 +9,6 @@ import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversa
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
-import { ReadOnlyClientMemoryManager } from '@conversationlearner/sdk/lib/Memory/ClientMemoryManager';
 
 //===================
 // Create Bot server
@@ -90,24 +89,29 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define API callbacks
 //=================================
-cl.AddAPICallback("FinalizeOrder", async (memoryManager: ClientMemoryManager) => {
-    // Save toppings
-    memoryManager.CopyEntity("Toppings", "LastToppings")
+cl.AddCallback({
+    name: "FinalizeOrder",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        // Save toppings
+        memoryManager.CopyEntity("Toppings", "LastToppings")
 
-    // Clear toppings
-    memoryManager.ForgetEntity("Toppings")
+        // Clear toppings
+        memoryManager.ForgetEntity("Toppings")
+    },
+    render: async () => {
+        return "Your order is on its way"
+    }
 })
 
-cl.AddRenderCallback("FinalizeOrder", async () => {
-    return "Your order is on its way"
-})
+cl.AddCallback({
+    name: "UseLastToppings",
+    logic: async (memoryManager : ClientMemoryManager) => {
+        // Restore last toppings
+        memoryManager.CopyEntity("LastToppings", "Toppings");
 
-cl.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) => {
-    // Restore last toppings
-    memoryManager.CopyEntity("LastToppings", "Toppings");
-
-    // Clear last toppings
-    memoryManager.ForgetEntity("LastToppings"); 
+        // Clear last toppings
+        memoryManager.ForgetEntity("LastToppings"); 
+    }
 })
 
 //=================================

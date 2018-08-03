@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
 
@@ -88,14 +88,36 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define any API callbacks
 //=================================
-
-cl.AddAPICallback("Add", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
-    const result = [arg1, arg2].map(x => parseInt(x)).reduce((sum, a) => sum += a, 0)
-    memoryManager.RememberEntity("addResult", result)
+cl.AddCallback<string>({
+    name: "Add",
+    logic: async (memoryManager, arg1: string, arg2: string) => {
+        const result = [arg1, arg2].map(x => parseInt(x)).reduce((sum, a) => sum += a, 0)
+        return `${arg1} + ${arg2} = ${result}`
+    }
 })
 
-cl.AddRenderCallback("Add", async (memoryManager: ReadOnlyClientMemoryManager, arg1: string, arg2: string, addResult: string) => {
-    return `${arg1} + ${arg2} = ${addResult}`
+cl.AddCallback<void>({
+    name: "RenderOnly",
+    render: async () => {
+        return "Hey! I'm just rendering"
+    }
+})
+
+interface IResult {
+    a: string
+    b: number
+}
+cl.AddCallback<IResult>({
+    name: "Complex",
+    logic: async (memoryManager, arg1: string, arg2: string) => {
+        return {
+            a: "test",
+            b: 3
+        }
+    },
+    render: async (x, memoryManager, test: string) => {
+        return `result: ${x.a} - ${x.b}`
+    }
 })
 
 //=================================
