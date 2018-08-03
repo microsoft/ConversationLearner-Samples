@@ -88,16 +88,17 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define any API callbacks
 //=================================
-/** 
-cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
-    // Your API logic including any service calls
-    
-    // Return promise of: 
-    //    (1) undefined -> no message sent to user
-    //    (2) string -> text message sent to user
-    //    (3) BB.Activity -> card sent to user
+/*
+cl.AddCallback<number>({
+    name: "Add",
+    logic: async (memoryManager, arg1: string, arg2: string) => {
+        return [arg1, arg2]
+            .map(x => parseInt(x))
+            .reduce((sum, a) => sum += a, 0)
+    },
+    render: async result => `Add result is: ${result}`
 })
-*/ 
+*/
 
 //=================================
 // Handle Incoming Messages

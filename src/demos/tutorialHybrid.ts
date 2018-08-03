@@ -108,15 +108,17 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
 // All transfer of state between the global Bot’s state and Conversation Learner 
 // must happen in the “onSessionStart” and “onSessionEnd” callbacks.  This is to
 // ensure that Conversation Learner has the context that it needs to choose the which Actions to select
-cl.AddAPICallback("BadCallback", async (memoryManager: ClientMemoryManager) => {
-
-    // WRONG:
-    // Never transfer state in an API callback 
-    // convoState.someVar = memoryManager.EntityValue("someEntity")
-    
-    // WRONG:
-    // Never transfer state in an API callback 
-    // memoryManager.RememberEntity("someEntity", convoState.someVal)
+cl.AddCallback({
+    name: "BadCallback",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        // WRONG:
+        // Never transfer state in an API callback 
+        // convoState.someVar = memoryManager.EntityValue("someEntity")
+        
+        // WRONG:
+        // Never transfer state in an API callback 
+        // memoryManager.RememberEntity("someEntity", convoState.someVal)
+    }
 })
 
 // Add state middleware
@@ -134,7 +136,7 @@ server.post('/api/messages', (req, res) => {
         // Get BotBuilder state
         // -> state.usingConversationLearner    : whether ConversationLearner is in control of Bot
         // -> state.storeIsOpen                 : whether store front is open (set outside Conversation Learner)
-        // -> state.purchasedItem               : what to buy.  Retreived from ConversationLearner when EndSession is triggered
+        // -> state.purchasedItem               : what to buy.  Retrieved from ConversationLearner when EndSession is triggered
 
         state = convoState.get(context)
         if (!state) throw ('Error Getting State');

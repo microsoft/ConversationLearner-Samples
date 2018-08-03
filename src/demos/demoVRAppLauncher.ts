@@ -90,15 +90,16 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     }
 })
 
-cl.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
-        // TODO: Add API call to invoke app/location
+cl.AddCallback({
+    name: "LaunchAppRequest",
+    logic: async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
+        // Simulate API call to launch the app.
 
-        // Clear entities.
-        
-        memoryManager.ForgetEntity("AppName");
-        memoryManager.ForgetEntity("PlacementLocation");
+        memoryManager.ForgetEntity("AppName")
+        memoryManager.ForgetEntity("PlacementLocation")
 
-        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+        return `Ok, starting ${AppName} on the ${PlacementLocation}.`
+    }
 })
 
 //=================================

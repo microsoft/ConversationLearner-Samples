@@ -89,26 +89,30 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define API callbacks
 //=================================
-cl.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager, toppings: string, crustType: string) => 
-    {
+cl.AddCallback({
+    name: "FinalizeOrder",
+    logic: async (memoryManager: ClientMemoryManager) => {
         // Save toppings
-        memoryManager.CopyEntity("Toppings", "LastToppings");
+        memoryManager.CopyEntity("Toppings", "LastToppings")
 
         // Clear toppings
-        memoryManager.ForgetEntity("Toppings");
-
-        return "Your order is on its way";
+        memoryManager.ForgetEntity("Toppings")
+    },
+    render: async () => {
+        return "Your order is on its way"
     }
-);
+})
 
-cl.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
-    {
+cl.AddCallback({
+    name: "UseLastToppings",
+    logic: async (memoryManager : ClientMemoryManager) => {
         // Restore last toppings
         memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
         memoryManager.ForgetEntity("LastToppings"); 
-    });
+    }
+})
 
 //=================================
 // Handle Incoming Messages
