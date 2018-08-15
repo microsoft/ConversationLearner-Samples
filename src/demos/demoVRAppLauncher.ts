@@ -91,7 +91,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 })
 
 cl.AddCallback({
-    name: "LaunchAppRequest",
+    name: "LaunchApp",
     logic: async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
         // Simulate API call to launch the app.
 
