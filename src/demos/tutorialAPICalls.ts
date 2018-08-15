@@ -79,7 +79,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 cl.AddCallback({
     name: "RandomGreeting",
-    render: async (memoryManager: ReadOnlyClientMemoryManager) => {
+    render: async () => {
         var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
         return randomGreeting;
     }
