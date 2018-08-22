@@ -20,6 +20,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -74,6 +75,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -103,6 +105,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -157,6 +160,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -186,6 +190,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -245,6 +250,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -274,6 +280,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -315,6 +322,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -356,6 +364,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -397,6 +406,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -426,6 +436,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -455,13 +466,16 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
                         }
                     ]
                 }
-            ]
+            ],
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
         },
         {
             "trainDialogId": "277f666a-13b3-46ec-a1d4-60665f6be3be",
@@ -483,6 +497,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -537,6 +552,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -566,6 +582,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -620,6 +637,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -649,6 +667,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -708,6 +727,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -737,6 +757,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -778,6 +799,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -819,6 +841,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -860,6 +883,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -931,6 +955,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -977,13 +1002,16 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
                         }
                     ]
                 }
-            ]
+            ],
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
         },
         {
             "trainDialogId": "8f0c1624-3b20-45f7-83fe-eca5c685e3fb",
@@ -1036,6 +1064,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1065,6 +1094,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1124,6 +1154,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1147,6 +1178,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1182,6 +1214,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1217,6 +1250,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1252,6 +1286,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1275,6 +1310,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1298,13 +1334,16 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
                         }
                     ]
                 }
-            ]
+            ],
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
         },
         {
             "trainDialogId": "99b4255e-5294-4e67-8c58-50f7d58e5f40",
@@ -1369,6 +1408,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1404,6 +1444,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1451,6 +1492,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1498,6 +1540,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1545,6 +1588,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1580,6 +1624,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1615,6 +1660,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1662,13 +1708,16 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
                         }
                     ]
                 }
-            ]
+            ],
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
         },
         {
             "trainDialogId": "87bde973-044d-4951-a1f1-1caebe8adb9a",
@@ -1690,6 +1739,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1756,6 +1806,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1791,6 +1842,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1851,6 +1903,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1886,6 +1939,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1951,6 +2005,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1986,6 +2041,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2033,6 +2089,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2080,6 +2137,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2127,13 +2185,16 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
                         }
                     ]
                 }
-            ]
+            ],
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
         },
         {
             "trainDialogId": "72939dff-ee7e-4932-8a1d-c5c8d885b463",
@@ -2155,6 +2216,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2197,6 +2259,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2220,6 +2283,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2280,6 +2344,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2315,6 +2380,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2380,6 +2446,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2409,6 +2476,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2450,6 +2518,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2491,6 +2560,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2532,6 +2602,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2561,6 +2632,7 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2590,21 +2662,26 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
                         }
                     ]
                 }
-            ]
+            ],
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
         }
     ],
     "actions": [
         {
             "actionId": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"What would you like on your pizza?\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"What would you like on your pizza?\",\"marks\":[]}]}]}]}}}",
             "isTerminal": true,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [],
             "negativeEntities": [
                 "267a89dd-be0a-4079-84ba-369eeb81f8cf"
@@ -2613,9 +2690,11 @@
         },
         {
             "actionId": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"You have $Toppings on your pizza.\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"You have \",\"marks\":[]}]},{\"kind\":\"inline\",\"type\":\"mention-inline-node\",\"isVoid\":false,\"data\":{\"completed\":true,\"option\":{\"id\":\"267a89dd-be0a-4079-84ba-369eeb81f8cf\",\"name\":\"Toppings\"}},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"$Toppings\",\"marks\":[]}]}]},{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\" on your pizza.\",\"marks\":[]}]}]}]}}}",
             "isTerminal": false,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [
                 "267a89dd-be0a-4079-84ba-369eeb81f8cf"
             ],
@@ -2625,9 +2704,11 @@
         },
         {
             "actionId": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"Would you like anything else?\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"Would you like anything else?\",\"marks\":[]}]}]}]}}}",
             "isTerminal": true,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [
                 "267a89dd-be0a-4079-84ba-369eeb81f8cf"
             ],
@@ -2635,9 +2716,11 @@
         },
         {
             "actionId": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "API_LOCAL",
-            "payload": "{\"payload\":\"FinalizeOrder\",\"arguments\":[]}",
+            "payload": "{\"payload\":\"FinalizeOrder\",\"logicArguments\":[],\"renderArguments\":[]}",
             "isTerminal": true,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [
                 "267a89dd-be0a-4079-84ba-369eeb81f8cf"
             ],
@@ -2647,9 +2730,11 @@
         },
         {
             "actionId": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"We don't have $OutOfStock.\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"We don't have \",\"marks\":[]}]},{\"kind\":\"inline\",\"type\":\"mention-inline-node\",\"isVoid\":false,\"data\":{\"completed\":true,\"option\":{\"id\":\"b2001cd7-42be-4366-b774-f629441cb81b\",\"name\":\"OutOfStock\"}},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"$OutOfStock\",\"marks\":[]}]}]},{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\".\",\"marks\":[]}]}]}]}}}",
             "isTerminal": false,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [
                 "b2001cd7-42be-4366-b774-f629441cb81b"
             ],
@@ -2657,9 +2742,11 @@
         },
         {
             "actionId": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"Would you like $LastToppings?\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"Would you like \",\"marks\":[]}]},{\"kind\":\"inline\",\"type\":\"mention-inline-node\",\"isVoid\":false,\"data\":{\"completed\":true,\"option\":{\"id\":\"931a7300-c0dd-458c-ba2b-f9dde7ae3a93\",\"name\":\"LastToppings\"}},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"$LastToppings\",\"marks\":[]}]}]},{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"?\",\"marks\":[]}]}]}]}}}",
             "isTerminal": true,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [
                 "931a7300-c0dd-458c-ba2b-f9dde7ae3a93"
             ],
@@ -2669,9 +2756,11 @@
         },
         {
             "actionId": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "actionType": "API_LOCAL",
-            "payload": "{\"payload\":\"UseLastToppings\",\"arguments\":[]}",
+            "payload": "{\"payload\":\"UseLastToppings\",\"logicArguments\":[],\"renderArguments\":[]}",
             "isTerminal": false,
+            "requiredEntitiesFromPayload": [],
             "requiredEntities": [
                 "931a7300-c0dd-458c-ba2b-f9dde7ae3a93"
             ],
@@ -2681,38 +2770,38 @@
     "entities": [
         {
             "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+            "negativeId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "entityName": "Toppings",
             "entityType": "LUIS",
             "isMultivalue": true,
-            "isNegatible": true,
-            "isReversable": false,
-            "negativeId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0"
+            "isNegatible": true
         },
         {
             "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+            "positiveId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "entityName": "~Toppings",
             "entityType": "LUIS",
             "isMultivalue": true,
-            "isNegatible": true,
-            "isReversable": false,
-            "positiveId": "267a89dd-be0a-4079-84ba-369eeb81f8cf"
+            "isNegatible": true
         },
         {
             "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "entityName": "OutOfStock",
             "entityType": "LOCAL",
             "isMultivalue": false,
-            "isNegatible": false,
-            "isReversable": false
+            "isNegatible": false
         },
         {
             "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+            "createdDateTime": "0001-01-01T00:00:00-08:00",
             "entityName": "LastToppings",
             "entityType": "LOCAL",
             "isMultivalue": true,
-            "isNegatible": false,
-            "isReversable": false
+            "isNegatible": false
         }
     ],
-    "packageId": "e886b17a-a384-4668-b3d0-b156992747bd"
+    "packageId": "530f119c-3cc0-426e-94ba-c7ed59d43189"
 }
