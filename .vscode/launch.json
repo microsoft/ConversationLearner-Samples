@@ -15,7 +15,8 @@
             ],
             "runtimeArgs": [
                 "--preserve-symlinks"
-            ]
+            ],
+            "sourceMaps": true
         },
         {
             "type": "node",
@@ -116,6 +117,18 @@
             "request": "launch",
             "name": "demoStorage",
             "program": "${workspaceFolder}/lib/demos/demoStorage.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "demoMultiCL",
+            "program": "${workspaceFolder}/lib/demos/demoMultiCL.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],

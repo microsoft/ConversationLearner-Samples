@@ -7,8 +7,9 @@ import * as express from 'express'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage, SessionEndState } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -17,13 +18,13 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -45,6 +46,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
@@ -106,15 +108,17 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
 // All transfer of state between the global Bot’s state and Conversation Learner 
 // must happen in the “onSessionStart” and “onSessionEnd” callbacks.  This is to
 // ensure that Conversation Learner has the context that it needs to choose the which Actions to select
-cl.AddAPICallback("BadCallback", async (memoryManager: ClientMemoryManager) => {
-
-    // WRONG:
-    // Never transfer state in an API callback 
-    // convoState.someVar = memoryManager.EntityValue("someEntity")
-    
-    // WRONG:
-    // Never transfer state in an API callback 
-    // memoryManager.RememberEntity("someEntity", convoState.someVal)
+cl.AddCallback({
+    name: "BadCallback",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        // WRONG:
+        // Never transfer state in an API callback 
+        // convoState.someVar = memoryManager.EntityValue("someEntity")
+        
+        // WRONG:
+        // Never transfer state in an API callback 
+        // memoryManager.RememberEntity("someEntity", convoState.someVal)
+    }
 })
 
 // Add state middleware
@@ -132,14 +136,14 @@ server.post('/api/messages', (req, res) => {
         // Get BotBuilder state
         // -> state.usingConversationLearner    : whether ConversationLearner is in control of Bot
         // -> state.storeIsOpen                 : whether store front is open (set outside Conversation Learner)
-        // -> state.purchasedItem               : what to buy.  Retreived from ConversationLearner when EndSession is triggered
+        // -> state.purchasedItem               : what to buy.  Retrieved from ConversationLearner when EndSession is triggered
 
         state = convoState.get(context)
         if (!state) throw ('Error Getting State');
 
         // When running in training UI, ConversationLearner must always have control
         // Could be combined with 2nd if, but keeping separate for demo clarity
-        if (cl.inTrainingUI(context)) {
+        if (await cl.InTrainingUI(context)) {
             let result = await cl.recognize(context)
             if (result) {
                 cl.SendResult(result);

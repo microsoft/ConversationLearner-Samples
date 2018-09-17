@@ -6,6 +6,7 @@ import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from './config'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
@@ -37,6 +38,7 @@ const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 
 const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
 if (includeSdk) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 
@@ -86,16 +88,17 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define any API callbacks
 //=================================
-/** 
-cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
-    // Your API logic including any service calls
-    
-    // Return promise of: 
-    //    (1) undefined -> no message sent to user
-    //    (2) string -> text message sent to user
-    //    (3) BB.Activity -> card sent to user
+/*
+cl.AddCallback<number>({
+    name: "Add",
+    logic: async (memoryManager, arg1: string, arg2: string) => {
+        return [arg1, arg2]
+            .map(x => parseInt(x))
+            .reduce((sum, a) => sum += a, 0)
+    },
+    render: async result => `Add result is: ${result}`
 })
-*/ 
+*/
 
 //=================================
 // Handle Incoming Messages
