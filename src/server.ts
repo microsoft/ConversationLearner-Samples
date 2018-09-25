@@ -4,15 +4,16 @@
  */
 import app from './app'
 import config from './config'
-import startDol from './dol'
+import getDolRouter from './dol'
+import chalk from 'chalk'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(app, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    app.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = app.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+app.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
