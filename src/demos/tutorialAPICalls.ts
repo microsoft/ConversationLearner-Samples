@@ -5,11 +5,12 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
 import * as request from 'request'
 import * as requestpromise from 'request-promise'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -18,13 +19,13 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -46,6 +47,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
@@ -75,57 +77,64 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define API callbacks
 //=================================
-cl.AddAPICallback("RandomGreeting", async (memoryManager : ClientMemoryManager) => {
-    var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-    return randomGreeting;
-});
-
-cl.AddAPICallback("Multiply", async (memoryManager: ClientMemoryManager, num1string: string, num2string: string) => {
-
-    // convert base and exponent to ints
-    var num1int = parseInt(num1string);
-    var num2int = parseInt(num2string);
-
-    // compute product
-    var result = num1int * num2int;
-
-    // return result as message
-    return num1int.toString() + " * " + num2int.toString() + " = " + result.toString();
+cl.AddCallback({
+    name: "RandomGreeting",
+    render: async () => {
+        var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+        return randomGreeting;
+    }
 })
 
-cl.AddAPICallback("ClearEntities", async (memoryManager: ClientMemoryManager) => {
+cl.AddCallback({
+    name: "Multiply",
+    render: async (result: any, memoryManager: ReadOnlyClientMemoryManager, num1string: string, num2string: string) => {
+        // convert base and exponent to ints
+        var num1int = parseInt(num1string);
+        var num2int = parseInt(num2string);
 
-    // clear base and exponent entities
-    memoryManager.ForgetEntity("number");
-    return "Let's do another.";
+        // compute product
+        var product = num1int * num2int;
+        return `${num1string} * ${num2string} = ${product}`
+    }
 })
 
-// WRONG way to do an request.  
-cl.AddAPICallback("RandomMessage-Callback", async (memoryManager : ClientMemoryManager) =>
-{
-    var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+cl.AddCallback({
+    name: "ClearEntities",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        // clear base and exponent entities
+        memoryManager.ForgetEntity("number");
+    },
+    render: async () => {
+        return "Let's do another."
+    }
+})
 
-    // WRONG
-    // RememberEntity call will happen after the APICallback has returned
-    request(options, (error:any, response:any, body:any) => {
+// WRONG way to do an request.
+cl.AddCallback({
+    name: "RandomMessage-Callback",
+    logic: async (memoryManager : ClientMemoryManager) => {
+        var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+
+        // WRONG
+        // RememberEntity call will happen after the APICallback has returned
+        request(options, (error:any, response:any, body:any) => {
             memoryManager.RememberEntity("RandomMessage", response.body);   // BAD
-        } 
-    )
-
-});
+        })
+    }
+})
 
 // CORRECT way to do a request
-cl.AddAPICallback("RandomMessage-Await", async (memoryManager : ClientMemoryManager) =>
-{
+cl.AddCallback({
+    name: "RandomMessage-Await",
+    logic: async (memoryManager : ClientMemoryManager) => {
+        var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
 
-    var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
-
-    // CORRECT
-    // RememberEntity called before APICallback has returned
-    let response = await requestpromise(options)
-    memoryManager.RememberEntity("RandomMessage", response.body);
-
-});
+        // CORRECT
+        // RememberEntity called before APICallback has returned
+        let response = await requestpromise(options)
+        memoryManager.RememberEntity("RandomMessage", response.body);
+    }
+})
 
 //=================================
 // Handle Incoming Messages

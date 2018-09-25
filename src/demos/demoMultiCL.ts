@@ -6,8 +6,9 @@ import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter, ConversationState } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -16,13 +17,13 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -43,6 +44,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 
@@ -54,7 +56,7 @@ var isInStock = function(topping: string) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
-let clPizza = new ConversationLearner("096fdb9f-f25d-4b3a-be33-ec26130de9c2");
+let clPizza = new ConversationLearner("2d9884f4-75a3-4f63-8b1e-d885ac02663e");
 clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
@@ -74,26 +76,30 @@ clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemory
     }
 })
 
-clPizza.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager) => 
-    {
+clPizza.AddCallback({
+    name: "FinalizeOrder",
+    logic: async (memoryManager : ClientMemoryManager) => {
         // Save toppings
-        memoryManager.CopyEntity("Toppings", "LastToppings");
+        memoryManager.CopyEntity("Toppings", "LastToppings")
 
         // Clear toppings
-        memoryManager.ForgetEntity("Toppings");
-
-        return "Your order is on its way";
+        memoryManager.ForgetEntity("Toppings")
+    },
+    render: async () => {
+        return "Your order is on its way"
     }
-);
+})
 
-clPizza.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
-    {
+clPizza.AddCallback({
+    name: "UseLastToppings",
+    logic: async (memoryManager : ClientMemoryManager) => {
         // Restore last toppings
         memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
         memoryManager.ForgetEntity("LastToppings"); 
-    });
+    }
+})
 
 //=================================
 // Add VR functions
@@ -103,7 +109,7 @@ var resolveApps = function(appName: string) {
     return apps.filter(n => n.includes(appName));
 }
 
-let clVr = new ConversationLearner("398a9d3d-f6c3-4c64-8904-9f135a42d0fd");
+let clVr = new ConversationLearner("997dc1e2-c0c0-4812-9429-446e31cfdf99");
 clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
@@ -127,15 +133,15 @@ clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
     }
 })
 
-clVr.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
-        // TODO: Add API call to invoke app/location
-
+clVr.AddCallback({
+    name: "LaunchApp",
+    logic: async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
         // Clear entities.
-        
-        memoryManager.ForgetEntity("AppName");
-        memoryManager.ForgetEntity("PlacementLocation");
+        memoryManager.ForgetEntity("AppName")
+        memoryManager.ForgetEntity("PlacementLocation")
 
-        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+        return `Ok, starting ${AppName} on the ${PlacementLocation}.`
+    }
 })
 
 // Define conversation state shape
@@ -154,10 +160,16 @@ server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
 
         // When running in training UI, ConversationLearner must always have control
-        if (clPizza.inTrainingUI(context)) {
+        if (await clPizza.InTrainingUI(context)) {
             let result = await clPizza.recognize(context)
             if (result) {
                 return clPizza.SendResult(result);
+            }
+            return;
+        } else if (await clVr.InTrainingUI(context)) {
+            let result = await clVr.recognize(context)
+            if (result) {
+                return clVr.SendResult(result);
             }
             return;
         }
