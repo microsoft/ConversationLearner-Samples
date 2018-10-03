@@ -1,7 +1,7 @@
 import {cl} from './app'
 import { CLMemory } from '@conversationlearner/sdk/lib/CLMemory'
 import * as CLM from '@conversationlearner/models'
-import {TrainDialogList} from '@conversationlearner/models'
+import {AppDefinition} from '@conversationlearner/models'
 import * as BB from 'botbuilder'
 import * as fs from 'fs'
 import * as util from 'util'
@@ -12,17 +12,14 @@ let conversationReference = <BB.ConversationReference>{activityId: 'testActivity
 const readFile = util.promisify(fs.readFile)
 const writeFile = util.promisify(fs.writeFile)
 
-async function UpdateTrainDialog(appId: string, trainDialogsFile: string) {
-    const dialogs = <TrainDialogList>JSON.parse(await readFile(trainDialogsFile, 'utf8'))
+async function UpdateTrainDialog(sourceFile: string) {
+    const clAppSource = <AppDefinition>JSON.parse(await readFile(sourceFile, 'utf8'))
     // initialize cl memory
     let clMemory = await CLMemory.InitMemory(userAccount, conversationReference)
     
-    // get app source
-    let clApp = await cl.clRunner.clClient.GetApp(appId)
-    let clAppSource = await cl.clRunner.clClient.GetAppSource(appId, clApp.devPackageId as string)
     let clEntities = clAppSource.entities
     let clActions = clAppSource.actions
-    for(let trainDialog of dialogs.trainDialogs)
+    for(let trainDialog of clAppSource.trainDialogs)
     {
         // reset bot memory
         await  clMemory.BotMemory.ClearAsync()
@@ -59,10 +56,10 @@ async function UpdateTrainDialog(appId: string, trainDialogsFile: string) {
             }
         }
     }
-    await writeFile(trainDialogsFile, JSON.stringify(dialogs))
+    await writeFile(sourceFile, JSON.stringify(clAppSource))
 }
 
-UpdateTrainDialog('940a61e6-91db-4f9b-ae63-133bb83970a2', '.\\src\\trainDialogs.json').then(()=> console.log('Updated TrainDialogs')).catch(err => console.error(err));
+UpdateTrainDialog('.\\src\\source.cl').then(()=> console.log('Updated TrainDialogs')).catch(err => console.error(err));
 
 
 
