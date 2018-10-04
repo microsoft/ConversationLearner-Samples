@@ -1,4 +1,4 @@
-import {cl} from './demos/ycseller_noDB'
+import {cl} from './app'
 import { CLMemory } from '@conversationlearner/sdk/lib/CLMemory'
 import * as CLM from '@conversationlearner/models'
 import {AppDefinition} from '@conversationlearner/models'
