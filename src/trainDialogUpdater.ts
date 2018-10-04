@@ -75,7 +75,7 @@ function CreateFilledEntityMap(filledEntities: CLM.FilledEntity[], entities: CLM
     return filledEntityMap
 }
 
-UpdateTrainDialog('.\\src\\VirtualSeller-Demo.cl').then(()=> console.log('Updated TrainDialogs')).catch(err => console.error(err));
+UpdateTrainDialog('.\\src\\source.cl').then(()=> console.log('Updated TrainDialogs')).catch(err => console.error(err));
 
 
 
