@@ -1,4 +1,4 @@
-import {cl} from './app'
+import {cl} from './demos/ycseller_noDB'
 import { CLMemory } from '@conversationlearner/sdk/lib/CLMemory'
 import * as CLM from '@conversationlearner/models'
 import {AppDefinition} from '@conversationlearner/models'
@@ -13,7 +13,9 @@ const readFile = util.promisify(fs.readFile)
 const writeFile = util.promisify(fs.writeFile)
 
 async function UpdateTrainDialog(sourceFile: string) {
-    const clAppSource = <AppDefinition>JSON.parse(await readFile(sourceFile, 'utf8'))
+    let file = await readFile(sourceFile, 'utf8');
+    file = file.trim();
+    const clAppSource = <AppDefinition>JSON.parse(file)
     // initialize cl memory
     let clMemory = await CLMemory.InitMemory(userAccount, conversationReference)
     
@@ -41,12 +43,14 @@ async function UpdateTrainDialog(sourceFile: string) {
                 let curAction = clActions.filter((a: CLM.ActionBase) => a.actionId === step.labelAction)[0]
                 if (curAction) {
                     // update filledEntities based on current state of memory
-                    let filledEntityMap = await clMemory.BotMemory.FilledEntityMap()
+                    let filledEntities = await clMemory.BotMemory.FilledEntitiesAsync()
+                    let filledEntityMap = CreateFilledEntityMap(filledEntities, clEntities)
                     step.input.filledEntities = filledEntityMap.FilledEntities()
                      // Run APIAction to update the FilledEntities
                      if (curAction.actionType === CLM.ActionTypes.API_LOCAL) {
                         const apiAction = new CLM.ApiAction(curAction)
-                        await cl.clRunner.TakeLocalAPIAction(apiAction, filledEntityMap, clMemory, clEntities, true)
+                        var res = await cl.clRunner.TakeLocalAPIAction(apiAction, filledEntityMap, clMemory, clEntities, true)
+                        console.log(res)
                     } else if (curAction.actionType === CLM.ActionTypes.END_SESSION) {
                         const sessionAction = new CLM.SessionAction(curAction)
                         let sessionInfo = await clMemory.BotState.SessionInfoAsync();
@@ -59,7 +63,19 @@ async function UpdateTrainDialog(sourceFile: string) {
     await writeFile(sourceFile, JSON.stringify(clAppSource))
 }
 
-UpdateTrainDialog('.\\src\\source.cl').then(()=> console.log('Updated TrainDialogs')).catch(err => console.error(err));
+function CreateFilledEntityMap(filledEntities: CLM.FilledEntity[], entities: CLM.EntityBase[]): CLM.FilledEntityMap {
+    let filledEntityMap = new CLM.FilledEntityMap()
+    for (let filledEntity of filledEntities) {
+        let entity = entities.find(e => e.entityId == filledEntity.entityId)
+        if (entity) {
+            filledEntityMap.map[entity.entityName] = filledEntity
+            filledEntityMap.map[entity.entityId] = filledEntity
+        }
+    }
+    return filledEntityMap
+}
+
+UpdateTrainDialog('.\\src\\VirtualSeller-Demo.cl').then(()=> console.log('Updated TrainDialogs')).catch(err => console.error(err));
 
 
 
