@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter, ConversationState } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, ReadOnlyClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -85,7 +85,7 @@ clPizza.AddCallback({
         // Clear toppings
         memoryManager.ForgetEntity("Toppings")
     },
-    render: async () => {
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         return "Your order is on its way"
     }
 })
