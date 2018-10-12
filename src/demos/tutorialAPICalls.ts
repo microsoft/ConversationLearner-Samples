@@ -79,7 +79,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 cl.AddCallback({
     name: "RandomGreeting",
-    render: async () => {
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
         return randomGreeting;
     }
@@ -87,7 +87,7 @@ cl.AddCallback({
 
 cl.AddCallback({
     name: "Multiply",
-    render: async (result: any, memoryManager: ReadOnlyClientMemoryManager, num1string: string, num2string: string) => {
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, num1string: string, num2string: string) => {
         // convert base and exponent to ints
         var num1int = parseInt(num1string);
         var num2int = parseInt(num2string);
@@ -104,7 +104,7 @@ cl.AddCallback({
         // clear base and exponent entities
         memoryManager.ForgetEntity("number");
     },
-    render: async () => {
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         return "Let's do another."
     }
 })
