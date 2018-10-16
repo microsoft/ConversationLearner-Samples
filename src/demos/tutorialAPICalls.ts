@@ -10,6 +10,7 @@ import chalk from 'chalk'
 import config from '../config'
 import * as request from 'request'
 import * as requestpromise from 'request-promise'
+import * as BB from 'botbuilder'
 import getDolRouter from '../dol'
 
 //===================
@@ -71,61 +72,65 @@ var greetings = [
 * @returns {Promise<void>}
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
-    // Nop -- no entity processing
+    // No entity processing in this example
 })
 
 //=================================
-// Define API callbacks
+// Sample API Callbacks
 //=================================
-cl.AddCallback({
-    name: "RandomGreeting",
-    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
-        var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-        return randomGreeting;
-    }
-})
+// API callbacks are divided into two parts:
+// 1) A 'logic' callback in which Entity values can be set and external APIs can be called
+// 2) A 'render' callback which generates Bot output, and can only read Entity values
+//
+// API callback can contain a 'logic' callback, a 'render' callback or both
+// When displaying an existing Dialog, in the CL editor, only the 'render' callback will
+// be called using saved values from the 'logic' callback.
+// When editing an existing Dialog, the 'logic' callback will be invoked
 
+// Example that has only a 'render' callback that takes two arguments and displays text to user
 cl.AddCallback({
     name: "Multiply",
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, num1string: string, num2string: string) => {
-        // convert base and exponent to ints
+        // Convert input to integers
         var num1int = parseInt(num1string);
         var num2int = parseInt(num2string);
 
-        // compute product
+        // Compute product
         var product = num1int * num2int;
+
+        // Display result
         return `${num1string} * ${num2string} = ${product}`
     }
 })
 
+// Example that has only a 'render' callback that displays a card to the user
+cl.AddCallback({
+    name: "RandomGreeting",
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+        const message = BB.MessageFactory.attachment(BB.CardFactory.thumbnailCard(randomGreeting, "Here's a neat photo", ["https://picsum.photos/100/?random"]))
+        return message
+    }
+})
+
+// Example that only has 'logic' callback
 cl.AddCallback({
     name: "ClearEntities",
     logic: async (memoryManager: ClientMemoryManager) => {
-        // clear base and exponent entities
+        // Clear "number" entity
         memoryManager.ForgetEntity("number");
-    },
-    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
-        return "Let's do another."
     }
 })
 
-// WRONG way to do an request.
-cl.AddCallback({
-    name: "RandomMessage-Callback",
-    logic: async (memoryManager : ClientMemoryManager) => {
-        var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
-
-        // WRONG
-        // RememberEntity call will happen after the APICallback has returned
-        request(options, (error:any, response:any, body:any) => {
-            memoryManager.RememberEntity("RandomMessage", response.body);   // BAD
-        })
-    }
-})
+//=================================
+// Making external API calls
+//=================================
+// CL expects the 'logic' callbacks to await any asynchronous results
 
 // CORRECT way to do a request
 cl.AddCallback({
-    name: "RandomMessage-Await",
+    name: "RandomMessage-Await-CORRECT",
     logic: async (memoryManager : ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
 
@@ -133,13 +138,69 @@ cl.AddCallback({
         // RememberEntity called before APICallback has returned
         let response = await requestpromise(options)
         memoryManager.RememberEntity("RandomMessage", response.body);
+    },
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        return logicResult.body
+    }
+})
+
+// !!WRONG!! way to do an request.
+cl.AddCallback({
+    name: "RandomMessage-Callback-WRONG",
+    logic: async (memoryManager : ClientMemoryManager) => {
+        var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+
+        // !!WRONG!!
+        // RememberEntity call will happen after the APICallback has returned
+        request(options, (error:any, response:any, body:any) => {
+            memoryManager.RememberEntity("RandomMessage", response.body);   // BAD
+        })
+    },
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        return logicResult
     }
 })
 
 //=================================
+// Data Passing Logic -> Result
+//=================================
+// Data can be passed from the 'logic' callback to the 'render' callback in one of two ways
+
+// 1) Passing Data in Entity
+// If you want to preserve the data for later, you can store it in an entity in the 'logic'
+// callback, and then refer to that Entity value in the 'render' callback
+cl.AddCallback({
+    name: "ResultAsEntity",
+    logic: async (memoryManager : ClientMemoryManager) => {
+        var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+        let response = await requestpromise(options)
+        memoryManager.RememberEntity("RandomMessage", response.body);
+    },
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        let value = memoryManager.EntityValue("RandomMessage")
+        return value || ""
+    }
+})
+
+// 2) Passing Data in "logicResult"
+// If the data is only temporary and being used just for rendering, you can pass if from the
+// 'logic' callback to the render callback directly by using the "logicResult" parameter
+cl.AddCallback({
+    name: "ResultAsLogicResult",
+    logic: async (memoryManager : ClientMemoryManager) => {
+        var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
+        let response = await requestpromise(options)
+        memoryManager.RememberEntity("RandomMessage", response.body);
+    },
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        return logicResult.body
+    }
+})
+
+
+//=================================
 // Handle Incoming Messages
 //=================================
-
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
