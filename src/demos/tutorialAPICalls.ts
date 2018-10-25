@@ -4,7 +4,6 @@
  */
 import * as path from 'path'
 import * as express from 'express'
-import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
@@ -33,7 +32,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BB.BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
 // Storage 
@@ -137,10 +136,10 @@ cl.AddCallback({
         // CORRECT
         // RememberEntity called before APICallback has returned
         let response = await requestpromise(options)
-        memoryManager.RememberEntity("RandomMessage", response.body);
+        return response.body
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
-        return logicResult.body
+        return logicResult
     }
 })
 
@@ -190,10 +189,10 @@ cl.AddCallback({
     logic: async (memoryManager : ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
         let response = await requestpromise(options)
-        memoryManager.RememberEntity("RandomMessage", response.body);
+        return response.body
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
-        return logicResult.body
+        return logicResult
     }
 })
 
