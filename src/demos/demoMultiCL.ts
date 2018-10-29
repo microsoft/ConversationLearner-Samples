@@ -4,7 +4,7 @@
  */
 import * as path from 'path'
 import * as express from 'express'
-import { BotFrameworkAdapter, ConversationState } from 'botbuilder'
+import { BotFrameworkAdapter, ConversationState, AutoSaveStateMiddleware } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, ReadOnlyClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
@@ -150,8 +150,9 @@ interface BotState {
 }
 
 // Add conversation state middleware
-const conversationState = new ConversationState<BotState>(fileStorage);
-adapter.use(conversationState);
+const conversationState = new ConversationState(fileStorage)
+const botStateAccessor = conversationState.createProperty<BotState>('botState')
+adapter.use(new AutoSaveStateMiddleware(conversationState))
 
 //=================================
 // Handle Incoming Messages
@@ -175,17 +176,20 @@ server.post('/api/messages', (req, res) => {
         }
 
         // Get state for this turn 
-        const state = conversationState.get(context);
+        await conversationState.load(context)
+        const state = await botStateAccessor.get(context, <BotState> {mode : ""})
 
         if (!state) return;
 
         if (context.activity.type === 'message') {
             if (context.activity.text.toLowerCase() == 'pizza') {
                 state.mode = "pizza";
+                await botStateAccessor.set(context, state)
                 return context.sendActivity('Ok, how can I help you with pizza?')
             }
             else if (context.activity.text.toLowerCase() == 'vr') {
                 state.mode = "vr";
+                await botStateAccessor.set(context, state)
                 return context.sendActivity('Ok, how can I help you with VR?')
             }
 

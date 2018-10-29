@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import * as BB from 'botbuilder'
-import { BotFrameworkAdapter } from 'botbuilder'
+import { BotFrameworkAdapter, AutoSaveStateMiddleware } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage, SessionEndState } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
@@ -63,7 +63,7 @@ let cl = new ConversationLearner(modelId);
 */
 cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
     // Initialize ConversationLearner Entity from Bot State
-    let state = convoState.get(context)
+    let state = await convoState.load(context)
     if (state && state.storeIsOpen) {
         memoryManager.RememberEntity("isOpen", state.storeIsOpen)
     }
@@ -82,8 +82,8 @@ let state: any = null
 * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
 */
 cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
-    let state = convoState.get(context)
-    if (!state) throw("Bot State not Initialized!")
+    let state = await convoState.load(context)
+    if (!state) throw ("Bot State not Initialized!")
 
     // Update Bot State to indicate ConversationLearner should no longer be in control
     state.usingConversationLearner = false
@@ -114,7 +114,7 @@ cl.AddCallback({
         // WRONG:
         // Never transfer state in an API callback 
         // convoState.someVar = memoryManager.EntityValue("someEntity")
-        
+
         // WRONG:
         // Never transfer state in an API callback 
         // memoryManager.RememberEntity("someEntity", convoState.someVal)
@@ -124,7 +124,8 @@ cl.AddCallback({
 // Add state middleware
 const storage = new BB.MemoryStorage();
 const convoState = new BB.ConversationState(storage);
-adapter.use(new BB.BotStateSet(convoState));
+const saveStateMiddleware = new AutoSaveStateMiddleware(convoState)
+adapter.use(saveStateMiddleware);
 
 
 //=================================
@@ -138,7 +139,7 @@ server.post('/api/messages', (req, res) => {
         // -> state.storeIsOpen                 : whether store front is open (set outside Conversation Learner)
         // -> state.purchasedItem               : what to buy.  Retrieved from ConversationLearner when EndSession is triggered
 
-        state = convoState.get(context)
+        state = await convoState.load(context);
         if (!state) throw ('Error Getting State');
 
         // When running in training UI, ConversationLearner must always have control
@@ -176,8 +177,7 @@ server.post('/api/messages', (req, res) => {
                 }
 
                 // User input that triggers use of ConversationLearner
-                else if (context.activity.text === 'shop')
-                {
+                else if (context.activity.text === 'shop') {
                     state.usingConversationLearner = true;
 
                     // StartSession triggers "OnSessionStartCallback" which initializes ConversationLearner.  
@@ -190,7 +190,7 @@ server.post('/api/messages', (req, res) => {
                 else if (context.activity.text === 'history') {
                     await context.sendActivity(`You bought ${state.purchasedItem ? state.purchasedItem : "nothing"}`)
                 }
-                
+
                 // Otherwise show commands
                 else {
                     await context.sendActivity(`You can: "open store", "close store", "shop", "history"`)
