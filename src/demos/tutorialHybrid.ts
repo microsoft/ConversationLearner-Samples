@@ -63,7 +63,10 @@ let cl = new ConversationLearner(modelId);
 */
 cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
     // Initialize ConversationLearner Entity from Bot State
-    let state = await convoState.load(context)
+    if (!state) {
+        state = await convoState.load(context)
+    }
+
     if (state && state.storeIsOpen) {
         memoryManager.RememberEntity("isOpen", state.storeIsOpen)
     }
@@ -82,8 +85,9 @@ let state: any = null
 * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
 */
 cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
-    let state = await convoState.load(context)
-    if (!state) throw ("Bot State not Initialized!")
+    if (!state) {
+        state = await convoState.load(context)
+    }
 
     // Update Bot State to indicate ConversationLearner should no longer be in control
     state.usingConversationLearner = false
@@ -147,7 +151,7 @@ server.post('/api/messages', (req, res) => {
         if (await cl.InTrainingUI(context)) {
             let result = await cl.recognize(context)
             if (result) {
-                cl.SendResult(result);
+                await cl.SendResult(result);
             }
         }
 
@@ -155,7 +159,7 @@ server.post('/api/messages', (req, res) => {
         else if (state.usingConversationLearner) {
             let result = await cl.recognize(context)
             if (result) {
-                cl.SendResult(result);
+                await cl.SendResult(result);
             }
         }
 
