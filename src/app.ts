@@ -53,7 +53,7 @@ const cl = new ConversationLearner(modelId)
 * @returns {Promise<void>}
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
- 
+
     /** Add business logic manipulating the entities in memory 
 
     // Values in bot memory
@@ -106,12 +106,11 @@ cl.AddCallback<number>({
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         const result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })
 
 export default server
-

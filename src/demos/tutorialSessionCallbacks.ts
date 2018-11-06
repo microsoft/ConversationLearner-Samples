@@ -84,7 +84,7 @@ cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) =>
 
     // 2) Extract values from ConversationLearner memoryManager and store in BotState
     //    using context object (see tutorialHybrid for an example)
-  
+
     // 3) Return list of Entities to save for the next time ConversationLearner is started
     //    Persist UserName and UserPhone after session has ended
     return ["UserName", "UserPhone"]
@@ -96,9 +96,9 @@ cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) =>
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

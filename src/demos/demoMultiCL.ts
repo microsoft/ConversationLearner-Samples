@@ -52,7 +52,7 @@ if (isDevelopment) {
 // Add Pizza functions
 //=================================
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping: string) {
+var isInStock = function (topping: string) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
@@ -61,7 +61,7 @@ clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemory
 
     // Clear OutOfStock List
     memoryManager.ForgetEntity("OutOfStock");
-            
+
     // Get list of requested Toppings
     let toppings = memoryManager.EntityValueAsList("Toppings");
 
@@ -71,14 +71,14 @@ clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemory
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
             memoryManager.ForgetEntity("Toppings", topping);
-            memoryManager.RememberEntity("OutOfStock", topping);        
+            memoryManager.RememberEntity("OutOfStock", topping);
         }
     }
 })
 
 clPizza.AddCallback({
     name: "FinalizeOrder",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         // Save toppings
         memoryManager.CopyEntity("Toppings", "LastToppings")
 
@@ -92,12 +92,12 @@ clPizza.AddCallback({
 
 clPizza.AddCallback({
     name: "UseLastToppings",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         // Restore last toppings
         memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
-        memoryManager.ForgetEntity("LastToppings"); 
+        memoryManager.ForgetEntity("LastToppings");
     }
 })
 
@@ -105,7 +105,7 @@ clPizza.AddCallback({
 // Add VR functions
 //=================================
 var apps = ["skype", "outlook", "amazon video", "amazon music"];
-var resolveApps = function(appName: string) {
+var resolveApps = function (appName: string) {
     return apps.filter(n => n.includes(appName));
 }
 
@@ -115,14 +115,14 @@ clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
     // Clear disambigApps
     memoryManager.ForgetEntity("DisambigAppNames");
     memoryManager.ForgetEntity("UnknownAppName");
-            
+
     // Get list of (possibly) ambiguous apps
     var appNames = memoryManager.EntityValueAsList("AppName");
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
-            
+
         if (resolvedAppNames.length == 0) {
             memoryManager.RememberEntity("UnknownAppName", appNames[0]);
             memoryManager.ForgetEntity("AppName");
@@ -177,7 +177,7 @@ server.post('/api/messages', (req, res) => {
 
         // Get state for this turn 
         await conversationState.load(context)
-        const state = await botStateAccessor.get(context, <BotState> {mode : ""})
+        const state = await botStateAccessor.get(context, <BotState>{ mode: "" })
 
         if (!state) return;
 

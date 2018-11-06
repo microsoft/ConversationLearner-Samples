@@ -158,7 +158,7 @@ server.post('/api/messages', (req, res) => {
         if (await cl.InTrainingUI(context)) {
             let result = await cl.recognize(context)
             if (result) {
-                await cl.SendResult(result);
+                return cl.SendResult(result);
             }
         }
 
@@ -166,7 +166,7 @@ server.post('/api/messages', (req, res) => {
         else if (state.usingConversationLearner) {
             let result = await cl.recognize(context)
             if (result) {
-                await cl.SendResult(result);
+                return cl.SendResult(result);
             }
         }
 
