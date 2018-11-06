@@ -56,8 +56,8 @@ let cl = new ConversationLearner(modelId);
 // Bots Buisness Logic
 //=========================================================
 var greetings = [
-    "Hello!", 
-    "Greetings!", 
+    "Hello!",
+    "Greetings!",
     "Hi there!"
 ];
 
@@ -130,7 +130,7 @@ cl.AddCallback({
 // CORRECT way to do a request
 cl.AddCallback({
     name: "RandomMessage-Await-CORRECT",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
 
         // CORRECT
@@ -146,12 +146,12 @@ cl.AddCallback({
 // !!WRONG!! way to do an request.
 cl.AddCallback({
     name: "RandomMessage-Callback-WRONG",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
 
         // !!WRONG!!
         // RememberEntity call will happen after the APICallback has returned
-        request(options, (error:any, response:any, body:any) => {
+        request(options, (error: any, response: any, body: any) => {
             memoryManager.RememberEntity("RandomMessage", response.body);   // BAD
         })
     },
@@ -170,7 +170,7 @@ cl.AddCallback({
 // callback, and then refer to that Entity value in the 'render' callback
 cl.AddCallback({
     name: "ResultAsEntity",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
         let response = await requestpromise(options)
         memoryManager.RememberEntity("RandomMessage", response.body);
@@ -186,7 +186,7 @@ cl.AddCallback({
 // 'logic' callback to the render callback directly by using the "logicResult" parameter
 cl.AddCallback({
     name: "ResultAsLogicResult",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
         let response = await requestpromise(options)
         return response.body
@@ -203,9 +203,9 @@ cl.AddCallback({
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

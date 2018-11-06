@@ -54,7 +54,7 @@ let cl = new ConversationLearner(modelId);
 // Bots Buisness Logic
 //=========================================================
 var apps = ["skype", "outlook", "amazon video", "amazon music"];
-var resolveApps = function(appName: string) {
+var resolveApps = function (appName: string) {
     return apps.filter(n => n.includes(appName));
 }
 
@@ -72,14 +72,14 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     // Clear disambigApps
     memoryManager.ForgetEntity("DisambigAppNames");
     memoryManager.ForgetEntity("UnknownAppName");
-            
+
     // Get list of (possibly) ambiguous apps
     var appNames = memoryManager.EntityValueAsList("AppName");
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
-            
+
         if (resolvedAppNames.length == 0) {
             memoryManager.RememberEntity("UnknownAppName", appNames[0]);
             memoryManager.ForgetEntity("AppName");
@@ -109,9 +109,9 @@ cl.AddCallback({
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

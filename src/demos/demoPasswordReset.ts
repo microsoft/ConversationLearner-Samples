@@ -72,9 +72,9 @@ let cl = new ConversationLearner(modelId);
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

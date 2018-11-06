@@ -105,7 +105,7 @@ server.post('/api/messages', (req, res) => {
         let result = await cl.recognize(context)
         
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

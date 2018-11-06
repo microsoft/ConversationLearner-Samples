@@ -62,14 +62,16 @@ let cl = new ConversationLearner(modelId);
 * @returns {Promise<void>}
 */
 cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
+    let state = convoState.get(context)
+    if (!state) {
+        state = await convoState.load(context)
+    }
+
     // Initialize ConversationLearner Entity from Bot State
-    let state = await convoState.load(context)
     if (state && state.storeIsOpen) {
         memoryManager.RememberEntity("isOpen", state.storeIsOpen)
     }
 })
-
-let state: any = null
 
 /**
 * Called when Session ends.
@@ -82,14 +84,23 @@ let state: any = null
 * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
 */
 cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
-    let state = await convoState.load(context)
-    if (!state) throw ("Bot State not Initialized!")
+    let state = convoState.get(context)
+    if (!state) {
+        state = await convoState.load(context)
+    }
 
     // Update Bot State to indicate ConversationLearner should no longer be in control
-    state.usingConversationLearner = false
+    if (sessionEndState !== SessionEndState.OPEN) {
+        state.usingConversationLearner = false
+    }
 
     // If END_SESSION action was called
     if (sessionEndState === SessionEndState.COMPLETED) {
+
+        const purchasedItem = memoryManager.PrevEntityValue("purchaseItem")
+        if (purchasedItem !== null) {
+            await context.sendActivity(`You have ordered: ${purchasedItem}.`)
+        }
 
         await context.sendActivity(`Thanks for shopping.`)
 
@@ -98,7 +109,7 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
         //    was successfully completed?  Is there a need to escale to a human?
 
         // 2) Extract values from ConversationLearner memoryManager and store in BotState
-        state.purchasedItem = memoryManager.PrevEntityValue("purchaseItem")
+        state.purchasedItem = purchasedItem
 
         // 3) Return list of Entities to save for the next time ConversationLearner is started
         //    (see tutorialSessionCallback for an example)
@@ -139,7 +150,7 @@ server.post('/api/messages', (req, res) => {
         // -> state.storeIsOpen                 : whether store front is open (set outside Conversation Learner)
         // -> state.purchasedItem               : what to buy.  Retrieved from ConversationLearner when EndSession is triggered
 
-        state = await convoState.load(context);
+        let state = await convoState.load(context);
         if (!state) throw ('Error Getting State');
 
         // When running in training UI, ConversationLearner must always have control
@@ -147,7 +158,7 @@ server.post('/api/messages', (req, res) => {
         if (await cl.InTrainingUI(context)) {
             let result = await cl.recognize(context)
             if (result) {
-                cl.SendResult(result);
+                return cl.SendResult(result);
             }
         }
 
@@ -155,7 +166,7 @@ server.post('/api/messages', (req, res) => {
         else if (state.usingConversationLearner) {
             let result = await cl.recognize(context)
             if (result) {
-                cl.SendResult(result);
+                return cl.SendResult(result);
             }
         }
 

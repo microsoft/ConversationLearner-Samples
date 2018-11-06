@@ -54,7 +54,7 @@ let cl = new ConversationLearner(modelId);
 // Bots Buisness Logic
 //=========================================================
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping: string) {
+var isInStock = function (topping: string) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
@@ -71,7 +71,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 
     // Clear OutOfStock List
     memoryManager.ForgetEntity("OutOfStock");
-            
+
     // Get list of requested Toppings
     let toppings = memoryManager.EntityValueAsList("Toppings");
 
@@ -81,7 +81,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
             memoryManager.ForgetEntity("Toppings", topping);
-            memoryManager.RememberEntity("OutOfStock", topping);        
+            memoryManager.RememberEntity("OutOfStock", topping);
         }
     }
 })
@@ -105,12 +105,12 @@ cl.AddCallback({
 
 cl.AddCallback({
     name: "UseLastToppings",
-    logic: async (memoryManager : ClientMemoryManager) => {
+    logic: async (memoryManager: ClientMemoryManager) => {
         // Restore last toppings
         memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
-        memoryManager.ForgetEntity("LastToppings"); 
+        memoryManager.ForgetEntity("LastToppings");
     }
 })
 
@@ -120,9 +120,9 @@ cl.AddCallback({
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })
