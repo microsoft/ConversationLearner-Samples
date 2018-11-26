@@ -97,7 +97,7 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
     // If END_SESSION action was called
     if (sessionEndState === SessionEndState.COMPLETED) {
 
-        const purchasedItem = memoryManager.PrevEntityValue("purchaseItem")
+        const purchasedItem = memoryManager.PrevEntityValueAsString("purchaseItem")
         if (purchasedItem !== null) {
             await context.sendActivity(`You have ordered: ${purchasedItem}.`)
         }
