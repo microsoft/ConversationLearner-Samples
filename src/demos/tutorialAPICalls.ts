@@ -176,7 +176,7 @@ cl.AddCallback({
         memoryManager.RememberEntity("RandomMessage", response.body);
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
-        let value = memoryManager.EntityValue("RandomMessage")
+        let value = memoryManager.EntityValueAsString("RandomMessage")
         return value || ""
     }
 })
