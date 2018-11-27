@@ -69,7 +69,7 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
 
     // Initialize ConversationLearner Entity from Bot State
     if (state && state.storeIsOpen) {
-        memoryManager.RememberEntity("isOpen", state.storeIsOpen)
+        memoryManager.Set("isOpen", state.storeIsOpen)
     }
 })
 
@@ -97,7 +97,7 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
     // If END_SESSION action was called
     if (sessionEndState === SessionEndState.COMPLETED) {
 
-        const purchasedItem = memoryManager.PrevEntityValueAsString("purchaseItem")
+        const purchasedItem = memoryManager.GetPrevious("purchaseItem", ClientMemoryManager.AS_STRING)
         if (purchasedItem !== null) {
             await context.sendActivity(`You have ordered: ${purchasedItem}.`)
         }

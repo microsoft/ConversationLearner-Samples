@@ -63,7 +63,7 @@ let cl = new ConversationLearner(modelId);
 */
 cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager) => {
     // Set BotName when session starts
-    memoryManager.RememberEntity("BotName", "Botty")
+    memoryManager.Set("BotName", "Botty")
 })
 
 /**

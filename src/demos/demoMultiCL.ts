@@ -60,18 +60,18 @@ let clPizza = new ConversationLearner("2d9884f4-75a3-4f63-8b1e-d885ac02663e");
 clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
-    memoryManager.ForgetEntity("OutOfStock");
+    memoryManager.Delete("OutOfStock");
 
     // Get list of requested Toppings
-    let toppings = memoryManager.EntityValueAsList("Toppings");
+    let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
 
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
-            memoryManager.ForgetEntity("Toppings", topping);
-            memoryManager.RememberEntity("OutOfStock", topping);
+            memoryManager.Delete("Toppings", topping);
+            memoryManager.Set("OutOfStock", topping);
         }
     }
 })
@@ -83,7 +83,7 @@ clPizza.AddCallback({
         memoryManager.CopyEntity("Toppings", "LastToppings")
 
         // Clear toppings
-        memoryManager.ForgetEntity("Toppings")
+        memoryManager.Delete("Toppings")
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         return "Your order is on its way"
@@ -97,7 +97,7 @@ clPizza.AddCallback({
         memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
-        memoryManager.ForgetEntity("LastToppings");
+        memoryManager.Delete("LastToppings");
     }
 })
 
@@ -113,22 +113,22 @@ let clVr = new ConversationLearner("997dc1e2-c0c0-4812-9429-446e31cfdf99");
 clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
-    memoryManager.ForgetEntity("DisambigAppNames");
-    memoryManager.ForgetEntity("UnknownAppName");
+    memoryManager.Delete("DisambigAppNames");
+    memoryManager.Delete("UnknownAppName");
 
     // Get list of (possibly) ambiguous apps
-    var appNames = memoryManager.EntityValueAsList("AppName");
+    var appNames = memoryManager.Get("AppName", ClientMemoryManager.AS_STRING_LIST);
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
 
         if (resolvedAppNames.length == 0) {
-            memoryManager.RememberEntity("UnknownAppName", appNames[0]);
-            memoryManager.ForgetEntity("AppName");
+            memoryManager.Set("UnknownAppName", appNames[0]);
+            memoryManager.Delete("AppName");
         } else if (resolvedAppNames.length > 1) {
-            memoryManager.RememberEntities("DisambigAppNames", resolvedAppNames);
-            memoryManager.ForgetEntity("AppName");
+            memoryManager.Set("DisambigAppNames", resolvedAppNames);
+            memoryManager.Delete("AppName");
         }
     }
 })
@@ -137,8 +137,8 @@ clVr.AddCallback({
     name: "LaunchApp",
     logic: async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
         // Clear entities.
-        memoryManager.ForgetEntity("AppName")
-        memoryManager.ForgetEntity("PlacementLocation")
+        memoryManager.Delete("AppName")
+        memoryManager.Delete("PlacementLocation")
 
         return `Ok, starting ${AppName} on the ${PlacementLocation}.`
     }
