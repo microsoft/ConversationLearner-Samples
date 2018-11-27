@@ -70,22 +70,22 @@ var resolveApps = function (appName: string) {
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
-    memoryManager.ForgetEntity("DisambigAppNames");
-    memoryManager.ForgetEntity("UnknownAppName");
+    memoryManager.Delete("DisambigAppNames");
+    memoryManager.Delete("UnknownAppName");
 
     // Get list of (possibly) ambiguous apps
-    var appNames = memoryManager.EntityValueAsList("AppName");
+    var appNames = memoryManager.Get("AppName", ClientMemoryManager.AS_STRING_LIST);
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
 
         if (resolvedAppNames.length == 0) {
-            memoryManager.RememberEntity("UnknownAppName", appNames[0]);
-            memoryManager.ForgetEntity("AppName");
+            memoryManager.Set("UnknownAppName", appNames[0]);
+            memoryManager.Delete("AppName");
         } else if (resolvedAppNames.length > 1) {
-            memoryManager.RememberEntities("DisambigAppNames", resolvedAppNames);
-            memoryManager.ForgetEntity("AppName");
+            memoryManager.Set("DisambigAppNames", resolvedAppNames);
+            memoryManager.Delete("AppName");
         }
     }
 })
@@ -95,8 +95,8 @@ cl.AddCallback({
     logic: async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
         // Simulate API call to launch the app.
 
-        memoryManager.ForgetEntity("AppName")
-        memoryManager.ForgetEntity("PlacementLocation")
+        memoryManager.Delete("AppName")
+        memoryManager.Delete("PlacementLocation")
 
         return `Ok, starting ${AppName} on the ${PlacementLocation}.`
     }

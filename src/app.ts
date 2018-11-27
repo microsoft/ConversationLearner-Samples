@@ -54,30 +54,28 @@ const cl = new ConversationLearner(modelId)
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
+    memoryManager.Get("name", ClientMemoryManager.AS_STRING)
+
     /** Add business logic manipulating the entities in memory 
 
-    // Values in bot memory
-    memoryManager.EntityValue(entityName: string): (string | null)
-    memoryManager.EntityValueAsPrebuilt(entityName: string): MemoryValue[]
-    memoryManager.EntityValueAsList(entityName: string): string[]
-    memoryManager.EntityValueAsObject<T>(entityName: string): (T | null)
-    memoryManager.EntityValueAsBoolean(entityName: string): (boolean | null)
-    memoryManager.EntityValueAsNumber(entityName: string): (number | null)
-    memoryManager.GetFilledEntities(): FilledEntity[]
+    // GET - Values currently in bot memory
+    memoryManager.Get("numPeople", ClientMemoryManager.AS_NUMBER)
+    memoryManager.Get("counters", ClientMemoryManager.AS_NUMBER_LIST)
 
-    // Values in memory before new Entity detection
-    memoryManager.PrevEntityValue(entityName: string): (string | null)
-    memoryManager.PrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
-    memoryManager.PrevEntityValueAsList(entityName: string): string[]
-    memoryManager.PrevEntityValueAsObject<T>(entityName: string): (T | null)
-    memoryManager.PrevValueAsBoolean(entityName: string): (boolean | null)
-    memoryManager.PrevValueAsNumber(entityName: string): (number | null)
 
-    // Memory manipulation methods
-    memoryManager.RememberEntity(entityName: string, entityValue: string): void
-    memoryManager.RememberEntities(entityName: string, entityValues: string[]): void
-    memoryManager.ForgetEntity(entityName: string, value?: string): void
-    memoryManager.ForgetAllEntities(saveEntityNames: string[]): void
+    // GET - Values in memory before new Entity detection
+    memoryManager.GetPrevious("isLoggedIn", ClientMemoryManager.AS_BOOLEAN)
+    memoryManager.GetPrevious("location", ClientMemoryManager.AS_VALUE)
+
+    // SET
+    memoryManager.Set("isOpen", true)
+    memoryManager.Set("toppings", ["cheese", "peppers"])
+   
+    // DELETE
+    memoryManager.Delete(entityName: string, value?: string): void
+    memoryManager.DeleteAll(saveEntityNames: string[]): void
+
+    // COPY
     memoryManager.CopyEntity(entityNameFrom: string, entityNameTo: string): void
 
     // Info about the current running Session

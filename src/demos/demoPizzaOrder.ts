@@ -70,18 +70,18 @@ var isInStock = function (topping: string) {
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
-    memoryManager.ForgetEntity("OutOfStock");
+    memoryManager.Delete("OutOfStock");
 
     // Get list of requested Toppings
-    let toppings = memoryManager.EntityValueAsList("Toppings");
+    let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
 
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
-            memoryManager.ForgetEntity("Toppings", topping);
-            memoryManager.RememberEntity("OutOfStock", topping);
+            memoryManager.Delete("Toppings", topping);
+            memoryManager.Set("OutOfStock", topping);
         }
     }
 })
@@ -96,7 +96,7 @@ cl.AddCallback({
         memoryManager.CopyEntity("Toppings", "LastToppings")
 
         // Clear toppings
-        memoryManager.ForgetEntity("Toppings")
+        memoryManager.Delete("Toppings")
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         return "Your order is on its way"
@@ -110,7 +110,7 @@ cl.AddCallback({
         memoryManager.CopyEntity("LastToppings", "Toppings");
 
         // Clear last toppings
-        memoryManager.ForgetEntity("LastToppings");
+        memoryManager.Delete("LastToppings");
     }
 })
 

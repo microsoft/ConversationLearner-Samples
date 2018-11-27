@@ -79,19 +79,19 @@ var resolveCity = function(cityFromUser: string) {
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     // Clear
-    memoryManager.ForgetEntity("CityUnknown");
+    memoryManager.Delete("CityUnknown");
             
     // Get list of (possibly) ambiguous cities
-    var citiesFromUser = memoryManager.EntityValueAsList("City");
+    var citiesFromUser = memoryManager.Get("City", ClientMemoryManager.AS_STRING_LIST);
     if (citiesFromUser.length > 0) {
         var cityFromUser = citiesFromUser[0]
         const resolvedCity = resolveCity(cityFromUser)
         if (resolvedCity) {
-            memoryManager.RememberEntity("CityResolved", resolvedCity);
+            memoryManager.Set("CityResolved", resolvedCity);
         } else {
-            memoryManager.RememberEntity("CityUnknown", cityFromUser);
-            memoryManager.ForgetEntity("CityResolved");
-            memoryManager.ForgetEntity("City");
+            memoryManager.Set("CityUnknown", cityFromUser);
+            memoryManager.Delete("CityResolved");
+            memoryManager.Delete("City");
         }
     }
 })

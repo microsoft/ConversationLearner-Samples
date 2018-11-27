@@ -118,7 +118,7 @@ cl.AddCallback({
     name: "ClearEntities",
     logic: async (memoryManager: ClientMemoryManager) => {
         // Clear "number" entity
-        memoryManager.ForgetEntity("number");
+        memoryManager.Delete("number");
     }
 })
 
@@ -152,7 +152,7 @@ cl.AddCallback({
         // !!WRONG!!
         // RememberEntity call will happen after the APICallback has returned
         request(options, (error: any, response: any, body: any) => {
-            memoryManager.RememberEntity("RandomMessage", response.body);   // BAD
+            memoryManager.Set("RandomMessage", response.body);   // BAD
         })
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
@@ -173,10 +173,10 @@ cl.AddCallback({
     logic: async (memoryManager: ClientMemoryManager) => {
         var options = { method: 'GET', uri: 'https://jsonplaceholder.typicode.com/posts/1', json: true }
         let response = await requestpromise(options)
-        memoryManager.RememberEntity("RandomMessage", response.body);
+        memoryManager.Set("RandomMessage", response.body);
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
-        let value = memoryManager.EntityValueAsString("RandomMessage")
+        let value = memoryManager.Get("RandomMessage", ClientMemoryManager.AS_STRING)
         return value || ""
     }
 })
