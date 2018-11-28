@@ -59,17 +59,16 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     /** Add business logic manipulating the entities in memory 
 
     // GET - Values currently in bot memory
-    memoryManager.Get("numPeople", ClientMemoryManager.AS_NUMBER)
-    memoryManager.Get("counters", ClientMemoryManager.AS_NUMBER_LIST)
-
+    memoryManager.Get(entityName: string, converter: (memoryValues: MemoryValue[])
+    i.e. memoryManager.Get("counters", ClientMemoryManager.AS_NUMBER_LIST)
 
     // GET - Values in memory before new Entity detection
-    memoryManager.GetPrevious("isLoggedIn", ClientMemoryManager.AS_BOOLEAN)
-    memoryManager.GetPrevious("location", ClientMemoryManager.AS_VALUE)
+    memoryManager.GetPrevious(entityName: string, converter: (memoryValues: MemoryValue[])
+    i.e. memoryManager.GetPrevious("location", ClientMemoryManager.AS_VALUE)
 
     // SET
-    memoryManager.Set("isOpen", true)
-    memoryManager.Set("toppings", ["cheese", "peppers"])
+    memoryManager.Set(entityName: string, true)
+    i.e. memoryManager.Set("toppings", ["cheese", "peppers"])
    
     // DELETE
     memoryManager.Delete(entityName: string, value?: string): void
