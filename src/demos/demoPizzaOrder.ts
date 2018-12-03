@@ -69,9 +69,6 @@ var isInStock = function (topping: string) {
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
-    // Clear OutOfStock List
-    memoryManager.Delete("OutOfStock");
-
     // Get list of requested Toppings
     let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);
 
@@ -89,6 +86,22 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define API callbacks
 //=================================
+cl.AddCallback({
+    name: "OutOfStock",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        // Save out of stock item
+        let outOfStock = memoryManager.Get("OutOfStock", ClientMemoryManager.AS_STRING_LIST)
+
+        // Clear out of stock
+        memoryManager.Delete("OutOfStock")
+
+        return outOfStock
+    },
+    render: async (outofStock: string[], memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        return `Sorry, we don't have ${outofStock}`
+    }
+})
+
 cl.AddCallback({
     name: "FinalizeOrder",
     logic: async (memoryManager: ClientMemoryManager) => {
