@@ -8,6 +8,7 @@ import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
+import { TranslatorMiddleware } from './translator-middleware'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 
@@ -22,7 +23,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 // Create Adapter
 //==================
 const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
-
+adapter.use(new TranslatorMiddleware("en", "YOUR_TRANSLATOR_KEY"))
 //==================================
 // Storage 
 //==================================
