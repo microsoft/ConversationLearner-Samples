@@ -106,7 +106,7 @@ cl.AddCallback({
     name: "FinalizeOrder",
     logic: async (memoryManager: ClientMemoryManager) => {
         // Save toppings
-        memoryManager.CopyEntity("Toppings", "LastToppings")
+        memoryManager.Copy("Toppings", "LastToppings")
 
         // Clear toppings
         memoryManager.Delete("Toppings")
@@ -120,7 +120,7 @@ cl.AddCallback({
     name: "UseLastToppings",
     logic: async (memoryManager: ClientMemoryManager) => {
         // Restore last toppings
-        memoryManager.CopyEntity("LastToppings", "Toppings");
+        memoryManager.Copy("LastToppings", "Toppings");
 
         // Clear last toppings
         memoryManager.Delete("LastToppings");

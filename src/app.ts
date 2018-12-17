@@ -75,7 +75,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     memoryManager.DeleteAll(saveEntityNames: string[]): void
 
     // COPY
-    memoryManager.CopyEntity(entityNameFrom: string, entityNameTo: string): void
+    memoryManager.Copy(entityNameFrom: string, entityNameTo: string): void
 
     // Info about the current running Session
     memoryManager.SessionInfo(): SessionInfo
