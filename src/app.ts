@@ -6,6 +6,7 @@ import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from './config'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
@@ -37,6 +38,7 @@ const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 
 const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
 if (includeSdk) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 
@@ -51,32 +53,29 @@ const cl = new ConversationLearner(modelId)
 * @returns {Promise<void>}
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
- 
+
+    memoryManager.Get("name", ClientMemoryManager.AS_STRING)
+
     /** Add business logic manipulating the entities in memory 
 
-    // Values in bot memory
-    memoryManager.EntityValue(entityName: string): (string | null)
-    memoryManager.EntityValueAsPrebuilt(entityName: string): MemoryValue[]
-    memoryManager.EntityValueAsList(entityName: string): string[]
-    memoryManager.EntityValueAsObject<T>(entityName: string): (T | null)
-    memoryManager.EntityValueAsBoolean(entityName: string): (boolean | null)
-    memoryManager.EntityValueAsNumber(entityName: string): (number | null)
-    memoryManager.GetFilledEntities(): FilledEntity[]
+    // GET - Values currently in bot memory
+    memoryManager.Get(entityName: string, converter: (memoryValues: MemoryValue[])
+    i.e. memoryManager.Get("counters", ClientMemoryManager.AS_NUMBER_LIST)
 
-    // Values in memory before new Entity detection
-    memoryManager.PrevEntityValue(entityName: string): (string | null)
-    memoryManager.PrevEntityValueAsPrebuilt(entityName: string): MemoryValue[]
-    memoryManager.PrevEntityValueAsList(entityName: string): string[]
-    memoryManager.PrevEntityValueAsObject<T>(entityName: string): (T | null)
-    memoryManager.PrevValueAsBoolean(entityName: string): (boolean | null)
-    memoryManager.PrevValueAsNumber(entityName: string): (number | null)
+    // GET - Values in memory before new Entity detection
+    memoryManager.GetPrevious(entityName: string, converter: (memoryValues: MemoryValue[])
+    i.e. memoryManager.GetPrevious("location", ClientMemoryManager.AS_VALUE)
 
-    // Memory manipulation methods
-    memoryManager.RememberEntity(entityName: string, entityValue: string): void
-    memoryManager.RememberEntities(entityName: string, entityValues: string[]): void
-    memoryManager.ForgetEntity(entityName: string, value?: string): void
-    memoryManager.ForgetAllEntities(saveEntityNames: string[]): void
-    memoryManager.CopyEntity(entityNameFrom: string, entityNameTo: string): void
+    // SET
+    memoryManager.Set(entityName: string, true)
+    i.e. memoryManager.Set("toppings", ["cheese", "peppers"])
+   
+    // DELETE
+    memoryManager.Delete(entityName: string, value?: string): void
+    memoryManager.DeleteAll(saveEntityNames: string[]): void
+
+    // COPY
+    memoryManager.Copy(entityNameFrom: string, entityNameTo: string): void
 
     // Info about the current running Session
     memoryManager.SessionInfo(): SessionInfo
@@ -86,16 +85,17 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define any API callbacks
 //=================================
-/** 
-cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1: string, arg2: string) => {
-    // Your API logic including any service calls
-    
-    // Return promise of: 
-    //    (1) undefined -> no message sent to user
-    //    (2) string -> text message sent to user
-    //    (3) BB.Activity -> card sent to user
+/*
+cl.AddCallback<number>({
+    name: "Add",
+    logic: async (memoryManager, arg1: string, arg2: string) => {
+        return [arg1, arg2]
+            .map(x => parseInt(x))
+            .reduce((sum, a) => sum += a, 0)
+    },
+    render: async result => `Add result is: ${result}`
 })
-*/ 
+*/
 
 //=================================
 // Handle Incoming Messages
@@ -103,12 +103,11 @@ cl.AddAPICallback("Name of API", async (memoryManager: ClientMemoryManager, arg1
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         const result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })
 
 export default server
-

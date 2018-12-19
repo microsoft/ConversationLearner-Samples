@@ -5,9 +5,10 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, ReadOnlyClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -16,13 +17,13 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -44,6 +45,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
@@ -52,7 +54,7 @@ let cl = new ConversationLearner(modelId);
 // Bots Buisness Logic
 //=========================================================
 var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function(topping: string) {
+var isInStock = function (topping: string) {
     return (inStock.indexOf(topping.toLowerCase()) > -1);
 }
 
@@ -67,19 +69,16 @@ var isInStock = function(topping: string) {
 */
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
-    // Clear OutOfStock List
-    memoryManager.ForgetEntity("OutOfStock");
-            
     // Get list of requested Toppings
-    let toppings = memoryManager.EntityValueAsList("Toppings");
+    let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
 
         // If not in stock, move from Toppings List of OutOfStock list
         if (!isInStock(topping)) {
-            memoryManager.ForgetEntity("Toppings", topping);
-            memoryManager.RememberEntity("OutOfStock", topping);        
+            memoryManager.Delete("Toppings", topping);
+            memoryManager.Set("OutOfStock", topping);
         }
     }
 })
@@ -87,26 +86,46 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 //=================================
 // Define API callbacks
 //=================================
-cl.AddAPICallback("FinalizeOrder", async (memoryManager : ClientMemoryManager, toppings: string, crustType: string) => 
-    {
+cl.AddCallback({
+    name: "OutOfStock",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        // Save out of stock item
+        let outOfStock = memoryManager.Get("OutOfStock", ClientMemoryManager.AS_STRING_LIST)
+
+        // Clear out of stock
+        memoryManager.Delete("OutOfStock")
+
+        return outOfStock
+    },
+    render: async (outofStock: string[], memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        return `Sorry, we don't have ${outofStock}`
+    }
+})
+
+cl.AddCallback({
+    name: "FinalizeOrder",
+    logic: async (memoryManager: ClientMemoryManager) => {
         // Save toppings
-        memoryManager.CopyEntity("Toppings", "LastToppings");
+        memoryManager.Copy("Toppings", "LastToppings")
 
         // Clear toppings
-        memoryManager.ForgetEntity("Toppings");
-
-        return "Your order is on its way";
+        memoryManager.Delete("Toppings")
+    },
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        return "Your order is on its way"
     }
-);
+})
 
-cl.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager) =>
-    {
+cl.AddCallback({
+    name: "UseLastToppings",
+    logic: async (memoryManager: ClientMemoryManager) => {
         // Restore last toppings
-        memoryManager.CopyEntity("LastToppings", "Toppings");
+        memoryManager.Copy("LastToppings", "Toppings");
 
         // Clear last toppings
-        memoryManager.ForgetEntity("LastToppings"); 
-    });
+        memoryManager.Delete("LastToppings");
+    }
+})
 
 //=================================
 // Handle Incoming Messages
@@ -114,9 +133,9 @@ cl.AddAPICallback("UseLastToppings", async (memoryManager : ClientMemoryManager)
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

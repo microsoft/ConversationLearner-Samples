@@ -7,8 +7,9 @@ import * as express from 'express'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -17,13 +18,13 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -45,6 +46,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
@@ -61,7 +63,7 @@ let cl = new ConversationLearner(modelId);
 */
 cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager) => {
     // Set BotName when session starts
-    memoryManager.RememberEntity("BotName", "Botty")
+    memoryManager.Set("BotName", "Botty")
 })
 
 /**
@@ -82,7 +84,7 @@ cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) =>
 
     // 2) Extract values from ConversationLearner memoryManager and store in BotState
     //    using context object (see tutorialHybrid for an example)
-  
+
     // 3) Return list of Entities to save for the next time ConversationLearner is started
     //    Persist UserName and UserPhone after session has ended
     return ["UserName", "UserPhone"]
@@ -94,9 +96,9 @@ cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) =>
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })

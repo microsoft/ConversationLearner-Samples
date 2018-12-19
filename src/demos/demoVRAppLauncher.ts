@@ -6,8 +6,9 @@ import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
 import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import chalk from 'chalk'
 import config from '../config'
-import startDol from '../dol'
+import getDolRouter from '../dol'
 
 //===================
 // Create Bot server
@@ -16,13 +17,13 @@ const server = express()
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
-    startDol(server, config.botPort)
+    console.log(chalk.yellowBright(`Adding /directline routes`))
+    server.use(getDolRouter(config.botPort))
 }
-else {
-    const listener = server.listen(config.botPort, () => {
-        console.log(`Server listening to ${listener.address().port}`)
-    })
-}
+
+server.listen(config.botPort, () => {
+    console.log(`Server listening to port: ${config.botPort}`)
+})
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 
@@ -44,6 +45,7 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 if (isDevelopment) {
+    console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
 }
 let cl = new ConversationLearner(modelId);
@@ -52,7 +54,7 @@ let cl = new ConversationLearner(modelId);
 // Bots Buisness Logic
 //=========================================================
 var apps = ["skype", "outlook", "amazon video", "amazon music"];
-var resolveApps = function(appName: string) {
+var resolveApps = function (appName: string) {
     return apps.filter(n => n.includes(appName));
 }
 
@@ -68,35 +70,36 @@ var resolveApps = function(appName: string) {
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
-    memoryManager.ForgetEntity("DisambigAppNames");
-    memoryManager.ForgetEntity("UnknownAppName");
-            
+    memoryManager.Delete("DisambigAppNames");
+    memoryManager.Delete("UnknownAppName");
+
     // Get list of (possibly) ambiguous apps
-    var appNames = memoryManager.EntityValueAsList("AppName");
+    var appNames = memoryManager.Get("AppName", ClientMemoryManager.AS_STRING_LIST);
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
-            
+
         if (resolvedAppNames.length == 0) {
-            memoryManager.RememberEntity("UnknownAppName", appNames[0]);
-            memoryManager.ForgetEntity("AppName");
+            memoryManager.Set("UnknownAppName", appNames[0]);
+            memoryManager.Delete("AppName");
         } else if (resolvedAppNames.length > 1) {
-            memoryManager.RememberEntities("DisambigAppNames", resolvedAppNames);
-            memoryManager.ForgetEntity("AppName");
+            memoryManager.Set("DisambigAppNames", resolvedAppNames);
+            memoryManager.Delete("AppName");
         }
     }
 })
 
-cl.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
-        // TODO: Add API call to invoke app/location
+cl.AddCallback({
+    name: "LaunchApp",
+    logic: async (memoryManager: ClientMemoryManager, AppName: string, PlacementLocation: string) => {
+        // Simulate API call to launch the app.
 
-        // Clear entities.
-        
-        memoryManager.ForgetEntity("AppName");
-        memoryManager.ForgetEntity("PlacementLocation");
+        memoryManager.Delete("AppName")
+        memoryManager.Delete("PlacementLocation")
 
-        return "Ok, starting " + AppName + " on the " + PlacementLocation + ".";
+        return `Ok, starting ${AppName} on the ${PlacementLocation}.`
+    }
 })
 
 //=================================
@@ -106,9 +109,9 @@ cl.AddAPICallback("LaunchApp", async (memoryManager: ClientMemoryManager, AppNam
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
-        
+
         if (result) {
-            cl.SendResult(result);
+            return cl.SendResult(result);
         }
     })
 })
