@@ -1,7 +1,7 @@
 {
   "name": "conversationlearner-samples",
   "private": true,
-  "version": "0.120.0",
+  "version": "0.200.0",
   "description": "Sample BOTs that use the Conversation Learner",
   "main": "./lib/server.js",
   "scripts": {
