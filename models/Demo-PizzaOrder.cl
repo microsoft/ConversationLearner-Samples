@@ -1,13 +1,13 @@
 ﻿{
     "trainDialogs": [
         {
-            "trainDialogId": "591fa241-a1de-4544-bba4-b240cd876b73",
+            "trainDialogId": "35cc15a7-8431-496f-9f29-6cebeed4b9bd",
             "rounds": [
                 {
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "order a pizza",
+                                "text": "place an order",
                                 "labelEntities": []
                             }
                         ]
@@ -20,7 +20,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -31,18 +30,12 @@
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "mushrooms and cheese",
+                                "text": "cheese",
                                 "labelEntities": [
                                     {
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "startCharIndex": 0,
-                                        "endCharIndex": 8,
-                                        "entityText": "mushrooms"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 14,
-                                        "endCharIndex": 19,
+                                        "endCharIndex": 5,
                                         "entityText": "cheese"
                                     }
                                 ]
@@ -57,16 +50,10 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -75,7 +62,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -87,16 +73,10 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -105,7 +85,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -116,19 +95,19 @@
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "change mushrooms to peppers",
+                                "text": "add peppers and mushrooms",
                                 "labelEntities": [
                                     {
-                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
-                                        "startCharIndex": 7,
-                                        "endCharIndex": 15,
-                                        "entityText": "mushrooms"
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 4,
+                                        "endCharIndex": 10,
+                                        "entityText": "peppers"
                                     },
                                     {
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 20,
-                                        "endCharIndex": 26,
-                                        "entityText": "peppers"
+                                        "startCharIndex": 16,
+                                        "endCharIndex": 24,
+                                        "entityText": "mushrooms"
                                     }
                                 ]
                             }
@@ -143,15 +122,21 @@
                                         "values": [
                                             {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
                                                 "userText": "peppers",
-                                                "displayText": null,
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -160,7 +145,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -173,15 +157,21 @@
                                         "values": [
                                             {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
                                                 "userText": "peppers",
-                                                "displayText": null,
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -190,7 +180,569 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "remove the peppers and add yam",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+                                        "startCharIndex": 11,
+                                        "endCharIndex": 17,
+                                        "entityText": "peppers"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 27,
+                                        "endCharIndex": 29,
+                                        "entityText": "yam"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": [
+                                            {
+                                                "userText": "yam",
+                                                "displayText": "yam",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": "[\"yam\"]",
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": []
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "no thanks",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "order more pizza",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "yes",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                }
+            ],
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
+            "lastModifiedDateTime": "2018-12-15T01:28:28+00:00"
+        },
+        {
+            "trainDialogId": "bbc4e56b-48fb-4a2e-8af7-22a04dbeef7b",
+            "rounds": [
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "new order",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "i'd like sausage, cheese, and peppers",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 9,
+                                        "endCharIndex": 15,
+                                        "entityText": "sausage"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 18,
+                                        "endCharIndex": 23,
+                                        "entityText": "cheese"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 30,
+                                        "endCharIndex": 36,
+                                        "entityText": "peppers"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "substitute peppers with mushrooms",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+                                        "startCharIndex": 11,
+                                        "endCharIndex": 17,
+                                        "entityText": "peppers"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 24,
+                                        "endCharIndex": 32,
+                                        "entityText": "mushrooms"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -221,16 +773,22 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "cheese",
-                                                "displayText": null,
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
-                                                "userText": "peppers",
-                                                "displayText": null,
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
                                             }
                                         ]
                                     },
@@ -239,7 +797,7 @@
                                         "values": [
                                             {
                                                 "userText": "yam",
-                                                "displayText": null,
+                                                "displayText": "yam",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -249,10 +807,18 @@
                                 "context": {},
                                 "maskedActions": []
                             },
-                            "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
-                            "logicResult": null,
+                            "labelAction": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
                             "metrics": {
                                 "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": "[\"yam\"]",
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": []
+                                    }
+                                ]
                             }
                         },
                         {
@@ -262,16 +828,22 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "cheese",
-                                                "displayText": null,
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
-                                                "userText": "peppers",
-                                                "displayText": null,
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -280,7 +852,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -304,16 +875,22 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "cheese",
-                                                "displayText": null,
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
-                                                "userText": "peppers",
-                                                "displayText": null,
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -322,9 +899,40 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         }
                     ]
@@ -333,7 +941,7 @@
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "order another pizza",
+                                "text": "place another order",
                                 "labelEntities": []
                             }
                         ]
@@ -346,14 +954,20 @@
                                         "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
                                         "values": [
                                             {
-                                                "userText": "cheese",
-                                                "displayText": null,
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "peppers",
-                                                "displayText": null,
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -364,484 +978,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "yes",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                }
-            ],
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
-        },
-        {
-            "trainDialogId": "277f666a-13b3-46ec-a1d4-60665f6be3be",
-            "rounds": [
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "i'm hungry",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "peppers and sausage",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 0,
-                                        "endCharIndex": 6,
-                                        "entityText": "peppers"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 12,
-                                        "endCharIndex": 18,
-                                        "entityText": "sausage"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "remove peppers and add olives",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
-                                        "startCharIndex": 7,
-                                        "endCharIndex": 13,
-                                        "entityText": "peppers"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 23,
-                                        "endCharIndex": 28,
-                                        "entityText": "olives"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "add spinach",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 4,
-                                        "endCharIndex": 10,
-                                        "entityText": "spinach"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
-                                        "values": [
-                                            {
-                                                "userText": "spinach",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "no thanks",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "order one more pizza",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -866,13 +1002,19 @@
                                         "values": [
                                             {
                                                 "userText": "sausage",
-                                                "displayText": null,
+                                                "displayText": "sausage",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "olives",
-                                                "displayText": null,
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -883,126 +1025,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "peppers and cheese",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 0,
-                                        "endCharIndex": 6,
-                                        "entityText": "peppers"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 12,
-                                        "endCharIndex": 17,
-                                        "entityText": "cheese"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "olives",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1010,343 +1032,12 @@
                     ]
                 }
             ],
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
+            "lastModifiedDateTime": "2018-12-15T01:28:06+00:00"
         },
         {
-            "trainDialogId": "8f0c1624-3b20-45f7-83fe-eca5c685e3fb",
-            "rounds": [
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "order a pizza with cheese and peppers",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 19,
-                                        "endCharIndex": 24,
-                                        "entityText": "cheese"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 30,
-                                        "endCharIndex": 36,
-                                        "entityText": "peppers"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "remove peppers and add chicken",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
-                                        "startCharIndex": 7,
-                                        "endCharIndex": 13,
-                                        "entityText": "peppers"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 23,
-                                        "endCharIndex": 29,
-                                        "entityText": "chicken"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
-                                        "values": [
-                                            {
-                                                "userText": "chicken",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "nope",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "order another pizza please",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "yes",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                }
-            ],
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
-        },
-        {
-            "trainDialogId": "99b4255e-5294-4e67-8c58-50f7d58e5f40",
+            "trainDialogId": "5f917989-2aea-4086-af64-60ecd0dfb17b",
             "rounds": [
                 {
                     "extractorStep": {
@@ -1408,7 +1099,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1444,7 +1134,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1492,7 +1181,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1540,7 +1228,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1588,7 +1275,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1624,7 +1310,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1660,7 +1345,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1708,7 +1392,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1716,52 +1399,23 @@
                     ]
                 }
             ],
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
+            "lastModifiedDateTime": "2018-12-15T01:10:13+00:00"
         },
         {
-            "trainDialogId": "87bde973-044d-4951-a1f1-1caebe8adb9a",
+            "trainDialogId": "8f4f907a-d4b9-4e38-b828-0f584347ea44",
             "rounds": [
                 {
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "new order",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "i'd like sausage, cheese, and peppers",
+                                "text": "order a pizza with cheese and peppers",
                                 "labelEntities": [
                                     {
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 9,
-                                        "endCharIndex": 15,
-                                        "entityText": "sausage"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 18,
-                                        "endCharIndex": 23,
+                                        "startCharIndex": 19,
+                                        "endCharIndex": 24,
                                         "entityText": "cheese"
                                     },
                                     {
@@ -1782,22 +1436,16 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
                                                 "userText": "peppers",
-                                                "displayText": null,
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -1806,7 +1454,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1818,22 +1465,16 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             },
                                             {
                                                 "userText": "peppers",
-                                                "displayText": null,
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -1842,7 +1483,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1853,19 +1493,415 @@
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "substitute peppers with mushrooms",
+                                "text": "remove peppers and add chicken",
                                 "labelEntities": [
                                     {
                                         "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
-                                        "startCharIndex": 11,
-                                        "endCharIndex": 17,
+                                        "startCharIndex": 7,
+                                        "endCharIndex": 13,
                                         "entityText": "peppers"
                                     },
                                     {
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 24,
-                                        "endCharIndex": 32,
-                                        "entityText": "mushrooms"
+                                        "startCharIndex": 23,
+                                        "endCharIndex": 29,
+                                        "entityText": "chicken"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": [
+                                            {
+                                                "userText": "chicken",
+                                                "displayText": "chicken",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": "[\"chicken\"]",
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": []
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "nope",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "order another pizza please",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "yes",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                }
+            ],
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
+            "lastModifiedDateTime": "2018-12-15T01:28:19+00:00"
+        },
+        {
+            "trainDialogId": "791df2e9-867e-4703-b509-b773df74048b",
+            "rounds": [
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "i'm hungry",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "peppers and sausage",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 0,
+                                        "endCharIndex": 6,
+                                        "entityText": "peppers"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 12,
+                                        "endCharIndex": 18,
+                                        "entityText": "sausage"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "remove peppers and add olives",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+                                        "startCharIndex": 7,
+                                        "endCharIndex": 13,
+                                        "entityText": "peppers"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 23,
+                                        "endCharIndex": 28,
+                                        "entityText": "olives"
                                     }
                                 ]
                             }
@@ -1880,21 +1916,15 @@
                                         "values": [
                                             {
                                                 "userText": "sausage",
-                                                "displayText": null,
+                                                "displayText": "sausage",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "cheese",
-                                                "displayText": null,
+                                                "userText": "olives",
+                                                "displayText": "olives",
                                                 "builtinType": null,
                                                 "resolution": null
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
                                             }
                                         ]
                                     }
@@ -1903,7 +1933,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1916,21 +1945,15 @@
                                         "values": [
                                             {
                                                 "userText": "sausage",
-                                                "displayText": null,
+                                                "displayText": "sausage",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "cheese",
-                                                "displayText": null,
+                                                "userText": "olives",
+                                                "displayText": "olives",
                                                 "builtinType": null,
                                                 "resolution": null
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
                                             }
                                         ]
                                     }
@@ -1939,7 +1962,566 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "add spinach",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 4,
+                                        "endCharIndex": 10,
+                                        "entityText": "spinach"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": [
+                                            {
+                                                "userText": "spinach",
+                                                "displayText": "spinach",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": "[\"spinach\"]",
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": []
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "no thanks",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "metrics": {
+                                "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "order one more pizza",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "no",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "peppers and cheese",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 0,
+                                        "endCharIndex": 6,
+                                        "entityText": "peppers"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 12,
+                                        "endCharIndex": 17,
+                                        "entityText": "cheese"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "olives",
+                                                "displayText": "olives",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                }
+            ],
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
+            "lastModifiedDateTime": "2018-12-15T01:28:00+00:00"
+        },
+        {
+            "trainDialogId": "8efb68de-e93c-4324-90b0-485fc7207f0f",
+            "rounds": [
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "order a pizza",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "mushrooms and cheese",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 0,
+                                        "endCharIndex": 8,
+                                        "entityText": "mushrooms"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 14,
+                                        "endCharIndex": 19,
+                                        "entityText": "cheese"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "change mushrooms to peppers",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+                                        "startCharIndex": 7,
+                                        "endCharIndex": 15,
+                                        "entityText": "mushrooms"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 20,
+                                        "endCharIndex": 26,
+                                        "entityText": "peppers"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": null
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -1970,22 +2552,16 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     },
@@ -1994,7 +2570,7 @@
                                         "values": [
                                             {
                                                 "userText": "yam",
-                                                "displayText": null,
+                                                "displayText": "yam",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -2004,10 +2580,18 @@
                                 "context": {},
                                 "maskedActions": []
                             },
-                            "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
-                            "logicResult": null,
+                            "labelAction": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
                             "metrics": {
                                 "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": "[\"yam\"]",
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": []
+                                    }
+                                ]
                             }
                         },
                         {
@@ -2017,22 +2601,16 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -2041,7 +2619,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2065,22 +2642,16 @@
                                         "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
                                         "values": [
                                             {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
-                                                "resolution": {}
+                                                "resolution": null
                                             }
                                         ]
                                     }
@@ -2089,9 +2660,34 @@
                                 "maskedActions": []
                             },
                             "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         }
                     ]
@@ -2100,7 +2696,7 @@
                     "extractorStep": {
                         "textVariations": [
                             {
-                                "text": "place another order",
+                                "text": "order another pizza",
                                 "labelEntities": []
                             }
                         ]
@@ -2113,20 +2709,14 @@
                                         "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
                                         "values": [
                                             {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -2137,430 +2727,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "no",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "sausage",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                }
-            ],
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
-        },
-        {
-            "trainDialogId": "72939dff-ee7e-4932-8a1d-c5c8d885b463",
-            "rounds": [
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "place an order",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "cheese",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 0,
-                                        "endCharIndex": 5,
-                                        "entityText": "cheese"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "add peppers and mushrooms",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 4,
-                                        "endCharIndex": 10,
-                                        "entityText": "peppers"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 16,
-                                        "endCharIndex": 24,
-                                        "entityText": "mushrooms"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "peppers",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "remove the peppers and add yam",
-                                "labelEntities": [
-                                    {
-                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
-                                        "startCharIndex": 11,
-                                        "endCharIndex": 17,
-                                        "entityText": "peppers"
-                                    },
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "startCharIndex": 27,
-                                        "endCharIndex": 29,
-                                        "entityText": "yam"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
-                                        "values": [
-                                            {
-                                                "userText": "yam",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        },
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "no thanks",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": {}
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-                            "logicResult": null,
-                            "metrics": {
-                                "predictMetrics": null
-                            }
-                        }
-                    ]
-                },
-                {
-                    "extractorStep": {
-                        "textVariations": [
-                            {
-                                "text": "order more pizza",
-                                "labelEntities": []
-                            }
-                        ]
-                    },
-                    "scorerSteps": [
-                        {
-                            "input": {
-                                "filledEntities": [
-                                    {
-                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-                                        "values": [
-                                            {
-                                                "userText": "cheese",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            },
-                                            {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
-                                                "builtinType": null,
-                                                "resolution": null
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "context": {},
-                                "maskedActions": []
-                            },
-                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2585,13 +2751,13 @@
                                         "values": [
                                             {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -2602,9 +2768,34 @@
                                 "maskedActions": []
                             },
                             "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         },
                         {
@@ -2615,13 +2806,13 @@
                                         "values": [
                                             {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -2632,7 +2823,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2645,13 +2835,13 @@
                                         "values": [
                                             {
                                                 "userText": "cheese",
-                                                "displayText": null,
+                                                "displayText": "cheese",
                                                 "builtinType": null,
                                                 "resolution": null
                                             },
                                             {
-                                                "userText": "mushrooms",
-                                                "displayText": null,
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
                                                 "builtinType": null,
                                                 "resolution": null
                                             }
@@ -2662,7 +2852,6 @@
                                 "maskedActions": []
                             },
                             "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-                            "logicResult": null,
                             "metrics": {
                                 "predictMetrics": null
                             }
@@ -2670,14 +2859,703 @@
                     ]
                 }
             ],
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "lastModifiedDateTime": "2018-08-22T23:50:40+00:00"
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
+            "lastModifiedDateTime": "2018-12-15T01:28:12+00:00"
+        },
+        {
+            "trainDialogId": "56f5a1cf-0131-45e9-a298-764d853e76d2",
+            "rounds": [
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "Order a pizza with cheese",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 19,
+                                        "endCharIndex": 24,
+                                        "entityText": "cheese"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.00818943977355957,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.011008024215698242,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "add mushrooms and peppers",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 4,
+                                        "endCharIndex": 12,
+                                        "entityText": "mushrooms",
+                                        "resolution": {},
+                                        "builtinType": "LUIS"
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 18,
+                                        "endCharIndex": 24,
+                                        "entityText": "peppers"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.0057849884033203125,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "peppers",
+                                                "displayText": "peppers",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.011120319366455078,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "remove peppers and add sausage",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 23,
+                                        "endCharIndex": 29,
+                                        "entityText": "sausage"
+                                    },
+                                    {
+                                        "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
+                                        "startCharIndex": 7,
+                                        "endCharIndex": 13,
+                                        "entityText": "peppers"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.010010957717895507,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.005929708480834961,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "add yam",
+                                "labelEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "startCharIndex": 4,
+                                        "endCharIndex": 6,
+                                        "entityText": "yam"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": [
+                                            {
+                                                "userText": "yam",
+                                                "displayText": "yam",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.010696887969970703,
+                                    "contextDialogBlisTime": 0
+                                }
+                            },
+                            "logicResult": {
+                                "logicValue": "[\"yam\"]",
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
+                                        "values": []
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.009795904159545898,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "no",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": "LUIS",
+                                                "resolution": {}
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.0060579776763916015,
+                                    "contextDialogBlisTime": 0
+                                }
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "order another",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.005566835403442383,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "extractorStep": {
+                        "textVariations": [
+                            {
+                                "text": "yes",
+                                "labelEntities": []
+                            }
+                        ]
+                    },
+                    "scorerSteps": [
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.011016845703125,
+                                    "contextDialogBlisTime": 0
+                                }
+                            },
+                            "logicResult": {
+                                "logicValue": null,
+                                "changedFilledEntities": [
+                                    {
+                                        "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
+                                        "values": []
+                                    },
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.008062124252319336,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        },
+                        {
+                            "input": {
+                                "filledEntities": [
+                                    {
+                                        "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
+                                        "values": [
+                                            {
+                                                "userText": "cheese",
+                                                "displayText": "cheese",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "mushrooms",
+                                                "displayText": "mushrooms",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            },
+                                            {
+                                                "userText": "sausage",
+                                                "displayText": "sausage",
+                                                "builtinType": null,
+                                                "resolution": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "context": {},
+                                "maskedActions": []
+                            },
+                            "labelAction": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
+                            "metrics": {
+                                "predictMetrics": {
+                                    "blisTime": 0.005530595779418945,
+                                    "contextDialogBlisTime": 0
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "initialFilledEntities": [],
+            "createdDateTime": "2018-12-17T19:31:03.4942991+00:00",
+            "lastModifiedDateTime": "2018-12-17T19:33:35+00:00"
         }
     ],
     "actions": [
         {
             "actionId": "0dbb27ad-3d49-4808-9797-5b40971b6496",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"What would you like on your pizza?\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"What would you like on your pizza?\",\"marks\":[]}]}]}]}}}",
             "isTerminal": true,
@@ -2690,7 +3568,7 @@
         },
         {
             "actionId": "6ca0abf4-89db-454a-9e7a-21b100d0c076",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"You have $Toppings on your pizza.\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"You have \",\"marks\":[]}]},{\"kind\":\"inline\",\"type\":\"mention-inline-node\",\"isVoid\":false,\"data\":{\"completed\":true,\"option\":{\"id\":\"267a89dd-be0a-4079-84ba-369eeb81f8cf\",\"name\":\"Toppings\"}},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"$Toppings\",\"marks\":[]}]}]},{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\" on your pizza.\",\"marks\":[]}]}]}]}}}",
             "isTerminal": false,
@@ -2704,7 +3582,7 @@
         },
         {
             "actionId": "36a2fafa-3ca5-4e3f-a391-fe6479c3cc19",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"Would you like anything else?\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"Would you like anything else?\",\"marks\":[]}]}]}]}}}",
             "isTerminal": true,
@@ -2716,7 +3594,7 @@
         },
         {
             "actionId": "4df39065-97b0-40cb-8e63-eedaae5e5fb0",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "actionType": "API_LOCAL",
             "payload": "{\"payload\":\"FinalizeOrder\",\"logicArguments\":[],\"renderArguments\":[]}",
             "isTerminal": true,
@@ -2729,20 +3607,8 @@
             ]
         },
         {
-            "actionId": "f67f83b3-79a5-4bdf-88c7-9a0f400f2829",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
-            "actionType": "TEXT",
-            "payload": "{\"text\":\"We don't have $OutOfStock.\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"We don't have \",\"marks\":[]}]},{\"kind\":\"inline\",\"type\":\"mention-inline-node\",\"isVoid\":false,\"data\":{\"completed\":true,\"option\":{\"id\":\"b2001cd7-42be-4366-b774-f629441cb81b\",\"name\":\"OutOfStock\"}},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"$OutOfStock\",\"marks\":[]}]}]},{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\".\",\"marks\":[]}]}]}]}}}",
-            "isTerminal": false,
-            "requiredEntitiesFromPayload": [],
-            "requiredEntities": [
-                "b2001cd7-42be-4366-b774-f629441cb81b"
-            ],
-            "negativeEntities": []
-        },
-        {
             "actionId": "7f5fd019-78eb-487b-986b-5ebd44d41ffd",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "actionType": "TEXT",
             "payload": "{\"text\":\"Would you like $LastToppings?\",\"json\":{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"Would you like \",\"marks\":[]}]},{\"kind\":\"inline\",\"type\":\"mention-inline-node\",\"isVoid\":false,\"data\":{\"completed\":true,\"option\":{\"id\":\"931a7300-c0dd-458c-ba2b-f9dde7ae3a93\",\"name\":\"LastToppings\"}},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"$LastToppings\",\"marks\":[]}]}]},{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"?\",\"marks\":[]}]}]}]}}}",
             "isTerminal": true,
@@ -2756,7 +3622,7 @@
         },
         {
             "actionId": "79a5acc2-c223-4b4a-9c3d-d7d68825265b",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "actionType": "API_LOCAL",
             "payload": "{\"payload\":\"UseLastToppings\",\"logicArguments\":[],\"renderArguments\":[]}",
             "isTerminal": false,
@@ -2765,30 +3631,44 @@
                 "931a7300-c0dd-458c-ba2b-f9dde7ae3a93"
             ],
             "negativeEntities": []
+        },
+        {
+            "actionId": "2196c0ab-4b3c-4315-9428-c11a84a1771b",
+            "createdDateTime": "2018-12-15T01:22:43.4429117+00:00",
+            "actionType": "API_LOCAL",
+            "payload": "{\"payload\":\"OutOfStock\",\"logicArguments\":[],\"renderArguments\":[]}",
+            "isTerminal": false,
+            "requiredEntitiesFromPayload": [],
+            "requiredEntities": [
+                "b2001cd7-42be-4366-b774-f629441cb81b"
+            ],
+            "negativeEntities": []
         }
     ],
     "entities": [
         {
             "entityId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
             "negativeId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "entityName": "Toppings",
             "entityType": "LUIS",
             "isMultivalue": true,
-            "isNegatible": true
+            "isNegatible": true,
+            "resolverType": "none"
         },
         {
             "entityId": "afa189d2-47e3-47bf-971d-6a78abfe2bb0",
             "positiveId": "267a89dd-be0a-4079-84ba-369eeb81f8cf",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "entityName": "~Toppings",
             "entityType": "LUIS",
             "isMultivalue": true,
-            "isNegatible": true
+            "isNegatible": true,
+            "resolverType": "none"
         },
         {
             "entityId": "b2001cd7-42be-4366-b774-f629441cb81b",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "entityName": "OutOfStock",
             "entityType": "LOCAL",
             "isMultivalue": false,
@@ -2796,12 +3676,12 @@
         },
         {
             "entityId": "931a7300-c0dd-458c-ba2b-f9dde7ae3a93",
-            "createdDateTime": "0001-01-01T00:00:00-08:00",
+            "createdDateTime": "2018-12-15T01:10:10.2996231+00:00",
             "entityName": "LastToppings",
             "entityType": "LOCAL",
             "isMultivalue": true,
             "isNegatible": false
         }
     ],
-    "packageId": "530f119c-3cc0-426e-94ba-c7ed59d43189"
+    "packageId": "b377b44a-5e57-4922-ab6e-411e02d8ce64"
 }
