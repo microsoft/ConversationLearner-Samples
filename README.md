@@ -1,8 +1,8 @@
 # ConversationLearner-Samples
 
-This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrating how to use the `@conversationlearner/sdk` npm module.
+This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrates usage of the `@conversationlearner/sdk` npm module.
 
-Project Conversation Learner enables you to build and teach task-oriented conversational interfaces that learn from example interactions, combining code, logical constraints and machine learning.  Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
+Project Conversation Learner enables you to build task-oriented conversational interfaces you train through sample interactions, programmatic code, logical constraints and machine learning.  These trained interfaces bring application developers new dimensions to state and action selection. Interface training can be further enhanced by sample dialogs created by domain experts or developers.
 
 Cognitive Service Labs provides developers with an early look at emerging Cognitive Services technologies. Early adopters who do not need market-ready technology can discover, try and provide feedback on new Cognitive Services technologies before they are generally available. Labs are not Azure services.  Project Conversation Learner’s APIs and schema are subject to change that are not backwards compatible.
 
@@ -12,29 +12,29 @@ This README explains how to get started; full documentation is available [here](
 
 *An invitation is required to access Project Conversation Learner.*
 
-Project Conversation Learner consists of an SDK you add to your bot, and a cloud service which the SDK accesses for machine learning.  At present, access to the Project Conversation Leaner cloud service requires an invitation.  If you haven't been invited already, [request an invitation](https://aka.ms/conversation-learner-request-invite).  If you have not received an invitation, you will be unable to access the cloud API.
+Project Conversation Learner consists of an SDK you add to your bot and cloud service which the SDK accesses for machine learning.  Access to this Project Conversation Leaner cloud service currently requires an invitation so [request an invitation](https://aka.ms/conversation-learner-request-invite) if you haven't been invited. This cloud API cannot be accessed without an invitation.
 
 ## Prerequisites
 
-- An invitation to access the Project Conversation Learner cloud service -- [request an invitation](https://aka.ms/conversation-learner-request-invite).  
+- Invitation to the Project Conversation Learner cloud service -- [request an invitation](https://aka.ms/conversation-learner-request-invite).  
 
-- Node 8.5.0 or higher and npm 5.3.0 or higher.  Install from https://nodejs.org/en/
+- Node 8.5.0 or higher and npm 5.3.0 or higher, from https://nodejs.org/en/
   
 - LUIS authoring key:
 
-  1. Log into http://www.luis.ai
+    1. Log into http://www.luis.ai
 
-  2. Click on your name in the upper right, then on "settings"
+    2. Click on your name in the upper right, then on "settings"
 
-  3. Authoring key is shown on the resulting page
+    3. Authoring key is shown on the resulting page
 
-  (Your LUIS authoring key serves 2 roles.  First, it will serve as your Conversation Learner authoring key.  Second, Conversation Learner uses LUIS for entity extraction; the LUIS authoring key is used to create LUIS models on your behalf)
+    Your LUIS authoring key serves two roles.  First, it will serve as your Conversation Learner authoring key.  Second, Conversation Learner uses LUIS for entity extraction and LUIS model creation on your behalf)
   
-- Google Chrome web browser. Install from [https://www.google.com/chrome/index.html](https://www.google.com/chrome/index.html).
+- Google Chrome web browser, from [https://www.google.com/chrome/index.html](https://www.google.com/chrome/index.html)
 
-- git. Install from [https://git-scm.com/downloads](https://git-scm.com/downloads).
+- git, from [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-- VSCode. Install from [https://code.visualstudio.com/](https://code.visualstudio.com/). Note this is recommended, not required.
+- VSCode [recommended], from [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 ## Quick start 
 
@@ -66,27 +66,28 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
 
     This runs the generic empty bot in `my-bot-01/src/app.ts`.
 
-3. Run Conversation Learner UI:
+3. Run Conversation Learner UI in a *second* command prompt window:
 
     ```bash
-    [open second command prompt window]
     cd my-bot-01
     npm run ui
     ```
 
-4. Open browser to http://localhost:5050 
+4. Open browser to http://localhost:5050 once the UI component has finished transpiling.
 
-You're now using Conversation Learner and can create and teach a Conversation Learner model.  
+Conversation Learner is now running and ready for you to start creating and teaching models.
 
-## Tutorials, demos, and switching between bots
+## Tutorials, demos, and switching between Bots
 
-The instructions above started the generic empty bot.  To run a tutorial or demo bot instead:
+The instructions above started the generic empty bot.
 
-1. If you have the Conversation Learner web UI open, return to the list of models at http://localhost:5050/home.
+Project Conversation Leaner also includes several tutorial and demo bots.  You run each demo bot by:
+
+1. Point your browser to http://localhost:5050/home
     
-2. If another bot is running (like `npm start` or `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
+2. Stop any running bot in the first command window you might have started (with `npm start` or `npm run demo-pizza`).  Switching bots does not require you to stop the UI process or close the web browser.
 
-3. Run a demo bot from the command line (step 2 above).  Demos include:
+3. Run one of the available demo bots using its corresponding command in the first command window:
 
   ```bash
   npm run tutorial-general
@@ -99,60 +100,56 @@ The instructions above started the generic empty bot.  To run a tutorial or demo
   npm run demo-vrapp
   ```
 
-4. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
+4. Switch back to the Conversation Learner UI by loading http://localhost:5050/home in your browser. 
 
-5. Click on "Import tutorials" (only needs to be done once).  This will take about a minute and will copy the Conversation Learner models for all the tutorials into your Conversation Learner account.
+5. Click "Import tutorials" to import all tutorial data into your Conversation Learner account.  This import step is *needed only once*, and takes about a minute.
 
-6. Click on the demo model in the Conversation Learner UI that corresponds to the demo you started.
+6. Click the bot's corresponding demo model as listed in the Conversation Learner UI.
 
-Source files for the demos are in `my-bot-01/src/demos`
+Source files for the demos are found in `my-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
 
-1. If you have the Conversation Learner web UI open, return to the list of models at http://localhost:5050/home.
+1. Point your browser to http://localhost:5050/home to list the models available to Conversation Learner.
     
-2. If a bot is running (like `npm run demo-pizza`), stop it.  You do not need to stop the UI process, or close the web browser.
+2. Stop any running bot in the first command window you might have started (with like `npm start` or `npm run demo-pizza`).  Switching bots does not require you to stop the UI process or close the web browser.
 
-3. If desired, edit code in `my-bot-01/src/app.ts`.
+3. Add your bot-specific code to `my-bot-01/src/app.ts` using your code editor.
 
-4. Rebuild and re-start bot:
+4. Rebuild and re-start the bot:
 
     ```bash
     npm run build
     npm start
     ```
 
-5. If you're not already, switch to the Conversation Learner web UI in Chrome by loading http://localhost:5050/home. 
+5. Reload the Conversation Learner UI (http://localhost:5050/home) in your browser. 
 
-6. Create a new Conversation Learner application in the UI, and start teaching.
-
-7. To make code changes in `my-bot-01/src/app.ts`, repeat the steps above, starting from step 2.
+6. Create a new Conversation Learner application in the UI and start teaching the Model using Train Dialogs and Log Dialogs.
 
 ## VSCode
 
-In VSCode, there are run configurations for each demo, and for the "Empty bot" in `my-bot-01/src/app.ts`.  Open the `my-bot-01` folder in VSCode.
+Project Conversation Learner includes VSCode run configurations for each demo. For example, the run configuration for  "Empty bot" is found in `my-bot-01/src/app.ts`.
 
 ## Advanced configuration
 
-There is a template `.env.example` file shows what environment variables you may set to configure the samples.
-
-You can adjust these ports to avoid conflicts between other services running on your machine by adding a `.env` file to root of project:
+User-specific environment variables are saved in an `.env` file you need to create in the project's root. We have provided a sample file named `.env.example` for quick start, though you may need to configure ports to avoid conflicts between other services running on your machine.
 
 ```bash
 cp .env.example .env
 ```
 
-This uses the standard configuration, which lets you run your bot locally, and start using Conversation Learner.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
+The `.env` configuration file lets you run Conversation Learner and your bot locally.
 
 ## Publishing your bot
 
-Publish your Conversation Learner bot similar to the way you would publish any other bot. At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels. Below we cover steps for deploying your bot to Azure and create a Bot Framework Channel Registration for it.
+Publishing your Conversation Learner bot is similar to publishing any other bot. You upload your code to a hosted website, set the appropriate configuration values and register your bot with various channels. The steps here detail deploying your bot to Azure and creating a Bot Framework Channel Registration for it:
 
 ### Deploy Conversation Learner bot to Azure
 
-Your Conversation Learner bot is a Node.js app and deploying it to Azure is not different than deploying a Node.js application or Node.js [Bot Framework](https://github.com/microsoft/botbuilder-js) bot. You can read more about deploying a Node.js web application to Azure [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-nodejs). 
+Your Conversation Learner bot is a Node.js app, so deploying it to Azure is no different than deploying a Node.js application or Node.js [Bot Framework](https://github.com/microsoft/botbuilder-js) bot. More information on deploying Node.js web applications to Azure can be found [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-nodejs). 
 
-Below we cover step-by-step instructions to deploy your bot to Azure in two different ways: 1) ZipDeploy using [KuduEngine](https://github.com/projectkudu/kudu) 2) Deploy from local git repository
+Deploying your bot to Azure can be accomplished in one of two different ways. The ZipDeploy method uses  [KuduEngine](https://github.com/projectkudu/kudu) while the github method employs a local git repository.
 
 #### ZipDeploy using [KuduEngine](https://github.com/projectkudu/kudu)
 
@@ -190,7 +187,7 @@ Follow the steps 1 to 4 above to create a `web application` on Azure and then fo
 
 ### Connect your Conversation Learner bot to a Bot Framework channel
 
-After successful deployment of your Conversation Learner bot as an Azure app service, you can follow these steps to connect it to a Bot Framework channel: 
+Once your Conversation Learner bot has been successful deployed as an Azure app service, you can connect your bot to a Bot Framework channel by: 
 
 1. Select `Bot Services` from azure portal services and add a new `Bot Service`
 2. Select `Bot Channel Registration` from the available `Bot Service` options
@@ -213,7 +210,9 @@ LUIS_AUTHORING_KEY               | LUIS authoring key for this app. Obtained fro
 MicrosoftAppId                 | Microsoft Application Id
 MicrosoftAppPassword           | Microsoft Application Password
 
-Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
+### Connect your Conversation Learner bot to different channels
+
+ You can connect your bot to different channels like Facebook, Teams, Skype etc using an Azure Bot Channel Registration once it has been deployed.  Documentation on that process is available at  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
 ## Support
 
@@ -233,3 +232,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 - [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
 - [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)
 - [@conversationlearner/webchat](https://github.com/Microsoft/ConversationLearner-WebChat)
+
