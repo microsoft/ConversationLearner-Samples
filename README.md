@@ -12,7 +12,7 @@ This README explains how to get started; full documentation is available [here](
 
 *An invitation is required to access Project Conversation Learner.*
 
-Project Conversation Learner consists of an SDK you add to your bot and cloud service which the SDK accesses for machine learning.  Access to this Project Conversation Leaner cloud service currently requires an invitation so [request an invitation](https://aka.ms/conversation-learner-request-invite) if you haven't been invited. This cloud API cannot be accessed without an invitation.
+Project Conversation Learner consists of an SDK you add to your bot, and a cloud service which the SDK accesses for machine learning.  Access to this Project Conversation Leaner cloud service currently requires an invitation. If you haven't been invited already, [request an invitation](https://aka.ms/conversation-learner-request-invite). This cloud API cannot be accessed without an invitation.
 
 ## Prerequisites
 
