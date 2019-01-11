@@ -16,7 +16,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
 
 ## Prerequisites
 
-- Invitation to the Project Conversation Learner cloud service -- [request an invitation](https://aka.ms/conversation-learner-request-invite).  
+- Invitation to access the Project Conversation Learner cloud service -- [request an invitation](https://aka.ms/conversation-learner-request-invite).  
 
 - Node 8.5.0 or higher and npm 5.3.0 or higher, from https://nodejs.org/en/
   
