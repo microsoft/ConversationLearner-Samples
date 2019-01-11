@@ -2,7 +2,7 @@
 
 This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrates usage of the `@conversationlearner/sdk` npm module.
 
-Project Conversation Learner enables you to build task-oriented conversational interfaces you train through sample interactions, programmatic code, logical constraints and machine learning.  These trained interfaces bring application developers new dimensions to state and action selection. Interface training can be further enhanced by sample dialogs created by domain experts or developers.
+Project Conversation Learner enables you to build task-oriented conversational interfaces that learn from example interactions, combining code, logical constraints and machine learning. Certain absolute parts of your application such as checking if the user is logged in or making an API request to check store inventory can still be coded; however, other changes in state and action selection can be learned from example dialogs given by the domain expert or developer.
 
 Cognitive Service Labs provides developers with an early look at emerging Cognitive Services technologies. Early adopters who do not need market-ready technology can discover, try and provide feedback on new Cognitive Services technologies before they are generally available. Labs are not Azure services.  Project Conversation Learner’s APIs and schema are subject to change that are not backwards compatible.
 
