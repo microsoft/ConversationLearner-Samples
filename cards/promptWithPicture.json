@@ -55,12 +55,12 @@
       {
         "type": "Action.Submit",
         "title": "{{button1}}",
-        "data": { "submit": "{{button1}}" }
+        "data": "{{button1}}"
       },
       {
         "type": "Action.Submit",
         "title": "{{button2}}",
-        "data": { "submit": "{{button2}}" }
+        "data": "{{button2}}"
       }
     ]
   }
