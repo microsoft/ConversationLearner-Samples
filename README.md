@@ -24,7 +24,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
 
     1. Log into http://www.luis.ai
 
-    2. Click on your name in the upper right, then on "settings"
+    2. Click your name in the upper right, then "settings"
 
     3. Authoring key is shown on the resulting page
 
@@ -102,9 +102,9 @@ Project Conversation Leaner also includes several tutorial and demo bots.  You r
 
 4. Switch back to the Conversation Learner UI by loading http://localhost:5050/home in your browser. 
 
-5. Click "Import tutorials" to import all tutorial data into your Conversation Learner account.  This import step is *needed only once*, and takes about a minute.
+5. Click "Import tutorials" and import the respective model.
 
-6. Click the bot's corresponding demo model as listed in the Conversation Learner UI.
+6. Click the imported model as shown in the Conversation Learner UI.
 
 Source files for the demos are found in `my-bot-01/src/demos`
 
@@ -160,7 +160,7 @@ Deploying your bot to Azure can be accomplished in one of two different ways. Th
     3. Use "Windows" as Web application's OS
 3. Once the step above is successful, you will end up with an empty web application deployed for you under Azure app services. Select the app service and navigate to its dashboard.
 4. Set the following Application Settings for your app service
-    1. Click on "Application Settings" in the navigation pane
+    1. Click "Application Settings" in the navigation pane
     2. Scroll down to the "Application Settings" section
     3. Add these settings:
         
@@ -170,7 +170,7 @@ Deploying your bot to Azure can be accomplished in one of two different ways. Th
         LUIS_AUTHORING_KEY      		 | LUIS authoring key for this app
         SCM_DO_BUILD_DURING_DEPLOYMENT | true
         
-    4. Click on "Save" near the top of the page
+    4. Click "Save" near the top of the page
 5. From the app service dashboard's navigation pane select the ``advanced tools`` and navigate to Kudu website for your app service. The url for Kudu tools of your web application is `https://<your_app_name>.scm.azurewebsites.net`
 6. Zip local folder of your Conversation Learner bot (Note that zip file should have all the artifacts in its root and not in a subdirectory). You don't need to include the following folders/files in the zip file: 1) Any folder/file starting with ``.``, e.g. _.git, .github_, 2) node_modules folder. (`SCM_DO_BUILD_DURING_DEPLOYMENT` application settings will configure Kudu deployment engine to run `npm install` as part of deployment and install all the necessary node dependencies based on package.json. You can read more about deploy from a zip file [here](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file).). Also make sure that you have the [engine version](https://github.com/Microsoft/ConversationLearner-Samples/blob/5d3bc6b6d43750b1c9216976b81850304197c912/package.json#L50) configured in your package.json to node.js 8.8 or higher. If not make sure to set the `WEBSITE_NODE_DEFAULT_VERSION` to `8.8` in application settings.
 7. Navigate to `https://<your_app_name>.scm.azurewebsites.net/ZipDeploy` and drop the zip file from previous step to the file explorer area in the website
@@ -181,7 +181,7 @@ Deploying your bot to Azure can be accomplished in one of two different ways. Th
 Follow the steps 1 to 4 above to create a `web application` on Azure and then follow the steps bellow: 
 
 1. Go to `Deployment Center` of your web application and configure deployment with `Local Git` as the source control and `App Service Kudu build server` as the build provider. Once the deployment from `Local Git` is configured successfully, you will have a git repository with the following endpoint for your app service: `https://<your_app_name>.scm.azurewebsites.net/<your_app_name>.git`. Make sure to configure the deployment credentials for your web application, so you can push to it from your local repository in the next steps
-2. add the azure remote to your local git repository: ``git remote add azure https://<your_app_name>.scm.azurewebsites.net/<your_app_name>.git``
+2. Add the azure remote to your local git repository: ``git remote add azure https://<your_app_name>.scm.azurewebsites.net/<your_app_name>.git``
 3. Push your local repository to azure remote: ``git push azure <your_local_branch>:master`` (If you are using typescript for development, make sure to commit the build artifacts, i.e. *.js files, to your local repository.)
 4. After a successful deployment, you should be able to send messages to your deployed bot endpoint: `https://<your_app_name>.azurewebsites.net/api/messages` using [bot framework emulator](https://github.com/Microsoft/BotFramework-Emulator)
 
