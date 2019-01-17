@@ -22,6 +22,7 @@
     "demo-pizza": "node ./lib/demos/demoPizzaOrder.js",
     "demo-storage": "node ./lib/demos/demoStorage.js",
     "demo-vrapp": "node ./lib/demos/demoVRAppLauncher.js",
+    "ui-test-automation": "node ./lib/uiTestAutomation.js",
     "tutorial-general": "node ./lib/server.js",
     "tutorial-entity-detection": "node ./lib/demos/tutorialEntityDetectionCallback.js",
     "tutorial-session-callbacks": "node ./lib/demos/tutorialSessionCallbacks.js",
