@@ -14,6 +14,6 @@ if (isDevelopment) {
 }
 
 app.listen(config.botPort, () => {
-    console.log(`Server listening to port: ${config.botPort}`)
+    console.log(`Server listening at: http://localhost:${config.botPort}`)
 })
 

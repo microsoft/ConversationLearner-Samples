@@ -15,7 +15,6 @@
     "pretest": "npm run build",
     "test": "jest",
     "tsc": "tsc",
-    "ui": "node ./lib/ui.js",
     "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js",
     "watch": "concurrently --kill-others -p [{name}-{pid}] -n tsc,bot \"tsc -w\" \"nodemon\"",
     "demo-password": "node ./lib/demos/demoPasswordReset.js",
