@@ -1,5 +1,10 @@
 language: node_js
 
+branches:
+  only:
+    - master
+    - develop
+
 cache:
   directories:
     - ~/.npm
