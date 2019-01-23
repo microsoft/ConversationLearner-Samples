@@ -15,6 +15,7 @@
     "pretest": "npm run build",
     "test": "jest",
     "tsc": "tsc",
+    "ui": "echo The UI is included with the Bot! Go to: http://localhost:3978/ui",
     "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js",
     "watch": "concurrently --kill-others -p [{name}-{pid}] -n tsc,bot \"tsc -w\" \"nodemon\"",
     "demo-password": "node ./lib/demos/demoPasswordReset.js",
