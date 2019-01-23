@@ -46,7 +46,7 @@ if (includeSdk) {
     server.use(uiRouter)
 }
 
-console.log(`Serving default bot summary web site.`)
+// Serve default bot summary page. Should be customized by customer.
 server.use(express.static(path.join(__dirname, '..', 'site')))
 
 const cl = new ConversationLearner(modelId)
