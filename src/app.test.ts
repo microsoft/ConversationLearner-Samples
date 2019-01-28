@@ -13,6 +13,11 @@ describe('Test bot server', () => {
         expect(response.status).toBe(200)
     })
 
+    it('given request to known (ui) route should return 200', async () => {
+        const response = await botServer.get('/ui/home')
+        expect(response.status).toBe(200)
+    })
+
     it('given request to unknown route should return 404', async () => {
         const response = await botServer.get('/unknown')
         expect(response.status).toBe(404)

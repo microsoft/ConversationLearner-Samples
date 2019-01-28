@@ -32,11 +32,6 @@ export const config = convict({
         default: "https://westus.api.cognitive.microsoft.com/conversationlearner/v1.0/",
         env: 'CONVERSATION_LEARNER_SERVICE_URI'
     },
-    CONVERSATION_LEARNER_UI_PORT: {
-        format: 'port',
-        default: 5050,
-        env: 'CONVERSATION_LEARNER_UI_PORT',
-    },
     modelId: {
         format: String,
         default: undefined,
