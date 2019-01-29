@@ -15,7 +15,7 @@
     "pretest": "npm run build",
     "test": "jest",
     "tsc": "tsc",
-    "ui": "node ./lib/ui.js",
+    "ui": "echo You no longer have to start the UI separately.  It will start when you start the Bot.  Go to: http://localhost:3978/ui",
     "verifypackagelock": "tsc -p ./scripts/tsconfig.json && node ./scripts/verifypackagelock.js",
     "watch": "concurrently --kill-others -p [{name}-{pid}] -n tsc,bot \"tsc -w\" \"nodemon\"",
     "demo-password": "node ./lib/demos/demoPasswordReset.js",
@@ -31,7 +31,7 @@
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "0.313.0",
+    "@conversationlearner/sdk": "0.315.2",
     "botbuilder": "4.1.7",
     "chalk": "2.4.1",
     "convict": "^4.0.2",

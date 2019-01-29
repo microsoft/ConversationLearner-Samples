@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
 
@@ -40,7 +40,14 @@ const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
 if (includeSdk) {
     console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)
+
+    // Note: Must be mounted at root to use internal /ui paths
+    console.log(chalk.greenBright(`Adding /ui routes`))
+    server.use(uiRouter)
 }
+
+// Serve default bot summary page. Should be customized by customer.
+server.use(express.static(path.join(__dirname, '..', 'site')))
 
 const cl = new ConversationLearner(modelId)
 
