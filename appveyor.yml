@@ -1,6 +1,12 @@
 # Do not build feature branch with open Pull Requests
 skip_branch_with_pr: true
+skip_tags: true
 
+branches:
+  only:
+    - master
+    - develop
+    
 cache:
   - '%AppData%\npm-cache -> appveyor.yml'
   - '%AppData%\..\Local\Cypress\Cache -> package-lock.json'

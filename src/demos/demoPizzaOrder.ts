@@ -90,14 +90,14 @@ cl.AddCallback({
     name: "OutOfStock",
     logic: async (memoryManager: ClientMemoryManager) => {
         // Save out of stock item
-        let outOfStock = memoryManager.Get("OutOfStock", ClientMemoryManager.AS_STRING_LIST)
+        let outOfStock = memoryManager.Get("OutOfStock", ClientMemoryManager.AS_STRING)
 
         // Clear out of stock
         memoryManager.Delete("OutOfStock")
 
         return outOfStock
     },
-    render: async (outofStock: string[], memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+    render: async (outofStock: string | null, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         return `Sorry, we don't have ${outofStock}`
     }
 })

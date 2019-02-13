@@ -66,14 +66,7 @@ Project Conversation Learner consists of an SDK you add to your bot, and a cloud
 
     This runs the generic empty bot in `my-bot-01/src/app.ts`.
 
-3. Run Conversation Learner UI in a *second* command prompt window:
-
-    ```bash
-    cd my-bot-01
-    npm run ui
-    ```
-
-4. Open browser to http://localhost:5050 once the UI component has finished transpiling.
+3. Open browser to http://localhost:3978
 
 Conversation Learner is now running and ready for you to start creating and teaching models.
 
@@ -82,12 +75,11 @@ Conversation Learner is now running and ready for you to start creating and teac
 The instructions above started the generic empty bot.
 
 Project Conversation Leaner also includes several tutorial and demo bots.  You run each demo bot by:
+1. If you have the Conversation Learner web UI open, return to the list of models at http://localhost:3978/ui/home.
 
-1. Point your browser to http://localhost:5050/home
-    
-2. Stop any running bot in the first command window you might have started (with `npm start` or `npm run demo-pizza`).  Switching bots does not require you to stop the UI process or close the web browser.
+2. Stop any running bot you might have started (with `npm start` or `npm run demo-pizza`).  Switching bots does not require you to close the web browser.
 
-3. Run one of the available demo bots using its corresponding command in the first command window:
+3. Run one of the available demo bots using its corresponding command in command window:
 
   ```bash
   npm run tutorial-general
@@ -100,7 +92,7 @@ Project Conversation Leaner also includes several tutorial and demo bots.  You r
   npm run demo-vrapp
   ```
 
-4. Switch back to the Conversation Learner UI by loading http://localhost:5050/home in your browser. 
+4. Switch back to the Conversation Learner UI by loading http://localhost:3978/ui/home in your browser. 
 
 5. Click "Import tutorials" and import the respective model.
 
@@ -110,9 +102,9 @@ Source files for the demos are found in `my-bot-01/src/demos`
 
 ## Create a bot which includes back-end code
 
-1. Point your browser to http://localhost:5050/home to list the models available to Conversation Learner.
+1. Point your browser to http://localhost:3978/ui/home to list the models available to Conversation Learner.
     
-2. Stop any running bot in the first command window you might have started (with like `npm start` or `npm run demo-pizza`).  Switching bots does not require you to stop the UI process or close the web browser.
+2. Stop any running bot you might have started (with like `npm start` or `npm run demo-pizza`).  Switching bots does not require you close the web browser.
 
 3. Add your bot-specific code to `my-bot-01/src/app.ts` using your code editor.
 
@@ -123,7 +115,7 @@ Source files for the demos are found in `my-bot-01/src/demos`
     npm start
     ```
 
-5. Reload the Conversation Learner UI (http://localhost:5050/home) in your browser. 
+5. Reload the Conversation Learner UI (http://localhost:3978/ui/home) in your browser. 
 
 6. Create a new Conversation Learner application in the UI and start teaching the Model using Train Dialogs and Log Dialogs.
 
