@@ -4,7 +4,7 @@
  */
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, RedisStorage } from '@conversationlearner/sdk'
+import { ConversationLearner, RedisStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -18,6 +18,9 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
     console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
+
+    console.log(chalk.greenBright(`Adding /ui routes`))
+    server.use(uiRouter)
 }
 
 server.listen(config.botPort, () => {
