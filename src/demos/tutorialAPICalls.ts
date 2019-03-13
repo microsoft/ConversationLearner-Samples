@@ -4,7 +4,7 @@
  */
 import * as path from 'path'
 import * as express from 'express'
-import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager } from '@conversationlearner/sdk'
+import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import * as request from 'request'
@@ -21,6 +21,9 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
     console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
+
+    console.log(chalk.greenBright(`Adding /ui routes`))
+    server.use(uiRouter)
 }
 
 server.listen(config.botPort, () => {
