@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "type": "node",
             "request": "launch",
@@ -47,6 +48,18 @@
             "request": "launch",
             "name": "tutorialAPICalls",
             "program": "${workspaceFolder}/lib/demos/tutorialAPICalls.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "tutorialEnums",
+            "program": "${workspaceFolder}/lib/demos/tutorialEnums.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
