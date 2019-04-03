@@ -58,18 +58,6 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "tutorialEnums",
-            "program": "${workspaceFolder}/lib/demos/tutorialEnums.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ],
-            "runtimeArgs": [
-                "--preserve-symlinks"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "name": "tutorialSessionCallbacks",
             "program": "${workspaceFolder}/lib/demos/tutorialSessionCallbacks.js",
             "outFiles": [
