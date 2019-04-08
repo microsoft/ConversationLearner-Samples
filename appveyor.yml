@@ -12,7 +12,7 @@ cache:
   - '%AppData%\..\Local\Cypress\Cache -> package-lock.json'
 
 install:
-  - npm install
+  - npm ci
 
 before_build:
   # Output useful info for debugging.
