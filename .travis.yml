@@ -16,6 +16,9 @@ notifications:
 node_js:
 - node
 
+install:
+  - npm ci
+
 script: 
 - npm run build
 - npm test
