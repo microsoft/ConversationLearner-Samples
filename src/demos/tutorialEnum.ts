@@ -72,21 +72,21 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 cl.AddCallback({
     name: "SetSpa",
     logic: async (memoryManager: ClientMemoryManager, value: string) => {
-        memoryManager.Set("Spa", value);
+        memoryManager.Set("Spa", value)
     }
 })
 
 cl.AddCallback({
     name: "SetChampagne",
     logic: async (memoryManager: ClientMemoryManager, value: string) => {
-        memoryManager.Set("Champagne", value);
+        memoryManager.Set("Champagne", value)
     }
 })
 
 cl.AddCallback({
     name: "SetBed",
     logic: async (memoryManager: ClientMemoryManager, value: string) => {
-        memoryManager.Set("Bed", value);
+        memoryManager.Set("Bed", value)
     }
 })
 

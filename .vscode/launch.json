@@ -140,8 +140,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "tutorialEnums",
-            "program": "${workspaceFolder}/lib/demos/tutorialEnums.js",
+            "name": "tutorialEnum",
+            "program": "${workspaceFolder}/lib/demos/tutorialEnum.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
