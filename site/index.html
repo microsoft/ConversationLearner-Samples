@@ -60,7 +60,7 @@
         <p>This default page is included with the Conversation Learner sample bot. You should customize it to fit your needs.</p>
         
         <div class="center">
-            <h2 class="link">Go to UI: <a href="http://localhost:3978/ui">http://localhost:3978/ui</a></h2>
+            <h2 class="link">Go to UI: <a href="/ui" id="uiLink">http://localhost:3978/ui</a></h2>
         </div>
 
         <h3>Questions this page can answer:</h3>
@@ -78,5 +78,10 @@
             <li><a href="https://www.microsoft.com/en-us/research/publication/responsible-bots/">Responsible bots: 10 guidelines for developers of conversational AI</a></li>
         </ul>
     </main>
+    <script type="text/javascript">
+        const addressWithUrlPort = `http://localhost:${location.port}/ui`
+        const uiLink = document.getElementById('uiLink')
+        uiLink.textContent = addressWithUrlPort
+    </script>
 </body>
 </html>
