@@ -60,7 +60,7 @@
         <p>This default page is included with the Conversation Learner sample bot. You should customize it to fit your needs.</p>
         
         <div class="center">
-            <h2 class="link">Go to UI: <a href="http://localhost:3978/ui" id="uiLink">http://localhost:3978/ui</a></h2>
+            <h2 class="link">Go to UI: <a href="/ui" id="uiLink">http://localhost:3978/ui</a></h2>
         </div>
 
         <h3>Questions this page can answer:</h3>
@@ -81,7 +81,6 @@
     <script type="text/javascript">
         const addressWithUrlPort = `http://localhost:${location.port}/ui`
         const uiLink = document.getElementById('uiLink')
-        uiLink.setAttribute('href', addressWithUrlPort)
         uiLink.textContent = addressWithUrlPort
     </script>
 </body>
