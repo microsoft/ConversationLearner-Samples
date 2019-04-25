@@ -136,6 +136,55 @@ cp .env.example .env
 
 This uses the standard configuration, which lets you run your bot locally, and start using Conversation Learner.  (Later on, to deploy your bot to the Bot Framework, some edits to this file will be needed.)
 
+## Upgrading
+
+The easiest way to try the latest [samples](https://github.com/Microsoft/ConversationLearner-Samples) is to simply go through the setup process from the [README](https://github.com/Microsoft/ConversationLearner-Samples/blob/master/README.md#quick-start) again and re-clone the repo. This will be a fresh start and avoid the need to deal with merge conflicts.
+
+However, if you have have changes to your bot that you would like to preserve such as implemented EntityDetection, API, or Session callbacks you can follow these instructions.
+
+The intention here is to update the `master` branch to the latest on the remote. There are many ways to do this with `git` but this is likely the easiest and most flexible.
+
+1. If you have uncommitted changes, commit them, otherwise skip this step.
+    ```
+    git add .
+    git commit -m "commit message"
+    ```
+
+2. Create a new branch pointing to the current branch which has your changes
+    ```
+    git checkout -b my-changes
+    ```
+
+3. Update the tracking branch
+    ```
+    git fetch origin master
+    ```
+
+4. Set local `master` to the tracking `master`
+    ```
+    git branch master origin/master -f
+    ```
+
+> At this point `master` branch is updated and you can switch over to it and test it as is without your changes if you like. Meanwhile you're changes are still preserved for you to review and merge in later. You can stop here if you like.
+
+5. Merge `master` into current branch which has your changes
+    ```
+    git merge master
+    ```
+
+6. Resolve the merge conflicts if any
+
+    > You likely want to preserve your callbacks or any custom dependencies you added, but mostly accept the remote changes as is.
+
+7. Install the new dependencies
+
+    ```
+    npm install
+    ```
+8. Done!
+
+**Now your branch is updated with all the latest features and still has your changes. You should be able to run `npm start` to see your bot working!**
+
 ## Publishing your bot
 
 Publish your Conversation Learner bot similar to the way you would publish any other bot. At a high level, you upload your code to a hosted website, set the appropriate configuration values, and then register the bot with various channels. Below we cover steps for deploying your bot to Azure and create a Bot Framework Channel Registration for it.
