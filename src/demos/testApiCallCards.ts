@@ -60,8 +60,45 @@ let cl = new ConversationLearner(modelId);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
+// cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+//     // No entity processing in this example
+// })
+
 cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
-    // No entity processing in this example
+    let entityCallbackError = memoryManager.Get("entityError")
+    if (entityCallbackError) {
+        (entityCallbackError as any).notValid.reference
+    }
+})
+
+//===========================================
+// Making external API calls for ExceptionAPI
+//===========================================
+// CL expects the 'logic' callbacks to await any asynchronous results
+
+cl.AddCallback({
+    name: "ExceptionAPI",
+    logic: async (memoryManager: ClientMemoryManager) => {
+        let logicError = memoryManager.Get("logicError", ClientMemoryManager.AS_STRING)
+        if (logicError) {
+            // let propertyList = ''
+            // for (let property in logicError) propertyList += `${(propertyList.length == 0 ? '' : ', ')}${property}: ${logicError[property]}`
+            // console.log(propertyList)
+
+            throw new Error(`A Logic Error has occurred because Entity logicError contains '${logicError}'`)
+            //(logicError as any).notValid.logicError
+        }
+
+        let renderError = memoryManager.Get("renderError", ClientMemoryManager.AS_STRING)
+        return renderError
+    },
+    render: async (renderError: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        if (renderError) {
+            throw new Error(`A Render Error has occurred because Entity renderError contains '${renderError}'`)
+            //(renderError as any).notValid.renderError
+        }
+        return "Hello with no exception"
+    }
 })
 
 //=================================
