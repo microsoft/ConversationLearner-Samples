@@ -5,9 +5,10 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
+import { ConversationLearner, FileStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
+import callbacks from './callbacks'
 
 console.log(`Config:\n`, JSON.stringify(config, null, '  '))
 
@@ -51,62 +52,9 @@ server.use(express.static(path.join(__dirname, '..', 'site')))
 
 const cl = new ConversationLearner(modelId)
 
-//=================================
-// Add Entity Logic
-//=================================
-/**
-* @param {string} text Last user input to the Bot
-* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @returns {Promise<void>}
-*/
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.AddCallback(callbacks.add)
+cl.AddCallback(callbacks.query)
 
-    memoryManager.Get("name", ClientMemoryManager.AS_STRING)
-
-    /** Add business logic manipulating the entities in memory 
-
-    // GET - Values currently in bot memory
-    memoryManager.Get(entityName: string, converter: (memoryValues: MemoryValue[])
-    i.e. memoryManager.Get("counters", ClientMemoryManager.AS_NUMBER_LIST)
-
-    // GET - Values in memory before new Entity detection
-    memoryManager.GetPrevious(entityName: string, converter: (memoryValues: MemoryValue[])
-    i.e. memoryManager.GetPrevious("location", ClientMemoryManager.AS_VALUE)
-
-    // SET
-    memoryManager.Set(entityName: string, true)
-    i.e. memoryManager.Set("toppings", ["cheese", "peppers"])
-   
-    // DELETE
-    memoryManager.Delete(entityName: string, value?: string): void
-    memoryManager.DeleteAll(saveEntityNames: string[]): void
-
-    // COPY
-    memoryManager.Copy(entityNameFrom: string, entityNameTo: string): void
-
-    // Info about the current running Session
-    memoryManager.SessionInfo(): SessionInfo
-    */
-})
-
-//=================================
-// Define any API callbacks
-//=================================
-/*
-cl.AddCallback<number>({
-    name: "Add",
-    logic: async (memoryManager, arg1: string, arg2: string) => {
-        return [arg1, arg2]
-            .map(x => parseInt(x))
-            .reduce((sum, a) => sum += a, 0)
-    },
-    render: async result => `Add result is: ${result}`
-})
-*/
-
-//=================================
-// Handle Incoming Messages
-//=================================
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         const result = await cl.recognize(context)
