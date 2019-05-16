@@ -99,12 +99,8 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
 cl.AddCallback({
     name: "OutOfStock",
     logic: async (memoryManager: ClientMemoryManager) => {
-        // Save out of stock item
         let outOfStock = memoryManager.Get("OutOfStock", ClientMemoryManager.AS_STRING)
-
-        // Clear out of stock
         memoryManager.Delete("OutOfStock")
-
         return outOfStock
     },
     render: async (outofStock: string | null, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
@@ -195,6 +191,16 @@ cl.AddCallback({
 cl.AddCallback({
     name: "LogicWithArgs",
     logic: async (memoryManager: ClientMemoryManager, firstArg: string, secondArg: string) => {
+    }
+})
+
+cl.AddCallback({
+    name: "RenderTheArgs",
+    logic: async (memoryManager: ClientMemoryManager, firstArg: string, secondArg: string, thirdArg: string, fourthArg: string, fifthArg: string, sixthArg: string, seventhArg: string) => {
+        return `The Logic Args: '${firstArg}', '${secondArg}', '${thirdArg}', '${fourthArg}', '${fifthArg}', '${sixthArg}', '${seventhArg}'`
+    },
+    render: async (logicResult: string, memoryManager: ReadOnlyClientMemoryManager, firstArg: string, secondArg: string, thirdArg: string, fourthArg: string, fifthArg: string, sixthArg: string, seventhArg: string) => {
+        return logicResult + `\nThe Render Args: '${firstArg}', '${secondArg}', '${thirdArg}', '${fourthArg}', '${fifthArg}', '${sixthArg}', '${seventhArg}'`
     }
 })
 
