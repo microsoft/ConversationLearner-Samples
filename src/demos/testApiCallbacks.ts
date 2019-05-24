@@ -153,7 +153,7 @@ cl.AddCallback({
 
 //===========================================================================
 // This API Callbacks will can cause an error message in Conversation Learner
-// if either "logicError" or "renderError" has a menory value. Otherwise
+// if either "logicError" or "renderError" has a memory value. Otherwise
 // it will complete without failure and render a message.
 //===========================================================================
 
