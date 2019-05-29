@@ -76,7 +76,8 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     let entityError = memoryManager.Get("entityError", ClientMemoryManager.AS_STRING)
     console.log(chalk.redBright(`entityError: ${entityError}`))
     if (entityError === "entityError") {
-        (entityError as any).notValid.reference
+        throw new Error('An intentional error was invoked in the EntityDetectionCallback function.')
+        //(entityError as any).notValid.reference
     }
 
     // Get list of requested Toppings
