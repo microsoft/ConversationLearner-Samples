@@ -54,7 +54,7 @@ if (isDevelopment) {
 let cl = new ConversationLearner(modelId);
 
 //=========================================================
-// Bots Buisness Logic
+// Bots Business Logic
 //=========================================================
 let cities = ['new york', 'boston', 'new orleans', 'chicago'];
 let cityMap:{ [index:string] : string } = {};
