@@ -30,7 +30,7 @@
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "0.319.7",
+    "@conversationlearner/sdk": "0.319.8",
     "botbuilder": "4.1.7",
     "chalk": "2.4.1",
     "convict": "^4.0.2",
