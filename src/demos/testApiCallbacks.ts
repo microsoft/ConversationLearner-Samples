@@ -230,6 +230,38 @@ cl.AddCallback({
     }
 })
 
+//===================================================================================================
+// Most of the time this should be commented out, we leave it here so that it can be used to create
+// a model that depends on it and then remove it by commenting it out in order to test error handling
+// in the UI.
+//===================================================================================================
+
+var greetings = [
+    "Hello!",
+    "Greetings!",
+    "Hi there!"
+];
+
+// cl.AddCallback({
+//     name: "RandomGreeting",
+//     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+//         var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+//         const message = botBuilder.MessageFactory.attachment(botBuilder.CardFactory.thumbnailCard(randomGreeting, "Here's a neat photo", ["https://picsum.photos/100/?random"]))
+//         return message
+//     }
+// })
+
+// cl.AddCallback({
+//     name: "RandomGreetingToo",
+//     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+//         var randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+//         const message = botBuilder.MessageFactory.attachment(botBuilder.CardFactory.thumbnailCard(randomGreeting, "Here's a neat photo", ["https://picsum.photos/100/?random"]))
+//         return message
+//     }
+// })
+
 //=================================
 // Handle Incoming Messages
 //=================================
