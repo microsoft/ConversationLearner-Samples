@@ -236,11 +236,11 @@ cl.AddCallback({
 // in the UI.
 //===================================================================================================
 
-var greetings = [
-    "Hello!",
-    "Greetings!",
-    "Hi there!"
-];
+// const greetings = [
+//     "Hello!",
+//     "Greetings!",
+//     "Hi there!"
+// ];
 
 // cl.AddCallback({
 //     name: "RandomGreeting",
