@@ -6,9 +6,9 @@
             "items": [
                 {
                     "type": "TextBlock",
-                    "size": "Medium",
-                    "weight": "Bolder",
-                    "text": "Unplug and restart your printer"
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Unplug and restart your printer**"
                 }
             ]
         },

@@ -6,9 +6,9 @@
             "items": [
                 {
                     "type": "TextBlock",
-                    "size": "Medium",
-                    "weight": "Bolder",
-                    "text": "Add a printer or a scanner"
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Add a printer or a scanner**"
                 }
             ]
         },
