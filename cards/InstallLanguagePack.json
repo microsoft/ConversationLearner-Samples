@@ -1,0 +1,65 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "Install a language Pack"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If a language is listed under **Preferred languages** but doesn't appear on the Windows display language list, you'll also need to install its language pack.",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "1.",
+                            "value": "Select Windows logo **Start** button > Gear-shaped **Settings** icon > **Time & Language** > **Language**."
+                        },
+                        {
+                            "title": "2.",
+                            "value": "Choose the language from **Preferred languages**, and then select **Options**. "
+                        },
+                        {
+                            "title": "3.",
+                            "value": "Under **Language pack** select **Download**."
+                        },
+                        {
+                            "title": "4.",
+                            "value": "After the language pack is installed, select Left-arrow **Back** icon."
+                        },
+                        {
+                            "title": "5.",
+                            "value": "Choose the language from the **Windows display language** menu."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.OpenUrl",
+            "title": "Install a language Pack",
+            "url": "explorer ms-settings:regionlanguage"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

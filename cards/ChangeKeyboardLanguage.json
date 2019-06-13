@@ -1,0 +1,55 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "Change my keyboard language in Windows 10"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Follow these steps to change your keyboard language:\n",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "1.",
+                            "value": "Hold down the **Windows** logo key and repeatedly hit the **Spacebar** until your preferred language is selected."
+                        },
+                        {
+                            "title": "2.",
+                            "value": "Or, select the language abbreviation on the far right of the taskbar, and select the language you want."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you can't find your desired language with these steps, you may need to **add a new keyboard language**."
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

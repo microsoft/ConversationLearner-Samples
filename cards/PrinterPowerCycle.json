@@ -1,0 +1,59 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "Unplug and restart your printer"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "The first thing I want you to try is what’s called a **printer power cycle**. Follow these steps:",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "1.",
+                            "value": "Turn off your printer and unplug its power cable."
+                        },
+                        {
+                            "title": "2.",
+                            "value": "Wait 30 seconds."
+                        },
+                        {
+                            "title": "3.",
+                            "value": "Plug your printer back in and turn the printer back on."
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "If you want to talk to a person at any point during our chat, just type '*talk to a person*' into the chat box below."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

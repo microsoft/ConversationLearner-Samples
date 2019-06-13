@@ -1,0 +1,70 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "Add a language in Windows 10"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Follow these steps to add a new language to your Windows 10 PC. In **Language** settings, you can also set your display language preferences or change your keyboard language.",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "1.",
+                            "value": "Select Windows logo **Start** button > Gear-shaped **Settings** icon > **Time & Language** > **Language**"
+                        },
+                        {
+                            "title": "2.",
+                            "value": "Select **Add a language**."
+                        },
+                        {
+                            "title": "3.",
+                            "value": "Choose the language you want from the list, and select **Next**."
+                        },
+                        {
+                            "title": "4.",
+                            "value": "Review any **language** features you want to set or install, and select **Install**. "
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "[Want a quick walk-through? Watch this short video.](http://aka.ms/LocalExperiencePack)"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.OpenUrl",
+            "title": "Open language settings",
+            "url": "explorer ms-settings:regionlanguage"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

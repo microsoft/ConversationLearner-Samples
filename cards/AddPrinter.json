@@ -1,0 +1,57 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "Add a printer or a scanner"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If your printer connects by a wire, plug it into your device. It'll connect automatically, your PC will download the right drivers, and you can use it right away. To connect a wireless printer, follow these steps:",
+                    "wrap": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "FactSet",
+                            "facts": [
+                                {
+                                    "title": "1.",
+                                    "value": "Select the **Start** Windows logo button, then select Gear-shaped **Settings** icon > **Devices** > **Printers & scanners** > **Add a printer or scanner**."
+                                },
+                                {
+                                    "title": "2.",
+                                    "value": "Wait for it to find nearby printers, then choose the one you want to use, and select **Add device**. If you want to remove the printer later, just highlight it, and select **Remove**."
+                                },
+                                {
+                                    "title": "3.",
+                                    "value": "If you don't see your printer, try to fix the problem by using the steps in [Fix printer problems in Windows 10](https://support.microsoft.com/help/4015401). "
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.OpenUrl",
+            "title": "Add a printer or a scanner",
+            "url": "explorer ms-settings:connecteddevices"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
