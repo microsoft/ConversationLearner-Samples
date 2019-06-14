@@ -47,7 +47,8 @@
                     "items": [
                         {
                             "type": "TextBlock",
-                            "text": "If you want to talk to a person at any point during our chat, just type '*talk to a person*' into the chat box below."
+                            "text": "If you want to talk to a person at any point during our chat, just type '*talk to a person*' into the chat box below.",
+                            "wrap": true
                         }
                     ]
                 }
