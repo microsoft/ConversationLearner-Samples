@@ -43,13 +43,34 @@
                     ]
                 }
             ]
-        }
-    ],
-    "actions": [
+        },
         {
-            "type": "Action.OpenUrl",
-            "title": "Add a printer or a scanner",
-            "url": "explorer ms-settings:connecteddevices"
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.OpenUrl",
+                    "title": "Add a printer or a scanner",
+                    "style": "positive",
+                    "url": "explorer ms-settings:connecteddevices"
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "Did this solve your problem?"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Yes"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "No"
+                }
+            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

@@ -45,7 +45,8 @@
             "items": [
                 {
                     "type": "TextBlock",
-                    "text": "If you can't find your desired language with these steps, you may need to **add a new keyboard language**."
+                    "text": "If you can't find your desired language with these steps, you may need to **add a new keyboard language**.",
+                    "wrap": true
                 }
             ]
         }

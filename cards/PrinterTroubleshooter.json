@@ -27,7 +27,8 @@
             "items": [
                 {
                     "type": "TextBlock",
-                    "text": "Select **Start** > **Settings** > **Update & Security** > **Troubleshoot**. Select **Printer**, and then select **Run the troubleshooter**."
+                    "text": "Select **Start** > **Settings** > **Update & Security** > **Troubleshoot**. Select **Printer**, and then select **Run the troubleshooter**.",
+                    "wrap": true
                 }
             ]
         }
