@@ -13,16 +13,6 @@
                     "text": "{{title}}"
                 }
             ]
-        },
-        {
-            "type": "Container",
-            "items": [
-                {
-                    "type": "TextBlock",
-                    "text": "{{description}}",
-                    "wrap": true
-                }
-            ]
         }
     ],
     "actions": [
