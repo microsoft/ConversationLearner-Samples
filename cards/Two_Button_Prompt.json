@@ -10,7 +10,8 @@
                     "type": "TextBlock",
                     "size": "medium",
                     "weight": "bolder",
-                    "text": "{{title}}"
+                    "text": "{{title}}",
+                    "wrap": true
                 }
             ]
         }
