@@ -64,7 +64,7 @@
                     "type": "Action.OpenUrl",
                     "title": "Open language settings",
                     "style": "positive",
-                    "url": "explorer ms-settings:regionlanguage"
+                    "url": "ms-settings:regionlanguage"
                 }
             ]
         },

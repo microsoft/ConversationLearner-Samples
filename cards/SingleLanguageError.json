@@ -1,0 +1,54 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you're seeing the error message \"Only one language pack allowed\" or \"Your Windows license supports only one display language\", this means that your PC is running a single language version of Windows 10.",
+                    "wrap": true
+                },
+                {
+                    "type": "Container",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "spacing": "Medium",
+                            "text": "To add more languages, you'll need to upgrade to either **Windows 10 Home** or **Windows 10 Pro**.",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "spacing": "Medium",
+                            "text": "To upgrade, visit the [Microsoft Store](https://www.microsoft.com/store/b/windows?icid=CNavSoftwareWindows&activetab=tab%3ashopwindows10).",
+                            "wrap": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "spacing": "Medium",
+            "text": "Did this solve your problem?"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Yes",
+                    "data": "Yes"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "No",
+                    "data": "No"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

@@ -57,7 +57,7 @@
                             "type": "Action.OpenUrl",
                             "title": "Install a language Pack",
                             "style": "positive",
-                            "url": "explorer ms-settings:regionlanguage"
+                            "url": "ms-settings:regionlanguage"
                         }
                     ]
                 },
