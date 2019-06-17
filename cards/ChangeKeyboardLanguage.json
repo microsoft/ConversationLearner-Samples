@@ -49,6 +49,26 @@
                     "wrap": true
                 }
             ]
+        },
+        {
+            "type": "TextBlock",
+            "spacing": "Medium",
+            "text": "Were you able to change your keyboard language?"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "No, I need to add a new keyboard language",
+                    "data": "No, I need to add a new keyboard language"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Yes, I’m done",
+                    "data": "Yes, I’m done"
+                }
+            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

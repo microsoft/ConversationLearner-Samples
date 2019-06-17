@@ -8,7 +8,7 @@
                     "type": "TextBlock",
                     "size": "medium",
                     "weight": "bolder",
-                    "text": "**Install a language Pack**"
+                    "text": "**Add a keyboard language in Windows 10**"
                 }
             ]
         },
@@ -17,7 +17,7 @@
             "items": [
                 {
                     "type": "TextBlock",
-                    "text": "If a language is listed under **Preferred languages** but doesn't appear on the Windows display language list, you'll also need to install its language pack.",
+                    "text": "To add a new keyboard language, follow these steps:",
                     "wrap": true
                 }
             ]
@@ -34,19 +34,15 @@
                         },
                         {
                             "title": "2.",
-                            "value": "Choose the language from **Preferred languages**, and then select **Options**. "
+                            "value": "Under **Preferred languages**, select the language that contains the keyboard you want. Choose **Options**."
                         },
                         {
                             "title": "3.",
-                            "value": "Under **Language pack** select **Download**."
+                            "value": "Select **Add a keyboard** and choose your desired keyboard."
                         },
                         {
                             "title": "4.",
-                            "value": "After the language pack is installed, select Left-arrow **Back** icon."
-                        },
-                        {
-                            "title": "5.",
-                            "value": "Choose the language from the **Windows display language** menu."
+                            "value": "If you do not see your desired keyboard, you may need to add a new language to get additional options. Return to the Language settings page, and select **Add a language**."
                         }
                     ]
                 },
@@ -55,7 +51,7 @@
                     "actions": [
                         {
                             "type": "Action.OpenUrl",
-                            "title": "Install a language Pack",
+                            "title": "Open language settings",
                             "style": "positive",
                             "url": "explorer ms-settings:regionlanguage"
                         }
@@ -64,7 +60,7 @@
                 {
                     "type": "TextBlock",
                     "spacing": "Medium",
-                    "text": "Were you able to install a language pack?"
+                    "text": "Did this solve your problem?"
                 },
                 {
                     "type": "ActionSet",
@@ -76,8 +72,8 @@
                         },
                         {
                             "type": "Action.Submit",
-                            "title": "I’m getting an error message",
-                            "data": "I’m getting an error message"
+                            "title": "No",
+                            "data": "No"
                         }
                     ]
                 }
