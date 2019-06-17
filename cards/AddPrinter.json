@@ -64,11 +64,13 @@
             "actions": [
                 {
                     "type": "Action.Submit",
-                    "title": "Yes"
+                    "title": "Yes",
+                    "data": "Yes"
                 },
                 {
                     "type": "Action.Submit",
-                    "title": "No"
+                    "title": "No",
+                    "data": "No"
                 }
             ]
         }
