@@ -1,0 +1,28 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "You entered a volume license key for Office"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "- Contact the [Volume Licensing Service Center](https://go.microsoft.com/fwlink/?linkid=849589) at (866) 230-0560 (US) to obtain a download link for Office.\n- If your work or school provides Office, contact your admin to download Office.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

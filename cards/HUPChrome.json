@@ -1,0 +1,45 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "**Home Use Program (HUP) download link**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Follow these steps to start the Office installation process in your Chrome web browser.",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "FactSet",
+            "facts": [
+                {
+                    "title": "1.",
+                    "value": "To download the Office installer, select this link: {{office.productkey.downloadurl}}"
+                },
+                {
+                    "title": "2.",
+                    "value": "In the lower-left corner of your Chrome web browser, select the **setupproplusretail** download file from the drop down, and then select **Show in folder**."
+                },
+                {
+                    "title": "3.",
+                    "value": "Double-click the **setupproplusretail** file to start the installation process."
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

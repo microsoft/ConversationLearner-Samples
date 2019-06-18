@@ -1,0 +1,44 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "Medium",
+                    "weight": "Bolder",
+                    "text": "**How to find your Office product key**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "An Office product key uses a combination of 25 letters and numbers. Select your version of Office below for help with finding your product key:",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "[Office 365, 2019, 2016, or 2013](https://support.office.com/article/12a5763a-d45c-4685-8c95-a44500213759)"
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "[Office 2011 for Mac](https://support.office.com/article/670b19d6-7743-45ae-a53c-66080cec7e33)"
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "[Office 2010](https://support.office.com/article/1e8ef39c-2bd4-4581-a0ae-5cf25ebed489)"
+        },
+        {
+            "type": "TextBlock",
+            "text": "[Office 2007](https://support.office.com/article/fabe03d9-fbc3-452e-8fd4-d1c2e661d518)"
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
