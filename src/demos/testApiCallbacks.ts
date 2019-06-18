@@ -230,13 +230,22 @@ cl.AddCallback({
     }
 })
 
+cl.AddCallback({
+    name: "PhotoCard",
+    render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
+        const message = botBuilder.MessageFactory.attachment(botBuilder.CardFactory.thumbnailCard('Photo Card', "Here is a photo for you to enjoy", ["https://picsum.photos/380/220"]))
+        return message
+    }
+})
+
+
 //===================================================================================================
 // Most of the time this should be commented out, we leave it here so that it can be used to create
 // a model that depends on it and then remove it by commenting it out in order to test error handling
 // in the UI.
 //===================================================================================================
 
-// const greetings = [
+// var greetings = [
 //     "Hello!",
 //     "Greetings!",
 //     "Hi there!"
