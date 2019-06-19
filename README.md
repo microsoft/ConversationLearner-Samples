@@ -258,6 +258,7 @@ Once the bot is deployed and running you can connect different channels to it su
 
 ## Deploy Conversation Learner Sample container to Azure
 You can now deploy Conversation Learner Samples to Azure as a docker container to start trying out the UI without having to setup a local development environment.
+
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
 ## Support
