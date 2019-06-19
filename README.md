@@ -256,6 +256,10 @@ MicrosoftAppPassword           | Microsoft Application Password
 
 Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
 
+## Deploy Conversation Learner Sample container to Azure
+You can deploy the conversation learner sample to Azure and quickly get started with your Conversation Learner model training
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
+
 ## Support
 
 - Tag questions on [Stack Overflow](https://stackoverflow.com) with "microsoft cognitive"
