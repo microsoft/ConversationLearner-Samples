@@ -27,6 +27,23 @@
     "resources": [
         {
             "apiVersion": "2018-02-01",
+            "name": "[variables('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[parameters('siteLocation')]",
+            "kind": "linux",
+            "tags": {},
+            "properties": {
+                "name": "[variables('hostingPlanName')]",
+                "perSiteScaling": false,
+                "reserved": true,
+            },
+            "sku": {
+                "Tier": "Basic",
+                "Name": "B1"
+            }
+        },
+        {
+            "apiVersion": "2018-02-01",
             "name": "[parameters('siteName')]",
             "type": "Microsoft.Web/sites",
             "location": "[parameters('siteLocation')]",
@@ -53,34 +70,15 @@
                         }
                     ]
                 },
-                "appCommandLine": "",
-                "alwaysOn": "[parameters('alwaysOn')]",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                 "clientAffinityEnabled": false
-            }
-        },
-        {
-            "apiVersion": "2018-02-01",
-            "name": "[variables('hostingPlanName')]",
-            "type": "Microsoft.Web/serverfarms",
-            "location": "[parameters('siteLocation')]",
-            "kind": "linux",
-            "tags": {},
-            "properties": {
-                "name": "[variables('hostingPlanName')]",
-                "perSiteScaling": false,
-                "reserved": true,
-            },
-            "sku": {
-                "Tier": "Basic",
-                "Name": "B1"
             }
         },
         {
             "type": "Microsoft.Web/sites/config",
             "apiVersion": "2016-08-01",
             "name": "[concat(parameters('siteName'), '/web')]",
-            "location": "West US",
+            "location": "[parameters('siteLocation')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
             ],
@@ -104,6 +102,8 @@
                 "linuxFxVersion": "[parameters('conversationLearnerDockerContainer')]",
                 "http20Enabled": false,
                 "minTlsVersion": "1.2",
+                "appCommandLine": "",
+                "alwaysOn": "[parameters('alwaysOn')]",
             }
         }
     ]
