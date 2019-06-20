@@ -14,7 +14,7 @@
         },
         "conversationLearnerDockerContainer": {
             "type": "string",
-            "defaultValue": "DOCKER|conversationlearner/cl-sdk-sample:latest"
+            "defaultValue": "DOCKER|conversationlearner/cl-sdk-sample:latest-develop"
         },
         "alwaysOn": {
             "type": "bool",
