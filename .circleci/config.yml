@@ -29,7 +29,69 @@ jobs:
       - run: npm run build
       - run: npm run test
 
+  test:
+    docker:
+      - image: cypress/browsers:node11.13.0-chrome73
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+          ipc: host ## https://github.com/cypress-io/cypress/issues/350
+    parallelism: 1
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
+
+      - run: node --version
+      - run: npm --version
+      - run: npm ci
+
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+
+      - run: npm run build
+
+      # Clone the UI to access tests
+      - run: git clone https://github.com/microsoft/ConversationLearner-UI ../ui
+      - run: cd ../ui && npm ci
+
+      # Run the sample
+      - run: 
+          command: npm run test-apicallbacks > start.txt
+          background: true
+
+      # Run smoke tests against sample
+      - run: npx wait-on -- http://localhost:3978
+      - run: cd ../ui && npm run cypress -- run --record false --spec  "cypress/integration/smoke/**/*.spec.*" --config "baseUrl=http://localhost:3978/ui"
+
+      - store_artifacts:
+          path: ../ui/cypress/videos
+
+      - store_artifacts:
+          path: ../ui/cypress/screenshots
+
+      - run: 
+          command: cd ../ui && npm run cypress -- run --record false --spec  "cypress/integration/release/**/*.spec.*" --config "baseUrl=http://localhost:3978"
+          when: always
+
+      - store_artifacts:
+          path: ../ui/cypress/videos
+
+      - store_artifacts:
+          path: ../ui/cypress/screenshots
+
 workflows:
   build-test:
     jobs:
       - build
+      - test:
+          requires:
+              - build
