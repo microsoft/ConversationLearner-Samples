@@ -1,3 +1,12 @@
+---
+topic: sample
+languages:
+  - typescript
+products:
+  - azure-cognitive-services
+  - azure-language-understanding
+---
+
 # ConversationLearner-Samples
 
 This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrating how to use the `@conversationlearner/sdk` npm module.
