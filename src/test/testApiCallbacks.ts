@@ -197,6 +197,47 @@ cl.AddCallback({
     }
 })
 
+// Examples for listOfEntitiesToClear:
+//  "1stEntity, 2ndEntity and lastEntity"
+//  "only1Entity"
+cl.AddCallback({
+    name: "ClearMemory",
+    logic: async (memoryManager: ClientMemoryManager, listOfEntitiesToClear: string) => {
+        const arrayOfEntitiesToClear = listOfEntitiesToClear.split(', ').join(',').split(' and ').join(',').split(',')
+        console.log(chalk.cyan(`listOfEntitiesToClear: ${listOfEntitiesToClear}`))
+        console.log(chalk.cyan(`arrayOfEntitiesToClear: '${arrayOfEntitiesToClear.join(', ')}'`))
+
+        arrayOfEntitiesToClear.forEach(entityToClear => { memoryManager.Delete(entityToClear) })
+        return `Cleared the memory of these: '${arrayOfEntitiesToClear.join(', ')}'`
+    },
+    render: async (logicResult: string, memoryManager: ReadOnlyClientMemoryManager) => {
+        return logicResult
+    }
+})
+
+// Examples for listOfEntitiesToSet:
+//  "1stEntity: value of one, 2ndEntity: two and lastEntity: this is the value of the last Entity"
+//  "only1Entity: value of this single Entity"
+cl.AddCallback({
+    name: "SetMemory",
+    logic: async (memoryManager: ClientMemoryManager, listOfEntitiesToSet: string) => {
+        function set(memory: string) {
+            let memoryValuePair = memory.split(':', 2)
+            memoryManager.Set(memoryValuePair[0], memoryValuePair[1].trim()); 
+        }
+
+        const arrayOfEntitiesToSet = listOfEntitiesToSet.split(', ').join(',').split(' and ').join(',').split(',')
+        console.log(chalk.cyan(`listOfEntitiesToSet: ${listOfEntitiesToSet}`))
+        console.log(chalk.cyan(`arrayOfEntitiesToSet: '${arrayOfEntitiesToSet.join(', ')}'`))
+
+        arrayOfEntitiesToSet.forEach(entityToSet => { set(entityToSet) })
+        return `Set these memory values: '${arrayOfEntitiesToSet.join(', ')}'`
+    },
+    render: async (logicResult: string, memoryManager: ReadOnlyClientMemoryManager) => {
+        return logicResult
+    }
+})
+
 cl.AddCallback({
     name: "TextCard",
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, cardTitle: string, cardText: string) => {
