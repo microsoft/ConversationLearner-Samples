@@ -1,0 +1,32 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Are you able to print now?",
+            "spacing": "medium"
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Yes",
+                    "data": "Yes"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "No",
+                    "data": "No"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Talk to a person",
+                    "data": "Talk to a person"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

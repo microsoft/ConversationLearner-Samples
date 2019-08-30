@@ -31,31 +31,6 @@
                     "wrap": true
                 }
             ]
-        },
-        {
-            "type": "TextBlock",
-            "text": "Did that solve the problem?",
-            "spacing": "Medium"
-        },
-        {
-            "type": "ActionSet",
-            "actions": [
-                {
-                    "type": "Action.Submit",
-                    "title": "Yes",
-                    "data": "Yes"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "No",
-                    "data": "No"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "Let's try another solution",
-                    "data": "Let's try another solution"
-                }
-            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

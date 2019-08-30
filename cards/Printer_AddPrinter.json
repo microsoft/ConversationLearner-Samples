@@ -54,26 +54,6 @@
                     "url": "ms-settings:connecteddevices"
                 }
             ]
-        },
-        {
-            "type": "TextBlock",
-            "text": "Did this solve your problem?",
-            "spacing": "Medium"
-        },
-        {
-            "type": "ActionSet",
-            "actions": [
-                {
-                    "type": "Action.Submit",
-                    "title": "Yes",
-                    "data": "Yes"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "No",
-                    "data": "No"
-                }
-            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
