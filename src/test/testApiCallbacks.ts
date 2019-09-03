@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
 import * as path from 'path'
@@ -50,12 +50,12 @@ var isInStock = function (topping: string) {
 // Add Entity Logic
 //=================================
 /**
-* Processes messages received from the user. Called by the dialog system. 
+* Processes messages received from the user. Called by the dialog system.
 * @param {string} text Last user input to the Bot
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     let entityError = memoryManager.Get("entityError", ClientMemoryManager.AS_STRING)
     console.log(chalk.redBright(`entityError: ${entityError}`))
     if (entityError === "entityError") {
@@ -74,7 +74,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
             memoryManager.Set("OutOfStock", topping);
         }
     }
-})
+}
 
 //===================================
 // Define Pizza Related API Callbacks
@@ -223,7 +223,7 @@ cl.AddCallback({
     logic: async (memoryManager: ClientMemoryManager, listOfEntitiesToSet: string) => {
         function set(memory: string) {
             let memoryValuePair = memory.split(':', 2)
-            memoryManager.Set(memoryValuePair[0], memoryValuePair[1].trim()); 
+            memoryManager.Set(memoryValuePair[0], memoryValuePair[1].trim());
         }
 
         const arrayOfEntitiesToSet = listOfEntitiesToSet.split(', ').join(',').split(' and ').join(',').split(',')

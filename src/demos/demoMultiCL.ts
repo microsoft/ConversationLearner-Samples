@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
 import * as path from 'path'
@@ -19,7 +19,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
     console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
-    
+
     console.log(chalk.greenBright(`Adding /ui routes`))
     server.use(uiRouter)
 }
@@ -36,7 +36,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
-// Storage 
+// Storage
 //==================================
 // Initialize ConversationLearner using file storage.  Recommended only for development
 // See "storageDemo.ts" for other storage options
@@ -60,7 +60,7 @@ var isInStock = function (topping: string) {
 }
 
 let clPizza = new ConversationLearner("2d9884f4-75a3-4f63-8b1e-d885ac02663e");
-clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+clPizza.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
     memoryManager.Delete("OutOfStock");
@@ -77,7 +77,7 @@ clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemory
             memoryManager.Set("OutOfStock", topping);
         }
     }
-})
+}
 
 clPizza.AddCallback({
     name: "FinalizeOrder",
@@ -113,7 +113,7 @@ var resolveApps = function (appName: string) {
 }
 
 let clVr = new ConversationLearner("997dc1e2-c0c0-4812-9429-446e31cfdf99");
-clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+clVr.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
     memoryManager.Delete("DisambigAppNames");
@@ -134,7 +134,7 @@ clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryMan
             memoryManager.Delete("AppName");
         }
     }
-})
+}
 
 clVr.AddCallback({
     name: "LaunchApp",
@@ -178,7 +178,7 @@ server.post('/api/messages', (req, res) => {
             return;
         }
 
-        // Get state for this turn 
+        // Get state for this turn
         await conversationState.load(context)
         const state = await botStateAccessor.get(context, <BotState>{ mode: "" })
 

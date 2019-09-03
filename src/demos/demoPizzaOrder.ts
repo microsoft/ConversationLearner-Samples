@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
 import * as path from 'path'
@@ -19,7 +19,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
     console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
-    
+
     console.log(chalk.greenBright(`Adding /ui routes`))
     server.use(uiRouter)
 }
@@ -36,9 +36,9 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
-// Storage 
+// Storage
 //==================================
-// Initialize ConversationLearner using file storage.  
+// Initialize ConversationLearner using file storage.
 // Recommended only for development
 // See "storageDemo.ts" for other storage options
 let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
@@ -65,12 +65,12 @@ var isInStock = function (topping: string) {
 // Add Entity Logic
 //=================================
 /**
-* Processes messages received from the user. Called by the dialog system. 
+* Processes messages received from the user. Called by the dialog system.
 * @param {string} text Last user input to the Bot
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Get list of requested Toppings
     let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);
@@ -84,7 +84,8 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
             memoryManager.Set("OutOfStock", topping);
         }
     }
-})
+}
+
 
 //=================================
 // Define API callbacks
