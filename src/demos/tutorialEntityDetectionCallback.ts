@@ -80,7 +80,7 @@ var resolveCity = function(cityFromUser: string) {
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = (async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     // Clear
     memoryManager.Delete("CityUnknown");
             

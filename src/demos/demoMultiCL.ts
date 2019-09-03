@@ -60,7 +60,7 @@ var isInStock = function (topping: string) {
 }
 
 let clPizza = new ConversationLearner("2d9884f4-75a3-4f63-8b1e-d885ac02663e");
-clPizza.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+clPizza.EntityDetectionCallback = (async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear OutOfStock List
     memoryManager.Delete("OutOfStock");
@@ -113,7 +113,7 @@ var resolveApps = function (appName: string) {
 }
 
 let clVr = new ConversationLearner("997dc1e2-c0c0-4812-9429-446e31cfdf99");
-clVr.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+clVr.EntityDetectionCallback = (async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
     memoryManager.Delete("DisambigAppNames");

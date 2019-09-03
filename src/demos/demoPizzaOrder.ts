@@ -70,7 +70,7 @@ var isInStock = function (topping: string) {
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = (async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Get list of requested Toppings
     let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);

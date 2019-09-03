@@ -73,7 +73,7 @@ var greetings = [
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = (async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     // No entity processing in this example
 })
 
