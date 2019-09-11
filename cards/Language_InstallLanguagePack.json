@@ -60,26 +60,6 @@
                             "url": "ms-settings:regionlanguage"
                         }
                     ]
-                },
-                {
-                    "type": "TextBlock",
-                    "spacing": "Medium",
-                    "text": "Were you able to install a language pack?"
-                },
-                {
-                    "type": "ActionSet",
-                    "actions": [
-                        {
-                            "type": "Action.Submit",
-                            "title": "Yes",
-                            "data": "Yes"
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "I’m getting an error message",
-                            "data": "I’m getting an error message"
-                        }
-                    ]
                 }
             ]
         }

@@ -67,37 +67,6 @@
                     "url": "ms-settings:regionlanguage"
                 }
             ]
-        },
-        {
-            "type": "TextBlock",
-            "spacing": "Medium",
-            "text": "Would you like to change your keyboard language or your display language?",
-            "wrap": true
-        },
-        {
-            "type": "ActionSet",
-            "actions": [
-                {
-                    "type": "Action.Submit",
-                    "title": "Change my keyboard language",
-                    "data": "Change my keyboard language"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "Change my display language",
-                    "data": "Change my display language"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "No, I’m done",
-                    "data": "No, I’m done"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "I’m getting a single language error",
-                    "data": "I’m getting a single language error"
-                }
-            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

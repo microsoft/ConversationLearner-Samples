@@ -56,26 +56,6 @@
                             "url": "ms-settings:regionlanguage"
                         }
                     ]
-                },
-                {
-                    "type": "TextBlock",
-                    "spacing": "Medium",
-                    "text": "Did this solve your problem?"
-                },
-                {
-                    "type": "ActionSet",
-                    "actions": [
-                        {
-                            "type": "Action.Submit",
-                            "title": "Yes",
-                            "data": "Yes"
-                        },
-                        {
-                            "type": "Action.Submit",
-                            "title": "No",
-                            "data": "No"
-                        }
-                    ]
                 }
             ]
         }

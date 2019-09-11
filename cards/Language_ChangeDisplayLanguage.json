@@ -59,26 +59,6 @@
                     "url": "ms-settings:regionlanguage"
                 }
             ]
-        },
-        {
-            "type": "TextBlock",
-            "spacing": "Medium",
-            "text": "Were you able to change your display language?"
-        },
-        {
-            "type": "ActionSet",
-            "actions": [
-                {
-                    "type": "Action.Submit",
-                    "title": "Yes",
-                    "data": "Yes"
-                },
-                {
-                    "type": "Action.Submit",
-                    "title": "No",
-                    "data": "No"
-                }
-            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
