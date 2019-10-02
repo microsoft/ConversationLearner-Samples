@@ -1,0 +1,38 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Things to try first**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Okay, you need some help signing in to your device. Before we begin, here are a few things to try first:",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "- Select **Power** > **Restart** or **Power** > **Update and restart** to restart your device and make sure all updates are installed. \n **Important** When you restart your device, you’ll lose this chat session. If restarting your device doesn’t fix your problem, please come back so that I can continue to help you.\n- Make sure you’re connected to the internet by selecting **Network** on the lock screen of your device.\n- Make sure Caps Lock is off. To check that you’ve entered your password correctly, hold down the icon resembling an eye that appears next to it to reveal your password.\n- If you recently changed your password, try entering your previous password. If this works, you’ll need to lock your device and then unlock it using your new password.\n- If you have multiple accounts on your device, try signing in with another account.\n- There are multiple ways to sign in. On the Lock screen, select 'Sign in options' to choose an alternate method to sign in. For example, if you are trying to type in a PIN, switch to a password login method.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

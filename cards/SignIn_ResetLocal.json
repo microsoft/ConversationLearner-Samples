@@ -1,0 +1,34 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Reset your local account password**",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you added a security question to your local account, here’s how to reset your password:",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "1. On the sign-in screen, enter your password. If it’s incorrect, you’ll see the **Reset password** option.\n2. Select **Reset password** and then enter your answers for the security questions.\n  - **Note**: Adding security questions to your account to help reset your password is only available in Windows 10 version 1803.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

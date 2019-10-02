@@ -1,0 +1,38 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Reset your Microsoft Account password**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Change your password on the Lock screen by clicking the **I forgot my password** link.",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "**Note**:  Depending on how you are signed in, you could also see **Reset my pin**, or **Reset password**, after entering an incorrect password.  If so, click the link.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

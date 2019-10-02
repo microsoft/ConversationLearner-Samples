@@ -1,0 +1,38 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Uninstall or roll back your video driver**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Now that you’ve signed in using safe mode, you can either roll back your video driver to an earlier version or uninstall it to try and fix your black or blank screen issue. Here’s how:",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "1. Right-click the **Start** button on the taskbar and select **Device Manager**.\n2. Expand the **Display adapter** section.\n3. Double-click the affected device to open it.\n4. Select the **Driver** tab.\n5. Choose one of the following options:\n- - **Roll Back Driver**\n- - **Uninstall Device**\n6. Restart your device and try to sign in again.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

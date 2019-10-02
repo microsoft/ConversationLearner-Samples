@@ -1,0 +1,39 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Reset Windows 10 on your device**",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If can’t sign in to your local account, for security reasons there’s no way to reset or recover your account. You can try resetting Windows 10 on your device, which will reset it back to the factory default state. Once you have reset Windows 10, you’ll be able to unlock and use your device.\n",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "**Warning**: Following these steps will remove all of your data, programs, and settings.",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "1. Select **Power** in the bottom right-hand corner of the lock screen.\n2. While holding down the Shift key, select **Restart**.\n3. On the **Boot options** menu, select **Troubleshoot** > **Reset this PC** > **Remove everything**.\n4. Your PC will restart and reset itself.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

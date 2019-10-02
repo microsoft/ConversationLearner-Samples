@@ -1,0 +1,34 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**What to do if you can't sign in to Windows 7**",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you can't sign in or have forgotten your password, here are a few things you can try:",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "- If you forgot your Windows password and you're on a domain, contact your system administrator for help resetting your password. If you're not on a domain, you can reset your password by using a password reset disk or by using an administrator account. For more information, see [Reset your Windows password](https://support.microsoft.com/en-us/help/14048/windows-7-reset-your-windows-password).\n- If you forgot the administrator password and don't have a password reset disk or another administrator account, you won't be able to reset the password. If there are no other user accounts on the computer, you won't be able to sign in and you'll need to reinstall Windows 7.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

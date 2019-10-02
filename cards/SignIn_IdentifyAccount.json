@@ -1,0 +1,28 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**How to identify the type of account you're using**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "- **Microsoft account** is an account created using an email address to sign in to your PC and Microsoft services like OneDrive, Skype, Outlook, and Xbox Live.\n- **Local account** is an account that is only used to sign in to your PC. This is usually an administrator account or a username. It is not an email address.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
