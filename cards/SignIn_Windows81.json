@@ -1,0 +1,34 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**What to do if you can't sign in to Windows 8.1 or Windows RT 8.1**",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you can't sign in or have forgotten your password, here are a few things you can try:\n- If your PC is on a domain, your system administrator can help you reset your password.\n- If you're using a local account, use your password hint as a reminder.",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": " If you've tried these suggestions and still can't sign in:\n- If you have Windows 8.1, you'll need to reinstall Windows.\n- If you have Windows RT 8.1, you'll need to contact your PC manufacturer.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

@@ -1,0 +1,48 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Sign in using safe mode**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If your trying to sign in and see a black or blank screen, try signing in using safe mode to resolve your screen issues. Safe mode starts Windows in a basic state, using a limited set of files and drivers so that you're able to get into your device when you see a black or blank screen.",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "**Note** You must have your Microsoft account or local account password to sign in using safe mode. The PIN, fingerprint, and face recognition options are disabled in safe mode. To sign in using safe mode:",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "1. Restart your device by selecting **Power** > **Restart**. When you see the sign-in screen, hold the Shift key while you select **Power** > **Restart**.\n2. After your PC restarts to the Choose an option screen, select **Troubleshoot** > **Advanced options** > **Startup Settings** > **Restart**.\n3. After your PC restarts, you'll see a list of options. The preferred option is to Select **5** or press F5 for Safe Mode with Networking.",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "[For more info about signing into safe mode when you experience a black or blank screen issue, see Troubleshoot black screen or blank screen errors.](https://support.microsoft.com/help/14106)",
+            "wrap": true
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
