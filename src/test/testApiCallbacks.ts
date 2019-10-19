@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
 import * as path from 'path'
@@ -50,12 +50,12 @@ var isInStock = function (topping: string) {
 // Add Entity Logic
 //=================================
 /**
-* Processes messages received from the user. Called by the dialog system. 
+* Processes messages received from the user. Called by the dialog system.
 * @param {string} text Last user input to the Bot
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
     let entityError = memoryManager.Get("entityError", ClientMemoryManager.AS_STRING)
     console.log(chalk.redBright(`entityError: ${entityError}`))
     if (entityError === "entityError") {
@@ -74,7 +74,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
             memoryManager.Set("OutOfStock", topping);
         }
     }
-})
+}
 
 //===================================
 // Define Pizza Related API Callbacks
@@ -194,6 +194,47 @@ cl.AddCallback({
     },
     render: async (logicResult: string, memoryManager: ReadOnlyClientMemoryManager, firstArg: string, secondArg: string, thirdArg: string, fourthArg: string, fifthArg: string, sixthArg: string, seventhArg: string) => {
         return logicResult + `\nThe Render Args: '${firstArg}', '${secondArg}', '${thirdArg}', '${fourthArg}', '${fifthArg}', '${sixthArg}', '${seventhArg}'`
+    }
+})
+
+// Examples for listOfEntitiesToClear:
+//  "1stEntity, 2ndEntity and lastEntity"
+//  "only1Entity"
+cl.AddCallback({
+    name: "ClearMemory",
+    logic: async (memoryManager: ClientMemoryManager, listOfEntitiesToClear: string) => {
+        const arrayOfEntitiesToClear = listOfEntitiesToClear.split(', ').join(',').split(' and ').join(',').split(',')
+        console.log(chalk.cyan(`listOfEntitiesToClear: ${listOfEntitiesToClear}`))
+        console.log(chalk.cyan(`arrayOfEntitiesToClear: '${arrayOfEntitiesToClear.join(', ')}'`))
+
+        arrayOfEntitiesToClear.forEach(entityToClear => { memoryManager.Delete(entityToClear) })
+        return `Cleared the memory of these: '${arrayOfEntitiesToClear.join(', ')}'`
+    },
+    render: async (logicResult: string, memoryManager: ReadOnlyClientMemoryManager) => {
+        return logicResult
+    }
+})
+
+// Examples for listOfEntitiesToSet:
+//  "1stEntity: value of one, 2ndEntity: two and lastEntity: this is the value of the last Entity"
+//  "only1Entity: value of this single Entity"
+cl.AddCallback({
+    name: "SetMemory",
+    logic: async (memoryManager: ClientMemoryManager, listOfEntitiesToSet: string) => {
+        function set(memory: string) {
+            let memoryValuePair = memory.split(':', 2)
+            memoryManager.Set(memoryValuePair[0], memoryValuePair[1].trim());
+        }
+
+        const arrayOfEntitiesToSet = listOfEntitiesToSet.split(', ').join(',').split(' and ').join(',').split(',')
+        console.log(chalk.cyan(`listOfEntitiesToSet: ${listOfEntitiesToSet}`))
+        console.log(chalk.cyan(`arrayOfEntitiesToSet: '${arrayOfEntitiesToSet.join(', ')}'`))
+
+        arrayOfEntitiesToSet.forEach(entityToSet => { set(entityToSet) })
+        return `Set these memory values: '${arrayOfEntitiesToSet.join(', ')}'`
+    },
+    render: async (logicResult: string, memoryManager: ReadOnlyClientMemoryManager) => {
+        return logicResult
     }
 })
 

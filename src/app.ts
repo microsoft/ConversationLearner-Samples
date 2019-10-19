@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Microsoft Corporation. All rights reserved.  
+ * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
 import * as path from 'path'
@@ -24,9 +24,9 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
-// Storage 
+// Storage
 //==================================
-// Initialize ConversationLearner using file storage.  
+// Initialize ConversationLearner using file storage.
 // Recommended only for development
 // See "storageDemo.ts" for other storage options
 const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
@@ -59,11 +59,11 @@ const cl = new ConversationLearner(modelId)
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     memoryManager.Get("name", ClientMemoryManager.AS_STRING)
 
-    /** Add business logic manipulating the entities in memory 
+    /** Add business logic manipulating the entities in memory
 
     // GET - Values currently in bot memory
     memoryManager.Get(entityName: string, converter: (memoryValues: MemoryValue[])
@@ -76,7 +76,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     // SET
     memoryManager.Set(entityName: string, true)
     i.e. memoryManager.Set("toppings", ["cheese", "peppers"])
-   
+
     // DELETE
     memoryManager.Delete(entityName: string, value?: string): void
     memoryManager.DeleteAll(saveEntityNames: string[]): void
@@ -87,7 +87,7 @@ cl.EntityDetectionCallback(async (text: string, memoryManager: ClientMemoryManag
     // Info about the current running Session
     memoryManager.SessionInfo(): SessionInfo
     */
-})
+}
 
 //=================================
 // Define any API callbacks
