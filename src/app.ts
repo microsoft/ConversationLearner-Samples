@@ -4,8 +4,9 @@
  */
 import * as path from 'path'
 import * as express from 'express'
-import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
+import * as BB from 'botbuilder'
+import * as CL from '@conversationlearner/sdk'
+import { ConversationLearner, FileStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
 
@@ -21,7 +22,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BB.BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
 
 //==================================
 // Storage
@@ -49,70 +50,88 @@ if (includeSdk) {
 // Serve default bot summary page. Should be customized by customer.
 server.use(express.static(path.join(__dirname, '..', 'site')))
 
-const cl = new ConversationLearner(modelId)
+const generalHelpModelId = '36bf07d6-2f19-4698-a40b-2f971f90a8b6'
+const generalHelpModel = new ConversationLearner(generalHelpModelId)
+const windowsHelpModelId = 'cc163aad-f89e-4989-916a-4ae71a9b02b6'
+const windowsHelpModel = new ConversationLearner(windowsHelpModelId)
+const officeHelpModelId = '65235b1c-825f-41e1-9f53-3bf177aba333'
+const officeHelpModel = new ConversationLearner(officeHelpModelId)
 
-//=================================
-// Add Entity Logic
-//=================================
-/**
-* @param {string} text Last user input to the Bot
-* @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
-* @returns {Promise<void>}
-*/
-cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+const models = [
+    generalHelpModel,
+    windowsHelpModel,
+    officeHelpModel
+]
+const defaultModel = generalHelpModel
 
-    memoryManager.Get("name", ClientMemoryManager.AS_STRING)
+const conversationIdActiveModelIdMap: Record<string, string> = {}
 
-    /** Add business logic manipulating the entities in memory
+const generalHelpCallbacks: CL.ICallbackInput<any>[] = [
+    {
+        name: 'switchToWindowsCallback',
+        logic: async () => {
+            // TODO: Get conversationId
+            const conversationId = 'asdfasdf'
+            conversationIdActiveModelIdMap[conversationId] = windowsHelpModelId
+        },
+    },
+    {
+        name: 'switchToOfficeCallback',
+        logic: async () => {
+            // TODO: Get conversationId
+            const conversationId = 'asdfasdf'
+            conversationIdActiveModelIdMap[conversationId] = officeHelpModelId
+        },
+    },
+]
 
-    // GET - Values currently in bot memory
-    memoryManager.Get(entityName: string, converter: (memoryValues: MemoryValue[])
-    i.e. memoryManager.Get("counters", ClientMemoryManager.AS_NUMBER_LIST)
+generalHelpCallbacks.forEach(c => generalHelpModel.AddCallback(c))
 
-    // GET - Values in memory before new Entity detection
-    memoryManager.GetPrevious(entityName: string, converter: (memoryValues: MemoryValue[])
-    i.e. memoryManager.GetPrevious("location", ClientMemoryManager.AS_VALUE)
+const changeModelCallback = (conversationIdActiveModelIdMap: Record<string, string>) => async (context: BB.TurnContext, modelId: string) => {
+    const conversationReference = BB.TurnContext.getConversationReference(context.activity)
+    const conversationId = conversationReference.conversation
+        ? conversationReference.conversation.id
+        : ''
 
-    // SET
-    memoryManager.Set(entityName: string, true)
-    i.e. memoryManager.Set("toppings", ["cheese", "peppers"])
+    const model = models.find(m => m.clRunner.configModelId === modelId)
+    if (model) {
+        // Set active model for conversation
+        conversationIdActiveModelIdMap[conversationId] = modelId
 
-    // DELETE
-    memoryManager.Delete(entityName: string, value?: string): void
-    memoryManager.DeleteAll(saveEntityNames: string[]): void
-
-    // COPY
-    memoryManager.Copy(entityNameFrom: string, entityNameTo: string): void
-
-    // Info about the current running Session
-    memoryManager.SessionInfo(): SessionInfo
-    */
+        // Forward input to model
+        model.clRunner.SetAdapter(context.adapter, conversationReference)
+        const result = await (model.clRunner as any).ProcessInput(context)
+        if (result) {
+            return model.SendResult(result)
+        }
+    }
 }
 
-//=================================
-// Define any API callbacks
-//=================================
-/*
-cl.AddCallback<number>({
-    name: "Add",
-    logic: async (memoryManager, arg1: string, arg2: string) => {
-        return [arg1, arg2]
-            .map(x => parseInt(x))
-            .reduce((sum, a) => sum += a, 0)
-    },
-    render: async result => `Add result is: ${result}`
-})
-*/
+const changeModel = changeModelCallback(conversationIdActiveModelIdMap)
 
-//=================================
-// Handle Incoming Messages
-//=================================
+generalHelpModel.OnSessionEndCallback(async (context: BB.TurnContext, mm, sessionEndState: CL.SessionEndState, data: string | undefined) => {
+    if (sessionEndState == CL.SessionEndState.COMPLETED) {
+        if (data === 'changeModelToWindows') {
+            changeModel(context, windowsHelpModelId)
+        }
+        else if (data === 'changeModelToOffice') {
+            changeModel(context, officeHelpModelId)
+        }
+    }
+})
+
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
-        const result = await cl.recognize(context)
+        const conversationReference = BB.TurnContext.getConversationReference(context.activity)
+        const conversationId = conversationReference.conversation
+            ? conversationReference.conversation.id
+            : ''
 
+        const activeModelId = conversationIdActiveModelIdMap[conversationId]
+        const activeModel = models.find(m => m.clRunner.configModelId === activeModelId) || defaultModel
+        const result = await activeModel.recognize(context)
         if (result) {
-            return cl.SendResult(result);
+            return activeModel.SendResult(result);
         }
     })
 })
