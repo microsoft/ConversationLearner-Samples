@@ -112,10 +112,10 @@ const changeModel = changeModelCallback(conversationIdActiveModelIdMap)
 generalHelpModel.OnSessionEndCallback(async (context: BB.TurnContext, mm, sessionEndState: CL.SessionEndState, data: string | undefined) => {
     if (sessionEndState == CL.SessionEndState.COMPLETED) {
         if (data === 'changeModelToWindows') {
-            changeModel(context, windowsHelpModelId)
+            await changeModel(context, windowsHelpModelId)
         }
         else if (data === 'changeModelToOffice') {
-            changeModel(context, officeHelpModelId)
+            await changeModel(context, officeHelpModelId)
         }
     }
 })
