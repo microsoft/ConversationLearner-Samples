@@ -1,0 +1,17 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Follow these steps to add a font from a website or other source:\n\n1. Download the font file, and make sure the font file is a TrueType (.ttf) or OpenType (.otf) file.\n\n2. If the file is compressed into a .zip file, extract the files by right-clicking and selecting Extract.\nRight-click the font file and select Install.\n\n3. To install for all PC users, select Install for all users (Windows 10, version 1809 or greater).\nIf you're asked to allow the program to make changes to your computer, make sure you trust the source of the downloaded file, then select Yes.\nAlternatively, you can add a new font by dragging the .ttf or .otf file to the C:\\Windows\\Fonts folder.\n4. If you are running Windows 10 Version 1903, you can also drag the file directly to Settings> Personalization > Fonts > Add Fonts.\n\nNote: If you see a security badge, you'll need administrator privileges to add a new font.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

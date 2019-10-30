@@ -1,0 +1,38 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Can’t sign into Surface with Windows Hello**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you are having trouble signing in to Surface with Windows Hello using your face or fingerprint, here are some things to try and fix the problem:",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "- If you’ve set up multiple sign-in methods, like a password, a PIN, or Windows Hello, make sure you select the Windows Hello signin option.\n- Check for updates and restart your Surface by selecting the Start button, and then go to Settings > Update & security > Windows Update > Check for updates. Install any updates that you need.\n- After you have installed the necessary updates, select the Startbutton, and then select Power> Restart (or Update and restart).",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

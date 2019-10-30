@@ -1,0 +1,17 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Follow these steps to add a new font from the Microsoft Store:\n\nSelect **Start** > **Settings** > **Personalization** > **Fonts**, and select **Get more fonts in Microsoft Store** Shopping bag-shaped Store icon.\n\nFind the font you want to add.\n\nSelect **Get** or **Buy**. The font will download automatically.\n\n**Note**: Not all programs or apps support custom fonts. If your new font isn’t showing up as an option, try another program to see if font is working properly.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

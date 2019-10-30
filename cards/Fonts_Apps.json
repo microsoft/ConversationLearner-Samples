@@ -1,0 +1,17 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Not all apps support custom fonts. If your font isn’t showing up in an app or program, try a different app to check if the font is installed and working properly.\n\nTo check if a font is installed, open Font settings. Select **Start** > **Settings** > **Personalization** > **Fonts**, and search for the font under **Available fonts**.\n\nIf your font is installed but still not appearing in an app, it may not meet current TrueType font standards. Choose an alternative font and try again.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

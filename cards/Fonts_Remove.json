@@ -1,0 +1,17 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Select **Start** > **Settings** > **Personalization** > **Fonts**, and select the font you'd like to remove. Under Metadata, select **Uninstall**.\n\nAlternatively, you can remove fonts in File Explorer. Open the C:\\Windows\\Fonts folder, right-click the font you'd like to remove, and select **Delete**.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

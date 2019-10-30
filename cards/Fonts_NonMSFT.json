@@ -1,0 +1,17 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "I don't know much about non-Microsoft apps, but you can use Windows display settings to increase the size of most apps on your PC's display.\n\nSelect Start Windows logo Start button > SettingsGear-shaped Settings icon > Ease of Access > Display. To make everything larger, including images and apps, choose an option from the drop-down menu under Make everything bigger.\n\nIf you continue to experience issues with a non-Microsoft app, reach out to the software developer directly.\n\nOpen Windows Display settings",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
