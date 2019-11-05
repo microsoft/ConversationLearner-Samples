@@ -64,10 +64,10 @@ let cl = new ConversationLearner(modelId);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager) => {
+cl.OnSessionStartCallback = async (context: BB.TurnContext, memoryManager: ClientMemoryManager) => {
     // Set BotName when session starts
     memoryManager.Set("BotName", "Botty")
-})
+}
 
 /**
  * Called when Session ends.
@@ -80,7 +80,7 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
  * @param {string | undefined} data Value set in End_Session Action in UI
  * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
  */
-cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) => {
+cl.OnSessionEndCallback = async (context, memoryManager, sessionEndState, data) => {
     // 1) Do something with returned "data" defined in EndSession action
     //    It could, for example, specify things such as: Was the task
     //    was successfully completed?  Is there a need to escalate to a human?
@@ -91,7 +91,7 @@ cl.OnSessionEndCallback(async (context, memoryManager, sessionEndState, data) =>
     // 3) Return list of Entities to save for the next time ConversationLearner is started
     //    Persist UserName and UserPhone after session has ended
     return ["UserName", "UserPhone"]
-})
+}
 
 //=================================
 // Handle Incoming Messages
