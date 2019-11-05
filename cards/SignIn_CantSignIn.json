@@ -1,0 +1,38 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**We can't sign in to your account**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you try to sign in to Windows 10 and receive the error message, \"We can't sign in to your account,\" Windows will create a temporary profile and sign you in to that one. Here are some things to try to fix the issue:",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "1. Before you begin troubleshooting, use an external drive to save any work you've done since your last successful sign-in. Any files you created or changed while in the temporary profile will be lost.\n2. Restart your device and sign in again. Check to see if your settings and files are restored. You might need to restart your device more than once.\n3. If multiple restarts don't help, try temporarily disabling your anti-virus software or any other app that might scan your device during sign-in.\n4. If the above didn't help, there might be a problem with the system files on your device or your current profile. Here are some additional things to try: Run the System File Checker to check for system file corruption. \n5. If you still can't sign in, try creating a new local administrator account, and then delete the account you're unable to sign into. \n6. If you still can't sign in to your profile after these steps, we'd like to know. Please provide feedback using the Feedback Hub app on Windows 10 so that we can investigate the issue. (Feedback Hub is a public forum. Don't include personal information in your comments.)",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}

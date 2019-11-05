@@ -1,0 +1,28 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "size": "medium",
+                    "weight": "bolder",
+                    "text": "**Change the size of text in Windows 10**"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Change the size of text in Windows 10 using Display settings or use Magnifier.\n\nIn Windows: Select the Start Windows logo Start button button, then select Settings Gear-shaped Settings icon > Ease of Access > Display. To make just the text on your screen larger, adjust the slider under Make text bigger. To make everything larger, including images and apps, choose an option from the drop-down menu under Make everything bigger.\n\nUse Magnifier: Magnifier zooms in on parts of your screen to make them easier to see. To open Magnifier, press the Windows logo key Windows logo Start button + Plus sign (+). While Magnifier is open, zoom in and out by pressing Windows logo key Windows logo Start button + Plus sign (+) and **Windows logo key **Windows logo Start button + Minus sign (-). To close Magnifier, press Windows logo key Windows logo Start button + Esc.",
+                    "wrap": true
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
