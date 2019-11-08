@@ -1,3 +1,12 @@
+---
+topic: sample
+languages:
+  - typescript
+products:
+  - azure-cognitive-services
+  - azure-language-understanding
+---
+
 # ConversationLearner-Samples
 
 This repo contains sample code for building task-oriented conversational bots using [Project Conversation Learner](https://labs.cognitive.microsoft.com/en-us/project-conversation-learner), and demonstrating how to use the `@conversationlearner/sdk` npm module.
@@ -255,6 +264,11 @@ MicrosoftAppId                 | Microsoft Application Id
 MicrosoftAppPassword           | Microsoft Application Password
 
 Once the bot is deployed and running you can connect different channels to it such as Facebook, Teams, Skype etc using an Azure Bot Channel Registration.  For documentation on that process see:  https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart-registration
+
+## Deploy Conversation Learner Sample container to Azure
+You can now deploy Conversation Learner Samples to Azure as a docker container to start trying out the UI without having to setup a local development environment.
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 
 ## Support
 

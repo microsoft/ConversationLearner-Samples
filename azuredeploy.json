@@ -1,0 +1,110 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "siteName": {
+            "type": "string"
+        },
+        "luisAuthoringKey": {
+            "type": "string"
+        },
+        "siteLocation": {
+            "type": "string",
+            "defaultValue": "West US"
+        },
+        "conversationLearnerDockerContainer": {
+            "type": "string",
+            "defaultValue": "DOCKER|conversationlearner/cl-sdk-sample:latest-develop"
+        },
+        "alwaysOn": {
+            "type": "bool",
+            "defaultValue": false
+        }
+    },
+    "variables": {
+        "hostingPlanName": "[parameters('siteName')]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2018-02-01",
+            "name": "[variables('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[parameters('siteLocation')]",
+            "kind": "linux",
+            "tags": {},
+            "properties": {
+                "name": "[variables('hostingPlanName')]",
+                "perSiteScaling": false,
+                "reserved": true,
+            },
+            "sku": {
+                "Tier": "Basic",
+                "Name": "B1"
+            }
+        },
+        {
+            "apiVersion": "2018-02-01",
+            "name": "[parameters('siteName')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[parameters('siteLocation')]",
+            "kind": "app,linux,container",
+            "tags": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+            ],
+            "properties": {
+                "name": "[parameters('siteName')]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "LUIS_AUTHORING_KEY",
+                            "value": "[parameters('luisAuthoringKey')]"
+                        },
+                        {
+                            "name": "NODE_ENV",
+                            "value": "development"
+                        },
+                        {
+                            "name": "WEBSITES_PORT",
+                            "value": "3978"
+                        }
+                    ]
+                },
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "clientAffinityEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2016-08-01",
+            "name": "[concat(parameters('siteName'), '/web')]",
+            "location": "[parameters('siteLocation')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
+            ],
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "[parameters('conversationLearnerDockerContainer')]",
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "appCommandLine": "",
+                "alwaysOn": "[parameters('alwaysOn')]",
+            }
+        }
+    ]
+}
