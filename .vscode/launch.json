@@ -140,6 +140,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "logStorage",
+            "program": "${workspaceFolder}/lib/demos/logStorage.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "runtimeArgs": [
+                "--preserve-symlinks"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Conversation Learner UI",
             "program": "${workspaceFolder}/lib/ui.js",
             "outFiles": [
