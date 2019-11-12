@@ -63,7 +63,17 @@ export const config = convict({
         format: String,
         default: undefined,
         env: 'MICROSOFTAPPPASSWORD'
-    }
+    },
+    cosmosServer: {
+        format: String,
+        default: undefined,
+        env: 'CONVERSATION_LEARNER_COSMOS_SERVER'
+    },
+    cosmosKey: {
+        format: String,
+        default: undefined,
+        env: 'CONVERSATION_LEARNER_COSMOS_KEY'
+    },
 })
 
 config.validate({ allowed: 'strict' })
@@ -72,6 +82,8 @@ export interface ICLSampleConfig extends ICLOptions {
     modelId: string | undefined
     redisServer: string | undefined
     redisKey: string | undefined
+    cosmosServer: string | undefined
+    cosmosKey: string | undefined
     bfAppId: string | undefined
     bfAppPassword: string | undefined
 }
