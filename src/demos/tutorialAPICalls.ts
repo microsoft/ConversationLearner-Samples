@@ -180,7 +180,7 @@ cl.AddCallback({
     },
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager, ...args: string[]) => {
         let value = memoryManager.Get("RandomMessage", ClientMemoryManager.AS_STRING)
-        return value || ""
+        return value ?? ""
     }
 })
 

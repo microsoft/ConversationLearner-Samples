@@ -36,7 +36,7 @@ const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
 
-const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV || '')
+const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV ?? '')
 if (includeSdk) {
     console.log(chalk.cyanBright(`Adding /sdk routes`))
     server.use('/sdk', sdkRouter)

@@ -64,7 +64,7 @@ let cl = new ConversationLearner(modelId);
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.OnSessionStartCallback = async (context: BB.TurnContext, memoryManager: ClientMemoryManager): Promise<void> => {
     let state = convoState.get(context)
     if (!state) {
         state = await convoState.load(context)
@@ -74,7 +74,7 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
     if (state && state.storeIsOpen) {
         memoryManager.Set("isOpen", state.storeIsOpen)
     }
-})
+}
 
 /**
 * Called when Session ends.
@@ -86,7 +86,7 @@ cl.OnSessionStartCallback(async (context: BB.TurnContext, memoryManager: ClientM
 * @param {string | undefined} data Value set in End_Session Action in UI
 * @returns {Promise<string[] | undefined>} List of Entity values to preserve after session End
 */
-cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
+cl.OnSessionEndCallback = async (context: BB.TurnContext, memoryManager: ClientMemoryManager, sessionEndState: SessionEndState, data: string | undefined) => {
     let state = convoState.get(context)
     if (!state) {
         state = await convoState.load(context)
@@ -117,7 +117,7 @@ cl.OnSessionEndCallback(async (context: BB.TurnContext, memoryManager: ClientMem
         // 3) Return list of Entities to save for the next time ConversationLearner is started
         //    (see tutorialSessionCallback for an example)
     }
-})
+}
 
 // All transfer of state between the global Bot’s state and Conversation Learner 
 // must happen in the “onSessionStart” and “onSessionEnd” callbacks.  This is to
