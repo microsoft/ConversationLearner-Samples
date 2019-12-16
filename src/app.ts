@@ -43,7 +43,7 @@ if (includeSdk) {
 
     // Note: Must be mounted at root to use internal /ui paths
     console.log(chalk.greenBright(`Adding /ui routes`))
-    server.use(uiRouter)
+    server.use(uiRouter as any)
 }
 
 // Serve default bot summary page. Should be customized by customer.

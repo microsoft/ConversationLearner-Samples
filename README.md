@@ -284,7 +284,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ## Related repositories
 
-- [@conversationlearner/sdk](https://github.com/Microsoft/ConversationLearner-SDK)
-- [@conversationlearner/ui](https://github.com/Microsoft/ConversationLearner-UI)
-- [@conversationlearner/models](https://github.com/Microsoft/ConversationLearner-Models)
-- [@conversationlearner/webchat](https://github.com/Microsoft/ConversationLearner-WebChat)
+- [Conversation Learner Monorepo](https://github.com/microsoft/conversationlearner)

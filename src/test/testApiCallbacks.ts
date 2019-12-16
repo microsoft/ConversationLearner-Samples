@@ -25,7 +25,7 @@ if (isDevelopment) {
     server.use('/sdk', sdkRouter)
 
     console.log(chalk.greenBright(`Adding /ui routes`))
-    server.use(uiRouter)
+    server.use(uiRouter as any)
 }
 
 // Serve default bot summary page. Should be customized by customer.

@@ -23,7 +23,7 @@ if (isDevelopment) {
     server.use(getDolRouter(config.botPort))
     
     console.log(chalk.greenBright(`Adding /ui routes`))
-    server.use(uiRouter)
+    server.use(uiRouter as any)
 }
 
 server.listen(config.botPort, () => {
