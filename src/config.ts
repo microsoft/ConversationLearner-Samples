@@ -4,7 +4,7 @@
  */
 import * as dotenv from 'dotenv'
 import * as convict from 'convict'
-import { ICLOptions } from '@conversationlearner/sdk';
+import { CLOptions } from '@conversationlearner/sdk'
 
 const result = dotenv.config()
 if (result.error) {
@@ -78,7 +78,7 @@ export const config = convict({
 
 config.validate({ allowed: 'strict' })
 
-export interface ICLSampleConfig extends ICLOptions {
+export interface ICLSampleConfig extends CLOptions {
     modelId: string | undefined
     redisServer: string | undefined
     redisKey: string | undefined

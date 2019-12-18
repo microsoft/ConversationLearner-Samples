@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import * as botBuilder from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager, uiRouter } from '@conversationlearner/sdk'
+import { ConversationLearnerFactory, ClientMemoryManager, FileStorage, ReadOnlyClientMemoryManager, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -13,16 +13,16 @@ import getDolRouter from '../dol'
 const server = express()
 
 const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
-const adapter = new botBuilder.BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
-let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
-const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+const adapter = new botBuilder.BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword })
+const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+const clFactory = new ConversationLearnerFactory(clOptions, fileStorage)
 const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
     console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
 
     console.log(chalk.cyanBright(`Adding /sdk routes`))
-    server.use('/sdk', sdkRouter)
+    server.use('/sdk', clFactory.sdkRouter)
 
     console.log(chalk.greenBright(`Adding /ui routes`))
     server.use(uiRouter as any)
@@ -35,15 +35,14 @@ server.listen(config.botPort, () => {
     console.log(`Server listening at: http://localhost:${config.botPort}`)
 })
 
-const cl = new ConversationLearner(modelId);
+const cl = clFactory.create(modelId)
 
 //=========================================================
 // Bots Business Logic
 //=========================================================
-
-var inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"];
-var isInStock = function (topping: string) {
-    return (inStock.indexOf(topping.toLowerCase()) > -1);
+const inStock = ["cheese", "sausage", "mushrooms", "olives", "peppers"]
+const isInStock = function (topping: string) {
+    return (inStock.indexOf(topping.toLowerCase()) > -1)
 }
 
 //=================================
@@ -55,7 +54,7 @@ var isInStock = function (topping: string) {
 * @param {ClientMemoryManager} memoryManager Allows for viewing and manipulating Bot's memory
 * @returns {Promise<void>}
 */
-cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
+cl.EntityDetectionCallback = async (text, memoryManager) => {
     let entityError = memoryManager.Get("entityError", ClientMemoryManager.AS_STRING)
     console.log(chalk.redBright(`entityError: ${entityError}`))
     if (entityError === "entityError") {
@@ -64,14 +63,14 @@ cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryMan
     }
 
     // Get list of requested Toppings
-    let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST);
+    let toppings = memoryManager.Get("Toppings", ClientMemoryManager.AS_STRING_LIST)
 
     // Check each to see if it is in stock
     for (let topping of toppings) {
         // If not in stock, move from Toppings List to OutOfStock list
         if (!isInStock(topping)) {
-            memoryManager.Delete("Toppings", topping);
-            memoryManager.Set("OutOfStock", topping);
+            memoryManager.Delete("Toppings", topping)
+            memoryManager.Set("OutOfStock", topping)
         }
     }
 }
@@ -119,10 +118,10 @@ cl.AddCallback({
     name: "UseLastToppings",
     logic: async (memoryManager: ClientMemoryManager) => {
         // Restore last toppings
-        memoryManager.Copy("LastToppings", "Toppings");
+        memoryManager.Copy("LastToppings", "Toppings")
 
         // Clear last toppings
-        memoryManager.Delete("LastToppings");
+        memoryManager.Delete("LastToppings")
     }
 })
 
@@ -140,7 +139,7 @@ cl.AddCallback({
 cl.AddCallback({
     name: "BadCard",
     render: async (logicResult: any, memoryManager: ReadOnlyClientMemoryManager) => {
-        return {id: {this: "BadCard"}} as any
+        return { id: { this: "BadCard" } } as any
     }
 })
 
@@ -223,7 +222,7 @@ cl.AddCallback({
     logic: async (memoryManager: ClientMemoryManager, listOfEntitiesToSet: string) => {
         function set(memory: string) {
             let memoryValuePair = memory.split(':', 2)
-            memoryManager.Set(memoryValuePair[0], memoryValuePair[1].trim());
+            memoryManager.Set(memoryValuePair[0], memoryValuePair[1].trim())
         }
 
         const arrayOfEntitiesToSet = listOfEntitiesToSet.split(', ').join(',').split(' and ').join(',').split(',')
@@ -259,7 +258,7 @@ cl.AddCallback({
         const attachment = botBuilder.CardFactory.adaptiveCard(card)
         const message = botBuilder.MessageFactory.attachment(attachment)
         message.text = cardTitle
-        return message;
+        return message
     }
 })
 
@@ -313,7 +312,7 @@ server.post('/api/messages', (req, res) => {
         let result = await cl.recognize(context)
 
         if (result) {
-            return cl.SendResult(result);
+            return cl.SendResult(result)
         }
     })
 })

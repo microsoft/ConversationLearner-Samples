@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as express from 'express'
 import * as BB from 'botbuilder'
 import { BotFrameworkAdapter, AutoSaveStateMiddleware } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, SessionEndState, uiRouter } from '@conversationlearner/sdk'
+import { ConversationLearnerFactory, ClientMemoryManager, FileStorage, SessionEndState, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -34,7 +34,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword })
 
 //==================================
 // Storage 
@@ -47,12 +47,12 @@ let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+const clFactory = new ConversationLearnerFactory(clOptions, fileStorage)
 if (isDevelopment) {
     console.log(chalk.cyanBright(`Adding /sdk routes`))
-    server.use('/sdk', sdkRouter)
+    server.use('/sdk', clFactory.sdkRouter)
 }
-let cl = new ConversationLearner(modelId);
+let cl = clFactory.create(modelId)
 
 //==================================
 // Add Start / End Session callbacks
@@ -136,10 +136,10 @@ cl.AddCallback({
 })
 
 // Add state middleware
-const storage = new BB.MemoryStorage();
-const convoState = new BB.ConversationState(storage);
+const storage = new BB.MemoryStorage()
+const convoState = new BB.ConversationState(storage)
 const saveStateMiddleware = new AutoSaveStateMiddleware(convoState)
-adapter.use(saveStateMiddleware);
+adapter.use(saveStateMiddleware)
 
 
 //=================================
@@ -153,15 +153,15 @@ server.post('/api/messages', (req, res) => {
         // -> state.storeIsOpen                 : whether store front is open (set outside Conversation Learner)
         // -> state.purchasedItem               : what to buy.  Retrieved from ConversationLearner when EndSession is triggered
 
-        let state = await convoState.load(context);
-        if (!state) throw ('Error Getting State');
+        let state = await convoState.load(context)
+        if (!state) throw ('Error Getting State')
 
         // When running in training UI, ConversationLearner must always have control
         // Could be combined with 2nd if, but keeping separate for demo clarity
         if (await cl.InTrainingUI(context)) {
             let result = await cl.recognize(context)
             if (result) {
-                return cl.SendResult(result);
+                return cl.SendResult(result)
             }
         }
 
@@ -169,7 +169,7 @@ server.post('/api/messages', (req, res) => {
         else if (state.usingConversationLearner) {
             let result = await cl.recognize(context)
             if (result) {
-                return cl.SendResult(result);
+                return cl.SendResult(result)
             }
         }
 
@@ -182,17 +182,17 @@ server.post('/api/messages', (req, res) => {
                 // Set a state variable (storeIsOpen) that will be used later
                 // to initialize conversationLearner in OnSessionStartCallback
                 if (context.activity.text === 'open store') {
-                    state.storeIsOpen = true;
+                    state.storeIsOpen = true
                     await context.sendActivity(`Store is OPEN!`)
                 }
                 else if (context.activity.text === 'close store') {
-                    state.storeIsOpen = false;
+                    state.storeIsOpen = false
                     await context.sendActivity(`Store is CLOSED!`)
                 }
 
                 // User input that triggers use of ConversationLearner
                 else if (context.activity.text === 'shop') {
-                    state.usingConversationLearner = true;
+                    state.usingConversationLearner = true
 
                     // StartSession triggers "OnSessionStartCallback" which initializes ConversationLearner.  
                     await cl.StartSession(context)

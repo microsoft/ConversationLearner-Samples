@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
+import { ConversationLearnerFactory, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from './config'
 
@@ -21,7 +21,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword })
 
 //==================================
 // Storage
@@ -34,12 +34,12 @@ const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 //==================================
 // Initialize Conversation Learner
 //==================================
-const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+const conversationLearnerFactory = new ConversationLearnerFactory(clOptions, fileStorage)
 
 const includeSdk = ['development', 'test'].includes(process.env.NODE_ENV ?? '')
 if (includeSdk) {
     console.log(chalk.cyanBright(`Adding /sdk routes`))
-    server.use('/sdk', sdkRouter)
+    server.use('/sdk', conversationLearnerFactory.sdkRouter)
 
     // Note: Must be mounted at root to use internal /ui paths
     console.log(chalk.greenBright(`Adding /ui routes`))
@@ -49,7 +49,7 @@ if (includeSdk) {
 // Serve default bot summary page. Should be customized by customer.
 server.use(express.static(path.join(__dirname, '..', 'site')))
 
-const cl = new ConversationLearner(modelId)
+const cl = conversationLearnerFactory.create(modelId)
 
 //=================================
 // Add Entity Logic
@@ -112,7 +112,7 @@ server.post('/api/messages', (req, res) => {
         const result = await cl.recognize(context)
 
         if (result) {
-            return cl.SendResult(result);
+            return cl.SendResult(result)
         }
     })
 })

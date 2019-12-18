@@ -4,7 +4,7 @@
  */
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, RedisStorage, uiRouter } from '@conversationlearner/sdk'
+import { ConversationLearnerFactory, RedisStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -32,7 +32,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword })
 
 //==================================
 // STORAGE EXAMPLES
@@ -40,14 +40,14 @@ const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPass
 // IN-MEMORY STORAGE
 // Stores bot state in memory. 
 // If the bot is stopped and re-started, the state of in-progress sessions will be lost.
-//ConversationLearner.Init(clOptions); 
+// const clFactory = new ConversationLearnerFactory(clOptions)
 
 // FILE STORAGE
 // Stores bot state in a local file.  
 // With this option, the bot can be stopped and re-started without losing the state of in-progress sessions.
 // Requires local disk access.
-//let fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
-//ConversationLearner.Init(clOptions, fileStorage);
+// const fileStorage = new FileStorage( {path: path.join(__dirname, 'storage')})
+// const clFactory = new ConversationLearnerFactory(clOptions, fileStorage)
 
 // REDIS
 // Stores bot state in a redis cache.  
@@ -61,29 +61,28 @@ if (typeof config.redisKey !== 'string' || config.redisKey.length === 0) {
     throw new Error(`When using Redis storage: redisKey value must be non-empty. You passed: ${config.redisKey}`)
 }
 
-let redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey });
+const redisStorage = new RedisStorage({ server: config.redisServer, key: config.redisKey })
 
 //==================================
 // Initialize Conversation Learner
 //==================================
-const sdkRouter = ConversationLearner.Init(clOptions, redisStorage)
+const clFactory = new ConversationLearnerFactory(clOptions, redisStorage)
 if (isDevelopment) {
     console.log(chalk.cyanBright(`Adding /sdk routes`))
-    server.use('/sdk', sdkRouter)
+    server.use('/sdk', clFactory.sdkRouter)
 }
-let cl = new ConversationLearner(modelId);
 
+const cl = clFactory.create(modelId)
 
 //=================================
 // Handle Incoming Messages
 //=================================
-
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async context => {
         let result = await cl.recognize(context)
 
         if (result) {
-            return cl.SendResult(result);
+            return cl.SendResult(result)
         }
     })
 })

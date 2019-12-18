@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
+import { ConversationLearnerFactory, ClientMemoryManager, FileStorage, uiRouter } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -33,7 +33,7 @@ const { bfAppId, bfAppPassword, modelId, ...clOptions } = config
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword })
 
 //==================================
 // Storage
@@ -41,24 +41,24 @@ const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPass
 // Initialize ConversationLearner using file storage.
 // Recommended only for development
 // See "storageDemo.ts" for other storage options
-let fileStorage = new FileStorage(path.join(__dirname, 'storage'))
+const fileStorage = new FileStorage(path.join(__dirname, 'storage'))
 
 //==================================
 // Initialize Conversation Learner
 //==================================
-const sdkRouter = ConversationLearner.Init(clOptions, fileStorage)
+const clFactory = new ConversationLearnerFactory(clOptions, fileStorage)
 if (isDevelopment) {
     console.log(chalk.cyanBright(`Adding /sdk routes`))
-    server.use('/sdk', sdkRouter)
+    server.use('/sdk', clFactory.sdkRouter)
 }
-let cl = new ConversationLearner(modelId);
+const cl = clFactory.create(modelId)
 
 //=========================================================
-// Bots Buisness Logic
+// Bots Business Logic
 //=========================================================
-var apps = ["skype", "outlook", "amazon video", "amazon music"];
-var resolveApps = function (appName: string) {
-    return apps.filter(n => n.includes(appName));
+const apps = ["skype", "outlook", "amazon video", "amazon music"]
+const resolveApps = (appName: string) => {
+    return apps.filter(n => n.includes(appName))
 }
 
 //=================================
@@ -73,22 +73,22 @@ var resolveApps = function (appName: string) {
 cl.EntityDetectionCallback = async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
 
     // Clear disambigApps
-    memoryManager.Delete("DisambigAppNames");
-    memoryManager.Delete("UnknownAppName");
+    memoryManager.Delete("DisambigAppNames")
+    memoryManager.Delete("UnknownAppName")
 
     // Get list of (possibly) ambiguous apps
-    var appNames = memoryManager.Get("AppName", ClientMemoryManager.AS_STRING_LIST);
+    const appNames = memoryManager.Get("AppName", ClientMemoryManager.AS_STRING_LIST)
     if (appNames.length > 0) {
         const resolvedAppNames = appNames
             .map(appName => resolveApps(appName))
             .reduce((a, b) => a.concat(b))
 
         if (resolvedAppNames.length == 0) {
-            memoryManager.Set("UnknownAppName", appNames[0]);
-            memoryManager.Delete("AppName");
+            memoryManager.Set("UnknownAppName", appNames[0])
+            memoryManager.Delete("AppName")
         } else if (resolvedAppNames.length > 1) {
-            memoryManager.Set("DisambigAppNames", resolvedAppNames);
-            memoryManager.Delete("AppName");
+            memoryManager.Set("DisambigAppNames", resolvedAppNames)
+            memoryManager.Delete("AppName")
         }
     }
 }
@@ -114,7 +114,7 @@ server.post('/api/messages', (req, res) => {
         let result = await cl.recognize(context)
 
         if (result) {
-            return cl.SendResult(result);
+            return cl.SendResult(result)
         }
     })
 })

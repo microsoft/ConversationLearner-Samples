@@ -5,7 +5,7 @@
 import * as path from 'path'
 import * as express from 'express'
 import { BotFrameworkAdapter } from 'botbuilder'
-import { ConversationLearner, ClientMemoryManager, FileStorage, uiRouter, CosmosLogStorage } from '@conversationlearner/sdk'
+import { ConversationLearnerFactory, ClientMemoryManager, FileStorage, uiRouter, CosmosLogStorage } from '@conversationlearner/sdk'
 import chalk from 'chalk'
 import config from '../config'
 import getDolRouter from '../dol'
@@ -21,7 +21,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 if (isDevelopment) {
     console.log(chalk.yellowBright(`Adding /directline routes`))
     server.use(getDolRouter(config.botPort))
-    
+
     console.log(chalk.greenBright(`Adding /ui routes`))
     server.use(uiRouter as any)
 }
@@ -35,7 +35,7 @@ const { bfAppId, bfAppPassword, modelId, cosmosServer, cosmosKey, ...clOptions }
 //==================
 // Create Adapter
 //==================
-const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword });
+const adapter = new BotFrameworkAdapter({ appId: bfAppId, appPassword: bfAppPassword })
 
 //==================================
 // Storage 
@@ -54,19 +54,18 @@ async function main() {
     // Use custom log storage
     const logStorage = cosmosServer ? await CosmosLogStorage.Get({ endpoint: cosmosServer, key: cosmosKey }) : undefined
 
-    const sdkRouter = ConversationLearner.Init(clOptions, fileStorage, logStorage)
+    const conversationLearnerFactory = new ConversationLearnerFactory(clOptions, fileStorage, logStorage)
+
     if (isDevelopment) {
         console.log(chalk.cyanBright(`Adding /sdk routes`))
-        server.use('/sdk', sdkRouter)
+        server.use('/sdk', conversationLearnerFactory.sdkRouter)
     }
 
-    const cl = new ConversationLearner(modelId)
-
+    const cl = conversationLearnerFactory.create(modelId)
     cl.EntityDetectionCallback = (async (text: string, memoryManager: ClientMemoryManager): Promise<void> => {
-
-    memoryManager.Get("name", ClientMemoryManager.AS_STRING)
+        memoryManager.Get("name", ClientMemoryManager.AS_STRING)
     })
-        
+
     //=================================
     // Handle Incoming Messages
     //=================================
@@ -75,7 +74,7 @@ async function main() {
             const result = await cl.recognize(context)
 
             if (result) {
-                return cl.SendResult(result);
+                return cl.SendResult(result)
             }
         })
     })
