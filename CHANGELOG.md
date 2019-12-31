@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.501.12](https://github.com/microsoft/conversationlearner/compare/v0.501.11...v0.501.12) (2019-12-31)
+
+**Note:** Version bump only for package conversationlearner-samples
+
+
+
+
+
 ## [0.501.11](https://github.com/microsoft/conversationlearner/compare/v0.501.10...v0.501.11) (2019-12-28)
 
 **Note:** Version bump only for package conversationlearner-samples
