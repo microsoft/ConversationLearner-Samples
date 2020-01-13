@@ -271,6 +271,112 @@ cl.AddCallback({
 })
 
 
+cl.AddCallback({
+    name: 'Callback With Mock Results',
+    logic: async memory => {
+        const randomNumber = Math.round(Math.random() * 100)
+        memory.Set("myNumber", randomNumber)
+
+        if (randomNumber < 20) {
+            memory.Set('lowNumber', true)
+        }
+
+        if (randomNumber > 50) {
+            memory.Set('highNumber', true)
+        }
+
+        return randomNumber
+    },
+    render: async n => {
+        return `My random number is ${n}`
+    },
+    mockResults: [
+        {
+            name: 'Number is 3',
+            entityValues: {
+                myNumber: 3,
+                lowNumber: true,
+            },
+            returnValue: 3,
+        },
+        {
+            name: 'Number is 67',
+            entityValues: {
+                myNumber: 67,
+                lowNumber: true,
+            },
+            returnValue: 67,
+        },
+    ],
+})
+
+
+cl.AddCallback({
+    name: 'Callback Results All Types',
+    logic: async memory => {
+        const randomNumber = () => Math.round(Math.random() * 100)
+        memory.Set("myNumber", randomNumber())
+        memory.Set("myNumbers", [randomNumber(), randomNumber()])
+
+        memory.Set('myString', `string${randomNumber()}`)
+        memory.Set('myStrings', [`string${randomNumber()}`, `string${randomNumber()}`, `string${randomNumber()}`])
+
+        const getBoolean = () => randomNumber() > 50
+            ? true
+            : false
+        memory.Set("myBoolean", getBoolean())
+        memory.Set("myBooleans", [getBoolean(), getBoolean()])
+
+        const getObject = () => ({ value: randomNumber() })
+        memory.Set("myObject", getObject())
+        memory.Set("myObjects", [getObject(), getObject()])
+
+        return randomNumber()
+    },
+    render: async n => {
+        return `My random number is ${n}`
+    },
+    mockResults: [
+        {
+            name: 'Set values 1',
+            entityValues: {
+                myNumber: 3,
+                myNumbers: [1, 2, 3, 4],
+                myString: 'string',
+                myStrings: ['string1', 'string2', 'string3'],
+                myBoolean: false,
+                myBooleans: [false, true, false],
+                myObject: {
+                    value: 1,
+                },
+                myObjects: [
+                    {
+                        value: 2,
+                    },
+                    {
+                        value: 3,
+                    },
+                ],
+            },
+            returnValue: 3,
+        },
+        {
+            name: 'Clear Values',
+            entityValues: {
+                myNumber: null,
+                myNumbers: null,
+                myString: undefined,
+                myStrings: undefined,
+                myBoolean: undefined,
+                myBooleans: undefined,
+                myObject: undefined,
+                myObjects: undefined,
+            },
+            returnValue: 1,
+        },
+    ],
+})
+
 //===================================================================================================
 // Most of the time this should be commented out, we leave it here so that it can be used to create
 // a model that depends on it and then remove it by commenting it out in order to test error handling
