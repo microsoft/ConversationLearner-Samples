@@ -1,7 +1,7 @@
 {
   "name": "conversationlearner-samples",
   "private": true,
-  "version": "0.502.1",
+  "version": "0.502.2",
   "description": "Sample BOTs that use the Conversation Learner",
   "main": "./lib/server.js",
   "scripts": {
@@ -32,8 +32,8 @@
   "author": "Microsoft Conversation Learner Team",
   "license": "MIT",
   "dependencies": {
-    "@conversationlearner/sdk": "^0.502.1",
-    "botbuilder": "4.4.0",
+    "@conversationlearner/sdk": "^0.502.2",
+    "botbuilder": "4.7.1",
     "chalk": "2.4.1",
     "convict": "^4.0.2",
     "dotenv": "^4.0.0",
