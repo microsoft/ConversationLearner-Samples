@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.503.0](https://github.com/microsoft/conversationlearner/compare/v0.502.2...v0.503.0) (2020-02-05)
+
+
+### Features
+
+* allow creation of mock results from UI ([#35](https://github.com/microsoft/conversationlearner/issues/35)) ([a7d82b0](https://github.com/microsoft/conversationlearner/commit/a7d82b03e36fbdf03ba9993a2751dc4127a7a88d))
+
+
+
+
+
 ## [0.502.2](https://github.com/microsoft/conversationlearner/compare/v0.502.1...v0.502.2) (2020-02-03)
 
 **Note:** Version bump only for package conversationlearner-samples
