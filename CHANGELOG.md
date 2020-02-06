@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.504.0](https://github.com/microsoft/conversationlearner/compare/v0.503.1...v0.504.0) (2020-02-06)
+
+
+### Features
+
+* add graph view ([#36](https://github.com/microsoft/conversationlearner/issues/36)) ([d77f1b3](https://github.com/microsoft/conversationlearner/commit/d77f1b34ec65479694fcf7556b4edb8ded12aa0b))
+
+
+
+
+
 ## [0.503.1](https://github.com/microsoft/conversationlearner/compare/v0.503.0...v0.503.1) (2020-02-05)
 
 **Note:** Version bump only for package conversationlearner-samples
